@@ -1,0 +1,189 @@
+ActivityDAL:V
+enum
+AddActivity
+GetTable(כל מיני סוגים)
+DelActivity
+DelAllActivity
+
+CourseDAL:V
+enum
+AddCourse
+GetTable(כל מיני סוגים)
+DelCourse(בשבילנו)
+
+CoursesToVolunteerDAL:V
+enum
+AddCourseVolunteer
+Participated
+GetTable(כל מיני סוגים)
+DelCourseVolunteer(בשבילנו)
+
+StockDAL:V
+enum
+GetTable(כל מיני סוגים)
+AddStock
+AddAmountInStock
+DelStock(בשבילנו)
+
+StockToVolunteerDAL:V
+enum
+AddTransference
+GetTable(כל מיני סוגים)
+DelStockVolunteer(בשבילנו)
+ReturnItem
+
+FileTypes:(נעשה את זה ידנית)
+
+MediaDAL:V
+enum
+GetTable(כל מיני סוגים)
+DelMedia(בשבילנו)
+AddMedia
+
+TypeToActivityDAL:V
+enum
+GetTable(כל מיני סוגים)
+DelTypeToActivity(בשבילנו)
+AddTypeToActivity
+
+ReportsDAL:V
+enum
+GetTable(כל מיני סוגים)
+DelReports(בשבילנו)
+AddReports
+
+VolunteerInfo:
+//לשדרג את update
+
+VolunteerPoliceInfoDAL:v
+enum
+GetTable(כל מיני סוגים)
+DelVolunteerPoliceInfo(בשבילנו)
+AddVolunteerPoliceInfo
+Update(כל מיני סוגים)
+
+VolunteerTypesDAL:v
+enum
+GetTable(כל מיני סוגים)
+DelVolunteerTypes(בשבילנו)
+AddVolunteerTypes
+Update(כל מיני סוגים)
+
+CarReportsDAL:v
+enum
+AddCarToVolunteer
+DelCarToVolunteer(בשבילנו)
+GetTable(כל מיני סוגים)
+
+ShiftsDAL:v
+enum
+AddShift
+DelShift(בשבילנו)
+GetTable(כל מיני סוגים)
+
+ShiftsTypeDAL:v
+enum
+AddShiftType
+DelShiftType(בשבילנו)
+GetTable(כל מיני סוגים)
+
+ShiftsToVolunteerDAL:v
+enum
+AddShiftToVolunteer
+DelShiftToVolunteer(בשבילנו)
+GetTable(כל מיני סוגים)
+
+VolunteerToValidityDAL:V
+enum
+addNewValidityToVolunteer
+GetTable
+ChangeStatus
+
+ValidityTypesDAL:V
+enum
+addNewValidity
+getTable
+
+--------------------------------------------------
+*בכל מחלקת יחיד יהיו הפעולות של הDAL
+
+
+VolunteerBL:
+לאיזה משמרות/אירועים נרשם/עשה
+לבדוק האם יש לו יום הולדת
+להוציא מכלל שימוש(מנהל או תוכנה)
+
+VolunteersBL:
+כמה אנשים פעילים
+
+VolunteerTypeBL:
+הוספת דרגה
+הצגת הדרגה והרשאות
+הצגת כל ההרשאות+הדרגות שלהן
+
+ActivityBL: 
+יצירת אירוע חדש
+כמה פעילויות היו בפרק זמן
+
+MediaBL:
+העלאת קובץ
+מחיקת קובץ
+
+MediasBL:
+הצגת הקבצים מתאריך עד תאריך
+
+ValidityTypesBL:
+הוספת סוג רישיון
+
+VolunteerToValidityBL:
+איזה רשיונות צריך לחדש
+
+VolunteerToValiditysBL:
+איזה רישיונות של איזה אנשים צריך לחדש
+
+TypeToActivityBL:
+הוספת סוג אירוע 
+
+ReportsBL:
+פעולה שמחזירה דוחות מתאריך עד תאריך
+..
+
+VolunteerToValidityBL:
+בדיקה והתראה עוד כמה זמן נגמר הרישיון
+התראה במה צריך לחדש רישיון כי הוא פג תוקף
+התראה איזה רשיונות חסרים וצריך
+..
+
+CoursesToVolunteerBL:
+איזה קורסים עשה
+..
+
+CourseBL:
+יצירת קורס חדש
+
+CoursesBL:
+כמות קורסים/משתתפים בפרק זמן
+
+StockToVolunteerBL:
+מחזיר טבלה של דברים שברשותו
+..
+
+CarsReportsBL:
+להחזיר למנהל דיווחים של מתנדב מסוים
+להחזיר דרך שמתנדב נסע בחודש מסוים
+..
+
+ShiftBL:
+ניהול אנשי משמרת(כמות אנשים במשמרת [1+2{לא עצמאי/חובה}])
+
+ShiftToVolunteerBL:
+מחזיר כמות משמרות מתאריך עד תאריך
+
+ShiftsTypeBL:
+להחזיר סוגי משמרות
+
+
+
+
+
+
