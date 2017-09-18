@@ -1,0 +1,14 @@
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\App_Data\database police.accdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\PoliceVolnteerDAL.dll.config
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\PoliceVolnteerDAL.dll
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\PoliceVolnteerDAL.pdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Release\PoliceVolnteerDAL.csprojResolveAssemblyReference.cache
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Release\PoliceVolnteerDAL.dll
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Release\PoliceVolnteerDAL.pdb
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\App_Data\database police.accdb
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\PoliceVolnteerDAL.dll.config
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\PoliceVolnteerDAL.dll
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Release\PoliceVolnteerDAL.pdb
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Release\PoliceVolnteerDAL.csprojResolveAssemblyReference.cache
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Release\PoliceVolnteerDAL.dll
+F:\שירותי רשת\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Release\PoliceVolnteerDAL.pdb
