@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace PoliceVolnteerDAL
+{
+    class Connect
+    {
+        public static string GetConnectionString()
+        {
+            string path = System.IO.Directory.GetCurrentDirectory();
+            path = path.Remove(path.Length-1-9);
+            //return @"provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\Guy.DESKTOP-AOI7D6B\Desktop\שרותי רשת\פרוייקט גמר\PoliceVolnteerDAL\PoliceVolnteerDAL\App_Data\database police.accdb";
+            return @"provider=Microsoft.ACE.OLEDB.12.0; Data source=" + path + @"\App_Data\database police.accdb";
+
+            //return @"provider =Microsoft.ACE.OLEDB.12.0; Data source=C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb11.accdb";
+           // return @"provider=Microsoft.ACE.OLEDB.12.0; Data source= C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb111.accdb";
+          //  return @"provider=Microsoft.Jet.OLEDB.4.0; Data source= C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb111.mdb";
+
+            //********* string connString = @"Provider=Microsoft.Jet.OLEDB.4.0;data source=" + path;  //mdb  עבור סיומת
+            //********* string connString = @"provider=Microsoft.ACE.OLEDB.12.0; Data source=" + path;  // accdb עבור סיומת
+        }
+    }
+}
