@@ -8,9 +8,10 @@ namespace PoliceVolnteerBL
 {
     class StockBL
     {
-        private string itemName; 
-        private string itemID;
-        private int amountInStock; 
-        private bool recycable;
+        public string ItemName { get; set; }
+        public string ItemID { get; set; }
+        public int AmountInStock { get; set; }
+        public bool Recycable { get; set; }
+
     }
 }

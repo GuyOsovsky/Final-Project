@@ -8,9 +8,9 @@ namespace PoliceVolnteerBL
 {
     class ShiftToVolunteerBL
     {
-        private int shiftCode;
-        private string phoneNumber;
-        private string comments;
+        public int ShiftCode { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Comments { get; set; }
 
     }
 }

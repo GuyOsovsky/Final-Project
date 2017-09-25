@@ -8,19 +8,8 @@ namespace PoliceVolnteerBL
 {
     class ValidityTypeBL
     {
-        private string validityCode;
-        private string validityName;
-
-        internal VolunteerBL VolunteerBL
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public string ValidityCode { get; set; }
+        public string ValidityName { get; set; }
 
     }
 }

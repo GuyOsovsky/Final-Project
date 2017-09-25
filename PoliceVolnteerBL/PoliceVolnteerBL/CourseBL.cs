@@ -8,25 +8,15 @@ namespace PoliceVolnteerBL
 {
     class CourseBL
     {
-        private int courseCode;
-        private string courseName;
-        private DateTime courseDate;
-        private DateTime startTime;
-        private DateTime finishTime;
-        private string nameOfInstructor;
-        private string isRequeired;
-        private string place;
-        private string description;
+        public int CourseCode { get; set; }
+        public string CourseName { get; set; }
+        public DateTime CourseDate { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime FinishTime { get; set; }
+        public string NameOfInstructor { get; set; }
+        public string IsRequeired { get; set; }
+        public string Place { get; set; }
+        public string Description { get; set; }
 
-        internal CoursesBL CoursesBL
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     }
 }

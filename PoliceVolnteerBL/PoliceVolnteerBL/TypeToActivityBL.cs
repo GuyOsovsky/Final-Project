@@ -8,7 +8,8 @@ namespace PoliceVolnteerBL
 {
     class TypeToActivityBL
     {
-        private string typeName;
-        private string typeCode;
+        public string TypeName { get; set; }
+        public string TypeCode { get; set; }
+
     }
 }

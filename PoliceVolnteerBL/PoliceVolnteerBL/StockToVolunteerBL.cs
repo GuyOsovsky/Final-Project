@@ -8,11 +8,11 @@ namespace PoliceVolnteerBL
 {
     class StockToVolunteerBL
     {
-        private int transferCode;
-        private string phoneNumber;
-        private int itemID;
-        private int amount;
-        private DateTime borrowDate;
-        private DateTime returnDate;
+        public int transferCode { get; set; }
+        public string phoneNumber { get; set; }
+        public int itemID { get; set; }
+        public int amount { get; set; }
+        public DateTime borrowDate { get; set; }
+        public DateTime returnDate { get; set; }
     }
 }

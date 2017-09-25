@@ -8,6 +8,6 @@ namespace PoliceVolnteerBL
 {
     class CarsReportsBL
     {
-        private List<CarReportsBL> carReportsList;
+        public List<CarReportsBL> CarReportsList { get; set; }
     }
 }
