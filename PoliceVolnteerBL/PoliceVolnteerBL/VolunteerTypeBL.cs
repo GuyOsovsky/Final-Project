@@ -8,16 +8,12 @@ namespace PoliceVolnteerBL
 {
     class VolunteerTypeBL
     {
-        private int typeCode;
-        private string typeName;
-        private bool permmisionShifts;
-        private bool permmisionActivity;
-        private bool permmisionStock;
-        public bool Independent { get; private set; }
+        public int typeCode { get; set; }
+        public string typeName { get; set; }
+        public bool permmisionShifts { get; set; }
+        public bool permmisionActivity { get; set; }
+        public bool permmisionStock { get; set; }
+        public bool Independent { get; set; }
 
-        public VolunteerTypeBL()
-        {
-
-        }
     }
 }

@@ -8,6 +8,6 @@ namespace PoliceVolnteerBL
 {
     class MediasBL
     {
-        private List<MediaBL> mediaList;
+        public List<MediaBL> MediaList { get; set; }
     }
 }

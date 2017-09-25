@@ -8,6 +8,6 @@ namespace PoliceVolnteerBL
 {
     class StocksBL
     {
-        private List<StockBL> stockList;
+        public List<StockBL> StockList { get; set; }
     }
 }

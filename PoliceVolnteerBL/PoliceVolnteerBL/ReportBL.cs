@@ -8,21 +8,10 @@ namespace PoliceVolnteerBL
 {
     class ReportBL
     {
-        private string phoneNumber;
-        private DateTime reportDate;
-        private int activityCode;
-        private string description;
-
-        internal ReportsListBL ReportsBL
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public string PhoneNumber { get; set; }
+        public DateTime ReportDate { get; set; }
+        public int ActivityCode { get; set; }
+        public string Description { get; set; }
 
     }
 }

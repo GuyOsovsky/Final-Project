@@ -7,8 +7,7 @@ namespace PoliceVolnteerBL
 {
     public class VolunteersBL
     {
-        private List<VolunteerBL> volunteerList;
-
+        public List<VolunteerBL> VolunteerList { get; set; }
 
     }
 }

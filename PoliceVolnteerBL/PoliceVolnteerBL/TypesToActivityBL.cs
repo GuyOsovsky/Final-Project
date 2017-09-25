@@ -8,6 +8,6 @@ namespace PoliceVolnteerBL
 {
     class TypesToActivityBL
     {
-        private List<TypeToActivityBL> typeToActivityList;
+        public List<TypeToActivityBL> TypeToActivityList { get; set; }
     }
 }

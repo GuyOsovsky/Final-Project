@@ -8,7 +8,6 @@ namespace PoliceVolnteerBL
 {
     class ValidityTypesBL
     {
-        private List<ValidityTypeBL> validityTypeList;
-
+        public List<ValidityTypeBL> ValidityTypeList { get; set; }
     }
 }

@@ -8,21 +8,10 @@ namespace PoliceVolnteerBL
 {
     class MediaBL
     {
-        private string fileName;
-        private int activityCode;
-        private string filePath;
-        private int fileType;
-
-        internal MediasBL MediasBL
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        public string FileName { get; set; }
+        public int ActivityCode { get; set; }
+        public string FilePath { get; set; }
+        public int FileType { get; set; }
 
     }
 }

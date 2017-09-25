@@ -8,22 +8,12 @@ namespace PoliceVolnteerBL
 {
     class ShiftBL
     {
-        private int shiftCode;
-        private int typeCode;
-        private DateTime dateOfShift;
-        private DateTime startTime;
-        private DateTime finishTime;
-        private string Place;
+        public int ShiftCode { get; set; }
+        public int TypeCode { get; set; }
+        public DateTime DateOfShift { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime FinishTime { get; set; }
+        public string Place { get; set; }
 
-        internal ShiftsBL ShiftsBL
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     }
 }

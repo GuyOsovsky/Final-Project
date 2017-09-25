@@ -8,7 +8,8 @@ namespace PoliceVolnteerBL
 {
     class ShiftTypeBL
     {
-        private int typeCode;
-        private string typeName;
+        public int TypeCode { get; set; }
+        public string TypeName { get; set; }
+
     }
 }

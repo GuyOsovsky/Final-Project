@@ -8,19 +8,9 @@ namespace PoliceVolnteerBL
 {
     class CarReportsBL
     {
-        private int shiftCode;
-        private string carID;
-        private int distance;
+        public int ShiftCode { get; set; }
+        public string CarID { get; set; }
+        public int Distance { get; set; }
 
-        internal CarsReportsBL CarsReportsBL
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     }
 }

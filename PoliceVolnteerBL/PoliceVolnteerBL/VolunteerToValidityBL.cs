@@ -8,8 +8,8 @@ namespace PoliceVolnteerBL
 {
     class VolunteerToValidityBL
     {
-        private string phoneNumber;
-        private int validityCode;
-        private bool status;
+        public string PhoneNumber { get; set; }
+        public int ValidityCode { get; set; }
+        public bool Status { get; set; }
     }
 }

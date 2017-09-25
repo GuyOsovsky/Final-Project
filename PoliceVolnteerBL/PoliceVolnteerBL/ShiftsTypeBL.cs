@@ -8,6 +8,6 @@ namespace PoliceVolnteerBL
 {
     class ShiftsTypeBL
     {
-        private List<ShiftTypeBL> shiftTypeList;
+        public List<ShiftTypeBL> ShiftTypeList { get; set; }
     }
 }
