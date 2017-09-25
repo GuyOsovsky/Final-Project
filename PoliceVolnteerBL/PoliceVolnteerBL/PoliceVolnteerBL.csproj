@@ -42,10 +42,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityBL.cs" />
+    <Compile Include="ActivitysBL.cs" />
+    <Compile Include="CarReportsBL.cs" />
+    <Compile Include="CarsReportsBL.cs" />
+    <Compile Include="CourseBL.cs" />
+    <Compile Include="CoursesBL.cs" />
+    <Compile Include="CoursesToVolunteerBL.cs" />
     <Compile Include="MediaBL.cs" />
     <Compile Include="MediasBL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportBL.cs" />
+    <Compile Include="ReportsListBL.cs" />
+    <Compile Include="ShiftBL.cs" />
+    <Compile Include="ShiftsBL.cs" />
+    <Compile Include="ShiftsToVolunteerBL.cs" />
+    <Compile Include="ShiftsTypeBL.cs" />
+    <Compile Include="ShiftToVolunteerBL.cs" />
+    <Compile Include="ShiftTypeBL.cs" />
+    <Compile Include="StockBL.cs" />
+    <Compile Include="StocksBL.cs" />
+    <Compile Include="StockToVolunteerBL.cs" />
+    <Compile Include="StockToVolunteersBL.cs" />
+    <Compile Include="TypesToActivityBL.cs" />
     <Compile Include="TypeToActivityBL.cs" />
     <Compile Include="ValidityTypeBL.cs" />
     <Compile Include="ValidityTypesBL.cs" />
@@ -54,10 +73,17 @@
     <Compile Include="VolunteerToValidityBL.cs" />
     <Compile Include="VolunteerToValiditysBL.cs" />
     <Compile Include="VolunteerTypeBL.cs" />
+    <Compile Include="VolunteerTypesBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="UML.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PoliceVolnteerDAL\PoliceVolnteerDAL\PoliceVolnteerDAL.csproj">
+      <Project>{c60fed36-f24c-41a6-967f-3230bf650d99}</Project>
+      <Name>PoliceVolnteerDAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

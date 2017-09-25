@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    class ValidityTypeBL
+    class ReportBL
     {
-        private string validityCode;
-        private string validityName;
+        private string phoneNumber;
+        private DateTime reportDate;
+        private int activityCode;
+        private string description;
 
-        internal VolunteerBL VolunteerBL
+        internal ReportsListBL ReportsBL
         {
             get
             {
