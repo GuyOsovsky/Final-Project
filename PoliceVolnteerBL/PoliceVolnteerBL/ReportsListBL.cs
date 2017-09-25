@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    public class VolunteersBL
+    class ReportsListBL
     {
-        private List<VolunteerBL> volunteerList;
-
-
+        private List<ReportBL> reports;
     }
 }

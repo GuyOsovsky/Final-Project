@@ -28,6 +28,30 @@ namespace PoliceVolnteerBL
         private bool status;
 
 
+        public DateTime BirthDate
+        {
+            get
+            {
+                return birthDate;
+            }
+            set
+            {
+                birthDate = value;
+            }
+        }
+
+        public VolunteersBL VolunteersBL
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+
 
     }
 }

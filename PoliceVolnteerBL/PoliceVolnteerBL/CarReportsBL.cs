@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    class ValidityTypeBL
+    class CarReportsBL
     {
-        private string validityCode;
-        private string validityName;
+        private int shiftCode;
+        private string carID;
+        private int distance;
 
-        internal VolunteerBL VolunteerBL
+        internal CarsReportsBL CarsReportsBL
         {
             get
             {
@@ -21,6 +22,5 @@ namespace PoliceVolnteerBL
             {
             }
         }
-
     }
 }

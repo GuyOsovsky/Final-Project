@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    public class ActivityBL
+    class CourseBL
     {
-        private int activityCode;
-        private string activityName;
-        private DateTime activityDate;
+        private int courseCode;
+        private string courseName;
+        private DateTime courseDate;
         private DateTime startTime;
         private DateTime finishTime;
-        private string activityManager;
-        private int typeCode;
-        private string place; 
-        private int minNumberOfVolnteer;
+        private string nameOfInstructor;
+        private string isRequeired;
+        private string place;
+        private string description;
 
-        internal ActivitysBL ActivitysBL
+        internal CoursesBL CoursesBL
         {
             get
             {
@@ -27,6 +28,5 @@ namespace PoliceVolnteerBL
             {
             }
         }
-
     }
 }

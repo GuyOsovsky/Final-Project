@@ -13,5 +13,16 @@ namespace PoliceVolnteerBL
         private string filePath;
         private int fileType;
 
+        internal MediasBL MediasBL
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
     }
 }

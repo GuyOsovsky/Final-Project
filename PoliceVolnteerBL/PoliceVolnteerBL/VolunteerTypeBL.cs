@@ -13,7 +13,11 @@ namespace PoliceVolnteerBL
         private bool permmisionShifts;
         private bool permmisionActivity;
         private bool permmisionStock;
-        private bool independent;
+        public bool Independent { get; private set; }
 
+        public VolunteerTypeBL()
+        {
+
+        }
     }
 }
