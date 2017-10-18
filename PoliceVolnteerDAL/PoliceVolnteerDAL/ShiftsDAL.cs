@@ -8,20 +8,21 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+
+    public enum ShiftsField { ShiftCode, TypeCode, DateOfShift, StartTime, FinishTime, Place }
+
     public class ShiftsDAL
     {
-        public enum ShiftsEnum { ShiftCode, TypeCode, DateOfShift, StartTime, FinishTime, Place}
-
-        public static bool AddShift(int typeCode, DateTime dateshift, DateTime startTime, DateTime finishTime, string place)
+        public static bool AddShift(/*int shiftCode*/ int typeCode, DateTime dateshift, DateTime startTime, DateTime finishTime, string place)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Shifts ([ShiftCode], [TypeCode], [DateOfShift], [StartTime], [FinishTime], [Place]) VALUES ('" + typeCode + "','" + dateshift.ToShortDateString() + "','" + startTime.ToShortTimeString() + "','" + finishTime.ToShortTimeString() + "','" + place + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Shifts ([TypeCode], [DateOfShift], [StartTime], [FinishTime], [Place]) VALUES ('" + typeCode + "','" + dateshift.ToShortDateString() + "','" + startTime.ToShortTimeString() + "','" + finishTime.ToShortTimeString() + "','" + place + "')");
                 return true;
             }
             catch (Exception e)
             {
-                //throw e;
+                throw e;
                 return false;
             }
         }
@@ -31,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<ShiftsEnum> fv)
+        public static DataSet GetTable(FieldValue<ShiftsField> fv)
         {
             string SQL = "SELECT * FROM Shifts WHERE ";
             SQL += fv.ToString();
@@ -42,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<ShiftsEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<ShiftsField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Shifts WHERE ";
             while (qfv.Count > 1)

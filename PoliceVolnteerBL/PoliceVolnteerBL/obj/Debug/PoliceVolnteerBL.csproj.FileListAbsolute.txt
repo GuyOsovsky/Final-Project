@@ -1,2 +1,9 @@
 Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\bin\Debug\PoliceVolnteerBL.exe.config
 Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\obj\Debug\PoliceVolnteerBL.csprojResolveAssemblyReference.cache
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\bin\Debug\App_Data\database police.accdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\bin\Debug\PoliceVolnteerBL.exe
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\bin\Debug\PoliceVolnteerBL.pdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\bin\Debug\PoliceVolnteerDAL.dll
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\bin\Debug\PoliceVolnteerDAL.pdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\obj\Debug\PoliceVolnteerBL.exe
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerBL\PoliceVolnteerBL\obj\Debug\PoliceVolnteerBL.pdb

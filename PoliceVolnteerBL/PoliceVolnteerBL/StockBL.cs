@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    class StockBL
+    public class StockBL
     {
         public string ItemName { get; set; }
         public string ItemID { get; set; }

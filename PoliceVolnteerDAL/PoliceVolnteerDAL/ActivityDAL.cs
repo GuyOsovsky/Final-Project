@@ -8,21 +8,21 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum ActivityField { ActivityCode, ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer };
+
     public class ActivityDAL
     {
-        public enum ActivityEnum { /*ActivityCode,*/ ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolnteer };
-
-        public static bool AddActivity(string aActivityName, DateTime aActivityDate, DateTime aStartTime, DateTime aFinishTime, string aActivityManager, int aTypeCode, string aPlace, int aMinNumberOfVolnteer)
+        public static bool AddActivity(string aActivityName, DateTime aActivityDate, DateTime aStartTime, DateTime aFinishTime, string aActivityManager, int aTypeCode, string aPlace, int aMinNumberOfVolunteer)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Activity ([ActivityName], [ActivityDate], [StartTime], [FinishTime], [ActivityManager], [TypeCode], [Place], [MinNumberOfVolunteer]) VALUES ('" + aActivityName + "','" + aActivityDate.ToShortDateString() + "','" + aStartTime.ToShortTimeString() + "','" + aFinishTime.ToShortTimeString() + "','" + aActivityManager + "','" + aTypeCode + "','" + aPlace + "','" + aMinNumberOfVolnteer + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Activity ([ActivityName], [ActivityDate], [StartTime], [FinishTime], [ActivityManager], [TypeCode], [Place], [MinNumberOfVolunteer]) VALUES ('" + aActivityName + "','" + aActivityDate.ToShortDateString() + "','" + aStartTime.ToShortTimeString() + "','" + aFinishTime.ToShortTimeString() + "','" + aActivityManager + "','" + aTypeCode + "','" + aPlace + "','" + aMinNumberOfVolunteer + "')");
                 return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
+                //return false;
             }
         }
 
@@ -32,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<ActivityEnum> fv)
+        public static DataSet GetTable(FieldValue<ActivityField> fv)
         {
             string SQL = "SELECT * FROM Activity WHERE ";
             SQL += fv.ToString();
@@ -41,9 +41,8 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Activity");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<ActivityEnum>> qfv, bool Operation)
+        /// <summary>the operation parameter True is for and, False is for or</summary>
+        public static DataSet GetTable(Queue<FieldValue<ActivityField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Activity WHERE ";
             while (qfv.Count > 1)
@@ -57,7 +56,7 @@ namespace PoliceVolnteerDAL
             SQL += qfv.Dequeue().ToString();
             return OleDbHelper2.Fill(SQL, "Activity");
         }
-        
+
         public static bool DelActivity(int activityCode)
         {
             string deleteSQL;
@@ -87,7 +86,7 @@ namespace PoliceVolnteerDAL
             {
                 return false;
             }
-            
+
         }
     }
 }

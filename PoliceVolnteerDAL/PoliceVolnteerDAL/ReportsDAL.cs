@@ -8,10 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum ReportsField { PhoneNumber, ReportDate, ActivityCode, Description }
+
     public class ReportsDAL
     {
-        public enum ReportsEnum { PhoneNumber, ReportDate, ActivityCode, Description }
-
         public static bool AddReport(string rPhoneNumber, DateTime rReportDate, int rActivityCode, string rDescription)
         {
             try
@@ -32,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<ReportsEnum> fv)
+        public static DataSet GetTable(FieldValue<ReportsField> fv)
         {
             string SQL = "SELECT * FROM Reports WHERE ";
             SQL += fv.ToString();
@@ -43,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<ReportsEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<ReportsField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Reports WHERE ";
             while (qfv.Count > 1)
