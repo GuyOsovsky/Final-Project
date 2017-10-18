@@ -8,20 +8,20 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public static class CarVolnteerDAL
+    public enum CarVolunteerField { PhoneNumber, CarID };
+    
+    public class CarVolnteerDAL
     {
-        public enum CarVolunteerEnum { PhoneNumber, CarID };
-
         public static bool AddCar(string vPhoneNumber, string CarID)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO CarToVolnteer ([PhoneNumber],[CarID]) VALUES ('" + vPhoneNumber + "','" + CarID + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO CarToVolunteer ([PhoneNumber],[CarID]) VALUES ('" + vPhoneNumber + "','" + CarID + "')");
                 return true;
             }
             catch (Exception e)
             {
-                //throw e;
+                throw e;
                 return false;
             }
         }
@@ -32,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<CarVolunteerEnum> fv)
+        public static DataSet GetTable(FieldValue<CarVolunteerField> fv)
         {
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
             SQL += fv.ToString();
@@ -43,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<CarVolunteerEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<CarVolunteerField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
             while (qfv.Count > 1)
@@ -58,7 +58,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
-        public static bool DelUser(FieldValue<CarVolunteerEnum> change)
+        public static bool DelUser(FieldValue<CarVolunteerField> change)
         {
             try
             {

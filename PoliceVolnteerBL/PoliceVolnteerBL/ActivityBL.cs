@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using PoliceVolnteerDAL;
+using System.Data;
+using System.Data.OleDb;
 
 namespace PoliceVolnteerBL
 {
@@ -16,11 +19,12 @@ namespace PoliceVolnteerBL
         public string ActivityManager { get; set; }
         public int TypeCode { get; set; }
         public string Place { get; set; }
-        public int MinNumberOfVolnteer { get; set; }
+        public int MinNumberOfVolunteer { get; set; }
 
-        //int ActivityCode,        string ActivityName,        DateTime ActivityDate,        DateTime StartTime,        DateTime FinishTime,        string ActivityManager ,        int TypeCode,        string Place,        int MinNumberOfVolnteer
+        
 
-        public ActivityBL(/*int ActivityCode, */string ActivityName, DateTime ActivityDate, DateTime StartTime, DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolnteer)
+        //build and adding
+        public ActivityBL(string ActivityName, DateTime ActivityDate, DateTime StartTime, DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolunteer)
         {
             this.ActivityName = ActivityName;
             this.ActivityDate = ActivityDate;
@@ -29,11 +33,25 @@ namespace PoliceVolnteerBL
             this.ActivityManager = ActivityManager;
             this.TypeCode = TypeCode;
             this.Place = Place;
-            this.MinNumberOfVolnteer = MinNumberOfVolnteer;
-            ActivityDAL.AddActivity(ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolnteer);
-            //this.ActivityCode = ActivityCode; //להכניס לתכונה קוד חדש שנוצר מפעולה קודמת!
+            this.MinNumberOfVolunteer = MinNumberOfVolunteer;
+            ActivityDAL.AddActivity(ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer);
+            this.ActivityCode = (int)ActivityDAL.GetTable().Tables[0].Rows[ActivityDAL.GetTable().Tables[0].Rows.Count - 1]["ActivityCode"];
         }
 
-        
+        //build from the database
+        public ActivityBL(int ActivityCode)
+        {
+            this.ActivityCode = ActivityCode;
+            DataSet ds = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, ActivityCode.ToString(), 1));
+            this.ActivityName = (string)ds.Tables[0].Rows[0]["ActivityName"];
+            this.ActivityDate = (DateTime)ds.Tables[0].Rows[0]["ActivityDate"];
+            this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];
+            this.FinishTime = (DateTime)ds.Tables[0].Rows[0]["FinishTime"];
+            this.ActivityManager = (string)ds.Tables[0].Rows[0]["ActivityManager"];
+            this.TypeCode = (int)ds.Tables[0].Rows[0]["TypeCode"];
+            this.Place = (string)ds.Tables[0].Rows[0]["Place"];
+            this.MinNumberOfVolunteer = (int)ds.Tables[0].Rows[0]["MinNumberOfVolunteer"];
+        }
+
     }
 }

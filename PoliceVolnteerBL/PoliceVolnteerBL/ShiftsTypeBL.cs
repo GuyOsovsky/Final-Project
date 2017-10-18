@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    class ShiftsTypeBL
+    public class ShiftsTypeBL
     {
         public List<ShiftTypeBL> ShiftTypeList { get; set; }
     }

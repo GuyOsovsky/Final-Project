@@ -147,3 +147,10 @@ F:\שירותי רשת\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Debug\PoliceVolnt
 Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Debug\PoliceVolnteerDAL.exe.config
 Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Debug\PoliceVolnteerDAL.exe
 Y:\תשעח\יב2\תלמידים\!dvir osher eran\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Debug\PoliceVolnteerDAL.pdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Debug\App_Data\database police.accdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Debug\PoliceVolnteerDAL.dll.config
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Debug\PoliceVolnteerDAL.dll
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\bin\Debug\PoliceVolnteerDAL.pdb
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Debug\PoliceVolnteerDAL.csprojResolveAssemblyReference.cache
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Debug\PoliceVolnteerDAL.dll
+Y:\תשעח\יב2\תלמידים\!dvir osher eran\פרוייקט סיום\PoliceVolnteerDAL\PoliceVolnteerDAL\obj\Debug\PoliceVolnteerDAL.pdb

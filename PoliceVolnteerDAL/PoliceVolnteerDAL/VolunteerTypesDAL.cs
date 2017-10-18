@@ -11,7 +11,7 @@ namespace PoliceVolnteerDAL
     public class VolunteerTypesDAL
     {
         public enum VolunteerTypesEnum { TypeCode, TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent }
-        
+
         public static bool AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
         {
             try
@@ -25,7 +25,7 @@ namespace PoliceVolnteerDAL
                 return false;
             }
         }
-        
+
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from VolunteerTypes", "VolunteerTypes");
@@ -81,18 +81,14 @@ namespace PoliceVolnteerDAL
             try
             {
                 DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM VolunteerTypes WHERE TypeCode={0}", TypeCode), "VolunteerTypes");
-                if (ds.Tables["VolunteerTypes"].Rows.Count > 0)
-                {
-                    DataRow dr = ds.Tables["VolunteerTypes"].Rows[0];
-                    dr[eFrom.ToString()] = updateStr;
-                    OleDbHelper2.update(ds, "SELECT * FROM VolunteerTypes", "VolunteerTypes");
-                }
+                DataRow dr = ds.Tables["VolunteerTypes"].Rows[0];
+                dr[eFrom.ToString()] = updateStr;
+                OleDbHelper2.update(ds, "SELECT * FROM VolunteerTypes", "VolunteerTypes");
                 return true;
             }
-            catch (Exception e)
+            catch (IndexOutOfRangeException e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

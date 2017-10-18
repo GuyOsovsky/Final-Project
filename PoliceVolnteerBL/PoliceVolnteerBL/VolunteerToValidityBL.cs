@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    class VolunteerToValidityBL
+    public class VolunteerToValidityBL
     {
         public string PhoneNumber { get; set; }
         public int ValidityCode { get; set; }

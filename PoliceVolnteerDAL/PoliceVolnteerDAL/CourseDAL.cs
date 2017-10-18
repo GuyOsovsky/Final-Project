@@ -8,20 +8,20 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum CourseFiled { CourseCode, CourseName, CourseDate, StartTime, FinishTime, NameOfInstructor, IsRequeired, Place, Description, ValidityCode };
+
     public class CourseDAL
     {
-        public enum CourseEnum { CourseName, CourseDate, StartTime, FinishTime, NameOfInstructor, IsRequeired, Place, Description };
-
-        public static bool AddCourse(string cCourseName, DateTime cCourseDate, DateTime cStartTime, DateTime cFinishTime, string cNameOfInstructor, string cIsRequeired, string cPlace, string cDescription)
+        public static bool AddCourse(string cCourseName, DateTime cCourseDate, DateTime cStartTime, DateTime cFinishTime, string cNameOfInstructor, string cIsRequeired, string cPlace, string cDescription, int cValidityCode)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Course ([CourseName], [CourseDate], [StartTime], [FinishTime], [NameOfInstructor], [IsRequeired], [Place], [Description]) VALUES ('" + cCourseName + "','" + cCourseDate.ToShortDateString() + "','" + cStartTime.ToShortTimeString() + "','" + cFinishTime.ToShortTimeString() + "','" + cNameOfInstructor + "','" + cIsRequeired + "','" + cPlace + "','" + cDescription + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Course ([CourseName], [CourseDate], [StartTime], [FinishTime], [NameOfInstructor], [IsRequeired], [Place], [Description], [ValidityCode]) VALUES ('" + cCourseName + "','" + cCourseDate.ToShortDateString() + "','" + cStartTime.ToShortTimeString() + "','" + cFinishTime.ToShortTimeString() + "','" + cNameOfInstructor + "','" + cIsRequeired + "','" + cPlace + "','" + cDescription + "','" + cValidityCode + "')");
                 return true;
             }
             catch(Exception e)
             {
-                //throw e;
+                throw e;
                 return false;
             }
         }
@@ -32,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
         
         /**/
-        public static DataSet GetTable(FieldValue<CourseEnum> fv)
+        public static DataSet GetTable(FieldValue<CourseFiled> fv)
         {
             string SQL = "SELECT * FROM Course WHERE ";
             SQL += fv.ToString();
@@ -43,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<CourseEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<CourseFiled>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Course WHERE ";
             while (qfv.Count > 1)

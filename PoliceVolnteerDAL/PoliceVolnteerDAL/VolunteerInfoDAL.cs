@@ -32,8 +32,8 @@ namespace PoliceVolnteerDAL
             }
             catch(Exception e)
             {
-                
-                //throw e;
+                //למחוק את המתנדב אם לא עבד במשטרה!
+                throw e;
                 return false;
             }
         }
@@ -98,7 +98,8 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
-                CarVolnteerDAL.DelUser(new FieldValue<CarVolnteerDAL.CarVolunteerEnum>(CarVolnteerDAL.CarVolunteerEnum.PhoneNumber, UPhoneNumber, 2));
+                CarVolnteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
+                //CarVolnteerDAL.DelUser(new FieldValue<CarVolnteerDAL.CarVolunteerField>(CarVolnteerDAL.CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;

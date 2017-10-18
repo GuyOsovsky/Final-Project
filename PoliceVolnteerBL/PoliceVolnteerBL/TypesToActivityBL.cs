@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerBL
 {
-    class TypesToActivityBL
+    public class TypesToActivityBL
     {
         public List<TypeToActivityBL> TypeToActivityList { get; set; }
     }
