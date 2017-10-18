@@ -51,8 +51,12 @@ namespace PoliceVolnteerBL
             Console.WriteLine(sbl.TypeCode);
             Console.WriteLine(sbl.Place);*/
 
-
-
+            /*ShiftsBL ssbl = new ShiftsBL();
+            foreach (ShiftBL sbl in ssbl.ShiftList)
+            {
+                Console.WriteLine(sbl.DateOfShift + " " + sbl.FinishTime + " " + sbl.Place + " " + sbl.ShiftCode + " " + sbl.StartTime + " " + sbl.TypeCode);
+            }*/
+            
             Console.WriteLine("work");
             Console.ReadKey();
         }

@@ -15,7 +15,6 @@ namespace PoliceVolnteerBL
 
         public ShiftsBL()
         {
-            //לבדוק אותו
             this.ShiftList = new List<ShiftBL>();
             DataRowCollection drc = ShiftsDAL.GetTable().Tables[0].Rows;
             for (int i = 0; i < drc.Count; i++)

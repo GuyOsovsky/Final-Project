@@ -9,5 +9,7 @@ namespace PoliceVolnteerBL
     public class ShiftsToVolunteerBL
     {
         public List<ShiftToVolunteerBL> ShiftToVolunteerList { get; set; }
+
+        
     }
 }

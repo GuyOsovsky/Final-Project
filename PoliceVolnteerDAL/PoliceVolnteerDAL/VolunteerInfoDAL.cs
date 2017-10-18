@@ -16,38 +16,23 @@ namespace PoliceVolnteerDAL
         //a function that adds a new volnteer to the system. the function creates the volnteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table.
         public static bool AddVolunteer(string vPhoneNumber, string vEmergencyNumber, string vFName, string vLName, DateTime vBirthDate, string vUserName, string vPassword, string vHomeAddress, string vHomeCity, string vEmailAddress, string vID, string PoliceID, string ServeCity, DateTime startDate, int type, string CarID = "")
         {
-            bool Info = false, PoliceInfo = false, CarInfo = false;
             try
             {
                 //VolunteerInfo table
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerInfo ([PhoneNumber],[EmergencyNumber],[FName],[LName],[BirthDate],[UserName],[Password],[HomeAddress],[HomeCity],[EmailAddress],[ID], [status]) VALUES ('" + vPhoneNumber + "','" + vEmergencyNumber + "','" + vFName + "','" + vLName + "','" + vBirthDate.ToShortDateString() + "','" + vUserName + "','" + vPassword + "','" + vHomeAddress + "','" + vHomeCity + "','" + vEmailAddress + "','" + vID + "','" + "1" + "')");
-                Info = true;
+
                 //VolnteerPoliceInfo table
                 VolunteerPoliceInfoDAL.AddVolnteer(vPhoneNumber, PoliceID, ServeCity, startDate, type);
-                PoliceInfo = true;
                 if (CarID != "")
                 {
                     //CarToVolnteer table, if nececery
-                    CarVolnteerDAL.AddCar(vPhoneNumber, CarID);
-                    CarInfo = true;
+                    CarToVolunteerDAL.AddCar(vPhoneNumber, CarID);
                 }
                 return true;
             }
             catch(Exception e)
             {
                 //למחוק את המתנדב אם לא עבד במשטרה!
-                if (Info)
-                {
-                    DelUser(vPhoneNumber);
-                }
-                if (PoliceInfo)
-                {
-                    VolunteerPoliceInfoDAL.DelUser(vPhoneNumber);
-                }
-                if (CarInfo)
-                {
-                    car
-                }
                 throw e;
                 return false;
             }
@@ -113,7 +98,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
-                CarVolnteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
+                CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
                 //CarVolnteerDAL.DelUser(new FieldValue<CarVolnteerDAL.CarVolunteerField>(CarVolnteerDAL.CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
@@ -131,7 +116,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelAllUsers();
-                CarVolnteerDAL.DelAllCars();
+                CarToVolunteerDAL.DelAllCars();
                 deleteSQL = "DELETE * FROM VolunteerInfo";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;
