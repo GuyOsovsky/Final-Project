@@ -46,7 +46,7 @@ namespace PoliceVolnteerDAL
                 }
                 if (CarInfo)
                 {
-                    car
+                    CarVolnteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, 2));
                 }
                 throw e;
                 return false;

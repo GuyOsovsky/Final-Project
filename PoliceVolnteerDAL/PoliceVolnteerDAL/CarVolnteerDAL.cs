@@ -58,11 +58,11 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
-        public static bool DelUser(FieldValue<CarVolunteerField> change)
+        public static bool DelUser(FieldValue<CarVolunteerField> del)
         {
             try
             {
-                string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + change.ToString() + "'";
+                string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + del.ToString() + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;
             }
