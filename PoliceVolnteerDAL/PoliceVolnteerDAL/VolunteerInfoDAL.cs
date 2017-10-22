@@ -21,30 +21,33 @@ namespace PoliceVolnteerDAL
             {
                 //VolunteerInfo table
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerInfo ([PhoneNumber],[EmergencyNumber],[FName],[LName],[BirthDate],[UserName],[Password],[HomeAddress],[HomeCity],[EmailAddress],[ID], [status]) VALUES ('" + vPhoneNumber + "','" + vEmergencyNumber + "','" + vFName + "','" + vLName + "','" + vBirthDate.ToShortDateString() + "','" + vUserName + "','" + vPassword + "','" + vHomeAddress + "','" + vHomeCity + "','" + vEmailAddress + "','" + vID + "','" + "1" + "')");
-
+                Info = true;
                 //VolnteerPoliceInfo table
                 VolunteerPoliceInfoDAL.AddVolnteer(vPhoneNumber, PoliceID, ServeCity, startDate, type);
+                PoliceInfo = true;
                 if (CarID != "")
                 {
                     //CarToVolnteer table, if nececery
                     CarToVolunteerDAL.AddCar(vPhoneNumber, CarID);
+                    CarInfo = true;
                 }
                 return true;
             }
             catch(Exception e)
             {
                 //למחוק את המתנדב אם לא עבד במשטרה!
-                if (Info)
+                
+                if (CarInfo)
                 {
-                    DelUser(vPhoneNumber);
+                    CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, 2));
                 }
                 if (PoliceInfo)
                 {
                     VolunteerPoliceInfoDAL.DelUser(vPhoneNumber);
                 }
-                if (CarInfo)
+                if (Info)
                 {
-                    CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, 2));
+                    DelUser(vPhoneNumber);
                 }
                 throw e;
                 return false;
