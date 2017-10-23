@@ -14,8 +14,8 @@ namespace PoliceVolnteerBL
         static void Main(string[] args)
         {
             //יוצר משתמש רגיל בלי משתמש משטרה! לתקן!
-            Console.WriteLine(VolunteerInfoDAL.AddVolunteer("t", "a", "a", "a", new DateTime(), "b", "b", "b", "b", "b", "b", "b", "b", new DateTime(), 1, "1"));
-
+            //Console.WriteLine(VolunteerInfoDAL.AddVolunteer("t", "a", "a", "a", new DateTime(), "b", "b", "b", "b", "b", "b", "b", "b", new DateTime(), 1, "1"));
+            ShiftsTypesBL a = new ShiftsTypesBL();
             /*CoursesToVolunteersBL ctvsbl = new CoursesToVolunteersBL();
             foreach (CoursesToVolunteerBL ctvbl in ctvsbl.CoursesToVolunteerList)
             {

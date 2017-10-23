@@ -59,7 +59,7 @@
     <Compile Include="ShiftBL.cs" />
     <Compile Include="ShiftsBL.cs" />
     <Compile Include="ShiftsToVolunteerBL.cs" />
-    <Compile Include="ShiftsTypeBL.cs" />
+    <Compile Include="ShiftsTypesBL.cs" />
     <Compile Include="ShiftToVolunteerBL.cs" />
     <Compile Include="ShiftTypeBL.cs" />
     <Compile Include="StockBL.cs" />
