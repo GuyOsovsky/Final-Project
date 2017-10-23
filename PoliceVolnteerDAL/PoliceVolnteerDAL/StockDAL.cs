@@ -8,10 +8,9 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum StockField { ItemID, ItemName, AmountInStock, Recyclable };
     public class StockDAL
     {
-        public enum StockEnum { ItemID, ItemName, AmountInStock, Recyclable};
-
         public static bool AddItemToStock(string iName, int startingNumber, bool Recycable)
         {
             try
@@ -35,7 +34,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Stock", "Stock");
         }
 
-        public static DataSet GetTable(FieldValue<StockEnum> fv)//string select, StockEnum field)
+        public static DataSet GetTable(FieldValue<StockField> fv)//string select, StockEnum field)
         {
             string SQL = "SELECT * FROM Stock WHERE ";
             SQL += fv.ToString();
@@ -48,7 +47,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Stock");
         }
 
-        public static DataSet GetTable(Queue<FieldValue<StockEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<StockField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Stock WHERE ";
             while (qfv.Count > 1)

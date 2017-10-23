@@ -21,7 +21,8 @@ namespace PoliceVolnteerBL
             {
                 Console.WriteLine(ctvbl.PhoneNumber + " " + ctvbl.CourseCode + " " + ctvbl.Status);
             }*/
-
+            //StockBL a = new StockBL("bil", 5, true);
+            //StockBL b = new StockBL(4);
             /*MediaBL mbl = new MediaBL("nis2");
             Console.WriteLine(mbl.ActivityCode);
             Console.WriteLine(mbl.FileName);
