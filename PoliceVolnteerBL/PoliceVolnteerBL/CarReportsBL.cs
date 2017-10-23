@@ -25,7 +25,7 @@ namespace PoliceVolnteerBL
 
         public CarReportsBL(int ShiftCode)
         {
-            DataSet ds = CarsReportsDAL.GetTable(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, ShiftCode.ToString(), 1));
+            DataSet ds = CarsReportsDAL.GetTable(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, ShiftCode.ToString(), FieldType.Number));
             this.CarID = (string)ds.Tables[0].Rows[0]["CarID"];
             this.Distance = (int)ds.Tables[0].Rows[0]["Distance"];
             this.ShiftCode = (int)ds.Tables[0].Rows[0]["ShiftCode"];

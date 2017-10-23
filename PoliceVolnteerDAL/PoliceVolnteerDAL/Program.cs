@@ -12,12 +12,12 @@ namespace PoliceVolnteerDAL
     {
         static void Main(string[] args)
         {
-            VolunteerInfoDAL.DelAllUsers();
-            ValidityTypesDAL.AddNewValidity("first");
-            ValidityTypesDAL.AddNewValidity("second");
-            ValidityTypesDAL.AddNewValidity("third");
-            VolunteerInfoDAL.AddVolunteer("a", "a", "a", "a", new DateTime(2000, 5, 5), "a", "a", "a", "a", "a", "a", "a", "a", new DateTime(2000, 5, 5), 1);
-            VolunteerToValidityDAL.AddValidityToVolunteer("a", 2);
+            //VolunteerInfoDAL.DelAllUsers();
+            //ValidityTypesDAL.AddNewValidity("first");
+            //ValidityTypesDAL.AddNewValidity("second");
+            //ValidityTypesDAL.AddNewValidity("third");
+            //VolunteerInfoDAL.AddVolunteer("a", "a", "a", "a", new DateTime(2000, 5, 5), "a", "a", "a", "a", "a", "a", "a", "a", new DateTime(2000, 5, 5), 1);
+            //VolunteerToValidityDAL.AddValidityToVolunteer("a", 2);
             Console.WriteLine("work");
             Console.ReadKey();
         }

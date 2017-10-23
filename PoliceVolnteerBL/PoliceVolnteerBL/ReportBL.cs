@@ -28,7 +28,7 @@ namespace PoliceVolnteerBL
         public ReportBL(string PhoneNumber)
         {
             this.PhoneNumber = PhoneNumber;
-            DataSet ds = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, 2));
+            DataSet ds = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, FieldType.String));
             this.ActivityCode = (int)ds.Tables[0].Rows[0]["ActivityCode"];
             this.ReportDate = (DateTime)ds.Tables[0].Rows[0]["ReportDate"];
             this.Description = (string)ds.Tables[0].Rows[0]["Description"];

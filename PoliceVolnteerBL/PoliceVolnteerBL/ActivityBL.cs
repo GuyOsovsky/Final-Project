@@ -42,7 +42,7 @@ namespace PoliceVolnteerBL
         public ActivityBL(int ActivityCode)
         {
             this.ActivityCode = ActivityCode;
-            DataSet ds = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, ActivityCode.ToString(), 1));
+            DataSet ds = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, ActivityCode.ToString(), FieldType.Number));
             this.ActivityName = (string)ds.Tables[0].Rows[0]["ActivityName"];
             this.ActivityDate = (DateTime)ds.Tables[0].Rows[0]["ActivityDate"];
             this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];
