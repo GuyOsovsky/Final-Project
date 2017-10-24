@@ -18,10 +18,10 @@ namespace PoliceVolnteerBL
 
         public StockBL(string itemName, int amountInStock, bool recycable)
         {
+            StockDAL.AddItemToStock(itemName, amountInStock, recycable);
             this.ItemName = itemName;
             this.AmountInStock = amountInStock;
             this.Recycable = recycable;
-            StockDAL.AddItemToStock(itemName, amountInStock, recycable);
             this.ItemID = (int)StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemName, itemName, FieldType.String)).Tables[0].Rows[0]["ItemID"];
         }
 

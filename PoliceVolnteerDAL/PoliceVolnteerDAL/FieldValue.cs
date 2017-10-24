@@ -15,7 +15,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// 1 = number; 2 = string;3 = boolean; 4 = dateTime</summary>
-        public FieldValue(T e, string v, FieldType type)
+        public FieldValue(T e, string v, FieldType type) //"[" + field + "]=" + value
         {
             Field = e;
             Value = v;

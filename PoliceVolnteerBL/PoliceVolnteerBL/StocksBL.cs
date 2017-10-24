@@ -19,7 +19,7 @@ namespace PoliceVolnteerBL
             DataRowCollection drc = StockDAL.GetTable().Tables[0].Rows;
             for (int i = 0; i < drc.Count; i++)
             {
-                StockList.Add(new StockBL((int)drc[i]["ShiftCode"]));
+                StockList.Add(new StockBL((int)drc[i]["ItemID"]));
             }
         }
     }

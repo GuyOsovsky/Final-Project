@@ -21,8 +21,14 @@ namespace PoliceVolnteerBL
             {
                 Console.WriteLine(ctvbl.PhoneNumber + " " + ctvbl.CourseCode + " " + ctvbl.Status);
             }*/
+            StockToVolunteerBL a = new StockToVolunteerBL("b", 4, 2, DateTime.Now);
+            StockToVolunteerBL b = new StockToVolunteerBL(4);
+            StockToVolunteersBL c = new StockToVolunteersBL();
+
+            //ShiftsTypesBL a = new ShiftsTypesBL();
             //StockBL a = new StockBL("bil", 5, true);
             //StockBL b = new StockBL(4);
+            //StocksBL a = new StocksBL();
             /*MediaBL mbl = new MediaBL("nis2");
             Console.WriteLine(mbl.ActivityCode);
             Console.WriteLine(mbl.FileName);
