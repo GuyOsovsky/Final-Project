@@ -8,10 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum StockToVolunteerField { TransferCode, PhoneVolunteer, ItemID, Amount, BorrowDate, ReturnDate };
+
     public class StockToVolunteerDAL
     {
-        public enum StockToVolunteerEnum { PhoneVolunteer, ItemID, Amount, BorrowDate, ReturnDate };
-
         public static bool AddTransference(string phoneNumber, int itemID, int Amount, DateTime borrowDate)
         {
             try
@@ -35,14 +35,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from StockToVolunteer", "StockToVolunteer");
         }
 
-        public static DataSet GetTable(FieldValue<StockToVolunteerEnum> fv)//string select, StockEnum field)
+        public static DataSet GetTable(FieldValue<StockToVolunteerField> fv)//string select, StockEnum field)
         {
             string SQL = "SELECT * FROM StockToVolunteer WHERE ";
             SQL += fv.ToString();
             return OleDbHelper2.Fill(SQL, "StockToVolunteer");
         }
 
-        public static DataSet GetTable(Queue<FieldValue<StockToVolunteerEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<StockToVolunteerField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM StockToVolunteer WHERE ";
             while (qfv.Count > 1)

@@ -23,14 +23,5 @@ namespace PoliceVolnteerBL
             }
         }
 
-        /*public ActivitysBL()
-        {
-            this.ActivityList = new List<ActivityBL>();
-            DataRowCollection drc = ActivityDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
-            {
-                ActivityList.Add(new ActivityBL((int)drc[i]["ActivityCode"]));
-            }
-        }*/
     }
 }

@@ -28,7 +28,7 @@ namespace PoliceVolnteerDAL
                 if (CarID != "")
                 {
                     //CarToVolnteer table, if nececery
-                    CarVolnteerDAL.AddCar(vPhoneNumber, CarID);
+                    CarToVolunteerDAL.AddCar(vPhoneNumber, CarID);
                     CarInfo = true;
                 }
                 return true;
@@ -36,17 +36,18 @@ namespace PoliceVolnteerDAL
             catch(Exception e)
             {
                 //למחוק את המתנדב אם לא עבד במשטרה!
-                if (Info)
+                
+                if (CarInfo)
                 {
-                    DelUser(vPhoneNumber);
+                    CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String));
                 }
                 if (PoliceInfo)
                 {
                     VolunteerPoliceInfoDAL.DelUser(vPhoneNumber);
                 }
-                if (CarInfo)
+                if (Info)
                 {
-                    car
+                    DelUser(vPhoneNumber);
                 }
                 throw e;
                 return false;
@@ -113,7 +114,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
-                CarVolnteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
+                CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String));
                 //CarVolnteerDAL.DelUser(new FieldValue<CarVolnteerDAL.CarVolunteerField>(CarVolnteerDAL.CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
@@ -131,7 +132,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelAllUsers();
-                CarVolnteerDAL.DelAllCars();
+                CarToVolunteerDAL.DelAllCars();
                 deleteSQL = "DELETE * FROM VolunteerInfo";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;

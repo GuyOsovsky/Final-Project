@@ -14,14 +14,21 @@ namespace PoliceVolnteerBL
         static void Main(string[] args)
         {
             //יוצר משתמש רגיל בלי משתמש משטרה! לתקן!
-            //Console.WriteLine(VolunteerInfoDAL.AddVolunteer("b", "b", "b", "b", new DateTime(), "b", "b", "b", "b", "b", "b", "b", "b", new DateTime(), 1, "01234"));
-
+            //Console.WriteLine(VolunteerInfoDAL.AddVolunteer("t", "a", "a", "a", new DateTime(), "b", "b", "b", "b", "b", "b", "b", "b", new DateTime(), 1, "1"));
+            //ShiftsTypesBL a = new ShiftsTypesBL();
             /*CoursesToVolunteersBL ctvsbl = new CoursesToVolunteersBL();
             foreach (CoursesToVolunteerBL ctvbl in ctvsbl.CoursesToVolunteerList)
             {
                 Console.WriteLine(ctvbl.PhoneNumber + " " + ctvbl.CourseCode + " " + ctvbl.Status);
             }*/
+            StockToVolunteerBL a = new StockToVolunteerBL("b", 4, 2, DateTime.Now);
+            StockToVolunteerBL b = new StockToVolunteerBL(4);
+            StockToVolunteersBL c = new StockToVolunteersBL();
 
+            //ShiftsTypesBL a = new ShiftsTypesBL();
+            //StockBL a = new StockBL("bil", 5, true);
+            //StockBL b = new StockBL(4);
+            //StocksBL a = new StocksBL();
             /*MediaBL mbl = new MediaBL("nis2");
             Console.WriteLine(mbl.ActivityCode);
             Console.WriteLine(mbl.FileName);
@@ -51,8 +58,12 @@ namespace PoliceVolnteerBL
             Console.WriteLine(sbl.TypeCode);
             Console.WriteLine(sbl.Place);*/
 
-
-
+            /*ShiftsBL ssbl = new ShiftsBL();
+            foreach (ShiftBL sbl in ssbl.ShiftList)
+            {
+                Console.WriteLine(sbl.DateOfShift + " " + sbl.FinishTime + " " + sbl.Place + " " + sbl.ShiftCode + " " + sbl.StartTime + " " + sbl.TypeCode);
+            }*/
+            
             Console.WriteLine("work");
             Console.ReadKey();
         }

@@ -10,7 +10,7 @@ namespace PoliceVolnteerDAL
 {
     public enum CarVolunteerField { PhoneNumber, CarID };
     
-    public class CarVolnteerDAL
+    public class CarToVolunteerDAL
     {
         public static bool AddCar(string vPhoneNumber, string CarID)
         {

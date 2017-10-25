@@ -179,7 +179,7 @@ ShiftBL:
 ShiftToVolunteerBL:
 מחזיר כמות משמרות מתאריך עד תאריך
 
-ShiftsTypeBL:
+ShiftsTypesBL:
 להחזיר סוגי משמרות
 
 

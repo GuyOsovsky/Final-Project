@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerDAL
 {
+    public enum FieldType { Number, String, Boolean, DateTime }
     public class FieldValue<T>
     {
         private T Field;
         private string Value;
-        private int TypeDB;
+        private FieldType TypeDB;
 
         /// <summary>
         /// 1 = number; 2 = string;3 = boolean; 4 = dateTime</summary>
-        public FieldValue(T e, string v, int type)
+        public FieldValue(T e, string v, FieldType type) //"[" + field + "]=" + value
         {
             Field = e;
             Value = v;
@@ -23,14 +24,14 @@ namespace PoliceVolnteerDAL
         public override string ToString()
         {
             string ret = "[" + this.Field + "]=";
-            if (TypeDB == 2)
+            if (TypeDB == FieldType.String)
                 ret += "'";
-            if (TypeDB == 4)
+            if (TypeDB == FieldType.DateTime)
                 ret += "#";
             ret += Value;
-            if (TypeDB == 2)
+            if (TypeDB == FieldType.String)
                 ret += "'";
-            if (TypeDB == 4)
+            if (TypeDB == FieldType.DateTime)
                 ret += "#";
             return ret;
             //return "[" + this.Field + "]='" + Value + "'";

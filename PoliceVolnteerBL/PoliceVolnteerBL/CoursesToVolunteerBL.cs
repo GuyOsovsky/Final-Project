@@ -26,10 +26,10 @@ namespace PoliceVolnteerBL
             }
             else
             {
-                Queue<FieldValue<CoursesToVolunteerField>> qfvctvf = new Queue<FieldValue<CoursesToVolunteerField>>();
-                qfvctvf.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, PhoneNumber, 2));
-                qfvctvf.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.CourseCode, CourseCode.ToString(), 1));
-                DataSet ds = CoursesToVolunteerDAL.GetTable(qfvctvf, true);
+                Queue<FieldValue<CoursesToVolunteerField>> searchParams = new Queue<FieldValue<CoursesToVolunteerField>>();
+                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, PhoneNumber, FieldType.String));
+                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.CourseCode, CourseCode.ToString(), FieldType.Number));
+                DataSet ds = CoursesToVolunteerDAL.GetTable(searchParams, true);
                 this.Status = (bool)ds.Tables[0].Rows[0]["Status"];
             }
         }
