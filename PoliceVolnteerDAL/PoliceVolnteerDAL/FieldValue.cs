@@ -8,7 +8,7 @@ namespace PoliceVolnteerDAL
 {
     public enum FieldType { Number, String, Boolean, DateTime }
     ///
-    public class FieldValue<T> where T : Enum
+    public class FieldValue<T> //where T : enum
     {
         private T Field;
         private string Value;

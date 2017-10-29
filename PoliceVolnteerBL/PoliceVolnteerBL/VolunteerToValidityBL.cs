@@ -11,5 +11,7 @@ namespace PoliceVolnteerBL
         public string PhoneNumber { get; set; }
         public int ValidityCode { get; set; }
         public bool Status { get; set; }
+
+
     }
 }

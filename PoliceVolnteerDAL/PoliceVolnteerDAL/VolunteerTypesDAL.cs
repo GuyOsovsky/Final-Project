@@ -14,9 +14,15 @@ namespace PoliceVolnteerDAL
     {
         public static bool AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
         {
+            string sPermmisionShifts, sPermmisionActivity, sPermmisionStock, sIndependent;
+            sPermmisionShifts = (vPermmisionShifts) ? "1" : "0";
+            sPermmisionActivity = (vPermmisionActivity) ? "1" : "0";
+            sPermmisionStock = (vPermmisionStock) ? "1" : "0";
+            sIndependent = (vIndependent) ? "1" : "0";
+            
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerTypes ([TypeName], [PermmisionShifts], [PermmisionActivity], [PermmisionStock], [Independent]) VALUES ('" + vTypeName + "','" + vPermmisionShifts + "','" + vPermmisionActivity + "','" + vPermmisionStock + "','" + vIndependent + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerTypes ([TypeName], [PermmisionShifts], [PermmisionActivity], [PermmisionStock], [Independent]) VALUES ('" + vTypeName + "','" + sPermmisionShifts + "','" + sPermmisionActivity + "','" + sPermmisionStock + "','" + sIndependent + "')");
                 return true;
             }
             catch (Exception e)
