@@ -4,42 +4,42 @@ need fixes &
 
 
 
-0.01
+0.00.01
 added-
 volunteerInfoDAL@
 CarToVolunteerDAL@
 
-0.03
+0.00.03
 added-
 ActivityDAL#
 fixes-
 CarToVolunteerDAL@
 
-0.04
+0.00.04
 added-
 CourseDAL#
 fixes-
 VolunteerInfoDAL@
 
-0.05
+0.00.05
 added-
 CoursesToVolunteerDAL#
 
-0.06
+0.00.06
 added-
 stockDAL#
 StockToVolunteer#
 
-0.08
+0.00.08
 added-
 MediaDAL#
 TypeToActivityDAL#
 
-0.10
+0.00.10
 added-
 ReportsDAL#
 
-0.11
+0.00.11
 added-
 ShiftsToVolunteerDAL#
 ShiftsDAL#
@@ -48,7 +48,7 @@ ShiftTypeDAL#
 
 
 
-0.14
+0.00.14
 added-
 VolunteerPoliceInfoDAL#
 fixes-
@@ -56,50 +56,20 @@ VolunteerInfoDAL#
 
 
 
-0.15
+0.00.15
 added-
 VolunteerTypesDAL#
 CarReportsDAL#
 fixes-
 CarToVolunteerDAL#
 
-0.16
+0.00.16
 added-
 VolunteerToValidityDAL#
 ValidityTypesDAL#
 
 =============================11.9.17
 
-1.00
+0.01.00
 added-
-VolunteerBL
-
-1.01
-added-
-VolunteersBL
-
-1.02
-added-
-VolunteerTypesBL
-ValidityTypesBL
-
-1.03
-added-
-VolunteerValidityBL
-
-1.04
-added-
-CourseBL
-
-1.05
-added-
-CoursesBL
-
-1.06
-added-
-CoursesToVolunteerBL
-
-
-2.00
-added-
-main frame of application@
+costructors to all classes

@@ -8,10 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum VolunteerPoliceInfoDALField { PhoneNumber, PoliceID, ServeCity, StartDate, Type };
+
     public class VolunteerPoliceInfoDAL
     {
-        public enum VolunteerPoliceInfoDALEnum { PhoneNumber, PoliceID, ServeCity, StartDate, Type};
-
         public static bool AddVolnteer(string phoneNumber, string policeID, string serveCity, DateTime startDate, int type)
         {
             try
@@ -32,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<VolunteerPoliceInfoDALEnum> fv)
+        public static DataSet GetTable(FieldValue<VolunteerPoliceInfoDALField> fv)
         {
             string SQL = "SELECT * FROM VolunteerPoliceInfo WHERE ";
             SQL += fv.ToString();
@@ -43,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<VolunteerPoliceInfoDALEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<VolunteerPoliceInfoDALField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerPoliceInfo WHERE ";
             while (qfv.Count > 1)
@@ -58,9 +58,9 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerPoliceInfo");
         }
 
-        public static bool UpdateFrom(string UPhoneNumber, VolunteerPoliceInfoDALEnum eFrom, string updateStr)
+        public static bool UpdateFrom(string UPhoneNumber, VolunteerPoliceInfoDALField eFrom, string updateStr)
         {
-            if (eFrom == VolunteerPoliceInfoDALEnum.PhoneNumber)
+            if (eFrom == VolunteerPoliceInfoDALField.PhoneNumber)
                 return false;
             try
             {
