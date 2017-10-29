@@ -8,7 +8,7 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum VolunteerToValidityDALFields { PhoneNumber, ValidityCode, Status };
+    public enum VolunteerToValidityField { PhoneNumber, ValidityCode, Status };
 
     public class VolunteerToValidityDAL
     {
@@ -17,7 +17,7 @@ namespace PoliceVolnteerDAL
             try
             {
                 //VolunteerInfo table
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO ValidityTypes ([PhoneNumber], [ValidityCode], [Status]) VALUES ('" + PhoneNumber + "','" + ValidityCode + "','" + "1"  +"')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO ValidityTypes ([PhoneNumber], [ValidityCode], [Status]) VALUES ('" + PhoneNumber + "','" + ValidityCode + "','" + "1" +"')");
 
                 return true;
             }

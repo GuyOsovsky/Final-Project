@@ -74,6 +74,12 @@ namespace PoliceVolnteerBL
             VolunteerTypeBL vtbl = new VolunteerTypeBL("a", true, false, true, false);
             Console.WriteLine(vtbl.TypeCode + " " + vtbl.TypeName + " " + vtbl.PermmisionStock + " " + vtbl.PermmisionShifts + " " + vtbl.PermmisionActivity + " " + vtbl.Independent);
             */
+            /*
+            VolunteerTypesBL vtsbl = new VolunteerTypesBL();
+            foreach (VolunteerTypeBL vtbl in vtsbl.VolunteerTypeList)
+            {
+                Console.WriteLine(vtbl.TypeCode + " " + vtbl.TypeName + " " + vtbl.PermmisionStock + " " + vtbl.PermmisionShifts + " " + vtbl.PermmisionActivity + " " + vtbl.Independent);
+            }*/
 
             Console.WriteLine("work");
             Console.ReadKey();
