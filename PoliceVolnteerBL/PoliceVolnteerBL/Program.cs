@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using PoliceVolnteerDAL;
 using System.Data;
 using System.Data.OleDb;
-//HHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 namespace PoliceVolnteerBL
 {
@@ -74,6 +73,11 @@ namespace PoliceVolnteerBL
             VolunteerTypeBL vtbl = new VolunteerTypeBL("a", true, false, true, false);
             Console.WriteLine(vtbl.TypeCode + " " + vtbl.TypeName + " " + vtbl.PermmisionStock + " " + vtbl.PermmisionShifts + " " + vtbl.PermmisionActivity + " " + vtbl.Independent);
             */
+
+            //TypeToActivityBL a = new TypeToActivityBL("c");
+            //TypeToActivityBL b = new TypeToActivityBL("b");
+            //TypeToActivityBL c = new TypeToActivityBL(3);
+            //TypesToActivityBL d = new TypesToActivityBL();
 
             Console.WriteLine("work");
             Console.ReadKey();
