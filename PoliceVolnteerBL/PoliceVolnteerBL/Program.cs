@@ -22,6 +22,7 @@ namespace PoliceVolnteerBL
             {
                 Console.WriteLine(ctvbl.PhoneNumber + " " + ctvbl.CourseCode + " " + ctvbl.Status);
             }*/
+<<<<<<< HEAD
             /*StockToVolunteerBL a = new StockToVolunteerBL("b", 4, 2, DateTime.Now);
             StockToVolunteerBL b = new StockToVolunteerBL(4);
             StockToVolunteersBL c = new StockToVolunteersBL();*/
@@ -30,6 +31,9 @@ namespace PoliceVolnteerBL
             //StockBL a = new StockBL("bil", 5, true);
             //StockBL b = new StockBL(4);
             //StocksBL a = new StocksBL();
+=======
+           
+>>>>>>> 204a5837c2ca630a7d0e94b88db3c9d5c878baec
             /*MediaBL mbl = new MediaBL("nis2");
             Console.WriteLine(mbl.ActivityCode);
             Console.WriteLine(mbl.FileName);
@@ -64,7 +68,13 @@ namespace PoliceVolnteerBL
             {
                 Console.WriteLine(sbl.DateOfShift + " " + sbl.FinishTime + " " + sbl.Place + " " + sbl.ShiftCode + " " + sbl.StartTime + " " + sbl.TypeCode);
             }*/
-            
+
+
+            TypeToActivityBL a = new TypeToActivityBL("c");
+            TypeToActivityBL b = new TypeToActivityBL("b");
+            TypeToActivityBL c = new TypeToActivityBL(3);
+            TypesToActivityBL d = new TypesToActivityBL();
+
             Console.WriteLine("work");
             Console.ReadKey();
         }

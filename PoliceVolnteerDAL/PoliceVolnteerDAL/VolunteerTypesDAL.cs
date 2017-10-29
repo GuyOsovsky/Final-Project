@@ -8,10 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum VolunteerTypesField { TypeCode, TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent }
+
     public class VolunteerTypesDAL
     {
-        public enum VolunteerTypesEnum { TypeCode, TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent }
-
         public static bool AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
         {
             try
@@ -32,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<VolunteerTypesEnum> fv)
+        public static DataSet GetTable(FieldValue<VolunteerTypesField> fv)
         {
             string SQL = "SELECT * FROM VolunteerTypes WHERE ";
             SQL += fv.ToString();
@@ -43,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<VolunteerTypesEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<VolunteerTypesField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerTypes WHERE ";
             while (qfv.Count > 1)
@@ -74,9 +74,9 @@ namespace PoliceVolnteerDAL
             }
         }
 
-        public static bool UpdateFrom(int TypeCode, VolunteerTypesEnum eFrom, string updateStr)
+        public static bool UpdateFrom(int TypeCode, VolunteerTypesField eFrom, string updateStr)
         {
-            if (eFrom == VolunteerTypesEnum.TypeCode)
+            if (eFrom == VolunteerTypesField.TypeCode)
                 return false;
             try
             {

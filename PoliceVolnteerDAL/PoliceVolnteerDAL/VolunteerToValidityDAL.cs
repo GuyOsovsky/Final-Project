@@ -8,10 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum VolunteerToValidityDALFields { PhoneNumber, ValidityCode, Status };
+
     public class VolunteerToValidityDAL
     {
-        public enum VolunteerToValidityDALEnum { PhoneNumber, ValidityCode, Status };
-
         public static bool AddValidityToVolunteer(string PhoneNumber, int ValidityCode)
         {
             try
