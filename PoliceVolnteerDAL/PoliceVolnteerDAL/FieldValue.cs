@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 namespace PoliceVolnteerDAL
 {
     public enum FieldType { Number, String, Boolean, DateTime }
-    public class FieldValue<T>
+    ///
+    public class FieldValue<T> where T : Enum
     {
         private T Field;
         private string Value;
         private FieldType TypeDB;
 
-        /// <summary>
-        /// 1 = number; 2 = string;3 = boolean; 4 = dateTime</summary>
-        public FieldValue(T e, string v, FieldType type) //"[" + field + "]=" + value
+        public FieldValue(T e, string v, FieldType type) 
         {
             Field = e;
             Value = v;
