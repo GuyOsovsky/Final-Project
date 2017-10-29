@@ -8,9 +8,11 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum ValidityTypesDALField { ValidityCode, ValidityName };
+
     public class ValidityTypesDAL
     {
-        public enum ValidityTypesDALEnum { ValidityCode, ValidityName};
+        
 
         public static bool AddNewValidity(string ValidityName)
         {
@@ -34,7 +36,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<ValidityTypesDALEnum> fv)
+        public static DataSet GetTable(FieldValue<ValidityTypesDALField> fv)
         {
             string SQL = "SELECT * FROM ValidityTypes WHERE ";
             SQL += fv.ToString();
@@ -45,7 +47,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<ValidityTypesDALEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<ValidityTypesDALField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM ValidityTypes WHERE ";
             while (qfv.Count > 1)

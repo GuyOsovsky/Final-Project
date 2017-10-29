@@ -8,10 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum TypeToActivityField { typeCode, typeName }
+
     public class TypeToActivityDAL
     {
-        public enum TypeToActivityEnum { typeCode, typeName }
-
         public static bool AddTypeToActivity(string tTypeName)
         {
             try
@@ -36,7 +36,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<TypeToActivityEnum> fv)
+        public static DataSet GetTable(FieldValue<TypeToActivityField> fv)
         {
             string SQL = "SELECT * FROM TypeToActivity WHERE ";
             SQL += fv.ToString();
@@ -47,7 +47,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<TypeToActivityEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<TypeToActivityField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM TypeToActivity WHERE ";
             while (qfv.Count > 1)

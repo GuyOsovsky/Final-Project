@@ -8,11 +8,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum VolunteerInfoDALField { PhoneNumber, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status };
+
     public static class VolunteerInfoDAL
     {
-        //public enum FormEnum { ePhoneNumber, eEmergencyNumber, eFName, eLName, eBirthDate, eUserName, ePassword, eHomeAddress, eHomeCity, eEmailAddress, eID };
-        public enum VolunteerInfoDALEnum { PhoneNumber, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status };
-
         //a function that adds a new volnteer to the system. the function creates the volnteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table.
         public static bool AddVolunteer(string vPhoneNumber, string vEmergencyNumber, string vFName, string vLName, DateTime vBirthDate, string vUserName, string vPassword, string vHomeAddress, string vHomeCity, string vEmailAddress, string vID, string PoliceID, string ServeCity, DateTime startDate, int type, string CarID = "")
         {
@@ -60,7 +59,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<VolunteerInfoDALEnum> fv)
+        public static DataSet GetTable(FieldValue<VolunteerInfoDALField> fv)
         {
             string SQL = "SELECT * FROM VolunteerInfo WHERE ";
             SQL += fv.ToString();
@@ -71,7 +70,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<VolunteerInfoDALEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<VolunteerInfoDALField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerInfo WHERE ";
             while (qfv.Count > 1)
@@ -88,7 +87,7 @@ namespace PoliceVolnteerDAL
 
 
 
-        public static bool UpdateFrom(string UPhoneNumber, VolunteerInfoDALEnum eFrom, string updateStr)
+        public static bool UpdateFrom(string UPhoneNumber, VolunteerInfoDALField eFrom, string updateStr)
         {
             try
             {

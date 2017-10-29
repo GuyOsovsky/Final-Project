@@ -9,9 +9,10 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
+    public enum ShiftsTypeField { typeCode, TypeName }
     public class ShiftsTypesDAL
     {
-        public enum ShiftsTypeEnum {typeCode, TypeName}
+        
 
         public static bool AddShift(string TypeName)
         {
@@ -33,7 +34,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<ShiftsTypeEnum> fv)
+        public static DataSet GetTable(FieldValue<ShiftsTypeField> fv)
         {
             string SQL = "SELECT * FROM ShiftsType WHERE ";
             SQL += fv.ToString();
@@ -44,7 +45,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<ShiftsTypeEnum>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<ShiftsTypeField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM ShiftsType WHERE ";
             while (qfv.Count > 1)
