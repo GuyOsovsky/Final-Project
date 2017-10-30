@@ -78,11 +78,10 @@ namespace PoliceVolnteerBL
             //TypeToActivityBL b = new TypeToActivityBL("b");
             //TypeToActivityBL c = new TypeToActivityBL(3);
             //TypesToActivityBL d = new TypesToActivityBL();
-
+	    //
             //VolunteerBL a = new VolunteerBL("0547742946", "0527467729", "yoske", "cohen", new DateTime(2016, 7, 24), "yoske123", "123456", "benei zion 3", "hod hasharon", "yoske@gmail.com", "497536881", "748951475", "kfar saba", new DateTime(2019, 6, 2), 1, "1577392");
             //VolunteerBL b = new VolunteerBL("0547742946");
             //VolunteersBL c = new VolunteersBL();
-
             Console.WriteLine("work");
             Console.ReadKey();
         }

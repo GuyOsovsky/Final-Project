@@ -32,7 +32,6 @@ namespace PoliceVolnteerBL
         public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, DateTime startDate, int type, string carID = "-1")
         {
             VolunteerInfoDAL.AddVolunteer(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAddress, homeCity, emailAddress, iD, policeID, serveCity, startDate, type, carID);
-            VolunteerInfoDAL.AddVolunteer(phoneNumber, emailAddress, fName, lName, birthDate, userName, password, homeAddress, homeCity, emailAddress, iD, policeID, serveCity, startDate, type, carID);
             this.PhoneNumber = phoneNumber;
             this.EmergencyNumber = emergencyNumber;
             this.FName = fName;
@@ -47,7 +46,6 @@ namespace PoliceVolnteerBL
             this.PoliceID = policeID;
             this.StartDate = startDate;
             this.CarID = carID;
-            this.Type = new VolunteerTypeBL(type);
             this.Type = new VolunteerTypeBL(type);
             this.Status = true;
         }
@@ -71,8 +69,6 @@ namespace PoliceVolnteerBL
             this.PoliceID = dr["PoliceID"].ToString();
             this.ServeCity = dr["ServeCity"].ToString();
             this.StartDate = DateTime.Parse(dr["StartDate"].ToString());
-            this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
-            this.StartDate = DateTime.Parse(dr["StartDtae"].ToString());
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
             dr = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, phoneNumber, FieldType.String)).Tables[0].Rows[0];
             this.CarID = dr["CarID"].ToString();
