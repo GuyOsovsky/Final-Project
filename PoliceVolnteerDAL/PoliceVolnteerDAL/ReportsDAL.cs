@@ -16,7 +16,7 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ReportDate], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "','" + rReportDate.ToShortDateString() + "','" + rActivityCode + "','" + rDescription + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ReportDate], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "'," + rReportDate.ToOADate() + ",'" + rActivityCode + "','" + rDescription + "')");
                 return true;
             }
             catch (Exception e)

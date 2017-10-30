@@ -12,6 +12,8 @@ namespace PoliceVolnteerDAL
     public enum ShiftsTypeField { typeCode, TypeName }
     public class ShiftsTypesDAL
     {
+        
+
         public static bool AddShift(string TypeName)
         {
             try
