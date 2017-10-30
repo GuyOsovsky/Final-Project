@@ -15,42 +15,26 @@ namespace PoliceVolnteerBL
         public string PhoneNumber { get; set; }
         public int ValidityCode { get; set; }
         public bool Status { get; set; }
+        public DateTime EndDate { get; set; }
 
-        //אני(דביר) צריך לטפל במחלקה הזאת פעם הבא, אולי בבית
-        public VolunteerToValidityBL(string PhoneNumber, int ValidityCode, bool isNew)
+        public VolunteerToValidityBL(string PhoneNumber, int ValidityCode, DateTime EndDate)
         {
             this.PhoneNumber = PhoneNumber;
             this.ValidityCode = ValidityCode;
-            if (isNew)
-            {
-                Status = true;
-                VolunteerToValidityDAL.AddValidityToVolunteer(PhoneNumber, ValidityCode);
-            }
-            else
-            {
-                Queue<FieldValue<VolunteerToValidityField>> searchParams = new Queue<FieldValue<VolunteerToValidityField>>();
-                
-            }
+            this.EndDate = EndDate;
+            Status = true;
+            VolunteerToValidityDAL.Add(PhoneNumber, ValidityCode, EndDate);
         }
 
-        /*
-        public CoursesToVolunteerBL(string PhoneNumber, int CourseCode, bool isNew)
+        public VolunteerToValidityBL(string PhoneNumber, int ValidityCode)
         {
-            this.PhoneNumber = PhoneNumber;
-            this.CourseCode = CourseCode;
-            if (isNew)
-            {
-                this.Status = false;
-                CoursesToVolunteerDAL.AddCoursesToVolunteer(PhoneNumber, CourseCode);
-            }
-            else
-            {
-                Queue<FieldValue<CoursesToVolunteerField>> searchParams = new Queue<FieldValue<CoursesToVolunteerField>>();
-                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, PhoneNumber, FieldType.String));
-                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.CourseCode, CourseCode.ToString(), FieldType.Number));
-                DataSet ds = CoursesToVolunteerDAL.GetTable(searchParams, true);
-                this.Status = (bool)ds.Tables[0].Rows[0]["Status"];
-            }
-        }*/
+            Queue<FieldValue<VolunteerToValidityField>> searchParams = new Queue<FieldValue<VolunteerToValidityField>>();
+            searchParams.Enqueue(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, PhoneNumber, FieldType.String));
+            searchParams.Enqueue(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.ValidityCode, ValidityCode.ToString(), FieldType.Number));
+            DataRow dr = VolunteerToValidityDAL.GetTable(searchParams, true).Tables[0].Rows[0];
+            this.Status = (bool)dr["Status"];
+            this.EndDate = (DateTime)dr["EndDate"];
+        }
+
     }
 }

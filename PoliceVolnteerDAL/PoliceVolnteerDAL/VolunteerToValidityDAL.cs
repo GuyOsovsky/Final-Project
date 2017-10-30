@@ -8,17 +8,15 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum VolunteerToValidityField { PhoneNumber, ValidityCode, Status };
+    public enum VolunteerToValidityField { PhoneNumber, ValidityCode, Status, EndDate };
 
     public class VolunteerToValidityDAL
     {
-        public static bool AddValidityToVolunteer(string PhoneNumber, int ValidityCode)
+        public static bool Add(string PhoneNumber, int ValidityCode, DateTime EndDate)
         {
             try
             {
-                //VolunteerInfo table
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO ValidityTypes ([PhoneNumber], [ValidityCode], [Status]) VALUES ('" + PhoneNumber + "','" + ValidityCode + "','" + "1" +"')");
-
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerToValidity ([PhoneNumber], [ValidityCode], [Status], [EndDate]) VALUES ('" + PhoneNumber + "','" + ValidityCode + "','" + "1" + "'," + EndDate.ToOADate() + ")");
                 return true;
             }
             catch (Exception e)
@@ -34,7 +32,7 @@ namespace PoliceVolnteerDAL
         }
 
         /**/
-        public static DataSet GetTable(FieldValue<VolunteerToValidityDAL> fv)
+        public static DataSet GetTable(FieldValue<VolunteerToValidityField> fv)
         {
             string SQL = "SELECT * FROM VolunteerToValidity WHERE ";
             SQL += fv.ToString();
@@ -45,7 +43,7 @@ namespace PoliceVolnteerDAL
 
         /// <summary>
         /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<VolunteerToValidityDAL>> qfv, bool Operation)
+        public static DataSet GetTable(Queue<FieldValue<VolunteerToValidityField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerToValidity WHERE ";
             while (qfv.Count > 1)
