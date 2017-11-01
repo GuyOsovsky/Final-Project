@@ -81,8 +81,14 @@ namespace PoliceVolnteerBL
                 Console.WriteLine(vtbl.TypeCode + " " + vtbl.TypeName + " " + vtbl.PermmisionStock + " " + vtbl.PermmisionShifts + " " + vtbl.PermmisionActivity + " " + vtbl.Independent);
             }*/
 
-            VolunteerToValidityBL vtvbl = new VolunteerToValidityBL("a",49);
-            Console.WriteLine(vtvbl.EndDate + " " + vtvbl.PhoneNumber + " " + vtvbl.Status + " " + vtvbl.ValidityCode);
+            /*VolunteerToValidityBL vtvbl = new VolunteerToValidityBL("a", 44, new DateTime());
+            Console.WriteLine(vtvbl.EndDate + " " + vtvbl.PhoneNumber + " " + vtvbl.Status + " " + vtvbl.ValidityCode);*/
+
+            /*VolunteerToValiditysBL vtvsbl = new VolunteerToValiditysBL();
+            foreach (VolunteerToValidityBL vtvbl in vtvsbl.VolunteerToValidityList)
+            {
+                Console.WriteLine(vtvbl.EndDate + " " + vtvbl.PhoneNumber + " " + vtvbl.Status + " " + vtvbl.ValidityCode);
+            }*/
 
             Console.WriteLine("work");
             Console.ReadKey();

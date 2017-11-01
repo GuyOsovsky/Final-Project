@@ -8,7 +8,7 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum CourseFiled { CourseCode, CourseName, CourseDate, StartTime, FinishTime, NameOfInstructor, IsRequeired, Place, Description, ValidityCode };
+    public enum CourseField { CourseCode, CourseName, CourseDate, StartTime, FinishTime, NameOfInstructor, IsRequeired, Place, Description, ValidityCode };
 
     public class CourseDAL
     {
@@ -21,7 +21,7 @@ namespace PoliceVolnteerDAL
             }
             catch(Exception e)
             {
-                throw e;
+                //throw e;
                 return false;
             }
         }
@@ -31,19 +31,15 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Course", "Course");
         }
         
-        /**/
-        public static DataSet GetTable(FieldValue<CourseFiled> fv)
+        public static DataSet GetTable(FieldValue<CourseField> fv)
         {
             string SQL = "SELECT * FROM Course WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "Course");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
-        public static DataSet GetTable(Queue<FieldValue<CourseFiled>> qfv, bool Operation)
+        /// <summary>the operation parameter True is for and, False is for or</summary>
+        public static DataSet GetTable(Queue<FieldValue<CourseField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Course WHERE ";
             while (qfv.Count > 1)

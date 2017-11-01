@@ -31,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from VolunteerPoliceInfo", "VolunteerPoliceInfo");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<VolunteerPoliceInfoDALField> fv)
         {
             string SQL = "SELECT * FROM VolunteerPoliceInfo WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + field.ToString() + "]=";
-            SQL += "'" + select + "'";*/
             return OleDbHelper2.Fill(SQL, "VolunteerPoliceInfo");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerPoliceInfoDALField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerPoliceInfo WHERE ";
@@ -58,6 +54,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerPoliceInfo");
         }
 
+        //update field in table
         public static bool UpdateFrom(string UPhoneNumber, VolunteerPoliceInfoDALField eFrom, string updateStr)
         {
             if (eFrom == VolunteerPoliceInfoDALField.PhoneNumber)

@@ -31,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from VolunteerToValidity", "VolunteerToValidity");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<VolunteerToValidityField> fv)
         {
             string SQL = "SELECT * FROM VolunteerToValidity WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + field.ToString() + "]=";
-            SQL += "'" + select + "'";*/
             return OleDbHelper2.Fill(SQL, "VolunteerToValidity");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerToValidityField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerToValidity WHERE ";
@@ -58,6 +54,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerToValidity");
         }
 
+        //update status to true or false
         public static bool UpdateStatus(bool Status)
         {
             try
@@ -77,5 +74,7 @@ namespace PoliceVolnteerDAL
                 return false;
             }
         }
+
+        //Dels
     }
 }

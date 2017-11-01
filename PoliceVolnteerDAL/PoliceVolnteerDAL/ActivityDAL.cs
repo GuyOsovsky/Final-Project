@@ -21,8 +21,8 @@ namespace PoliceVolnteerDAL
             }
             catch (Exception e)
             {
-                throw e;
-                //return false;
+                //throw e;
+                return false;
             }
         }
 
@@ -31,13 +31,10 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Activity", "Activity");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<ActivityField> fv)
         {
             string SQL = "SELECT * FROM Activity WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "Activity");
         }
 

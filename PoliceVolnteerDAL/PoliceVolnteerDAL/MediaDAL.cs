@@ -8,7 +8,6 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-
     public enum MediaField { FileName, ActivityCode, filePath, FileType }
 
     public class MediaDAL
@@ -32,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Media", "Media");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<MediaField> fv)
         {
             string SQL = "SELECT * FROM Media WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "Media");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<MediaField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Media WHERE ";

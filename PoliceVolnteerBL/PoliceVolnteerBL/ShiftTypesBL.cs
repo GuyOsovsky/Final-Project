@@ -9,19 +9,19 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerBL
 {
-    public class ShiftTypeBL
+    public class ShiftTypesBL
     {
         public int TypeCode { get; set; }
         public string TypeName { get; set; }
 
-        public ShiftTypeBL(string typeName)
+        public ShiftTypesBL(string typeName)
         {
             ShiftsTypesDAL.AddShift(typeName);
             this.TypeCode = (int)ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.TypeName, typeName, FieldType.String)).Tables[0].Rows[0]["typeCode"];
             this.TypeName = typeName;
         }
 
-        public ShiftTypeBL(int typeCode)
+        public ShiftTypesBL(int typeCode)
         {
             DataRow obj = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode.ToString(), FieldType.Number)).Tables[0].Rows[0];
             this.TypeCode = typeCode;

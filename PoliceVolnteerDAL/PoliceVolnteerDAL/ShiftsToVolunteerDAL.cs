@@ -12,7 +12,6 @@ namespace PoliceVolnteerDAL
     
     public class ShiftsToVolunteerDAL
     {
-
         public static bool AddShift(int shiftCode, string PhoneNumber, string comments)
         {
             try
@@ -32,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from ShiftsToVolunteer", "ShiftsToVolunteer");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<ShiftsToVolunteerField> fv)
         {
             string SQL = "SELECT * FROM ShiftsToVolunteer WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "ShiftsToVolunteer");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ShiftsToVolunteerField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM ShiftsToVolunteer WHERE ";

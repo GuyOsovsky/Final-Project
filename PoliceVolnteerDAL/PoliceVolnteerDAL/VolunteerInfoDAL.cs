@@ -12,7 +12,7 @@ namespace PoliceVolnteerDAL
 
     public static class VolunteerInfoDAL
     {
-        //a function that adds a new volnteer to the system. the function creates the volnteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table.
+        //a function that adds a new volnteer to the system. the function creates the volunteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table.
         public static bool AddVolunteer(string vPhoneNumber, string vEmergencyNumber, string vFName, string vLName, DateTime vBirthDate, string vUserName, string vPassword, string vHomeAddress, string vHomeCity, string vEmailAddress, string vID, string PoliceID, string ServeCity, DateTime startDate, int type, string CarID = "")
         {
             bool Info = false, PoliceInfo = false, CarInfo = false;
@@ -34,8 +34,6 @@ namespace PoliceVolnteerDAL
             }
             catch(Exception e)
             {
-                //למחוק את המתנדב אם לא עבד במשטרה!
-                
                 if (CarInfo)
                 {
                     CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String));
@@ -48,7 +46,7 @@ namespace PoliceVolnteerDAL
                 {
                     DelUser(vPhoneNumber);
                 }
-                throw e;
+                //throw e;
                 return false;
             }
         }
@@ -58,18 +56,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from VolunteerInfo", "VolunteerInfo");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<VolunteerInfoDALField> fv)
         {
             string SQL = "SELECT * FROM VolunteerInfo WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + field.ToString() + "]=";
-            SQL += "'" + select + "'";*/
             return OleDbHelper2.Fill(SQL, "VolunteerInfo");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerInfoDALField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerInfo WHERE ";
@@ -114,7 +108,6 @@ namespace PoliceVolnteerDAL
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
                 CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String));
-                //CarVolnteerDAL.DelUser(new FieldValue<CarVolnteerDAL.CarVolunteerField>(CarVolnteerDAL.CarVolunteerField.PhoneNumber, UPhoneNumber, 2));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;

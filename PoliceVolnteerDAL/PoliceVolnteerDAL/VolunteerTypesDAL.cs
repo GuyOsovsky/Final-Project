@@ -37,18 +37,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from VolunteerTypes", "VolunteerTypes");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<VolunteerTypesField> fv)
         {
             string SQL = "SELECT * FROM VolunteerTypes WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "VolunteerTypes");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerTypesField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM VolunteerTypes WHERE ";
@@ -80,6 +76,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //update field in table
         public static bool UpdateFrom(int TypeCode, VolunteerTypesField eFrom, string updateStr)
         {
             if (eFrom == VolunteerTypesField.TypeCode)

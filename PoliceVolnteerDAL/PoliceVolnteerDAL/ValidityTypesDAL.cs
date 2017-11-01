@@ -13,12 +13,10 @@ namespace PoliceVolnteerDAL
     public class ValidityTypesDAL
     {
         
-
         public static bool AddNewValidity(string ValidityName)
         {
             try
             {
-                //VolunteerInfo table
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO ValidityTypes ([ValidityName]) VALUES ('" + ValidityName + "')");
 
                 return true;
@@ -35,18 +33,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from ValidityTypes", "ValidityTypes");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<ValidityTypesDALField> fv)
         {
             string SQL = "SELECT * FROM ValidityTypes WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + field.ToString() + "]=";
-            SQL += "'" + select + "'";*/
             return OleDbHelper2.Fill(SQL, "ValidityTypes");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ValidityTypesDALField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM ValidityTypes WHERE ";

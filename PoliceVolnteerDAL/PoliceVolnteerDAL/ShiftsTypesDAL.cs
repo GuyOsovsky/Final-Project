@@ -10,10 +10,9 @@ using System.Data.OleDb;
 namespace PoliceVolnteerDAL
 {
     public enum ShiftsTypeField { typeCode, TypeName }
+    
     public class ShiftsTypesDAL
     {
-        
-
         public static bool AddShift(string TypeName)
         {
             try
@@ -33,18 +32,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from ShiftsType", "ShiftsType");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<ShiftsTypeField> fv)
         {
             string SQL = "SELECT * FROM ShiftsType WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "ShiftsType");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ShiftsTypeField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM ShiftsType WHERE ";

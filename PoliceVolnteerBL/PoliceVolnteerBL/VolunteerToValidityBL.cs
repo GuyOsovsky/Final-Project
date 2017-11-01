@@ -34,6 +34,8 @@ namespace PoliceVolnteerBL
             DataRow dr = VolunteerToValidityDAL.GetTable(searchParams, true).Tables[0].Rows[0];
             this.Status = (bool)dr["Status"];
             this.EndDate = (DateTime)dr["EndDate"];
+            this.ValidityCode = ValidityCode;
+            this.PhoneNumber = PhoneNumber;
         }
 
     }

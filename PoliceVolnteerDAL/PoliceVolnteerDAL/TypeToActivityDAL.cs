@@ -16,10 +16,6 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                //if ((GetTable(new FieldValue<TypeToActivityEnum>(TypeToActivityEnum.typeName, tTypeName, 2))).Tables["TypeToActivity"].Rows.Count > 0)
-                //{
-                //    return false;
-                //}
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO TypeToActivity ([typeName]) VALUES ('" + tTypeName + "')");
                 return true;
             }
@@ -35,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from TypeToActivity", "TypeToActivity");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<TypeToActivityField> fv)
         {
             string SQL = "SELECT * FROM TypeToActivity WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "TypeToActivity");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<TypeToActivityField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM TypeToActivity WHERE ";

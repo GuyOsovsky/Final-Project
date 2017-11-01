@@ -13,7 +13,7 @@ namespace PoliceVolnteerDAL
 
     public class ShiftsDAL
     {
-        public static bool AddShift(/*int shiftCode*/ int typeCode, DateTime dateshift, DateTime startTime, DateTime finishTime, string place)
+        public static bool AddShift(int typeCode, DateTime dateshift, DateTime startTime, DateTime finishTime, string place)
         {
             try
             {
@@ -31,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Shifts", "Shifts");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<ShiftsField> fv)
         {
             string SQL = "SELECT * FROM Shifts WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "Shifts");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ShiftsField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Shifts WHERE ";

@@ -31,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Reports", "Reports");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<ReportsField> fv)
         {
             string SQL = "SELECT * FROM Reports WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ReportsField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Reports WHERE ";

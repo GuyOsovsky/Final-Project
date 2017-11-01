@@ -33,18 +33,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from CoursesToVolunteer", "CoursesToVolunteer");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<CoursesToVolunteerField> fv)
         {
             string SQL = "SELECT * FROM CoursesToVolunteer WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + Field.ToString() + "]=";
-            SQL += "'" + Select + "'";*/
             return OleDbHelper2.Fill(SQL, "CoursesToVolunteer");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<CoursesToVolunteerField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM CoursesToVolunteer WHERE ";
@@ -76,6 +72,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //change status to true
         public static bool Participated(string phoneNumber, int courseCode)
         {
             try

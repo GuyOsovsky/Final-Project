@@ -34,16 +34,10 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from Stock", "Stock");
         }
 
-        public static DataSet GetTable(FieldValue<StockField> fv)//string select, StockEnum field)
+        public static DataSet GetTable(FieldValue<StockField> fv)
         {
             string SQL = "SELECT * FROM Stock WHERE ";
             SQL += fv.ToString();
-            //SQL += "[" + field.ToString() + "]=";
-            //if (field == StockEnum.ItemName)
-            //    SQL += "'";
-            //SQL += select;
-            //if (field == StockEnum.ItemName)
-            //    SQL += "'";
             return OleDbHelper2.Fill(SQL, "Stock");
         }
 
@@ -62,7 +56,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Stock");
         }
 
-
+        //add number of items to stock
         public static bool AddToStock(int itemID, int numToAdd)
         {
             try

@@ -21,7 +21,7 @@ namespace PoliceVolnteerDAL
             }
             catch (Exception e)
             {
-                throw e;
+                //throw e;
                 return false;
             }
         }
@@ -31,18 +31,14 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill("select * from CarToVolunteer", "CarToVolnteer");
         }
 
-        /**/
         public static DataSet GetTable(FieldValue<CarVolunteerField> fv)
         {
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
             SQL += fv.ToString();
-            /*SQL += "[" + field.ToString() + "]=";
-            SQL += "'" + select + "'";*/
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
-        /// <summary>
-        /// the operation parameter True is for and, False is for or</summary>
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<CarVolunteerField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
