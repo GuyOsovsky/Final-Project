@@ -18,5 +18,13 @@ namespace PoliceVolnteerBL
                 VolunteerList.Add(new VolunteerBL(row["PhoneNumber"].ToString()));
         }
 
+        public int SumOfActivesVolunteers()
+        {
+            int sum = 0;
+            for (int i = 0; i < VolunteerList.Count; i++)
+                if (VolunteerList[i].Status)
+                    sum++;
+            return sum;
+        }
     }
 }

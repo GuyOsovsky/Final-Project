@@ -72,5 +72,10 @@ namespace PoliceVolnteerBL
             dr = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, phoneNumber, FieldType.String)).Tables[0].Rows[0];
             this.CarID = dr["CarID"].ToString();
         }
+
+        public bool HaveBirthDay()
+        {
+            return (this.BirthDate.Day == DateTime.Now.Day && this.BirthDate.Month == DateTime.Now.Month);
+        }
     }
 }

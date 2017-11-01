@@ -90,6 +90,18 @@ namespace PoliceVolnteerBL
                 Console.WriteLine(vtvbl.EndDate + " " + vtvbl.PhoneNumber + " " + vtvbl.Status + " " + vtvbl.ValidityCode);
             }*/
 
+            //VolunteersBL vsbl = new VolunteersBL();
+            //Console.WriteLine(vsbl.SumOfActivesVolunteers()+"/"+vsbl.VolunteerList.Count);
+            /*foreach (VolunteerBL vbl in vsbl.VolunteerList)
+            {
+                Console.WriteLine(vbl.FName+" "+vbl.BirthDate+" "+vbl.HaveBirthDay());
+            }*/
+
+            VolunteerToValidityBL vtvbl = new VolunteerToValidityBL("b", 46, new DateTime(2018, 10, 10));
+            Console.WriteLine(vtvbl.TimeToValidityEnd());
+            VolunteerToValidityBL vtvbl1 = new VolunteerToValidityBL("a", 44);
+            Console.WriteLine(vtvbl1.TimeToValidityEnd());
+
             Console.WriteLine("work");
             Console.ReadKey();
         }
