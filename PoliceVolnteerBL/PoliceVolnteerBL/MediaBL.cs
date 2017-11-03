@@ -28,7 +28,7 @@ namespace PoliceVolnteerBL
         public MediaBL(string FileName)
         {
             this.FileName = FileName;
-            DataSet ds = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, FieldType.String));
+            DataSet ds = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, FieldType.String, OperatorType.Equals));
             //this.ActivityName = (string)ds.Tables[0].Rows[0]["ActivityName"];
             this.ActivityCode = (int)ds.Tables[0].Rows[0]["ActivityCode"];
             this.FilePath = (string)ds.Tables[0].Rows[0]["FilePath"];

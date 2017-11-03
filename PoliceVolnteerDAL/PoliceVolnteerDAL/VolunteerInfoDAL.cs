@@ -36,7 +36,7 @@ namespace PoliceVolnteerDAL
             {
                 if (CarInfo)
                 {
-                    CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String));
+                    CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String, OperatorType.Equals));
                 }
                 if (PoliceInfo)
                 {
@@ -81,7 +81,7 @@ namespace PoliceVolnteerDAL
 
 
 
-        public static bool UpdateFrom(string UPhoneNumber, VolunteerInfoDALField eFrom, string updateStr)
+        public static bool UpdateFrom(string UPhoneNumber, FieldValue<VolunteerInfoDALField> change)
         {
             try
             {
@@ -89,7 +89,8 @@ namespace PoliceVolnteerDAL
                 if (ds.Tables["VolunteerInfo"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["VolunteerInfo"].Rows[0];
-                    dr[eFrom.ToString()] = updateStr;
+                    //dr[eFrom.ToString()] = updateStr;
+                    dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerInfo", "VolunteerInfo");
                 }
                 return true;
@@ -107,7 +108,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
-                CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String));
+                CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String, OperatorType.Equals));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;

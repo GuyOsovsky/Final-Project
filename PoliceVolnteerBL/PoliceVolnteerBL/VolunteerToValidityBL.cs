@@ -29,8 +29,8 @@ namespace PoliceVolnteerBL
         public VolunteerToValidityBL(string PhoneNumber, int ValidityCode)
         {
             Queue<FieldValue<VolunteerToValidityField>> searchParams = new Queue<FieldValue<VolunteerToValidityField>>();
-            searchParams.Enqueue(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, PhoneNumber, FieldType.String));
-            searchParams.Enqueue(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.ValidityCode, ValidityCode.ToString(), FieldType.Number));
+            searchParams.Enqueue(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, PhoneNumber, FieldType.String, OperatorType.Equals));
+            searchParams.Enqueue(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.ValidityCode, ValidityCode.ToString(), FieldType.Number, OperatorType.Equals));
             DataRow dr = VolunteerToValidityDAL.GetTable(searchParams, true).Tables[0].Rows[0];
             this.Status = (bool)dr["Status"];
             this.EndDate = (DateTime)dr["EndDate"];

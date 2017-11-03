@@ -27,9 +27,9 @@ namespace PoliceVolnteerBL
             this.Amount = amount;
             this.BorrowDate = borrowDate;
             Queue<FieldValue<StockToVolunteerField>> parameters = new Queue<FieldValue<StockToVolunteerField>>();
-            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, phoneNumber, FieldType.String));
-            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ItemID, itemID.ToString(), FieldType.Number));
-            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.BorrowDate, borrowDate.ToString(), FieldType.DateTime));
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, phoneNumber, FieldType.String, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ItemID, itemID.ToString(), FieldType.Number, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.BorrowDate, borrowDate.ToString(), FieldType.DateTime, OperatorType.Equals));
             DataRow obj = StockToVolunteerDAL.GetTable(parameters, true).Tables[0].Rows[0];
             this.TransferCode = (int)obj["TransferCode"];
             this.ReturnDate = DateTime.Parse(obj["BorrowDate"].ToString());
@@ -38,7 +38,7 @@ namespace PoliceVolnteerBL
         public StockToVolunteerBL(int transferCode)
         {
             
-            DataRow dr = StockToVolunteerDAL.GetTable(new FieldValue<StockToVolunteerField>(StockToVolunteerField.TransferCode, transferCode.ToString(), FieldType.Number)).Tables[0].Rows[0];
+            DataRow dr = StockToVolunteerDAL.GetTable(new FieldValue<StockToVolunteerField>(StockToVolunteerField.TransferCode, transferCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.TransferCode = transferCode;
             this.PhoneNumber = dr["PhoneVolunteer"].ToString();
             this.ItemID = (int)dr["ItemID"];

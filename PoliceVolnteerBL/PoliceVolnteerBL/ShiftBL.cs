@@ -32,7 +32,7 @@ namespace PoliceVolnteerBL
         public ShiftBL(int ShiftCode)
         {
             this.ShiftCode = ShiftCode;
-            DataSet ds = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, ShiftCode.ToString(), FieldType.Number));
+            DataSet ds = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, ShiftCode.ToString(), FieldType.Number, OperatorType.Equals));
             this.TypeCode = (int)ds.Tables[0].Rows[0]["TypeCode"];
             this.DateOfShift = (DateTime)ds.Tables[0].Rows[0]["DateOfShift"];
             this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];

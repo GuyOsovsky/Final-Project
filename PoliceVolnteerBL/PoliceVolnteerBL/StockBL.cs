@@ -22,12 +22,12 @@ namespace PoliceVolnteerBL
             this.ItemName = itemName;
             this.AmountInStock = amountInStock;
             this.Recycable = recycable;
-            this.ItemID = (int)StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemName, itemName, FieldType.String)).Tables[0].Rows[0]["ItemID"];
+            this.ItemID = (int)StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemName, itemName, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["ItemID"];
         }
 
         public StockBL(int itemID)
         {
-            DataRow obj = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID.ToString(), FieldType.Number)).Tables[0].Rows[0];
+            DataRow obj = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.ItemID = itemID;
             this.ItemName = (string)obj["ItemName"];
             this.AmountInStock = (int)obj["AmountInStock"];

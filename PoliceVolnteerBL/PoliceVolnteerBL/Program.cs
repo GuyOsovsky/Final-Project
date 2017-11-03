@@ -97,10 +97,21 @@ namespace PoliceVolnteerBL
                 Console.WriteLine(vbl.FName+" "+vbl.BirthDate+" "+vbl.HaveBirthDay());
             }*/
 
-            VolunteerToValidityBL vtvbl = new VolunteerToValidityBL("b", 46, new DateTime(2018, 10, 10));
-            Console.WriteLine(vtvbl.TimeToValidityEnd());
-            VolunteerToValidityBL vtvbl1 = new VolunteerToValidityBL("a", 44);
-            Console.WriteLine(vtvbl1.TimeToValidityEnd());
+            //VolunteerToValidityBL vtvbl = new VolunteerToValidityBL("b", 46, new DateTime(2018, 10, 10));
+            //Console.WriteLine(vtvbl.TimeToValidityEnd());
+            //VolunteerToValidityBL vtvbl1 = new VolunteerToValidityBL("a", 44);
+            //Console.WriteLine(vtvbl1.TimeToValidityEnd());
+
+            //VolunteerBL a = new VolunteerBL("a");
+            //VolunteerBL b = new VolunteerBL("b");
+            //DataTable c = a.GetShifts(new DateTime(2001, 1, 18), OperatorType.LowerAndEquals);
+            //c = a.GetShifts(new DateTime(2001, 1, 18), OperatorType.LowerAndEquals);
+            //c = a.GetShifts(new DateTime(2001, 1, 18), OperatorType.Lower);
+            //c = b.GetShifts(new DateTime(2001, 1, 1), OperatorType.Equals);
+            //c = b.GetShifts(new DateTime(2001, 1, 18), OperatorType.NotEquals);
+            //c = a.GetShifts(new DateTime(2001, 1, 5), OperatorType.Greater);
+            //c = b.GetShifts(new DateTime(2001, 1, 1), OperatorType.GreaterAndEquals);
+
 
             Console.WriteLine("work");
             Console.ReadKey();

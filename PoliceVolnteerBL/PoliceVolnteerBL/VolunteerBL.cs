@@ -51,7 +51,7 @@ namespace PoliceVolnteerBL
 
         public VolunteerBL(string phoneNumber)
         {
-            DataRow dr = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, FieldType.String)).Tables[0].Rows[0];
+            DataRow dr = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.PhoneNumber = phoneNumber;
             this.EmergencyNumber = dr["EmergencyNumber"].ToString();
             this.FName = dr["FName"].ToString();
@@ -64,18 +64,43 @@ namespace PoliceVolnteerBL
             this.EmailAddress = dr["EmailAddress"].ToString();
             this.ID = dr["ID"].ToString();
             this.Status = bool.Parse(dr["status"].ToString());
-            dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, phoneNumber, FieldType.String)).Tables[0].Rows[0];
+            dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.PoliceID = dr["PoliceID"].ToString();
             this.ServeCity = dr["ServeCity"].ToString();
             this.StartDate = DateTime.Parse(dr["StartDate"].ToString());
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
-            dr = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, phoneNumber, FieldType.String)).Tables[0].Rows[0];
+            dr = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.CarID = dr["CarID"].ToString();
         }
 
-        public bool HaveBirthDay()
+        public bool HasBirthDay()
         {
             return (this.BirthDate.Day == DateTime.Now.Day && this.BirthDate.Month == DateTime.Now.Month);
         }
+
+        public void ChangeStatus(bool newStatus)
+        {
+            if(this.Status != newStatus)
+            {
+                VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.status, newStatus, FieldType.Boolean, OperatorType.Equals));
+                this.Status = newStatus;
+            }
+        }
+        public DataTable GetShifts(DateTime Date,  OperatorType Operator)
+        {
+            FieldValue<ShiftsField> Mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, Date.ToShortDateString(), FieldType.DateTime, Operator);
+            DataRowCollection Rows = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            Queue<FieldValue<ShiftsField>> ShiftsCode = new Queue<FieldValue<ShiftsField>>();
+            foreach(DataRow Row in Rows)
+            {
+                ShiftsCode.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Row["shiftCode"], FieldType.Number, OperatorType.Equals));
+            }
+            DataSet ds = ShiftsDAL.GetTable(ShiftsCode, false);
+            ds.Tables[0].DefaultView.RowFilter = Mask.ToString();
+            DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
+            return FilteredTable;
+
+        }
+
     }
 }

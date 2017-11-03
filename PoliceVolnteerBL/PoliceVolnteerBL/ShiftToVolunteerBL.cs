@@ -28,8 +28,8 @@ namespace PoliceVolnteerBL
             this.ShiftCode = ShiftCode;
             this.PhoneNumber = PhoneNumber;
             Queue<FieldValue<ShiftsToVolunteerField>> searchParams = new Queue<FieldValue<ShiftsToVolunteerField>>();
-            searchParams.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber,PhoneNumber, FieldType.String));
-            searchParams.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), FieldType.Number));
+            searchParams.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber,PhoneNumber, FieldType.String, OperatorType.Equals));
+            searchParams.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), FieldType.Number, OperatorType.Equals));
             DataSet ds = ShiftsToVolunteerDAL.GetTable(searchParams, true);
             this.Comments = (string)ds.Tables[0].Rows[0]["Comments"];
         }

@@ -18,14 +18,14 @@ namespace PoliceVolnteerBL
         public TypeToActivityBL(string typeName)
         {
             TypeToActivityDAL.AddTypeToActivity(typeName);
-            DataRow obj = TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeName, typeName, FieldType.String)).Tables[0].Rows[0];
+            DataRow obj = TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeName, typeName, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             TypeName = typeName;
             TypeCode = int.Parse(obj["typeCode"].ToString());
         }
 
         public TypeToActivityBL(int typeCode)
         {
-            DataRow obj = TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeCode, typeCode.ToString(), FieldType.Number)).Tables[0].Rows[0];
+            DataRow obj = TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeCode, typeCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.TypeCode = typeCode;
             this.TypeName = obj["typeName"].ToString();
         }

@@ -27,8 +27,8 @@ namespace PoliceVolnteerBL
             else
             {
                 Queue<FieldValue<CoursesToVolunteerField>> searchParams = new Queue<FieldValue<CoursesToVolunteerField>>();
-                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, PhoneNumber, FieldType.String));
-                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.CourseCode, CourseCode.ToString(), FieldType.Number));
+                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, PhoneNumber, FieldType.String, OperatorType.Equals));
+                searchParams.Enqueue(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.CourseCode, CourseCode.ToString(), FieldType.Number, OperatorType.Equals));
                 DataSet ds = CoursesToVolunteerDAL.GetTable(searchParams, true);
                 this.Status = (bool)ds.Tables[0].Rows[0]["Status"];
             }

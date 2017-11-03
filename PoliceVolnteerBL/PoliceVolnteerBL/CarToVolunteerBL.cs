@@ -24,7 +24,7 @@ namespace PoliceVolnteerBL
         public CarToVolunteerBL(string CarID)
         {
 
-            DataSet ds = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, FieldType.String));
+            DataSet ds = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, FieldType.String, OperatorType.Equals));
             this.CarID = CarID;
             this.PhoneNumber = (string)ds.Tables[0].Rows[0]["PhoneNumber"];
         }
