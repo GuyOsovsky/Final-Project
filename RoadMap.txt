@@ -83,9 +83,8 @@ costructors to all classes#
 
 0.02.00
 added-
-VolunteerInfoBL#
+VolunteerInfoBL@
 VolunteersInfoBL#
-VolunteerPoliceInfoBL?
 
 0.03.00
 added-

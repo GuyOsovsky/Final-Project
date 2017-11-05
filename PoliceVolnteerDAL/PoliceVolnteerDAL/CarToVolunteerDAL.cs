@@ -58,12 +58,13 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + del.ToString() + "'";
+                string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + del.ToString();
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                throw e;
                 return false;
             }
         }

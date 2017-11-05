@@ -102,8 +102,18 @@ namespace PoliceVolnteerBL
             //VolunteerToValidityBL vtvbl1 = new VolunteerToValidityBL("a", 44);
             //Console.WriteLine(vtvbl1.TimeToValidityEnd());
 
-            //VolunteerBL a = new VolunteerBL("a");
-            //VolunteerBL b = new VolunteerBL("b");
+            VolunteerBL a = new VolunteerBL("a");
+            VolunteerBL b = new VolunteerBL("b");
+            //b.ShiftSignUp(2);
+            //a.ShiftSignUp(2);
+            //var c = a.GetValidities();
+            //a.ChangeRank(6);
+            //a.CourseSignUp(13);
+            //c = a.GetCourses(DateTime.Now, OperatorType.Lower);
+            //c = a.ItemsInPossession();
+            //a.TakeItem(5, 2, DateTime.Now);
+            //c = a.ItemsInPossession();
+
             //DataTable c = a.GetShifts(new DateTime(2001, 1, 18), OperatorType.LowerAndEquals);
             //c = a.GetShifts(new DateTime(2001, 1, 18), OperatorType.LowerAndEquals);
             //c = a.GetShifts(new DateTime(2001, 1, 18), OperatorType.Lower);
@@ -111,6 +121,12 @@ namespace PoliceVolnteerBL
             //c = b.GetShifts(new DateTime(2001, 1, 18), OperatorType.NotEquals);
             //c = a.GetShifts(new DateTime(2001, 1, 5), OperatorType.Greater);
             //c = b.GetShifts(new DateTime(2001, 1, 1), OperatorType.GreaterAndEquals);
+            //c = b.GetActivitys(new DateTime(2001, 1, 1), OperatorType.Equals);
+            //Queue<string> c = a.GetCars();
+            //a.AddNewCar(1994028.ToString());
+            //c = a.GetCars();
+            //a.DeleteCar(1994028.ToString());
+            //c = a.GetCars();
 
 
             Console.WriteLine("work");

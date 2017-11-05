@@ -45,11 +45,8 @@
     <Compile Include="ActivitysBL.cs" />
     <Compile Include="CarReportsBL.cs" />
     <Compile Include="CarsReportsBL.cs" />
-    <Compile Include="CarToVolunteerBL.cs" />
     <Compile Include="CourseBL.cs" />
     <Compile Include="CoursesBL.cs" />
-    <Compile Include="CoursesToVolunteerBL.cs" />
-    <Compile Include="CoursesToVolunteersBL.cs" />
     <Compile Include="MediaBL.cs" />
     <Compile Include="MediasBL.cs" />
     <Compile Include="Program.cs" />
@@ -58,22 +55,14 @@
     <Compile Include="ReportsBL.cs" />
     <Compile Include="ShiftBL.cs" />
     <Compile Include="ShiftsBL.cs" />
-    <Compile Include="ShiftsToVolunteerBL.cs" />
     <Compile Include="ShiftsTypesBL.cs" />
-    <Compile Include="ShiftToVolunteerBL.cs" />
     <Compile Include="ShiftTypesBL.cs" />
     <Compile Include="StockBL.cs" />
     <Compile Include="StocksBL.cs" />
-    <Compile Include="StockToVolunteerBL.cs" />
-    <Compile Include="StockToVolunteersBL.cs" />
-    <Compile Include="TypesToActivityBL.cs" />
-    <Compile Include="TypeToActivityBL.cs" />
     <Compile Include="ValidityTypeBL.cs" />
     <Compile Include="ValidityTypesBL.cs" />
     <Compile Include="VolunteerBL.cs" />
     <Compile Include="VolunteersBL.cs" />
-    <Compile Include="VolunteerToValidityBL.cs" />
-    <Compile Include="VolunteerToValiditysBL.cs" />
     <Compile Include="VolunteerTypeBL.cs" />
     <Compile Include="VolunteerTypesBL.cs" />
   </ItemGroup>

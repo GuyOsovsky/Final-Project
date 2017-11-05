@@ -55,9 +55,9 @@ namespace PoliceVolnteerDAL
         }
 
         //update field in table
-        public static bool UpdateFrom(string UPhoneNumber, VolunteerPoliceInfoDALField eFrom, string updateStr)
+        public static bool UpdateFrom(string UPhoneNumber, FieldValue<VolunteerPoliceInfoDALField> change)
         {
-            if (eFrom == VolunteerPoliceInfoDALField.PhoneNumber)
+            if (change.Field == VolunteerPoliceInfoDALField.PhoneNumber)
                 return false;
             try
             {
@@ -65,7 +65,7 @@ namespace PoliceVolnteerDAL
                 if (ds.Tables["VolunteerPoliceInfo"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["VolunteerPoliceInfo"].Rows[0];
-                    dr[eFrom.ToString()] = updateStr;
+                    dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerPoliceInfo", "VolunteerPoliceInfo");
                 }
                 return true;
