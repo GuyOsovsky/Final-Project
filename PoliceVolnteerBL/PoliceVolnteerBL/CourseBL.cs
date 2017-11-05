@@ -69,5 +69,17 @@ namespace PoliceVolnteerBL
             detailsTable.Columns.Remove("ValidityCode");
             return detailsTable;
         }
+
+        public int SumOfParticipants()
+        {
+            int sum = 0;
+
+            DataTable coursesToVoluteer = CoursesToVolunteerDAL.GetTable().Tables[0];
+            for (int i = 0; i < coursesToVoluteer.Rows.Count; i++)
+                if((int)coursesToVoluteer.Rows[i]["CourseCode"] == CourseCode)
+                    sum++;
+
+            return sum;
+        }
     }
 }

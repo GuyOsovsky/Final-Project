@@ -16,12 +16,12 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Course ([CourseName], [CourseDate], [StartTime], [FinishTime], [NameOfInstructor], [IsRequeired], [Place], [Description], [ValidityCode]) VALUES ('" + cCourseName + "','" + cCourseDate.ToShortDateString() + "','" + cStartTime.ToShortTimeString() + "','" + cFinishTime.ToShortTimeString() + "','" + cNameOfInstructor + "','" + cIsRequeired + "','" + cPlace + "','" + cDescription + "','" + cValidityCode + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Course ([CourseName], [CourseDate], [StartTime], [FinishTime], [NameOfInstructor], [IsRequeired], [Place], [Description], [ValidityCode]) VALUES ('" + cCourseName + "'," + cCourseDate.ToOADate() + "," + cStartTime.ToOADate() + "," + cFinishTime.ToOADate() + ",'" + cNameOfInstructor + "','" + cIsRequeired + "','" + cPlace + "','" + cDescription + "','" + cValidityCode + "')");
                 return true;
             }
             catch(Exception e)
             {
-                //throw e;
+                throw e;
                 return false;
             }
         }

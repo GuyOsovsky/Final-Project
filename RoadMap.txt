@@ -96,7 +96,7 @@ ValidityTypesBL#
 0.04.00
 added-
 CourseBL#
-CoursesBL
+CoursesBL#
 
 0.05.00
 added-

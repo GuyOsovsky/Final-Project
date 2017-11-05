@@ -130,6 +130,18 @@ namespace PoliceVolnteerBL
             /*CourseBL cbl = new CourseBL(13);
             DataTable dt = cbl.GetDetails();*/
 
+            /*DateTime dt1 = new DateTime(2000, 10, 10);
+            DateTime dt2 = new DateTime(2000, 10, 11);
+
+            Console.WriteLine(dt1.CompareTo(dt2));*/
+
+            /*CoursesBL csbl = new CoursesBL();
+            Console.WriteLine(csbl.SumOfParticipantsAllInPeriod(new DateTime(1000, 1, 2), new DateTime(1999, 1, 15)));
+            Console.WriteLine(csbl.SumOfCoursesInPeriod(new DateTime(2000, 1, 2), new DateTime(2000, 1, 15)));*/
+
+            /*CourseBL cbl = new CourseBL(13);
+            Console.WriteLine(cbl.SumOfParticipants());*/
+
             Console.WriteLine("work");
             Console.ReadKey();
         }
