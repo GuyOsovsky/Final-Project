@@ -22,5 +22,12 @@ namespace PoliceVolnteerBL
                 VolunteerTypeList.Add(new VolunteerTypeBL((int)drc[i]["TypeCode"]));
             }
         }
+
+        public DataTable GetAllPermmisions()
+        {
+            DataTable allPermmisions = VolunteerTypesDAL.GetTable().Tables[0];
+            allPermmisions.Columns.Remove("TypeCode");
+            return allPermmisions;
+        }
     }
 }

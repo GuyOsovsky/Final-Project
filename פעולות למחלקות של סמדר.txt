@@ -132,6 +132,7 @@ VolunteersBL:
 VolunteerTypeBL:
 הוספת דרגה
 הצגת הדרגה והרשאות
+VolunteerTypesBL:
 הצגת כל ההרשאות+הדרגות שלהן
 
 ActivityBL: 
@@ -156,9 +157,11 @@ ReportsBL:
 
 CourseBL:
 יצירת קורס חדש
+getDetails
 
 CoursesBL:
-כמות קורסים/משתתפים בפרק זמן
+כמות קורסים בפרק זמן
+כמות משתתפים בפרק זמן
 
 ShiftBL:
 ניהול אנשי משמרת(כמות אנשים במשמרת [1+2{לא עצמאי/חובה}])

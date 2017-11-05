@@ -163,7 +163,7 @@ namespace PoliceVolnteerBL
             CoursesToVolunteerDAL.AddCoursesToVolunteer(this.PhoneNumber, CourseCode);
         }
 
-        public DataTable ItemsInPossession()
+        public DataTable GetItemsInPossession()
         {
             return StockToVolunteerDAL.GetTable(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
         }
@@ -207,7 +207,7 @@ namespace PoliceVolnteerBL
 
         public void ShiftSignUp(int ShiftCode)
         {
-            if(this.Type.Independent == true)
+            if(this.Type.Independent)
             {
                 DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
                 if (VolunteersInShift.Count > 1)
@@ -222,7 +222,7 @@ namespace PoliceVolnteerBL
                 foreach(DataRow VolunteerInShift in VolunteersInShift)
                 {
                     VolunteerBL volunteer = new VolunteerBL(VolunteerInShift["PhoneNumber"].ToString());
-                    if (volunteer.Type.Independent == false)
+                    if (!volunteer.Type.Independent)
                         return;
                 }
                 ShiftsToVolunteerDAL.AddShift(ShiftCode, this.PhoneNumber, "");

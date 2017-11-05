@@ -56,5 +56,18 @@ namespace PoliceVolnteerBL
             this.Description = (string)ds.Tables[0].Rows[0]["Description"];
             this.ValidityCode = (int)ds.Tables[0].Rows[0]["ValidityCode"];
         }
+
+        /// <summary>
+        /// return all the important fields
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetDetails()
+        {
+            DataTable detailsTable = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals)).Tables[0];
+            //remove minor fields
+            detailsTable.Columns.Remove("CourseCode");
+            detailsTable.Columns.Remove("ValidityCode");
+            return detailsTable;
+        }
     }
 }

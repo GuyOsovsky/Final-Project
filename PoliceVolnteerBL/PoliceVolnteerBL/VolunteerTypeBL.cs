@@ -16,6 +16,9 @@ namespace PoliceVolnteerBL
         public bool PermmisionShifts { get; set; }
         public bool PermmisionActivity { get; set; }
         public bool PermmisionStock { get; set; }
+        /// <summary>
+        /// Determines whether this volunteer is able to go alone on car shifts
+        /// </summary>
         public bool Independent { get; set; }
 
         public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity, bool PermmisionStock, bool Independent)
@@ -39,5 +42,13 @@ namespace PoliceVolnteerBL
             this.PermmisionStock = (bool)dr["PermmisionStock"];
             this.Independent = (bool)dr["Independent"];
         }
+
+        public DataTable GetPermmisions()
+        {
+            DataTable allPermmisions = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode, FieldType.Number, OperatorType.Equals)).Tables[0];
+            allPermmisions.Columns.Remove("TypeCode");
+            return allPermmisions;
+        }
+
     }
 }

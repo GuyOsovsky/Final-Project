@@ -72,10 +72,10 @@ ValidityTypesDAL#
 
 0.00.17
 added- (סמדר אמרה)
-הערות לכל הפעולות בDAL#
+הערות לכל הפעולות בDAL@
 הערות לכל השדות בטבלאות#
 הערות לכל הפעולות בBL@
-#להפוך את הDAL ליותר אסטטי(לשנות enums, למחוק הערות סתמיות, להוסיף הערות לפעולות רלוונטיות)#
+@להפוך את הDAL ליותר אסטטי(לשנות enums, למחוק הערות סתמיות, להוסיף הערות לפעולות רלוונטיות)@
 
 0.01.00
 added-
@@ -88,26 +88,20 @@ VolunteersInfoBL#
 
 0.03.00
 added-
-VolunteerToValidityBL
-VolunteerToValiditysBL
-VolunteerTypeBL
-VolunteerTypesBL
-ValidityTypeBL
-ValidityTypesBL
+VolunteerTypeBL#
+VolunteerTypesBL#
+ValidityTypeBL#
+ValidityTypesBL#
 
 0.04.00
 added-
-CourseBL
+CourseBL#
 CoursesBL
-CoursesToVolunteerBL
-CoursesToVolunteersBL
 
 0.05.00
 added-
 ShiftBL
 ShiftsBL
-ShiftToVolunteerBL
-ShiftsToVolunteerBL
 ShiftsTypesBL
 ShiftTypesBL
 
@@ -115,22 +109,16 @@ ShiftTypesBL
 added-
 CarReportsBL
 CarsReportsBL
-CarToVolunteerBL
-CarToVolunteersBL(להוסיף בשביל לבדוק כמה מכוניות יש לאותו האדם)
 
 0.07.00
 added-
 StockBL
 StocksBL
-StockToVolunteerBL
-StockToVolunteersBL
 
 0.08.00
 added-
 ActivityBL
 ActivitysBL
-TypeToActivityBL
-TypesToActivityBL
 
 0.09.00
 added-

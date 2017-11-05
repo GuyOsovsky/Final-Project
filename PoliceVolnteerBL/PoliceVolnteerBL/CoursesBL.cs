@@ -23,5 +23,10 @@ namespace PoliceVolnteerBL
             }
         }
 
+        /*public int SumOfCoursesInPeriod(DateTime from, DateTime to)
+        {
+
+        }*/
+
     }
 }

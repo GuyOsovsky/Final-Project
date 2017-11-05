@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using PoliceVolnteerDAL;
 using System.Data;
 using System.Data.OleDb;
-//HHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 namespace PoliceVolnteerBL
 {
@@ -101,9 +100,6 @@ namespace PoliceVolnteerBL
             //Console.WriteLine(vtvbl.TimeToValidityEnd());
             //VolunteerToValidityBL vtvbl1 = new VolunteerToValidityBL("a", 44);
             //Console.WriteLine(vtvbl1.TimeToValidityEnd());
-
-            VolunteerBL a = new VolunteerBL("a");
-            VolunteerBL b = new VolunteerBL("b");
             //b.ShiftSignUp(2);
             //a.ShiftSignUp(2);
             //var c = a.GetValidities();
@@ -127,7 +123,12 @@ namespace PoliceVolnteerBL
             //c = a.GetCars();
             //a.DeleteCar(1994028.ToString());
             //c = a.GetCars();
+            /*
+            VolunteerTypesBL vtsbl = new VolunteerTypesBL();
+            DataTable dt = vtsbl.GetAllPermmisions();*/
 
+            /*CourseBL cbl = new CourseBL(13);
+            DataTable dt = cbl.GetDetails();*/
 
             Console.WriteLine("work");
             Console.ReadKey();
