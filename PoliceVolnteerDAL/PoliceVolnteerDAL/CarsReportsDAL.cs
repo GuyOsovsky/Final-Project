@@ -12,7 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class CarsReportsDAL
     {        
-        public static bool AddCarReport(int cShiftCode, string cCarID, int Distance)
+        public static bool AddCarReport(int cShiftCode, string cCarID, double Distance)
         {
             try
             {

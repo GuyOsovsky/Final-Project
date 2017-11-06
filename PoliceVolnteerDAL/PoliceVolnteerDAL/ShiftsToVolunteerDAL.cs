@@ -54,9 +54,9 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "ShiftsToVolunteer");
         }
 
-        public static void AddComment(string PhoneNUmber, int ShiftCode, string commet)
+        public static void AddComment(string PhoneNumber, int ShiftCode, string commet)
         {
-            string sql = "UPDATE ShiftsToVolunteer SET comments='" + commet + "' WHERE [PhoneNumber]='" + PhoneNUmber + "' AND [shiftCode]=" + ShiftCode.ToString();
+            string sql = "UPDATE ShiftsToVolunteer SET comments='" + commet + "' WHERE [PhoneNumber]='" + PhoneNumber + "' AND [shiftCode]=" + ShiftCode.ToString();
             OleDbHelper2.DoQuery(sql);
         }
 

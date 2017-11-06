@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using PoliceVolnteerDAL;
 using System.Data;
 using System.Data.OleDb;
-//HHHHHHHHHHHHHHHHHHHHHHHHHHH
 
 namespace PoliceVolnteerBL
 {
@@ -104,6 +103,22 @@ namespace PoliceVolnteerBL
 
             VolunteerBL a = new VolunteerBL("a");
             VolunteerBL b = new VolunteerBL("b");
+            //Console.WriteLine(a.GetDistance(new DateTime(1990, 3, 3), new DateTime(2005, 3, 3)).ToString());
+            //a.ShiftReport(new ShiftBL(2), "yes", "3", 5.9);
+            //Console.WriteLine(a.GetDistance(new DateTime(1990, 3, 3), new DateTime(2005, 3, 3)).ToString());
+            //var c = a.GetActivityReports();
+            //a.AddNewCar("4");
+            //a.ShiftReport(new ShiftBL(6), "yess", "4", 2.1);
+            //c = a.GetCarReports();
+            //c = a.GetCarReports("3");
+            //c = a.GetCarReports(new DateTime(2001, 2, 3), OperatorType.Equals);
+            //c = a.GetCarReports(new DateTime(2001, 1, 1), OperatorType.Equals, "4");
+            //c = a.GetActivityReports(DateTime.Now, OperatorType.LowerAndEquals);
+            //c = a.GetActivityReports(new DateTime(1991, 9, 8), OperatorType.Equals);
+            //var c = a.GetShiftReports();
+            //c = a.GetShiftReports(new DateTime(2001, 1, 1), OperatorType.Equals);
+            //a.ActivitySignUp(7);
+            //c = a.GetActivitys(DateTime.Now, OperatorType.NotEquals);
             //b.ShiftSignUp(2);
             //a.ShiftSignUp(2);
             //var c = a.GetValidities();
