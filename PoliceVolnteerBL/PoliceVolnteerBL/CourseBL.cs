@@ -70,6 +70,10 @@ namespace PoliceVolnteerBL
             return detailsTable;
         }
 
+        /// <summary>
+        /// return sum of the participants in this specific course
+        /// </summary>
+        /// <returns></returns>
         public int SumOfParticipants()
         {
             int sum = 0;

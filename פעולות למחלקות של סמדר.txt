@@ -166,6 +166,8 @@ CoursesBL:
 כמות משתתפים בקורסים בפרק זמן#
 
 ShiftBL:
+כמה זמן נמשכת פעילות#
+מי משתתף בפעילות#
 
 ShiftsBL:
 getDetailsAll#

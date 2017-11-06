@@ -17,7 +17,7 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Shifts ([TypeCode], [DateOfShift], [StartTime], [FinishTime], [Place]) VALUES ('" + typeCode + "','" + dateshift.ToShortDateString() + "','" + startTime.ToShortTimeString() + "','" + finishTime.ToShortTimeString() + "','" + place + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Shifts ([TypeCode], [DateOfShift], [StartTime], [FinishTime], [Place]) VALUES ('" + typeCode + "'," + dateshift.ToOADate() + "," + startTime.ToOADate() + "," + finishTime.ToOADate() + ",'" + place + "')");
                 return true;
             }
             catch (Exception e)
