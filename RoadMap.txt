@@ -75,7 +75,6 @@ added- (סמדר אמרה)
 הערות לכל הפעולות בDAL@
 הערות לכל השדות בטבלאות#
 הערות לכל הפעולות בBL@
-@להפוך את הDAL ליותר אסטטי(לשנות enums, למחוק הערות סתמיות, להוסיף הערות לפעולות רלוונטיות)@
 
 0.01.00
 added-
@@ -100,10 +99,10 @@ CoursesBL#
 
 0.05.00
 added-
-ShiftBL
-ShiftsBL
-ShiftsTypesBL
-ShiftTypesBL
+ShiftBL#
+ShiftsBL#
+ShiftsTypesBL#
+ShiftTypesBL#
 
 0.06.00
 added-

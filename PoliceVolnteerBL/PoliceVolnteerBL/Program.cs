@@ -132,7 +132,6 @@ namespace PoliceVolnteerBL
 
             /*DateTime dt1 = new DateTime(2000, 10, 10);
             DateTime dt2 = new DateTime(2000, 10, 11);
-
             Console.WriteLine(dt1.CompareTo(dt2));*/
 
             /*CoursesBL csbl = new CoursesBL();
@@ -142,6 +141,13 @@ namespace PoliceVolnteerBL
             /*CourseBL cbl = new CourseBL(13);
             Console.WriteLine(cbl.SumOfParticipants());*/
 
+            /*ShiftBL sbl = new ShiftBL(5);
+            DataTable dt = sbl.GetParticipantsPhoneNumbers();*/
+            /*ShiftsBL ssbl = new ShiftsBL();
+            DataTable dt = ssbl.GetAllShiftsInfo();*/
+
+
+            Console.WriteLine();
             Console.WriteLine("work");
             Console.ReadKey();
         }

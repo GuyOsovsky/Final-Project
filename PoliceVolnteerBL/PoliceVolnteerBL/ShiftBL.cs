@@ -39,5 +39,27 @@ namespace PoliceVolnteerBL
             this.FinishTime = (DateTime)ds.Tables[0].Rows[0]["FinishTime"];
             this.Place = (string)ds.Tables[0].Rows[0]["Place"];
         }
+
+        /// <summary>
+        /// return the period of shift time in hours
+        /// </summary>
+        /// <returns></returns>
+        public double GetShiftPeriod()
+        {
+            return (FinishTime - StartTime).TotalHours;
+        }
+
+        /// <summary>
+        /// return all the phone numbers of the participants in this specific shift
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetParticipantsPhoneNumbers()
+        {
+            DataTable shiftsToVolunteer = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0];
+            shiftsToVolunteer.Columns.Remove("shiftCode");
+            shiftsToVolunteer.Columns.Remove("comments");
+            return shiftsToVolunteer;
+
+        }
     }
 }

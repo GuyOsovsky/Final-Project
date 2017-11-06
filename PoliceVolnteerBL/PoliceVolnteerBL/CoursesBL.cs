@@ -23,6 +23,12 @@ namespace PoliceVolnteerBL
             }
         }
 
+        /// <summary>
+        /// return the sum of courses in a peroid of time
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public int SumOfCoursesInPeriod(DateTime from, DateTime to)
         {
             int sum = 0;
@@ -32,6 +38,12 @@ namespace PoliceVolnteerBL
             return sum;
         }
 
+        /// <summary>
+        /// return the sum of all the participants in all the courses in a period of time
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
         public int SumOfParticipantsAllInPeriod(DateTime from, DateTime to)
         {
             HashSet<int> courseCodeSetInPeroid = new HashSet<int>();
