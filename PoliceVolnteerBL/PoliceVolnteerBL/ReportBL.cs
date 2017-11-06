@@ -22,7 +22,7 @@ namespace PoliceVolnteerBL
             this.ReportDate = ReportDate;
             this.ActivityCode = ActivityCode;
             this.Description = Description;
-            ReportsDAL.AddReport(PhoneNumber, ReportDate, ActivityCode, Description);
+            ReportsDAL.AddReport(PhoneNumber, ActivityCode, Description);
         }
 
         public ReportBL(string PhoneNumber)

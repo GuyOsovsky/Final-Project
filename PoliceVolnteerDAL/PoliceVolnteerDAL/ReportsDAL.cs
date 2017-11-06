@@ -8,15 +8,15 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum ReportsField { PhoneNumber, ReportDate, ActivityCode, Description }
+    public enum ReportsField { PhoneNumber, ActivityCode, Description }
 
     public class ReportsDAL
     {
-        public static bool AddReport(string rPhoneNumber, DateTime rReportDate, int rActivityCode, string rDescription)
+        public static bool AddReport(string rPhoneNumber, int rActivityCode, string rDescription)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ReportDate], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "'," + rReportDate.ToOADate() + ",'" + rActivityCode + "','" + rDescription + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "','" + rActivityCode + "','" + rDescription + "')");
                 return true;
             }
             catch (Exception e)
@@ -41,6 +41,8 @@ namespace PoliceVolnteerDAL
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ReportsField>> qfv, bool Operation)
         {
+            if (qfv.Count == 0)
+                return new DataSet();
             string SQL = "SELECT * FROM Reports WHERE ";
             while (qfv.Count > 1)
             {

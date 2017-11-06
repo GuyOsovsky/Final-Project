@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="ActivityBL.cs" />
     <Compile Include="ActivitysBL.cs" />
-    <Compile Include="CarReportsBL.cs" />
-    <Compile Include="CarsReportsBL.cs" />
     <Compile Include="CourseBL.cs" />
     <Compile Include="CoursesBL.cs" />
     <Compile Include="MediaBL.cs" />
