@@ -23,7 +23,7 @@ namespace PoliceVolnteerBL
 
         public ShiftTypesBL(int typeCode)
         {
-            DataRow obj = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow obj = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.TypeCode = typeCode;
             this.TypeName = obj["TypeName"].ToString();
         }

@@ -142,6 +142,13 @@ namespace PoliceVolnteerBL
             /*CourseBL cbl = new CourseBL(13);
             Console.WriteLine(cbl.SumOfParticipants());*/
 
+            //ShiftsBL a = new ShiftsBL();
+            //a = new ShiftsBL(new DateTime(2017, 11, 14));
+            //ShiftsBL a = new ShiftsBL();
+            //a.GetDetails();
+            ShiftsTypesBL a = new ShiftsTypesBL();
+            a.GetTypes();
+
             Console.WriteLine("work");
             Console.ReadKey();
         }

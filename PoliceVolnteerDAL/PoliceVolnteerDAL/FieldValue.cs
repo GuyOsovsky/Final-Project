@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerDAL
 {
-    public enum FieldType { Number, String, Boolean, DateTime }
+    public enum FieldType { Number, String, Boolean, Date, Time }
     public enum OperatorType { Equals, Greater, Lower, GreaterAndEquals, LowerAndEquals, NotEquals}
     ///
     public class FieldValue<T> //where T : enum
     {
         private T field;
-        private string value;
+        private object value;
         private FieldType typeDB;
         private OperatorType operatorType;
         public T Field
@@ -21,7 +21,7 @@ namespace PoliceVolnteerDAL
         }
         public string Value
         {
-            get { return this.value; }
+            get { return this.value.ToString(); }
         }
         public FieldType TypeDB
         {
@@ -35,7 +35,7 @@ namespace PoliceVolnteerDAL
         public FieldValue(T e, object v, FieldType type, OperatorType Operator) 
         {
             field = e;
-            value = v.ToString();
+            value = v;
             typeDB = type;
             operatorType = Operator;
         }
@@ -66,12 +66,19 @@ namespace PoliceVolnteerDAL
             }
             if (typeDB == FieldType.String)
                 ret += "'";
-            if (typeDB == FieldType.DateTime)
+            if (typeDB == FieldType.Date | typeDB == FieldType.Time)
                 ret += "#";
-            ret += value;
+            if (typeDB == FieldType.Date)
+            {
+                ret += ((DateTime)value).Month + "/" + ((DateTime)value).Day + "/" + ((DateTime)value).Year;
+            }
+            else
+            {
+                ret += value.ToString();
+            }
             if (typeDB == FieldType.String)
                 ret += "'";
-            if (typeDB == FieldType.DateTime)
+            if (typeDB == FieldType.Date | typeDB == FieldType.Time)
                 ret += "#";
             return ret;
         }

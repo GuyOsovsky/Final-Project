@@ -35,7 +35,7 @@ namespace PoliceVolnteerBL
         public VolunteerTypeBL(int TypeCode)
         {
             this.TypeCode = TypeCode;
-            DataRow dr = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow dr = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.TypeName = (string)dr["TypeName"];
             this.PermmisionShifts = (bool)dr["PermmisionShifts"];
             this.PermmisionActivity = (bool)dr["PermmisionActivity"];

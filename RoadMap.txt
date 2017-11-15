@@ -68,7 +68,6 @@ added-
 VolunteerToValidityDAL#
 ValidityTypesDAL#
 
-=============================11.9.17
 
 0.00.17
 added- (סמדר אמרה)
@@ -98,29 +97,26 @@ added-
 CourseBL#
 CoursesBL#
 
+=============================15.11.17
+
 0.05.00
 added-
-ShiftBL
-ShiftsBL
-ShiftsTypesBL
-ShiftTypesBL
+ShiftBL#
+ShiftsBL?
+ShiftsTypesBL? //// לבדוק בסוף האם צריך להפוך את המחלקה לסטטית
+ShiftTypesBL#
 
 0.06.00
-added-
-CarReportsBL
-CarsReportsBL
-
-0.07.00
 added-
 StockBL
 StocksBL
 
-0.08.00
+0.07.00
 added-
 ActivityBL
 ActivitysBL
 
-0.09.00
+0.08.00
 added-
 ReportBL
 ReportsBL

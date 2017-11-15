@@ -27,7 +27,7 @@ namespace PoliceVolnteerBL
 
         public StockBL(int itemID)
         {
-            DataRow obj = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow obj = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.ItemID = itemID;
             this.ItemName = (string)obj["ItemName"];
             this.AmountInStock = (int)obj["AmountInStock"];

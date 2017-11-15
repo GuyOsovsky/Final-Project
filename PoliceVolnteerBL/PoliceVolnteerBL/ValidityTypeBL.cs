@@ -24,7 +24,7 @@ namespace PoliceVolnteerBL
         public ValidityTypeBL(int ValidityCode)
         {
             this.ValidityCode = ValidityCode;
-            DataRow dr = ValidityTypesDAL.GetTable(new FieldValue<ValidityTypesDALField>(ValidityTypesDALField.ValidityCode, ValidityCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow dr = ValidityTypesDAL.GetTable(new FieldValue<ValidityTypesDALField>(ValidityTypesDALField.ValidityCode, ValidityCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.ValidityName = (string)dr["ValidityName"];
         }
 

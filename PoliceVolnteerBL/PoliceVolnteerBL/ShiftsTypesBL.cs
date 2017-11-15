@@ -11,7 +11,7 @@ namespace PoliceVolnteerBL
 {
     public class ShiftsTypesBL
     {
-        public List<ShiftTypesBL> ShiftTypeList { get; set; }
+        public List<ShiftTypesBL> ShiftTypeList { get; private set; }
 
         public ShiftsTypesBL()
         {
@@ -21,6 +21,13 @@ namespace PoliceVolnteerBL
             {
                 ShiftTypeList.Add(new ShiftTypesBL((int)drc[i]["typeCode"]));
             }
+        }
+
+        public DataTable GetTypes()
+        {
+            DataTable Types = ShiftsTypesDAL.GetTable().Tables[0];
+            Types.Columns.Remove("typeCode");
+            return Types;
         }
     }
 }

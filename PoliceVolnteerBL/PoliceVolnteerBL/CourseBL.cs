@@ -44,7 +44,7 @@ namespace PoliceVolnteerBL
 
         public CourseBL(int CourseCode)
         {
-            DataSet ds = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode.ToString(), FieldType.Number, OperatorType.Equals));
+            DataSet ds = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals));
             this.CourseCode = CourseCode;
             this.CourseName = (string)ds.Tables[0].Rows[0]["CourseName"];
             this.CourseDate = (DateTime)ds.Tables[0].Rows[0]["CourseDate"];

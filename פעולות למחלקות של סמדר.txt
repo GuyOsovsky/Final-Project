@@ -168,11 +168,10 @@ CoursesBL:
 ShiftBL:
 
 ShiftsBL:
-getDetailsFuture
-getDetailsAll
+getDetailsAll#
 
 ShiftsTypesBL:
-להחזיר סוגי משמרות
+להחזיר סוגי משמרות#
 
 
 
