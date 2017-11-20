@@ -23,37 +23,31 @@ namespace PoliceVolnteerBL
             }
         }
 
-        /// <summary>
-        /// return all the information of all the shifts that will be done
-        /// </summary>
-        /// <returns></returns>
-        public DataTable GetFutureShiftsInfo()
+        public ShiftsBL(DateTime fromDate)
         {
-            DataTable infoTable = ShiftsDAL.GetTable().Tables[0];
-            int length = infoTable.Rows.Count;
-            int index = 0;
-            for (int i = 0; i < length; i++)
+            this.ShiftList = new List<ShiftBL>();
+            DataTable ShiftsTable = ShiftsDAL.GetTable().Tables[0];
+            FieldValue<ShiftsField> filter = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, FieldType.Date, OperatorType.GreaterAndEquals);
+            ShiftsTable.DefaultView.RowFilter = filter.ToString();
+            ShiftsTable = (ShiftsTable.DefaultView).ToTable();
+            DataRowCollection drc = ShiftsTable.Rows;
+            for (int i = 0; i < drc.Count; i++)
             {
-                if (((DateTime)infoTable.Rows[index]["StartTime"]).CompareTo(DateTime.Now) == -1)
-                    infoTable.Rows.Remove(infoTable.Rows[index]);
-                else
-                    index++;
+                ShiftList.Add(new ShiftBL((int)drc[i]["ShiftCode"]));
             }
-            infoTable.Columns.Remove("ShiftCode");
-            infoTable.Columns.Remove("TypeCode");
-            return infoTable;
         }
 
-        /// <summary>
-        /// return all the shifts important information 
-        /// </summary>
-        /// <returns></returns>
-        public DataTable GetAllShiftsInfo()
+        public DataTable GetDetails()
         {
-            DataTable infoTable = ShiftsDAL.GetTable().Tables[0];
-            infoTable.Columns.Remove("ShiftCode");
-            infoTable.Columns.Remove("TypeCode");
-            return infoTable;
+            DataTable shifts = ShiftsDAL.GetTable().Tables[0];
+            shifts.Columns.Add("ShiftType", typeof(string));
+            foreach (DataRow shift in shifts.Rows)
+            {
+                shift["ShiftType"] = (new ShiftTypesBL(int.Parse(shift["TypeCode"].ToString()))).TypeName;
+            }
+            shifts.Columns.Remove("ShiftCode");
+            shifts.Columns.Remove("TypeCode");
+            return shifts;
         }
     }
 }
