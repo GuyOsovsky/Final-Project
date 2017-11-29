@@ -9,18 +9,40 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerBL
 {
-    public class StocksBL
+    public class StockBL
     {
-        public List<StockBL> StockList { get; set; }
+        public List<ItemBL> StockList { get; set; }
 
-        public StocksBL()
+        public StockBL()
         {
-            this.StockList = new List<StockBL>();
+            this.StockList = new List<ItemBL>();
             DataRowCollection drc = StockDAL.GetTable().Tables[0].Rows;
             for (int i = 0; i < drc.Count; i++)
             {
-                StockList.Add(new StockBL((int)drc[i]["ItemID"]));
+                StockList.Add(new ItemBL((int)drc[i]["ItemID"]));
             }
+        }
+        public DataTable GetAllItems()
+        {
+            return StockDAL.GetTable().Tables[0];
+        }
+
+        public DataTable GetAllUnreturnedItems()
+        {
+            
+            VolunteersBL volunteers = new VolunteersBL();
+            DataTable ret = volunteers.VolunteerList[0].GetItemsInPossession();
+            volunteers.VolunteerList.RemoveAt(0);
+            foreach (VolunteerBL volunteer in volunteers.VolunteerList)
+            {
+                ret.Merge(volunteer.GetItemsInPossession());
+            }
+            return ret;
+        }
+
+        public DataTable GetAllTransference()
+        {
+            return StockToVolunteerDAL.GetTable().Tables[0];
         }
     }
 }

@@ -195,8 +195,6 @@ namespace PoliceVolnteerBL
             return FilteredTable;
         }
 
-
-
         public void CourseSignUp(int CourseCode)
         {
             CoursesToVolunteerDAL.AddCoursesToVolunteer(this.PhoneNumber, CourseCode);
@@ -204,11 +202,26 @@ namespace PoliceVolnteerBL
 
         public DataTable GetItemsInPossession()
         {
-            return StockToVolunteerDAL.GetTable(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
+            Queue<FieldValue<StockToVolunteerField>> parameters = new Queue<FieldValue<StockToVolunteerField>>();
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, FieldType.String, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ReturnDate, new DateTime(1999, 1, 1), FieldType.Date, OperatorType.Equals));
+            DataRowCollection Recycable = StockDAL.GetTable(new FieldValue<StockField>(StockField.Recyclable, true, FieldType.Boolean, OperatorType.Equals)).Tables[0].Rows;
+            foreach (DataRow item in Recycable)
+            {
+                parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ItemID, item["ItemID"], FieldType.Number, OperatorType.NotEquals));
+            }
+            return StockToVolunteerDAL.GetTable(parameters, true).Tables[0];
+
         }
+
         public void TakeItem(int ItemCode, int Amount, DateTime Date)
         {
             StockToVolunteerDAL.AddTransference(this.PhoneNumber, ItemCode, Amount, Date);
+        }
+
+        public void ReturnItem(int TransactionCode)
+        {
+            StockToVolunteerDAL.ReturnItem(TransactionCode);
         }
 
         public void ChangeRank(int RankCode)
@@ -243,8 +256,6 @@ namespace PoliceVolnteerBL
             DataTable FilteredValidities = (AllValidities.DefaultView).ToTable();
             return FilteredValidities;
         }
-
-
 
         public void ShiftSignUp(int ShiftCode)
         {
@@ -363,7 +374,6 @@ namespace PoliceVolnteerBL
         {
             return ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
         }
-
 
         public DataTable GetShiftReports(DateTime date, OperatorType Operator)
         {

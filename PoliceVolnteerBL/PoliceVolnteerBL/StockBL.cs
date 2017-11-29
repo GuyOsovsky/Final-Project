@@ -9,14 +9,14 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerBL
 {
-    public class StockBL
+    public class ItemBL
     {
         public string ItemName { get; set; }
         public int ItemID { get; set; }
         public int AmountInStock { get; set; }
         public bool Recycable { get; set; }
 
-        public StockBL(string itemName, int amountInStock, bool recycable)
+        public ItemBL(string itemName, int amountInStock, bool recycable)
         {
             StockDAL.AddItemToStock(itemName, amountInStock, recycable);
             this.ItemName = itemName;
@@ -25,7 +25,7 @@ namespace PoliceVolnteerBL
             this.ItemID = (int)StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemName, itemName, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["ItemID"];
         }
 
-        public StockBL(int itemID)
+        public ItemBL(int itemID)
         {
             DataRow obj = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.ItemID = itemID;
@@ -33,5 +33,7 @@ namespace PoliceVolnteerBL
             this.AmountInStock = (int)obj["AmountInStock"];
             this.Recycable = (bool)obj["Recyclable"];
         }
+
+        //public DataTable GetTrasfersNot
     }
 }

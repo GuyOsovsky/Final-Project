@@ -117,7 +117,7 @@ namespace PoliceVolnteerBL
             //c = b.GetShifts(new DateTime(2001, 1, 18), OperatorType.NotEquals);
             //c = a.GetShifts(new DateTime(2001, 1, 5), OperatorType.Greater);
             //c = b.GetShifts(new DateTime(2001, 1, 1), OperatorType.GreaterAndEquals);
-            //c = b.GetActivitys(new DateTime(2001, 1, 1), OperatorType.Equals);
+            //c = b.GetActivitys(new DateTime(2001, 1, 1), OperatorType.Equals);AS
             //Queue<string> c = a.GetCars();
             //a.AddNewCar(1994028.ToString());
             //c = a.GetCars();
@@ -145,8 +145,15 @@ namespace PoliceVolnteerBL
             //a = new ShiftsBL(new DateTime(2017, 11, 14));
             //ShiftsBL a = new ShiftsBL();
             //a.GetDetails();
-            ShiftsTypesBL a = new ShiftsTypesBL();
-            a.GetTypes();
+            //ShiftsTypesBL a = new ShiftsTypesBL();
+            //a.GetTypes();
+
+            //VolunteerBL a = new VolunteerBL("a");
+            //DataTable b = a.GetItemsInPossession();
+
+            //StockBL stock = new StockBL();
+            //DataTable data = stock.GetAllUnreturnedItems();
+            //DataTable data = stock.GetAllTransference();
 
             Console.WriteLine("work");
             Console.ReadKey();

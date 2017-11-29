@@ -75,6 +75,11 @@ added- (סמדר אמרה)
 הערות לכל השדות בטבלאות#
 הערות לכל הפעולות בBL@
 
+
+
+BL
+
+
 0.01.00
 added-
 costructors to all classes#
@@ -96,14 +101,15 @@ added-
 CourseBL#
 CoursesBL#
 
-=============================15.11.17
-
 0.05.00
 added-
 ShiftBL#
 ShiftsBL#
 ShiftsTypesBL#
 ShiftTypesBL#
+
+
+=============================15.11.17
 
 0.06.00
 added-
