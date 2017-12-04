@@ -155,6 +155,8 @@ namespace PoliceVolnteerBL
             //DataTable data = stock.GetAllUnreturnedItems();
             //DataTable data = stock.GetAllTransference();
 
+            //ReportsDAL.AddReport("a", new DateTime(1999, 1, 1), 7, "");
+
             Console.WriteLine("work");
             Console.ReadKey();
         }

@@ -53,5 +53,25 @@ namespace PoliceVolnteerBL
             this.MinNumberOfVolunteer = (int)ds.Tables[0].Rows[0]["MinNumberOfVolunteer"];
         }
 
+        public VolunteersBL GetAllVolunteers()
+        {
+            ReportsBL reports = new ReportsBL("", this.ActivityCode);
+            VolunteersBL ret = new VolunteersBL(true);
+            foreach (ReportBL report in reports.ReportList)
+            {
+                ret.AddVolunteer(new VolunteerBL(report.PhoneNumber));
+            }
+            return ret;
+        }
+
+        public ReportsBL GetAllReports()
+        {
+            return new ReportsBL("", this.ActivityCode);
+        }
+
+        public ReportsBL GetAllReports(string phoneNumber)
+        {
+            return new ReportsBL(phoneNumber , this.ActivityCode);
+        }
     }
 }

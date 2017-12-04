@@ -8,20 +8,20 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum ReportsField { PhoneNumber, ActivityCode, Description }
+    public enum ReportsField { PhoneNumber, ReportDate, ActivityCode, Description }
 
     public class ReportsDAL
     {
-        public static bool AddReport(string rPhoneNumber, int rActivityCode, string rDescription)
+        public static bool AddReport(string rPhoneNumber, DateTime rReportDate, int rActivityCode, string rDescription)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "','" + rActivityCode + "','" + rDescription + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ReportDate], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "','" + rReportDate.ToShortDateString() + "','"  + rActivityCode + "','" + rDescription + "')");
                 return true;
             }
             catch (Exception e)
             {
-                //throw e;
+                throw e;
                 return false;
             }
         }
@@ -54,6 +54,28 @@ namespace PoliceVolnteerDAL
             }
             SQL += qfv.Dequeue().ToString();
             return OleDbHelper2.Fill(SQL, "Reports");
+        }
+
+        public static bool UpdateFrom(string phoneNumber, int activityCode, FieldValue<ReportsField> change)
+        {
+            if(change.Field == ReportsField.ActivityCode || change.Field == ReportsField.PhoneNumber)
+                return false;
+            try
+            {
+                DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM Reports WHERE PhoneNumber='{0}' AND ActivityCode='{1}'", phoneNumber, activityCode), "Reports");
+                if (ds.Tables["Reports"].Rows.Count > 0)
+                {
+                    DataRow dr = ds.Tables["Reports"].Rows[0];
+                    dr[change.Field.ToString()] = change.Value.ToString();
+                    OleDbHelper2.update(ds, "SELECT * FROM Reports", "Reports");
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                //throw e;
+                return false;
+            }
         }
 
         public static bool DelReport(string phoneNumber)

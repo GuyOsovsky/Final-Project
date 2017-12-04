@@ -22,5 +22,18 @@ namespace PoliceVolnteerBL
                 ActivityList.Add(new ActivityBL((int)drc[i]["ActivityCode"]));
             }
         }
+
+        public int CountOfActivities(DateTime from, DateTime to)
+        {
+            int count = 0;
+            for (int i = 0; i < this.ActivityList.Count; i++)
+            {
+                if (ActivityList[i].ActivityDate >= from && ActivityList[i].ActivityDate <= to)
+                    count++;
+            }
+            return count;
+        }
+
+
     }
 }

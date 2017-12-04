@@ -288,7 +288,7 @@ namespace PoliceVolnteerBL
 
         public void ActivitySignUp(int ActivityCode)
         {
-            ReportsDAL.AddReport(this.PhoneNumber, ActivityCode, "");
+            ReportsDAL.AddReport(this.PhoneNumber,new DateTime(1999, 1, 1), ActivityCode, "");
         }
 
         public void ShiftReport(ShiftBL shift, string comment, string carID = "", double distance = 0)
@@ -302,6 +302,11 @@ namespace PoliceVolnteerBL
             }
             //add shift
             ShiftsToVolunteerDAL.AddComment(this.PhoneNumber, shift.ShiftCode, comment);
+        }
+
+        public void ActiviryReport(ActivityBL activity, string description)
+        {
+
         }
 
         public double GetDistance(DateTime FromDate, DateTime ToDate)

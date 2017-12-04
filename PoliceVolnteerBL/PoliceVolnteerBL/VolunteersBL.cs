@@ -10,12 +10,29 @@ namespace PoliceVolnteerBL
     public class VolunteersBL
     {
         public List<VolunteerBL> VolunteerList { get; set; }
-        public VolunteersBL()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isEmpty">tells the program if the list should be empty or not</param>
+        public VolunteersBL(bool isEmpty)
         {
             this.VolunteerList = new List<VolunteerBL>();
+            if (!isEmpty)
+            {
+                foreach (DataRow row in VolunteerInfoDAL.GetTable().Tables[0].Rows)
+                    VolunteerList.Add(new VolunteerBL(row["PhoneNumber"].ToString()));
+            }
+        }
 
-            foreach (DataRow row in VolunteerInfoDAL.GetTable().Tables[0].Rows)
-                VolunteerList.Add(new VolunteerBL(row["PhoneNumber"].ToString()));
+
+        public void AddVolunteer(VolunteerBL volunteer)
+        {
+            this.VolunteerList.Add(volunteer);
+        }
+
+        public void DelVolunteer(VolunteerBL volunteer)
+        {
+            this.VolunteerList.Remove(this.VolunteerList.Find(x => x.PhoneNumber.Contains(volunteer.PhoneNumber)));
         }
 
         public int SumOfActivesVolunteers()

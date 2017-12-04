@@ -2,7 +2,7 @@ complete #
 incomplete @
 need fixes &
 
-
+DAL=============
 
 0.00.01
 added-
@@ -45,16 +45,11 @@ ShiftsToVolunteerDAL#
 ShiftsDAL#
 ShiftTypeDAL#
 
-
-
-
 0.00.14
 added-
 VolunteerPoliceInfoDAL#
 fixes-
 VolunteerInfoDAL#
-
-
 
 0.00.15
 added-
@@ -68,7 +63,6 @@ added-
 VolunteerToValidityDAL#
 ValidityTypesDAL#
 
-
 0.00.17
 added- (סמדר אמרה)
 הערות לכל הפעולות בDAL@
@@ -77,7 +71,8 @@ added- (סמדר אמרה)
 
 
 
-BL
+BL===============
+
 
 
 0.01.00
@@ -108,18 +103,17 @@ ShiftsBL#
 ShiftsTypesBL#
 ShiftTypesBL#
 
-
-=============================15.11.17
-
 0.06.00
 added-
-StockBL
-StocksBL
+StockBL#
+StocksBL#
 
 0.07.00
 added-
-ActivityBL
-ActivitysBL
+ActivityBL#
+ActivitysBL#
+
+=============================4.12.17
 
 0.08.00
 added-
@@ -127,4 +121,3 @@ ReportBL
 ReportsBL
 MediaBL
 MediasBL
-FileTypeBL?

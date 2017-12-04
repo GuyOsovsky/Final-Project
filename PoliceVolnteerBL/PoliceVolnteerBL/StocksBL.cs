@@ -30,7 +30,7 @@ namespace PoliceVolnteerBL
         public DataTable GetAllUnreturnedItems()
         {
             
-            VolunteersBL volunteers = new VolunteersBL();
+            VolunteersBL volunteers = new VolunteersBL(false);
             DataTable ret = volunteers.VolunteerList[0].GetItemsInPossession();
             volunteers.VolunteerList.RemoveAt(0);
             foreach (VolunteerBL volunteer in volunteers.VolunteerList)

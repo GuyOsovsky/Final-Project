@@ -22,14 +22,18 @@ namespace PoliceVolnteerBL
             this.ReportDate = ReportDate;
             this.ActivityCode = ActivityCode;
             this.Description = Description;
-            ReportsDAL.AddReport(PhoneNumber, ActivityCode, Description);
+            ReportsDAL.AddReport(PhoneNumber,ReportDate, ActivityCode, Description);
         }
 
-        public ReportBL(string PhoneNumber)
+        public ReportBL(string PhoneNumber, int activityCode)
         {
             this.PhoneNumber = PhoneNumber;
-            DataSet ds = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, FieldType.String, OperatorType.Equals));
-            this.ActivityCode = (int)ds.Tables[0].Rows[0]["ActivityCode"];
+            Queue<FieldValue<ReportsField>> parameters = new Queue<FieldValue<ReportsField>>();
+            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, FieldType.String, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
+            DataSet ds = ReportsDAL.GetTable(parameters, true);
+            this.ActivityCode = activityCode;
+            this.PhoneNumber = PhoneNumber;
             this.ReportDate = (DateTime)ds.Tables[0].Rows[0]["ReportDate"];
             this.Description = (string)ds.Tables[0].Rows[0]["Description"];
         }

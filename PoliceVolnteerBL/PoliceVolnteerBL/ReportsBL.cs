@@ -11,15 +11,16 @@ namespace PoliceVolnteerBL
 {
     public class ReportsBL
     {
-        public List<ReportBL> ReportList { get; set; }
+        public List<ReportBL> ReportList { get;private set; }
 
-        public ReportsBL()
+        public ReportsBL(string phoneNumber = "", int activityCode = 0)
         {
             this.ReportList = new List<ReportBL>();
             DataRowCollection drc = ReportsDAL.GetTable().Tables[0].Rows;
             for (int i = 0; i < drc.Count; i++)
             {
-                ReportList.Add(new ReportBL((string)drc[i]["PhoneNumber"]));
+                if ((phoneNumber == "" || (string)drc[i]["PhoneNumber"] == phoneNumber) && (activityCode == 0 || (int)drc[i]["ActivityCode"] == activityCode))
+                    ReportList.Add(new ReportBL((string)drc[i]["PhoneNumber"], (int)drc[i]["ActivityCode"]));
             }
         }
     }
