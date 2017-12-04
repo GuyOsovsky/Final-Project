@@ -37,5 +37,10 @@ namespace PoliceVolnteerBL
             this.ReportDate = (DateTime)ds.Tables[0].Rows[0]["ReportDate"];
             this.Description = (string)ds.Tables[0].Rows[0]["Description"];
         }
+
+        public string getReport()
+        {
+            return (new ActivityBL(this.ActivityCode)).GetActivityReport() + this.Description + "\n";
+        }
     }
 }

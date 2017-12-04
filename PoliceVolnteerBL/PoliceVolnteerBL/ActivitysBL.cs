@@ -11,15 +11,19 @@ namespace PoliceVolnteerBL
 {
     public class ActivitysBL
     {
-        public List<ActivityBL> ActivityList { get; set; }
+        public List<ActivityBL> ActivityList { get; private set; }
 
-        public ActivitysBL()
+        public ActivitysBL(DateTime from = new DateTime(), DateTime to = new DateTime())
         {
+            if (to.Year == 1)
+                to = DateTime.Now;
             this.ActivityList = new List<ActivityBL>();
             DataRowCollection drc = ActivityDAL.GetTable().Tables[0].Rows;
             for (int i = 0; i < drc.Count; i++)
             {
-                ActivityList.Add(new ActivityBL((int)drc[i]["ActivityCode"]));
+                ActivityBL activity = new ActivityBL((int)drc[i]["ActivityCode"]);
+                if(activity.ActivityDate >= from && activity.ActivityDate <= to)
+                    ActivityList.Add(activity);
             }
         }
 

@@ -39,10 +39,10 @@ namespace PoliceVolnteerBL
         }
 
         //build from the database
-        public ActivityBL(int ActivityCode)
+        public ActivityBL(int activityCode)
         {
-            this.ActivityCode = ActivityCode;
-            DataSet ds = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, ActivityCode, FieldType.Number, OperatorType.Equals));
+            this.ActivityCode = activityCode;
+            DataSet ds = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
             this.ActivityName = (string)ds.Tables[0].Rows[0]["ActivityName"];
             this.ActivityDate = (DateTime)ds.Tables[0].Rows[0]["ActivityDate"];
             this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];
@@ -67,6 +67,20 @@ namespace PoliceVolnteerBL
         public ReportsBL GetAllReports()
         {
             return new ReportsBL("", this.ActivityCode);
+        }
+
+        public string GetActivityReport()
+        {
+            string report = "ACTIVITY REPORT\t\t\t\tcode: " + this.ActivityCode + "\n";
+            report += "name: " + this.ActivityName + "\n";
+            report += "date: " + this.ActivityDate + "\n";
+            report += "start time: " + this.StartTime + "\n";
+            report += "finish time: " + this.FinishTime + "\n";
+            report += "manager: " + this.ActivityManager + "\n";
+            report += "type: " + TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeCode, this.TypeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0]["typeName"].ToString() + "\n";
+            report += "place: " + this.Place + "\n";
+            report += "number of Participants: " + this.GetAllVolunteers().VolunteerList.Count.ToString() + "\n";
+            return report;
         }
 
         public ReportsBL GetAllReports(string phoneNumber)

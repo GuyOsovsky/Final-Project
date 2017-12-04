@@ -156,6 +156,15 @@ namespace PoliceVolnteerBL
             //DataTable data = stock.GetAllTransference();
 
             //ReportsDAL.AddReport("a", new DateTime(1999, 1, 1), 7, "");
+            //ReportBL a = new ReportBL("a", 7);
+            //Console.WriteLine(a.getReport());
+
+            //ActivityBL a = new ActivityBL(7);
+            //a.GetAllReports();
+            //a.GetAllVolunteers();
+            //ActivitysBL b = new ActivitysBL();
+
+
 
             Console.WriteLine("work");
             Console.ReadKey();

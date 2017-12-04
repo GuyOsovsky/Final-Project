@@ -117,7 +117,10 @@ ActivitysBL#
 
 0.08.00
 added-
-ReportBL
-ReportsBL
+ReportBL#
+ReportsBL#
+
+0.09.00
+added-
 MediaBL
 MediasBL
