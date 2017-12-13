@@ -8,15 +8,15 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum MediaField { FileName, ActivityCode, filePath, FileType }
+    public enum MediaField { FileName, ActivityCode, FileType }
 
     public class MediaDAL
     {
-        public static bool AddMedia(string mFileName, int mActivityCode, string mFilePath, int mFileType)
+        public static bool AddMedia(string mFileName, int mActivityCode, int mFileType)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Media ([FileName], [ActivityCode], [filePath], [FileType]) VALUES ('" + mFileName + "','" + mActivityCode + "','" + mFilePath + "','" + mFileType + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Media ([FileName], [ActivityCode], [FileType]) VALUES ('" + mFileName + "','" + mActivityCode + "','" + mFileType + "')");
                 return true;
             }
             catch (Exception e)

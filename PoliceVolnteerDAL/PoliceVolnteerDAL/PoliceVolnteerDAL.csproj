@@ -57,6 +57,7 @@
       <DependentUpon>database_policeDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="CarsReportsDAL.cs" />
+    <Compile Include="FileTypesDAL.cs" />
     <Compile Include="ValidityTypesDAL.cs" />
     <Compile Include="VolunteerPoliceInfoDAL.cs" />
     <Compile Include="CarToVolunteerDAL.cs" />

@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 using PoliceVolnteerDAL;
 using System.Data;
 using System.Data.OleDb;
+using System.Windows.Forms;
+using System.Threading;
+using System.IO;
 
 namespace PoliceVolnteerBL
 {
     public class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
             //יוצר משתמש רגיל בלי משתמש משטרה! לתקן!
@@ -164,7 +168,73 @@ namespace PoliceVolnteerBL
             //a.GetAllVolunteers();
             //ActivitysBL b = new ActivitysBL();
 
+            /*OpenFileDialog fileDialogBox = new OpenFileDialog();
 
+            string filePath = "none";
+            if (fileDialogBox.ShowDialog() == DialogResult.OK)
+            {
+                filePath = fileDialogBox.FileName;
+                Console.WriteLine("File path : " + filePath);
+            }
+            
+            string fileName = Path.GetFileName(filePath);
+            Console.WriteLine("File name : " + fileName);
+
+            string fileFormat = Path.GetExtension(fileName);
+            Console.WriteLine("File format : " + fileFormat);
+
+            string sourcePath = filePath.Substring(0, filePath.Length - fileName.Length);
+            Console.WriteLine("Source path : " + sourcePath);
+            
+            string localPath = System.IO.Directory.GetCurrentDirectory();
+            Console.WriteLine("Local path : " + localPath);
+            localPath = localPath.Remove(localPath.Length - (5 + 3 + (2 * 1)));
+            string targetPath = localPath + @"\Files";
+            Console.WriteLine("Target path : " + targetPath);
+
+            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+            string destFile = System.IO.Path.Combine(targetPath, fileName);
+            try
+            {
+                File.Copy(sourceFile, destFile, true);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("{0}: The process can not access the file {1} because another process is using the file", e.GetType().Name, filePath);
+            }*/
+
+            //MediaBL m = new MediaBL(7);
+            /*Console.Write("Name: ");
+            string name = Console.ReadLine();
+            
+            OpenFileDialog fileDialogBox = new OpenFileDialog();
+
+            string filePath = "none";
+            if (fileDialogBox.ShowDialog() == DialogResult.OK)
+            {
+                filePath = fileDialogBox.FileName;
+                Console.WriteLine("File path : " + filePath);
+            }
+            FileStream file = File.Open(filePath, FileMode.Open);
+            byte[] byteArr2 = new byte[file.Length];
+            file.Read(byteArr2, 0, int.Parse(file.Length.ToString()));
+            file.Close();
+            MediaBL m = new MediaBL(7, name+Path.GetExtension(file.Name), byteArr2);*/
+            
+            //Console.Write("Subfolder name : ");
+            //string fileName = Console.ReadLine();
+
+            //DateTime dt = new DateTime(2001, 2, 3, 4, 5, 6);
+            //string folderName = fileName + " " + dt.ToString().Replace('/','-').Replace(':','-').Replace(' ','_').Substring(0,dt.ToString().Length-3);
+            //Console.WriteLine(folderName); // 03/02/2001 04:05:06 -> 03-02-2001_04-05
+            //string localPath = System.IO.Directory.GetCurrentDirectory();
+            //localPath = localPath.Remove(localPath.Length - (5 + 3 + (2 * 1)));
+            //string targetPath = localPath + @"\Files";
+            //string pathString = System.IO.Path.Combine(targetPath, fileName/* + " " + dt*/);
+            //System.IO.Directory.CreateDirectory(pathString);
+
+            //ActivityDAL.AddActivity("a", new DateTime(2001, 2, 3), new DateTime(1, 1, 1, 4, 5, 6), new DateTime(1, 1, 1, 4, 5, 6), "a", 1, "a", 9);
+            //Console.WriteLine(MediaBL.DeleteFile(9,"two.png"));
 
             Console.WriteLine("work");
             Console.ReadKey();
