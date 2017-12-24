@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterUI.master" AutoEventWireup="true" CodeFile="SignUpUI.aspx.cs" Inherits="SignUpUI" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterUI.master" AutoEventWireup="true" Inherits="PoliceVolunteerUI.SignUpUI" Codebehind="SignUpUI.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -7,7 +7,7 @@
         &nbsp;
         <asp:Label ID="Label1" runat="server" Text="Label">First name : </asp:Label>
         &nbsp;
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:DropDownList ID="HomeCityIN" runat="server"></asp:DropDownList>
         <%--<form class="form-inline">
             <div class="form-group" >
                 <label for="email">Email address:</label>
