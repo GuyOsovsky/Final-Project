@@ -69,7 +69,7 @@ namespace PoliceVolnteerBL
             this.FileType = (int)ds.Tables[0].Rows[0]["FileType"];
         }
 
-        //נשאר רק למחוק שדה מהטבלה
+        
         public static bool DeleteFile(int activityCode, string fileName)
         {
             string targetPath = GetNewActivityDir(activityCode);

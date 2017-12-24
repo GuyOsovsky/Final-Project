@@ -236,6 +236,8 @@ namespace PoliceVolnteerBL
             //ActivityDAL.AddActivity("a", new DateTime(2001, 2, 3), new DateTime(1, 1, 1, 4, 5, 6), new DateTime(1, 1, 1, 4, 5, 6), "a", 1, "a", 9);
             //Console.WriteLine(MediaBL.DeleteFile(9,"two.png"));
 
+
+
             Console.WriteLine("work");
             Console.ReadKey();
         }
