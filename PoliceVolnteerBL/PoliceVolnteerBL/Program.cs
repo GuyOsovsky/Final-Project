@@ -236,7 +236,24 @@ namespace PoliceVolnteerBL
             //ActivityDAL.AddActivity("a", new DateTime(2001, 2, 3), new DateTime(1, 1, 1, 4, 5, 6), new DateTime(1, 1, 1, 4, 5, 6), "a", 1, "a", 9);
             //Console.WriteLine(MediaBL.DeleteFile(9,"two.png"));
 
+            /*MediasBL msbl = new MediasBL();
+            foreach (MediaBL mbl in msbl.MediaList)
+            {
+                Console.WriteLine(mbl.ActivityCode + " " + mbl.FileName + " " + mbl.FileType);
+            }
+            
+            Console.WriteLine();
+            msbl = new MediasBL(new DateTime(1991, 8, 8), new DateTime(1991, 10, 10));
+            foreach (MediaBL mbl in msbl.MediaList)
+            {
+                Console.WriteLine(mbl.ActivityCode + " " + mbl.FileName + " " + mbl.FileType);
+            }
 
+            MediasBL msbl = new MediasBL(2);
+            foreach (MediaBL mbl in msbl.MediaList)
+            {
+                Console.WriteLine(mbl.ActivityCode + " " + mbl.FileName + " " + mbl.FileType);
+            }*/
 
             Console.WriteLine("work");
             Console.ReadKey();

@@ -22,5 +22,29 @@ namespace PoliceVolnteerBL
                 MediaList.Add(new MediaBL((string)drc[i]["FileName"]));
             }
         }
+
+        public MediasBL(DateTime from, DateTime to)
+        {
+            MediaList = new List<MediaBL>();
+            DataRowCollection drc = MediaDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < drc.Count; i++)
+            {
+                int activityCode = (int)(drc[i]["ActivityCode"]);
+                ActivityBL activity = new ActivityBL(activityCode);
+                if (activity.ActivityDate >= from && activity.ActivityDate <= to)
+                    MediaList.Add(new MediaBL((string)drc[i]["FileName"]));
+            }
+        }
+
+        public MediasBL(int fileType)
+        {
+            MediaList = new List<MediaBL>();
+            DataRowCollection drc = MediaDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < drc.Count; i++)
+            {
+                if (((int)drc[i]["FileType"]) == fileType)
+                    MediaList.Add(new MediaBL((string)drc[i]["FileName"]));
+            }
+        }
     }
 }
