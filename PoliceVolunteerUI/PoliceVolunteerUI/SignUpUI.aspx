@@ -4,12 +4,21 @@
     <link href="css/signIn.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<<<<<<< HEAD
     <div style="text-align:center" class="container-fluid">
+=======
+    <div style="text-align:center" class="">
+        <asp:DropDownList ID="HomeCityIN" runat="server"></asp:DropDownList>
+>>>>>>> started version 1.00.01
         <form class="form-inline">
             <div class="form-group" >
                 <label for="PhoneNumberIN">מספר טלפון:</label>
                 <br />
+<<<<<<< HEAD
                 <asp:TextBox ID="PhoneNumberIN" runat="server" TextMode="Phone" CssClass="form-control"></asp:TextBox>
+=======
+                <asp:TextBox ID="PhoneNumberIN" runat="server" TextMode="Phone" CssClass="form-control" Width ="300"></asp:TextBox>
+>>>>>>> started version 1.00.01
             </div>
             <div class="form-group" >
                 <label for="EmergencyNumberIN">מספר חירום:</label>
@@ -19,6 +28,7 @@
             <div class="form-group" >
                 <label for="FNameIN">שם פרטי:</label>
                 <br />
+<<<<<<< HEAD
                 <asp:TextBox ID="FNameIN" runat="server" TextMode="SingleLine" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group" >
@@ -77,12 +87,23 @@
                 <asp:DropDownList ID="TypeIN" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
             <%--<div>
+=======
+                <asp:TextBox ID="FNameIN" runat="server" TextMode="Phone" CssClass="form-control"></asp:TextBox>
+            </div>
+
+
+            <div class="checkbox">
+>>>>>>> started version 1.00.01
                 <label>
                     <input type="checkbox">
                     Remember me
                 </label>
             </div>
+<<<<<<< HEAD
             <button type="submit" class="btn btn-default">Submit</button>--%>
+=======
+            <button type="submit" class="btn btn-default">Submit</button>
+>>>>>>> started version 1.00.01
         </form>
     </div>
 </asp:Content>
