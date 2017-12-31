@@ -27,9 +27,9 @@ namespace PoliceVolnteerBL
         public VolunteerTypeBL Type { get; set; }
         public bool Status { get; set; }
 
-        public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, DateTime startDate, int type)
+        public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, int type)
         {
-            VolunteerInfoDAL.AddVolunteer(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAddress, homeCity, emailAddress, iD, policeID, serveCity, startDate, type);
+            VolunteerInfoDAL.AddVolunteer(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAddress, homeCity, emailAddress, iD, policeID, serveCity, DateTime.Now.Date, type);
             this.PhoneNumber = phoneNumber;
             this.EmergencyNumber = emergencyNumber;
             this.FName = fName;
@@ -42,7 +42,7 @@ namespace PoliceVolnteerBL
             this.EmailAddress = emailAddress;
             this.ID = iD;
             this.PoliceID = policeID;
-            this.StartDate = startDate;
+            this.StartDate = DateTime.Now.Date;
             this.Type = new VolunteerTypeBL(type);
             this.Status = true;
         }
