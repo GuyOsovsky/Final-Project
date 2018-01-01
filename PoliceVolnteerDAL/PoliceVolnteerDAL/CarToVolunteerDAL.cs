@@ -12,6 +12,7 @@ namespace PoliceVolnteerDAL
     
     public class CarToVolunteerDAL
     {
+        //Add new car row to CarToVolunteer table and return state boolean
         public static bool AddCar(string vPhoneNumber, string CarID)
         {
             try
@@ -26,11 +27,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all CarToVolunteer table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from CarToVolunteer", "CarToVolnteer");
         }
 
+        //get CarToVolunteer table by field and value
         public static DataSet GetTable(FieldValue<CarVolunteerField> fv)
         {
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
@@ -38,6 +41,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
+        ////get CarToVolunteer table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<CarVolunteerField>> qfv, bool Operation)
         {
@@ -54,7 +58,8 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
-        public static bool DelUser(FieldValue<CarVolunteerField> del)
+        //delete car row by field and value
+        public static bool DelCar(FieldValue<CarVolunteerField> del)
         {
             try
             {
@@ -69,6 +74,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all car rows from CarToVolunteer table
         public static bool DelAllCars()
         {
             try

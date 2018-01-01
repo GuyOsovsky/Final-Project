@@ -12,6 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class ActivityDAL
     {
+        //Add new activity row to activity table and return state boolean
         public static bool AddActivity(string aActivityName, DateTime aActivityDate, DateTime aStartTime, DateTime aFinishTime, string aActivityManager, int aTypeCode, string aPlace, int aMinNumberOfVolunteer)
         {
             try
@@ -26,11 +27,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all activity table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from Activity", "Activity");
         }
 
+        //get activity table by field and value
         public static DataSet GetTable(FieldValue<ActivityField> fv)
         {
             string SQL = "SELECT * FROM Activity WHERE ";
@@ -38,6 +41,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Activity");
         }
 
+        ////get activity table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ActivityField>> qfv, bool Operation)
         {
@@ -54,6 +58,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Activity");
         }
 
+        //delete activity row by activity code(by key) from activity table
         public static bool DelActivity(int activityCode)
         {
             string deleteSQL;
@@ -70,6 +75,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all activity rows from activity table
         public static bool DelAllActivitys()
         {
             try

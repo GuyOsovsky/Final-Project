@@ -10,8 +10,11 @@ namespace PoliceVolnteerDAL
 {
     public enum MediaField { FileName, ActivityCode, FileType }
 
+    //לשנות למפתח מורכב!!!!!
+
     public class MediaDAL
     {
+        //Add new media row to Media table and return state boolean
         public static bool AddMedia(string mFileName, int mActivityCode, int mFileType)
         {
             try
@@ -26,11 +29,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all Media table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from Media", "Media");
         }
 
+        //get Media table by field and value
         public static DataSet GetTable(FieldValue<MediaField> fv)
         {
             string SQL = "SELECT * FROM Media WHERE ";
@@ -38,6 +43,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Media");
         }
 
+        ////get Media table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<MediaField>> qfv, bool Operation)
         {
@@ -54,6 +60,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Media");
         }
 
+        //לשנות בהזדמנות למפתח מורכב
         public static bool DelMedia(string fileName)
         {
             string deleteSQL;

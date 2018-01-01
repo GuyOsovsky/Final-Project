@@ -11,6 +11,7 @@ namespace PoliceVolnteerDAL
     public enum StockField { ItemID, ItemName, AmountInStock, Recyclable };
     public class StockDAL
     {
+        //Add new stock row to Stock table and return state boolean
         public static bool AddItemToStock(string iName, int startingNumber, bool Recycable)
         {
             try
@@ -29,11 +30,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all Stock table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from Stock", "Stock");
         }
 
+        //get Stock table by field and value
         public static DataSet GetTable(FieldValue<StockField> fv)
         {
             string SQL = "SELECT * FROM Stock WHERE ";
@@ -41,6 +44,8 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Stock");
         }
 
+        ////get Stock table by queue of fields and values
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<StockField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM Stock WHERE ";
@@ -56,8 +61,8 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Stock");
         }
 
-        //add number of items to stock
-        public static bool AddToStock(int itemID, int numToAdd)
+        //update number of items in stock row in Stock table
+        public static bool UpdateStock(int itemID, int amount)
         {
             try
             {
@@ -65,9 +70,9 @@ namespace PoliceVolnteerDAL
                 if (ds.Tables["Stock"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["Stock"].Rows[0];
-                    if (int.Parse(dr["AmountInStock"].ToString()) + numToAdd > 0)
+                    if (int.Parse(dr["AmountInStock"].ToString()) + amount > 0)
                     {
-                        dr["AmountInStock"] = int.Parse(dr["AmountInStock"].ToString()) + numToAdd;
+                        dr["AmountInStock"] = int.Parse(dr["AmountInStock"].ToString()) + amount;
                         OleDbHelper2.update(ds, "SELECT * FROM Stock", "Stock");
                     }
                     else
@@ -85,6 +90,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete stock row by item code(by key) from Stock table
         public static bool DelItem(int itemID)
         {
             try
@@ -99,6 +105,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all stock rows from Stock table
         public static bool DelAll()
         {
             try

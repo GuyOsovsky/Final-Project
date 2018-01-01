@@ -12,6 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class TypeToActivityDAL
     {
+        //Add new type to activity row to TypeToActivity table and return state boolean
         public static bool AddTypeToActivity(string tTypeName)
         {
             try
@@ -26,11 +27,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all TypeToActivity table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from TypeToActivity", "TypeToActivity");
         }
 
+        //get TypeToActivity table by field and value
         public static DataSet GetTable(FieldValue<TypeToActivityField> fv)
         {
             string SQL = "SELECT * FROM TypeToActivity WHERE ";
@@ -38,6 +41,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "TypeToActivity");
         }
 
+        ////get TypeToActivity table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<TypeToActivityField>> qfv, bool Operation)
         {
@@ -54,6 +58,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "TypeToActivity");
         }
 
+        //delete type to activity row by type code(by key) from TypeToActivity table
         public static bool DelTypeToActivity(int typeCode)
         {
             string deleteSQL;
@@ -65,8 +70,6 @@ namespace PoliceVolnteerDAL
             }
             catch (Exception e)
             {
-                //אין אפשרות למחוק או לשנות את הרשומה מכיוון שהטבלה 'Activity' כוללת רשומות קשורות.
-                Console.WriteLine("You can not delete or change the entry from 'Activity' because the table contains related entries.");
                 //throw e;
                 return false;
             }

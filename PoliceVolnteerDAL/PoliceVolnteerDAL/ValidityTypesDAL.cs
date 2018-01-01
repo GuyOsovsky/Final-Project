@@ -12,7 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class ValidityTypesDAL
     {
-        
+        //Add new validity types row to ValidityTypes table and return state boolean
         public static bool AddNewValidity(string ValidityName)
         {
             try
@@ -28,10 +28,12 @@ namespace PoliceVolnteerDAL
             }
         }
 
+
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from ValidityTypes", "ValidityTypes");
         }
+
 
         public static DataSet GetTable(FieldValue<ValidityTypesDALField> fv)
         {
@@ -39,6 +41,7 @@ namespace PoliceVolnteerDAL
             SQL += fv.ToString();
             return OleDbHelper2.Fill(SQL, "ValidityTypes");
         }
+
 
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ValidityTypesDALField>> qfv, bool Operation)
@@ -56,6 +59,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "ValidityTypes");
         }
 
+
         public static bool DelCourse(int validityCode)
         {
             string deleteSQL;
@@ -71,6 +75,7 @@ namespace PoliceVolnteerDAL
                 return false;
             }
         }
+
 
         public static bool DelAll()
         {

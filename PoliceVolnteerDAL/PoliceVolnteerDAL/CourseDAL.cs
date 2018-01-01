@@ -12,6 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class CourseDAL
     {
+        //Add new course row to Course table and return state boolean
         public static bool AddCourse(string cCourseName, DateTime cCourseDate, DateTime cStartTime, DateTime cFinishTime, string cNameOfInstructor, string cIsRequeired, string cPlace, string cDescription, int cValidityCode)
         {
             try
@@ -25,12 +26,14 @@ namespace PoliceVolnteerDAL
                 return false;
             }
         }
-        
+
+        //get all Course table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from Course", "Course");
         }
-        
+
+        //get Course table by field and value
         public static DataSet GetTable(FieldValue<CourseField> fv)
         {
             string SQL = "SELECT * FROM Course WHERE ";
@@ -38,6 +41,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Course");
         }
 
+        ////get Course table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<CourseField>> qfv, bool Operation)
         {
@@ -53,7 +57,8 @@ namespace PoliceVolnteerDAL
             SQL += qfv.Dequeue().ToString();
             return OleDbHelper2.Fill(SQL, "Course");
         }
-        
+
+        //delete course row by course code(by key) from Course table
         public static bool DelCourse(int courseCode)
         {
             string deleteSQL;

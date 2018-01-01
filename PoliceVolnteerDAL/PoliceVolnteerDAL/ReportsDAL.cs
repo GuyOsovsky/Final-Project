@@ -12,6 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class ReportsDAL
     {
+        //Add new report row to Reports table and return state boolean
         public static bool AddReport(string rPhoneNumber, DateTime rReportDate, int rActivityCode, string rDescription)
         {
             try
@@ -26,11 +27,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all Reports table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from Reports", "Reports");
         }
 
+        //get Reports table by field and value
         public static DataSet GetTable(FieldValue<ReportsField> fv)
         {
             string SQL = "SELECT * FROM Reports WHERE ";
@@ -38,6 +41,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 
+        ////get Reports table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ReportsField>> qfv, bool Operation)
         {
@@ -56,6 +60,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 
+        //change field value of report row by phoneNumber and activityCode in Reports table
         public static bool UpdateFrom(string phoneNumber, int activityCode, FieldValue<ReportsField> change)
         {
             if(change.Field == ReportsField.ActivityCode || change.Field == ReportsField.PhoneNumber)
@@ -78,6 +83,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete report row by phoneNumber code(by key) from Reports table
         public static bool DelReport(string phoneNumber)
         {
             string deleteSQL;

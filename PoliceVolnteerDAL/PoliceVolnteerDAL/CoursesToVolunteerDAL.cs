@@ -12,8 +12,8 @@ namespace PoliceVolnteerDAL
     public enum CoursesToVolunteerField { PhoneNumber, CourseCode, status };
 
     public class CoursesToVolunteerDAL
-    {       
-
+    {
+        //Add new course to volunteer row to CoursesToVolunteer table and return state boolean
         public static bool AddCoursesToVolunteer(string cPhoneNumber, int cCourseCode)
         {
             try
@@ -28,11 +28,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all CoursesToVolunteer table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from CoursesToVolunteer", "CoursesToVolunteer");
         }
 
+        //get CoursesToVolunteer table by field and value
         public static DataSet GetTable(FieldValue<CoursesToVolunteerField> fv)
         {
             string SQL = "SELECT * FROM CoursesToVolunteer WHERE ";
@@ -40,6 +42,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "CoursesToVolunteer");
         }
 
+        ////get CoursesToVolunteer table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<CoursesToVolunteerField>> qfv, bool Operation)
         {
@@ -55,7 +58,8 @@ namespace PoliceVolnteerDAL
             SQL += qfv.Dequeue().ToString();
             return OleDbHelper2.Fill(SQL, "CoursesToVolunteer");
         }
-        
+
+        //delete course to volunteer row by phoneNumber and course code(by 2 keys/complex key) from CoursesToVolunteer table
         public static bool DelCourse(string phoneNumber, int courseCode)
         {
             string deleteSQL;
@@ -72,7 +76,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
-        //change status to true
+        //change status of course to volunteer row to true in CoursesToVolunteer table by phoneNumber and course code(by 2 keys/complex key)
         public static bool Participated(string phoneNumber, int courseCode)
         {
             try

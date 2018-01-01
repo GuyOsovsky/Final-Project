@@ -36,7 +36,7 @@ namespace PoliceVolnteerDAL
             {
                 if (CarInfo)
                 {
-                    CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String, OperatorType.Equals));
+                    CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String, OperatorType.Equals));
                 }
                 if (PoliceInfo)
                 {
@@ -108,7 +108,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
-                CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String, OperatorType.Equals));
+                CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String, OperatorType.Equals));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
                 return true;

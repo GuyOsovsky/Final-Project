@@ -13,6 +13,7 @@ namespace PoliceVolnteerDAL
     
     public class ShiftsTypesDAL
     {
+        //Add new shift type row to ShiftsType table and return state boolean
         public static bool AddShift(string TypeName)
         {
             try
@@ -27,11 +28,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all ShiftsType table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from ShiftsType", "ShiftsType");
         }
 
+        //get ShiftsType table by field and value
         public static DataSet GetTable(FieldValue<ShiftsTypeField> fv)
         {
             string SQL = "SELECT * FROM ShiftsType WHERE ";
@@ -39,6 +42,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "ShiftsType");
         }
 
+        ////get ShiftsType table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ShiftsTypeField>> qfv, bool Operation)
         {
@@ -55,6 +59,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "ShiftsType");
         }
 
+        //delete shift type row by ShiftsType code(by key) from ShiftsType table
         public static bool DelShift(int typeCode)
         {
             string deleteSQL;
@@ -71,6 +76,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all shift type rows from ShiftsType table
         public static bool DelAll()
         {
             try

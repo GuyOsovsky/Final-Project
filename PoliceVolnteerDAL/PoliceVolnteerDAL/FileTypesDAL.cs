@@ -10,6 +10,7 @@ namespace PoliceVolnteerDAL
 {
     public class FileTypesDAL
     {
+        //get all FileTypes table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from FileTypes", "FileTypes");

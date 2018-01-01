@@ -12,13 +12,14 @@ namespace PoliceVolnteerDAL
 
     public class StockToVolunteerDAL
     {
-        public static bool AddTransference(string phoneNumber, int itemID, int Amount, DateTime borrowDate)
+        //Add new stock to volunteer row to StockToVolunteer table and return state boolean
+        public static bool AddTransference(string phoneNumber, int itemID, int amount, DateTime borrowDate)
         {
             try
             {
-                if (StockDAL.AddToStock(itemID, -Amount))
+                if (StockDAL.UpdateStock(itemID, -amount))
                 {
-                    OleDbHelper2.ExecuteNonQuery("INSERT INTO StockToVolunteer ([PhoneVolunteer],[ItemID],[Amount], [BorrowDate], [ReturnDate]) VALUES ('" + phoneNumber + "','" + itemID + "','" + Amount + "','" + borrowDate.ToShortDateString() + "','" + new DateTime(1999, 1, 1).ToShortDateString() + "')");
+                    OleDbHelper2.ExecuteNonQuery("INSERT INTO StockToVolunteer ([PhoneVolunteer],[ItemID],[Amount], [BorrowDate], [ReturnDate]) VALUES ('" + phoneNumber + "','" + itemID + "','" + amount + "','" + borrowDate.ToShortDateString() + "','" + new DateTime(1999, 1, 1).ToShortDateString() + "')");
                     return true;
                 }
                 return false;
@@ -30,11 +31,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all StockToVolunteer table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from StockToVolunteer", "StockToVolunteer");
         }
 
+        //get StockToVolunteer table by field and value
         public static DataSet GetTable(FieldValue<StockToVolunteerField> fv)//string select, StockEnum field)
         {
             string SQL = "SELECT * FROM StockToVolunteer WHERE ";
@@ -42,6 +45,8 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "StockToVolunteer");
         }
 
+        ////get StockToVolunteer table by queue of fields and values
+        /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<StockToVolunteerField>> qfv, bool Operation)
         {
             string SQL = "SELECT * FROM StockToVolunteer WHERE ";
@@ -57,11 +62,12 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "StockToVolunteer");
         }
 
-        public static bool ReturnItem(int TrasferCode)
+        //change return date value from defult date to today by transfer code(by key) in StockToVolunteer table
+        public static bool ReturnItem(int TransferCode)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("UPDATE StockToVolunteer SET ReturnDate=#" + DateTime.Now.ToShortDateString() + "# WHERE TrasferCode=" + TrasferCode + "");
+                OleDbHelper2.ExecuteNonQuery("UPDATE StockToVolunteer SET ReturnDate=#" + DateTime.Now.ToShortDateString() + "# WHERE TrasferCode=" + TransferCode + "");
                 return true;
             }
             catch(Exception e)
@@ -71,11 +77,12 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all stock to volunteer rows from StockToVolunteer table
         public static bool DelAll()
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("DELETE * FROM Stock");
+                OleDbHelper2.ExecuteNonQuery("DELETE * FROM StockToVolunteer");
                 return true;
             }
             catch (Exception e)

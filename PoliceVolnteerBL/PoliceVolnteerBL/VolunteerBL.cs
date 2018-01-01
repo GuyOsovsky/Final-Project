@@ -105,7 +105,7 @@ namespace PoliceVolnteerBL
 
         public void DeleteCar(string CarID)
         {
-            CarToVolunteerDAL.DelUser(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, FieldType.String, OperatorType.Equals));
+            CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, FieldType.String, OperatorType.Equals));
         }
 
         public DataTable GetCarReports(string carID)
@@ -300,8 +300,8 @@ namespace PoliceVolnteerBL
                     return;
                 CarsReportsDAL.AddCarReport(shift.ShiftCode, carID, distance);
             }
-            //add shift
-            ShiftsToVolunteerDAL.AddComment(this.PhoneNumber, shift.ShiftCode, comment);
+            //update comment
+            ShiftsToVolunteerDAL.UpdateComment(this.PhoneNumber, shift.ShiftCode, comment);
         }
 
         public void ActiviryReport(ActivityBL activity, string description)
