@@ -42,6 +42,11 @@
                 <asp:TextBox ID="PasswordIN" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="form-group" >
+                <label for="password2">בבקשה חזור על הסיסמא:</label>
+                <br />
+                <asp:TextBox ID="password2" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+            </div>
+            <div class="form-group" >
                 <label for="HomeAdressIN">כתובת מגורים:</label>
                 <br />
                 <asp:TextBox ID="HomeAdressIN" runat="server" TextMode="SingleLine" CssClass="form-control"></asp:TextBox>
@@ -76,6 +81,10 @@
                 <br />
                 <asp:DropDownList ID="TypeIN" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
+            <div class="form-group" >
+                <asp:Button ID="submit" runat="server" OnClick="Submit" Text="שלח" />
+                <%--<asp:Button ID="submit" runat="server" Text="שלח" OnClick="Submit"></asp:Button>--%>
+            </div>
             <%--<div>
                 <label>
                     <input type="checkbox">
@@ -99,7 +108,5 @@
         public string ID { get; set; }
         public string PoliceID { get; set; }
         public string ServeCity { get; set; }
-        public DateTime StartDate { get; set; }
-        public VolunteerTypeBL Type { get; set; }
-        public bool Status { get; set; }--%>
+        public VolunteerTypeBL Type { get; set; }--%>
 

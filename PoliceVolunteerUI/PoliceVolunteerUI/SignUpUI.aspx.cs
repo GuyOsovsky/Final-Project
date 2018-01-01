@@ -15,12 +15,13 @@ namespace PoliceVolunteerUI
         {
             if (!IsPostBack)
             {
-                LoadCities();
+                LoadCitiesHome();
+                LoadCitiesServe();
                 LoadTypes();
             }
         }
 
-        private void LoadCities()
+        private void LoadCitiesHome()
         {
             //load home city input xml
             string lang = Request.UserLanguages.Contains("he-IL") ? "Heb" : "En";
@@ -31,9 +32,14 @@ namespace PoliceVolunteerUI
             HomeCityIN.DataBind();
 
             //load serve city input xml
-            doc = new XmlDocument();
+            
+        }
+        private void LoadCitiesServe()
+        {
+            string lang = Request.UserLanguages.Contains("he-IL") ? "Heb" : "En";
+            XmlDocument doc = new XmlDocument();
             doc.Load(Server.MapPath("\\Resources\\ServeCity.xml"));
-            cities = doc.DocumentElement.SelectNodes("City");
+            XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
             ServeCityIN.DataSource = cities.Cast<XmlNode>().Select(node => node.Attributes[lang].Value).ToArray();
             ServeCityIN.DataBind();
         }
@@ -46,11 +52,42 @@ namespace PoliceVolunteerUI
             //get all names of types
             foreach (VolunteerTypeBL type in typeQueue.VolunteerTypeList)
             {
-                types.Enqueue(type.TypeName);
+                TypeIN.Items.Add(new ListItem(type.TypeName, type.TypeCode.ToString()));
             }
             //load types into control
-            TypeIN.DataSource = types;
             TypeIN.DataBind();
         }
+        protected void Submit(object sender, EventArgs e)
+        {
+            string phoneNumber = PhoneNumberIN.Text;
+            string emergencyNumber = EmergencyNumberIN.Text;
+            string fName = FNameIN.Text;
+            string lName = LNameIN.Text;
+            DateTime birthDate = DateTime.ParseExact(BirthDateIN.Text, "yyyy-M-d" ,System.Globalization.CultureInfo.InvariantCulture);
+            string userName = UserNameIN.Text;
+            string password = PasswordIN.Text;
+            string homeAdress = HomeAdressIN.Text;
+            string homeCity = HomeCityIN.Text;
+            string email = EmailIN.Text;
+            string id = IDIN.Text;
+            string policeId = PoliceIDIN.Text;
+            string serveCity = ServeCityIN.Text;
+            int type = int.Parse(TypeIN.Text);
+            new VolunteerBL(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAdress, homeCity, email, id, policeId, serveCity, type);
+        }
+        //public string PhoneNumber { get; set; }
+        //public string EmergencyNumber { get; set; }
+        //public string FName { get; set; }
+        //public string LName { get; set; }
+        //public DateTime BirthDate { get; set; }
+        //public string UserName { get; set; }
+        //public string Password { get; set; }
+        //public string HomeAddress { get; set; }
+        //public string HomeCity { get; set; }
+        //public string EmailAddress { get; set; }
+        //public string ID { get; set; }
+        //public string PoliceID { get; set; }
+        //public string ServeCity { get; set; }
+        //public VolunteerTypeBL Type { get; set; }
     }
 }
