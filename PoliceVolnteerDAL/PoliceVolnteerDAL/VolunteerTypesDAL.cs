@@ -12,6 +12,7 @@ namespace PoliceVolnteerDAL
 
     public class VolunteerTypesDAL
     {
+        //Add new volunteer type row to VolunteerTypes table and return state boolean
         public static bool AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
         {
             string sPermmisionShifts, sPermmisionActivity, sPermmisionStock, sIndependent;
@@ -32,11 +33,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all VolunteerTypes table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from VolunteerTypes", "VolunteerTypes");
         }
 
+        //get VolunteerTypes table by field and value
         public static DataSet GetTable(FieldValue<VolunteerTypesField> fv)
         {
             string SQL = "SELECT * FROM VolunteerTypes WHERE ";
@@ -44,6 +47,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerTypes");
         }
 
+        ////get VolunteerTypes table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerTypesField>> qfv, bool Operation)
         {
@@ -60,6 +64,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerTypes");
         }
 
+        //delete volunteer type row by type code(by key) from VolunteerTypes table
         public static bool DelVolunteerType(int TypeCode)
         {
             string deleteSQL;
@@ -76,7 +81,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
-        //update field in table
+        //change value of volunteer type row field in VolunteerTypes table
         public static bool UpdateFrom(int TypeCode, VolunteerTypesField eFrom, string updateStr)
         {
             if (eFrom == VolunteerTypesField.TypeCode)

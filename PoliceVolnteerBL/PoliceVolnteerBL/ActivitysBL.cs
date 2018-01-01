@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<ActivityBL> ActivityList { get; private set; }
 
+        //create ActivityList and add ActivityBL objects that were in a period of time
         public ActivitysBL(DateTime from = new DateTime(), DateTime to = new DateTime())
         {
             if (to.Year == 1)
@@ -27,7 +28,8 @@ namespace PoliceVolnteerBL
             }
         }
 
-        public int CountOfActivities(DateTime from, DateTime to)
+        //retrun sum of activities that were in a period of time
+        public int SumOfActivities(DateTime from, DateTime to)
         {
             int count = 0;
             for (int i = 0; i < this.ActivityList.Count; i++)

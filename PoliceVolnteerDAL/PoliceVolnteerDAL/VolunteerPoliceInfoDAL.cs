@@ -12,7 +12,8 @@ namespace PoliceVolnteerDAL
 
     public class VolunteerPoliceInfoDAL
     {
-        public static bool AddVolnteer(string phoneNumber, string policeID, string serveCity, DateTime startDate, int type)
+        //Add new volunteer police row to VolunteerPoliceInfo table and return state boolean
+        public static bool AddVolunteer(string phoneNumber, string policeID, string serveCity, DateTime startDate, int type)
         {
             try
             {
@@ -26,11 +27,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all VolunteerPoliceInfo table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from VolunteerPoliceInfo", "VolunteerPoliceInfo");
         }
 
+        //get VolunteerPoliceInfo table by field and value
         public static DataSet GetTable(FieldValue<VolunteerPoliceInfoDALField> fv)
         {
             string SQL = "SELECT * FROM VolunteerPoliceInfo WHERE ";
@@ -38,6 +41,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerPoliceInfo");
         }
 
+        ////get VolunteerPoliceInfo table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerPoliceInfoDALField>> qfv, bool Operation)
         {
@@ -54,7 +58,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerPoliceInfo");
         }
 
-        //update field in table
+        //change value of volunteer police row field in VolunteerPoliceInfo table
         public static bool UpdateFrom(string UPhoneNumber, FieldValue<VolunteerPoliceInfoDALField> change)
         {
             if (change.Field == VolunteerPoliceInfoDALField.PhoneNumber)
@@ -77,6 +81,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete volunteer police row by phone number(by key) from VolunteerPoliceInfo table
         public static bool DelUser(string vPhoneNumber)
         {
             try
@@ -91,6 +96,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all volunteer police rows from VolunteerPoliceInfo table
         public static bool DelAllUsers()
         {
             try

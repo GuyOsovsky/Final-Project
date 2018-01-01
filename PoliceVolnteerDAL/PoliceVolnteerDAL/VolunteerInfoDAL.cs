@@ -12,7 +12,7 @@ namespace PoliceVolnteerDAL
 
     public static class VolunteerInfoDAL
     {
-        //a function that adds a new volnteer to the system. the function creates the volunteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table.
+        //a function that adds a new volnteer to the system. the function creates the volunteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table if nececery.
         public static bool AddVolunteer(string vPhoneNumber, string vEmergencyNumber, string vFName, string vLName, DateTime vBirthDate, string vUserName, string vPassword, string vHomeAddress, string vHomeCity, string vEmailAddress, string vID, string PoliceID, string ServeCity, DateTime startDate, int type, string CarID = "")
         {
             bool Info = false, PoliceInfo = false, CarInfo = false;
@@ -22,7 +22,7 @@ namespace PoliceVolnteerDAL
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerInfo ([PhoneNumber],[EmergencyNumber],[FName],[LName],[BirthDate],[UserName],[Password],[HomeAddress],[HomeCity],[EmailAddress],[ID], [status]) VALUES ('" + vPhoneNumber + "','" + vEmergencyNumber + "','" + vFName + "','" + vLName + "','" + vBirthDate.ToShortDateString() + "','" + vUserName + "','" + vPassword + "','" + vHomeAddress + "','" + vHomeCity + "','" + vEmailAddress + "','" + vID + "','" + "1" + "')");
                 Info = true;
                 //VolnteerPoliceInfo table
-                VolunteerPoliceInfoDAL.AddVolnteer(vPhoneNumber, PoliceID, ServeCity, startDate, type);
+                VolunteerPoliceInfoDAL.AddVolunteer(vPhoneNumber, PoliceID, ServeCity, startDate, type);
                 PoliceInfo = true;
                 if (CarID != "")
                 {
@@ -51,11 +51,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //get all VolunteerInfo table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from VolunteerInfo", "VolunteerInfo");
         }
 
+        //get VolunteerInfo table by field and value
         public static DataSet GetTable(FieldValue<VolunteerInfoDALField> fv)
         {
             string SQL = "SELECT * FROM VolunteerInfo WHERE ";
@@ -63,6 +65,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerInfo");
         }
 
+        ////get VolunteerInfo table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<VolunteerInfoDALField>> qfv, bool Operation)
         {
@@ -79,8 +82,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "VolunteerInfo");
         }
 
-
-
+        //change value of volunteer row field in VolunteerInfo table
         public static bool UpdateFrom(string UPhoneNumber, FieldValue<VolunteerInfoDALField> change)
         {
             try
@@ -89,7 +91,6 @@ namespace PoliceVolnteerDAL
                 if (ds.Tables["VolunteerInfo"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["VolunteerInfo"].Rows[0];
-                    //dr[eFrom.ToString()] = updateStr;
                     dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerInfo", "VolunteerInfo");
                 }
@@ -102,6 +103,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete volunteer row by phone number(by key) from VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table
         public static bool DelUser(string UPhoneNumber)
         {
             try
@@ -119,6 +121,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
+        //delete all volunteer rows from VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table
         public static bool DelAllUsers()
         {
             try

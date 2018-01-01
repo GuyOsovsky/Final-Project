@@ -255,6 +255,9 @@ namespace PoliceVolnteerBL
                 Console.WriteLine(mbl.ActivityCode + " " + mbl.FileName + " " + mbl.FileType);
             }*/
 
+            DateTime from = new DateTime();
+            Console.WriteLine(from);
+
             Console.WriteLine("work");
             Console.ReadKey();
         }

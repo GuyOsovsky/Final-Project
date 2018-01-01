@@ -28,13 +28,13 @@ namespace PoliceVolnteerDAL
             }
         }
 
-
+        //get all ValidityTypes table
         public static DataSet GetTable()
         {
             return OleDbHelper2.Fill("select * from ValidityTypes", "ValidityTypes");
         }
 
-
+        //get ValidityTypes table by field and value
         public static DataSet GetTable(FieldValue<ValidityTypesDALField> fv)
         {
             string SQL = "SELECT * FROM ValidityTypes WHERE ";
@@ -42,7 +42,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "ValidityTypes");
         }
 
-
+        ////get ValidityTypes table by queue of fields and values
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ValidityTypesDALField>> qfv, bool Operation)
         {
@@ -59,7 +59,7 @@ namespace PoliceVolnteerDAL
             return OleDbHelper2.Fill(SQL, "ValidityTypes");
         }
 
-
+        //delete validity types row by validity code(by key) from ValidityTypes table
         public static bool DelCourse(int validityCode)
         {
             string deleteSQL;
@@ -76,7 +76,7 @@ namespace PoliceVolnteerDAL
             }
         }
 
-
+        //delete all validity types rows from ValidityTypes table
         public static bool DelAll()
         {
             try

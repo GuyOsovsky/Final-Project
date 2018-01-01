@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<CourseBL> CourseList { get; set; }
 
+        //create CourseList and add all the CourseBL objects
         public CoursesBL()
         {
             this.CourseList = new List<CourseBL>();
@@ -23,41 +24,34 @@ namespace PoliceVolnteerBL
             }
         }
 
-        /// <summary>
-        /// return the sum of courses in a peroid of time
-        /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <returns></returns>
+        //return the sum of courses in a peroid of time
         public int SumOfCoursesInPeriod(DateTime from, DateTime to)
         {
             int sum = 0;
             foreach (CourseBL index in CourseList)
-                if (from.CompareTo(index.StartTime) != 1 && to.CompareTo(index.FinishTime) != -1)
+                if(index.CourseDate >= from && index.CourseDate <= to)
                     sum++;
             return sum;
         }
 
-        /// <summary>
-        /// return the sum of all the participants in all the courses in a period of time
-        /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <returns></returns>
-        public int SumOfParticipantsAllInPeriod(DateTime from, DateTime to)
+        //return the sum of all the participants in all the courses in a period of time
+        public int SumOfParticipantsInPeriod(DateTime from, DateTime to)
         {
-            HashSet<int> courseCodeSetInPeroid = new HashSet<int>();
+            //add to list all the courses code of courses that were in a period of time
+            List<int> courseCodeSetInPeriod = new List<int>();
             foreach (CourseBL index in CourseList)
-                if (from.CompareTo(index.StartTime) != 1 && to.CompareTo(index.FinishTime) != -1)
-                    courseCodeSetInPeroid.Add(index.CourseCode);
+                if(index.CourseDate >= from && index.CourseDate <= to)
+                    courseCodeSetInPeriod.Add(index.CourseCode);
 
-            DataTable coursesToVoluteer = CoursesToVolunteerDAL.GetTable().Tables[0];
+            DataTable coursesToVolunteer = CoursesToVolunteerDAL.GetTable().Tables[0];
 
+            //add to hash set(filter) all the phone number of the volunteer that were in those courses
             HashSet<string> phoneNumberSet = new HashSet<string>();
-            for (int i = 0; i < coursesToVoluteer.Rows.Count; i++)
-                if (courseCodeSetInPeroid.Contains((int)coursesToVoluteer.Rows[i]["CourseCode"]))
-                    phoneNumberSet.Add((string)coursesToVoluteer.Rows[i]["PhoneNumber"]);
-
+            for (int i = 0; i < coursesToVolunteer.Rows.Count; i++)
+                if (courseCodeSetInPeriod.Contains((int)coursesToVolunteer.Rows[i]["CourseCode"]))
+                    phoneNumberSet.Add((string)coursesToVolunteer.Rows[i]["PhoneNumber"]);
+            
+            //return sum of all the different phone numbers
             return phoneNumberSet.Count;
         }
 

@@ -17,6 +17,7 @@ namespace PoliceVolnteerBL
         public int ActivityCode { get; set; }
         public int FileType { get; set; }
 
+        //build, adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
         public MediaBL(int ActivityCode, string fileName, byte[] FileBytes)
         {
             string newTargetPath = GetNewActivityDir(ActivityCode);
@@ -99,14 +100,18 @@ namespace PoliceVolnteerBL
             }
         }
 
+        //return new combined path for creating a new folder for new activity
         private static string GetNewActivityDir(int ActivityCode)
         {
             ActivityBL activity = new ActivityBL(ActivityCode);
+            //create name
             string activityName = activity.ActivityName;
             string folderName = activityName + " " + activity.ActivityCode;
+            //get local path("files" folder path)
             string localPath = System.IO.Directory.GetCurrentDirectory();
             localPath = localPath.Remove(localPath.Length - (5 + 3 + (2 * 1)));
             string targetPath = localPath + @"\Files";
+            //combine name and new path
             string pathString = System.IO.Path.Combine(targetPath, folderName);
             return pathString;
         }

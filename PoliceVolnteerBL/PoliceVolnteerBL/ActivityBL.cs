@@ -21,9 +21,7 @@ namespace PoliceVolnteerBL
         public string Place { get; set; }
         public int MinNumberOfVolunteer { get; set; }
 
-        
-
-        //build and adding
+        //build and adding to database
         public ActivityBL(string ActivityName, DateTime ActivityDate, DateTime StartTime, DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolunteer)
         {
             this.ActivityName = ActivityName;
@@ -53,6 +51,7 @@ namespace PoliceVolnteerBL
             this.MinNumberOfVolunteer = (int)ds.Tables[0].Rows[0]["MinNumberOfVolunteer"];
         }
 
+        //return VolunteersBL object with all the Volunteers in this specific activity
         public VolunteersBL GetAllVolunteers()
         {
             ReportsBL reports = new ReportsBL("", this.ActivityCode);
@@ -64,11 +63,7 @@ namespace PoliceVolnteerBL
             return ret;
         }
 
-        public ReportsBL GetAllReports()
-        {
-            return new ReportsBL("", this.ActivityCode);
-        }
-
+        //return textual report of this specific activiy
         public string GetActivityReport()
         {
             string report = "ACTIVITY REPORT\t\t\t\tcode: " + this.ActivityCode + "\n";
@@ -83,7 +78,8 @@ namespace PoliceVolnteerBL
             return report;
         }
 
-        public ReportsBL GetAllReports(string phoneNumber)
+        //retrun all the reports from this specific activity
+        public ReportsBL GetAllReports(string phoneNumber = "")
         {
             return new ReportsBL(phoneNumber , this.ActivityCode);
         }

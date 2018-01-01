@@ -22,6 +22,7 @@ namespace PoliceVolnteerBL
         public string Description { get; set; }
         public int ValidityCode { get; set; }
 
+        //build and adding to database
         public CourseBL(string CourseName, DateTime CourseDate, DateTime StartTime, DateTime FinishTime, string NameOfInstruc, bool IsRequeired, string Place, string Description, int ValidityCode)
         {
             this.CourseName = CourseName;
@@ -42,6 +43,7 @@ namespace PoliceVolnteerBL
             this.ValidityCode = ValidityCode;
         }
 
+        //build from the database
         public CourseBL(int CourseCode)
         {
             DataSet ds = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals));
@@ -57,10 +59,7 @@ namespace PoliceVolnteerBL
             this.ValidityCode = (int)ds.Tables[0].Rows[0]["ValidityCode"];
         }
 
-        /// <summary>
-        /// return all the important fields
-        /// </summary>
-        /// <returns></returns>
+        //return all the important fields(all fields without CourseCode and ValidityCode)
         public DataTable GetDetails()
         {
             DataTable detailsTable = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals)).Tables[0];
@@ -70,10 +69,8 @@ namespace PoliceVolnteerBL
             return detailsTable;
         }
 
-        /// <summary>
-        /// return sum of the participants in this specific course
-        /// </summary>
-        /// <returns></returns>
+        
+        //return sum of the participants in this specific course
         public int SumOfParticipants()
         {
             int sum = 0;
@@ -82,7 +79,6 @@ namespace PoliceVolnteerBL
             for (int i = 0; i < coursesToVoluteer.Rows.Count; i++)
                 if((int)coursesToVoluteer.Rows[i]["CourseCode"] == CourseCode)
                     sum++;
-
             return sum;
         }
     }
