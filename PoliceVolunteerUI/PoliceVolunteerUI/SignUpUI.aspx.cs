@@ -40,12 +40,15 @@ namespace PoliceVolunteerUI
 
         private void LoadTypes()
         {
+            //load types from BL
             Queue<string> types = new Queue<string>();
             VolunteerTypesBL typeQueue = new VolunteerTypesBL();
+            //get all names of types
             foreach (VolunteerTypeBL type in typeQueue.VolunteerTypeList)
             {
                 types.Enqueue(type.TypeName);
             }
+            //load types into control
             TypeIN.DataSource = types;
             TypeIN.DataBind();
         }

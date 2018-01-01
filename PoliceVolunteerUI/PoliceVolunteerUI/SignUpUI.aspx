@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div style="text-align:center" class="container-fluid">
-        
         <form class="form-inline">
             <div class="form-group" >
                 <label for="PhoneNumberIN">מספר טלפון:</label>
@@ -77,7 +76,7 @@
                 <br />
                 <asp:DropDownList ID="TypeIN" runat="server" CssClass="form-control"></asp:DropDownList>
             </div>
-            <%--<div class="checkbox">
+            <%--<div>
                 <label>
                     <input type="checkbox">
                     Remember me
