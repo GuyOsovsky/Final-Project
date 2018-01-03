@@ -14,6 +14,7 @@ namespace PoliceVolnteerBL
         public int TypeCode { get; set; }
         public string TypeName { get; set; }
 
+        //build and adding to database
         public ShiftTypesBL(string typeName)
         {
             ShiftsTypesDAL.AddShift(typeName);
@@ -21,6 +22,7 @@ namespace PoliceVolnteerBL
             this.TypeName = typeName;
         }
 
+        //build from the database
         public ShiftTypesBL(int typeCode)
         {
             DataRow obj = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];

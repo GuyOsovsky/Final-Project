@@ -16,6 +16,7 @@ namespace PoliceVolnteerBL
         public int ActivityCode { get; set; }
         public string Description { get; set; }
 
+        //build and adding to database
         public ReportBL(string PhoneNumber, DateTime ReportDate, int ActivityCode, string Description)
         {
             this.PhoneNumber = PhoneNumber;
@@ -25,6 +26,7 @@ namespace PoliceVolnteerBL
             ReportsDAL.AddReport(PhoneNumber,ReportDate, ActivityCode, Description);
         }
 
+        //build from the database
         public ReportBL(string PhoneNumber, int activityCode)
         {
             this.PhoneNumber = PhoneNumber;
@@ -38,6 +40,7 @@ namespace PoliceVolnteerBL
             this.Description = (string)ds.Tables[0].Rows[0]["Description"];
         }
 
+        //return textual report of a specific activiy + the report description
         public string getReport()
         {
             return (new ActivityBL(this.ActivityCode)).GetActivityReport() + this.Description + "\n";

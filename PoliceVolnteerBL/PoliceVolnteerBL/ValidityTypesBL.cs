@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<ValidityTypeBL> ValidityTypeList { get; set; }
 
+        //create ValidityTypeList and add all ValidityTypeBL objects 
         public ValidityTypesBL()
         {
             this.ValidityTypeList = new List<ValidityTypeBL>();

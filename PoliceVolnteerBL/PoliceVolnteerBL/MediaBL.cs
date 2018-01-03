@@ -17,16 +17,23 @@ namespace PoliceVolnteerBL
         public int ActivityCode { get; set; }
         public int FileType { get; set; }
 
-        //build, adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
+        //build and adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
         public MediaBL(int ActivityCode, string fileName, byte[] FileBytes)
         {
+            //get new directory path
             string newTargetPath = GetNewActivityDir(ActivityCode);
 
+            //get format name (.txt,.mp3 ...)
             string fileFormat = Path.GetExtension(fileName);
+
             this.FileName = fileName;
 
+            //is file format Valid
             bool isValid = false;
+            
             DataTable typesTable = FileTypesDAL.GetTable().Tables[0];
+            
+            //check if file format is fits to one of the formats in database 
             foreach (DataRow dataRow in typesTable.Rows)
             {
                 if (dataRow["TypeName"].ToString() == fileFormat)
@@ -44,7 +51,9 @@ namespace PoliceVolnteerBL
 
             try
             {
+                //Create new directory
                 System.IO.Directory.CreateDirectory(newTargetPath);
+                //create new file from byte array in the new directory
                 using (var fileStream = new FileStream(Path.Combine(newTargetPath, fileName), FileMode.Create, FileAccess.Write))
                 {
                     fileStream.Write(FileBytes, 0, FileBytes.Length);
@@ -52,6 +61,7 @@ namespace PoliceVolnteerBL
             }
             catch (Exception e)
             {
+                //if sum of files in new directory equals zero delete this new directory(folder)
                 if (Directory.GetFiles(newTargetPath).Length == 0)
                 {
                     Directory.Delete(newTargetPath);
@@ -62,6 +72,7 @@ namespace PoliceVolnteerBL
             MediaDAL.AddMedia(FileName, ActivityCode, FileType);
         }
 
+        //build from the database
         public MediaBL(string FileName)
         {
             this.FileName = FileName;
@@ -70,22 +81,26 @@ namespace PoliceVolnteerBL
             this.FileType = (int)ds.Tables[0].Rows[0]["FileType"];
         }
 
-        
+        //delete file from "files" by activity code and file name
         public static bool DeleteFile(int activityCode, string fileName)
         {
+            //get directory name
             string targetPath = GetNewActivityDir(activityCode);
             try
             {
+                //if sum of files in new directory equals zero delete this directory(folder)
                 if (Directory.GetFiles(targetPath).Length == 0)
                 {
                     Directory.Delete(targetPath);
                     return false;
                 }
+                //get path for the file that need to be deleted
                 string deletePath = Path.Combine(targetPath, fileName);
                 if (File.Exists(deletePath))
                 {
                     File.Delete(deletePath);
                     ActivityDAL.DelActivity(activityCode);
+                    //if after we deleted the file, the folder is empty, delete folder
                     if (Directory.GetFiles(targetPath).Length == 0)
                     {
                         Directory.Delete(targetPath);

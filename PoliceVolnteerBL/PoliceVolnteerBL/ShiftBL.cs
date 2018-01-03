@@ -18,6 +18,7 @@ namespace PoliceVolnteerBL
         public DateTime FinishTime { get; set; }
         public string Place { get; set; }
 
+        //build and adding to database
         public ShiftBL(int TypeCode, DateTime DateOfShif, DateTime StartTime, DateTime FinishTime, string Place)
         {
             this.TypeCode = TypeCode;
@@ -29,6 +30,7 @@ namespace PoliceVolnteerBL
             this.ShiftCode = (int)ShiftsDAL.GetTable().Tables[0].Rows[ShiftsDAL.GetTable().Tables[0].Rows.Count - 1]["ShiftCode"];
         }
 
+        //build from the database
         public ShiftBL(int ShiftCode)
         {
             this.ShiftCode = ShiftCode;
@@ -40,19 +42,13 @@ namespace PoliceVolnteerBL
             this.Place = (string)ds.Tables[0].Rows[0]["Place"];
         }
 
-        /// <summary>
-        /// return the period of shift time in hours
-        /// </summary>
-        /// <returns></returns>
-        public double GetShiftPeriod()
+        //return the period of shift time in hours
+        public double GetShiftTotalHours()
         {
             return (FinishTime - StartTime).TotalHours;
         }
 
-        /// <summary>
-        /// return all the phone numbers of the participants in this specific shift
-        /// </summary>
-        /// <returns></returns>
+        //return table of all the phone numbers of the participants in this specific shift
         public DataTable GetParticipantsPhoneNumbers()
         {
             DataTable shiftsToVolunteer = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0];
