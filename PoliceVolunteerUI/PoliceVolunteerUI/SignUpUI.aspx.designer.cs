@@ -22,6 +22,24 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox PhoneNumberIN;
         
         /// <summary>
+        /// PhoneNumberRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PhoneNumberRequiredV;
+        
+        /// <summary>
+        /// PhoneNumberRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator PhoneNumberRegularExpressionV;
+        
+        /// <summary>
         /// EmergencyNumberIN control.
         /// </summary>
         /// <remarks>
@@ -29,6 +47,24 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EmergencyNumberIN;
+        
+        /// <summary>
+        /// EmergencyNumberRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmergencyNumberRequiredV;
+        
+        /// <summary>
+        /// EmergencyNumberRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmergencyNumberRegularExpressionV;
         
         /// <summary>
         /// FNameIN control.
@@ -40,6 +76,24 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox FNameIN;
         
         /// <summary>
+        /// FNameRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator FNameRequiredV;
+        
+        /// <summary>
+        /// FNameRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator FNameRegularExpressionV;
+        
+        /// <summary>
         /// LNameIN control.
         /// </summary>
         /// <remarks>
@@ -47,6 +101,24 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox LNameIN;
+        
+        /// <summary>
+        /// LNameRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator LNameRequiredV;
+        
+        /// <summary>
+        /// LNameRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator LNameRegularExpressionV;
         
         /// <summary>
         /// BirthDateIN control.
@@ -58,6 +130,24 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox BirthDateIN;
         
         /// <summary>
+        /// BirthDateRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator BirthDateRequiredV;
+        
+        /// <summary>
+        /// BirthDateRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator BirthDateRegularExpressionV;
+        
+        /// <summary>
         /// UserNameIN control.
         /// </summary>
         /// <remarks>
@@ -65,6 +155,24 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UserNameIN;
+        
+        /// <summary>
+        /// UserNameRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator UserNameRequiredV;
+        
+        /// <summary>
+        /// UserNameRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator UserNameRegularExpressionV;
         
         /// <summary>
         /// PasswordIN control.
@@ -76,13 +184,49 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox PasswordIN;
         
         /// <summary>
-        /// password2 control.
+        /// PasswordRequiredV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordRequiredV;
+        
+        /// <summary>
+        /// PasswordRegularExpressionV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator PasswordRegularExpressionV;
+        
+        /// <summary>
+        /// passwordCMP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox passwordCMP;
+        
+        /// <summary>
+        /// passwordCMPRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordCMPRequiredV;
+        
+        /// <summary>
+        /// passwordCMPCompareV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator passwordCMPCompareV;
         
         /// <summary>
         /// HomeAdressIN control.
@@ -94,6 +238,15 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox HomeAdressIN;
         
         /// <summary>
+        /// HomeAdressRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator HomeAdressRequiredV;
+        
+        /// <summary>
         /// HomeCityIN control.
         /// </summary>
         /// <remarks>
@@ -103,6 +256,15 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.DropDownList HomeCityIN;
         
         /// <summary>
+        /// HomeCityRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator HomeCityRequiredV;
+        
+        /// <summary>
         /// EmailIN control.
         /// </summary>
         /// <remarks>
@@ -110,6 +272,15 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EmailIN;
+        
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// IDIN control.

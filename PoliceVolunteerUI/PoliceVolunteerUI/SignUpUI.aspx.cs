@@ -59,21 +59,24 @@ namespace PoliceVolunteerUI
         }
         protected void Submit(object sender, EventArgs e)
         {
-            string phoneNumber = PhoneNumberIN.Text;
-            string emergencyNumber = EmergencyNumberIN.Text;
-            string fName = FNameIN.Text;
-            string lName = LNameIN.Text;
-            DateTime birthDate = DateTime.ParseExact(BirthDateIN.Text, "yyyy-M-d" ,System.Globalization.CultureInfo.InvariantCulture);
-            string userName = UserNameIN.Text;
-            string password = PasswordIN.Text;
-            string homeAdress = HomeAdressIN.Text;
-            string homeCity = HomeCityIN.Text;
-            string email = EmailIN.Text;
-            string id = IDIN.Text;
-            string policeId = PoliceIDIN.Text;
-            string serveCity = ServeCityIN.Text;
-            int type = int.Parse(TypeIN.Text);
-            new VolunteerBL(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAdress, homeCity, email, id, policeId, serveCity, type);
+            if (Page.IsValid)
+            {
+                string phoneNumber = PhoneNumberIN.Text;
+                string emergencyNumber = EmergencyNumberIN.Text;
+                string fName = FNameIN.Text;
+                string lName = LNameIN.Text;
+                DateTime birthDate = DateTime.ParseExact(BirthDateIN.Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
+                string userName = UserNameIN.Text;
+                string password = PasswordIN.Text;
+                string homeAdress = HomeAdressIN.Text;
+                string homeCity = HomeCityIN.Text;
+                string email = EmailIN.Text;
+                string id = IDIN.Text;
+                string policeId = PoliceIDIN.Text;
+                string serveCity = ServeCityIN.Text;
+                int type = int.Parse(TypeIN.Text);
+                new VolunteerBL(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAdress, homeCity, email, id, policeId, serveCity, type);
+            }
         }
         //public string PhoneNumber { get; set; }
         //public string EmergencyNumber { get; set; }
