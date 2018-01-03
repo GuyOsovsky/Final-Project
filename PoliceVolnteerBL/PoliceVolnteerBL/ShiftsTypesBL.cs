@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<ShiftTypesBL> ShiftTypeList { get; private set; }
 
+        //create ShiftTypeList and add all the ShiftTypesBL objects
         public ShiftsTypesBL()
         {
             this.ShiftTypeList = new List<ShiftTypesBL>();
@@ -23,6 +24,7 @@ namespace PoliceVolnteerBL
             }
         }
 
+        //return all shift types
         public DataTable GetTypes()
         {
             DataTable Types = ShiftsTypesDAL.GetTable().Tables[0];

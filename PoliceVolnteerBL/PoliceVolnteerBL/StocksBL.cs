@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<ItemBL> StockList { get; set; }
 
+        //create StockList and add all the ItemBL objects
         public StockBL()
         {
             this.StockList = new List<ItemBL>();
@@ -22,24 +23,14 @@ namespace PoliceVolnteerBL
                 StockList.Add(new ItemBL((int)drc[i]["ItemID"]));
             }
         }
+
+        //return all items from stock
         public DataTable GetAllItems()
         {
             return StockDAL.GetTable().Tables[0];
         }
 
-        public DataTable GetAllUnreturnedItems()
-        {
-            
-            VolunteersBL volunteers = new VolunteersBL(false);
-            DataTable ret = volunteers.VolunteerList[0].GetItemsInPossession();
-            volunteers.VolunteerList.RemoveAt(0);
-            foreach (VolunteerBL volunteer in volunteers.VolunteerList)
-            {
-                ret.Merge(volunteer.GetItemsInPossession());
-            }
-            return ret;
-        }
-
+        //return all existing transferences
         public DataTable GetAllTransference()
         {
             return StockToVolunteerDAL.GetTable().Tables[0];

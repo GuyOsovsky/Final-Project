@@ -10,8 +10,8 @@ namespace PoliceVolnteerDAL
     public enum FieldType { Number, String, Boolean, Date, Time }
     //operator for filtertion
     public enum OperatorType { Equals, Greater, Lower, GreaterAndEquals, LowerAndEquals, NotEquals}
-    ///
-    public class FieldValue<T> //where T : enum
+    
+    public class FieldValue<T> 
     {
         private T field;
         private object value;

@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<VolunteerTypeBL> VolunteerTypeList { get; set; }
 
+        //create VolunteerTypeList and add all the VolunteerTypeBL objects
         public VolunteerTypesBL()
         {
             this.VolunteerTypeList = new List<VolunteerTypeBL>();
@@ -23,6 +24,7 @@ namespace PoliceVolnteerBL
             }
         }
 
+        //return all the permmisions that exist in database
         public DataTable GetAllPermmisions()
         {
             DataTable allPermmisions = VolunteerTypesDAL.GetTable().Tables[0];

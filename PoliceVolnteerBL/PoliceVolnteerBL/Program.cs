@@ -255,8 +255,7 @@ namespace PoliceVolnteerBL
                 Console.WriteLine(mbl.ActivityCode + " " + mbl.FileName + " " + mbl.FileType);
             }*/
 
-            DateTime from = new DateTime();
-            Console.WriteLine(from);
+            //MediaBL mbl = new MediaBL(6, "moshe.txt", new byte[] { 97, 98, 99 });
 
             Console.WriteLine("work");
             Console.ReadKey();

@@ -13,6 +13,7 @@ namespace PoliceVolnteerBL
     {
         public List<ReportBL> ReportList { get;private set; }
 
+        //create ReportList and add ReportBL objects by phone number and activity code
         public ReportsBL(string phoneNumber = "", int activityCode = 0)
         {
             this.ReportList = new List<ReportBL>();

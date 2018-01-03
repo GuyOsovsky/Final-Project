@@ -13,18 +13,11 @@ namespace PoliceVolnteerBL
     {
         public List<MediaBL> MediaList { get; set; }
 
-        public MediasBL()
+        //create MediaList and add MediaBL objects that were in a period of time
+        public MediasBL(DateTime from = new DateTime(), DateTime to = new DateTime())
         {
-            MediaList = new List<MediaBL>();
-            DataRowCollection drc = MediaDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
-            {
-                MediaList.Add(new MediaBL((string)drc[i]["FileName"]));
-            }
-        }
-
-        public MediasBL(DateTime from, DateTime to)
-        {
+            if (to.Year == 1)
+                to = DateTime.Now;
             MediaList = new List<MediaBL>();
             DataRowCollection drc = MediaDAL.GetTable().Tables[0].Rows;
             for (int i = 0; i < drc.Count; i++)
@@ -36,6 +29,7 @@ namespace PoliceVolnteerBL
             }
         }
 
+        //return all file by file type(format - txt,mp3...)
         public MediasBL(int fileType)
         {
             MediaList = new List<MediaBL>();

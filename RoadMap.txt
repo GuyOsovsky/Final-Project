@@ -134,6 +134,9 @@ MediasBL#
 לשנות למפתח מורכב בmediaDAL
 לעדכן תמונת דאל
 להוסיף מחיקות לVolunteerToValidityDAL
+לשנות drc
+//לבדוק GetTrasfersNotReturned()
+לאוסובסקי לתת הערות על המחלקה הראשית של הBL
 
 
 1.00.03
