@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PoliceVolnteerDAL
 {
+    //which type is the input
     public enum FieldType { Number, String, Boolean, Date, Time }
+    //operator for filtertion
     public enum OperatorType { Equals, Greater, Lower, GreaterAndEquals, LowerAndEquals, NotEquals}
     ///
     public class FieldValue<T> //where T : enum
@@ -15,6 +17,7 @@ namespace PoliceVolnteerDAL
         private object value;
         private FieldType typeDB;
         private OperatorType operatorType;
+
         public T Field
         {
             get { return this.field; }
@@ -40,9 +43,12 @@ namespace PoliceVolnteerDAL
             operatorType = Operator;
         }
         
+        //to string in a format adaptive for SQL
         public override string ToString()
         {
+            //add field
             string ret = "[" + this.field + "]";
+            //add operator
             switch (operatorType)
             {
                 case OperatorType.Equals:
@@ -64,6 +70,7 @@ namespace PoliceVolnteerDAL
                     ret += "<>";
                     break;
             }
+            //add value according to format syntax
             if (typeDB == FieldType.String)
                 ret += "'";
             if (typeDB == FieldType.Date | typeDB == FieldType.Time)

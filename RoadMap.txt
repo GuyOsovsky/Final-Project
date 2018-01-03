@@ -135,6 +135,7 @@ MediasBL#
 לעדכן תמונת דאל
 להוסיף מחיקות לVolunteerToValidityDAL
 
+
 1.00.03
 דף מנהל + דף מאסטר
 
