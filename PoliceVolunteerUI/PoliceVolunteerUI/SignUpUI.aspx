@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="css/signIn.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/SignUpValidation.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div style="text-align:center" class="container-fluid">
@@ -80,27 +81,33 @@
                 <label for="EmailIN">אימייל:</label>
                 <br />
                 <asp:TextBox ID="EmailIN" runat="server" TextMode="Email" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="HomeCityIN"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="EmailRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="EmailIN"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group" >
                 <label for="IDIN">תעודת זהות:</label>
                 <br />
-                <asp:TextBox ID="IDIN" runat="server" TextMode="SingleLine" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="IDIN" runat="server" TextMode="SingleLine" CssClass="form-control" ClientIDMode="Static"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="IDRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="IDIN"></asp:RequiredFieldValidator>
+                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="CustomValidator" ControlToValidate="IDIN" ClientValidationFunction="idValidation"></asp:CustomValidator>
             </div>
             <div class="form-group" >
                 <label for="PoliceIDIN">מספר מזהה במשטרה:</label>
                 <br />
                 <asp:TextBox ID="PoliceIDIN" runat="server" TextMode="SingleLine" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="PoliceIDRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="PoliceIDIN"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="PoliceIDRegularExpressionV" runat="server" ErrorMessage="זה לא מספר מזהה תקין" ControlToValidate="PoliceIDIN" ValidationExpression="\d+"></asp:RegularExpressionValidator>
             </div>
             <div class="form-group" >
                 <label for="ServeCityIN">עיר שירות:</label>
                 <br />
                 <asp:DropDownList ID="ServeCityIN" runat="server" CssClass="form-control"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="ServeCityRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="ServeCityIN"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group" >
                 <label for="TypeIN">דרגה:</label>
                 <br />
                 <asp:DropDownList ID="TypeIN" runat="server" CssClass="form-control"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="TypeRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="TypeIN"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group" >
                 <asp:Button ID="submit" runat="server" OnClick="Submit" Text="שלח" />
@@ -115,6 +122,7 @@
             <button type="submit" class="btn btn-default">Submit</button>--%>
         </form>
     </div>
+    
 </asp:Content>
 <%--    public string PhoneNumber { get; set; }
         public string EmergencyNumber { get; set; }

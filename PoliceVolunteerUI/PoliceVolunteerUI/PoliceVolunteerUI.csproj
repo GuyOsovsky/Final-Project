@@ -96,6 +96,7 @@
     <Content Include="js\jquery-3.2.1.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="js\SignUpValidation.js" />
     <Content Include="Resources\ServeCity.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
