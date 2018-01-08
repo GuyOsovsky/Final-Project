@@ -202,31 +202,31 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator PasswordRegularExpressionV;
         
         /// <summary>
-        /// passwordCMP control.
+        /// PasswordCMP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordCMP;
+        protected global::System.Web.UI.WebControls.TextBox PasswordCMP;
         
         /// <summary>
-        /// passwordCMPRequiredV control.
+        /// PasswordCMPRequiredV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordCMPRequiredV;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordCMPRequiredV;
         
         /// <summary>
-        /// passwordCMPCompareV control.
+        /// PasswordCMPCompareV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator passwordCMPCompareV;
+        protected global::System.Web.UI.WebControls.CompareValidator PasswordCMPCompareV;
         
         /// <summary>
         /// HomeAdressIN control.

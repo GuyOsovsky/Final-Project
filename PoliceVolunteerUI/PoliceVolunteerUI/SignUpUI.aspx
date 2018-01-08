@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterUI.master" AutoEventWireup="true" Inherits="PoliceVolunteerUI.SignUpUI" Codebehind="SignUpUI.aspx.cs" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="css/signIn.css" rel="stylesheet" />
     <script type="text/javascript" src="js/SignUpValidation.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -59,11 +58,11 @@
                 <asp:RegularExpressionValidator ID="PasswordRegularExpressionV" runat="server" ErrorMessage="זאת לא סיסמא תקינה" ControlToValidate="PasswordIN" ValidationExpression="\w[a-z,A-Z]+\d+\w[a-z,A-Z]*"></asp:RegularExpressionValidator>
             </div>
             <div class="form-group" >
-                <label for="passwordCMP">בבקשה חזור על הסיסמא:</label>
+                <label for="PasswordCMP">בבקשה חזור על הסיסמא:</label>
                 <br />
-                <asp:TextBox ID="passwordCMP" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="passwordCMPRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="passwordCMP"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="passwordCMPCompareV" runat="server" ErrorMessage="הסיסמאות אינן תואמות" ControlToCompare="PasswordIN" ControlToValidate="passwordCMP"></asp:CompareValidator>
+                <asp:TextBox ID="PasswordCMP" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="PasswordCMPRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="PasswordCMP"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="PasswordCMPCompareV" runat="server" ErrorMessage="הסיסמאות אינן תואמות" ControlToCompare="PasswordIN" ControlToValidate="PasswordCMP"></asp:CompareValidator>
             </div>
             <div class="form-group" >
                 <label for="HomeAdressIN">כתובת מגורים:</label>

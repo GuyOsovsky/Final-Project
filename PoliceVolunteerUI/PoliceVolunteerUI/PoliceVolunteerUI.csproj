@@ -57,7 +57,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActivitysUI.aspx" />
     <Content Include="App_Data\database police.accdb" />
+    <Content Include="CoursesUI.aspx" />
     <Content Include="css\bootstrap-grid.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -76,8 +78,9 @@
     <Content Include="css\bootstrap.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="css\signIn.css" />
+    <Content Include="EditUserSettingsUI.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HomePageUI.aspx" />
     <Content Include="js\bootstrap.bundle.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -97,23 +100,48 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="js\SignUpValidation.js" />
+    <Content Include="MediaUI.aspx" />
     <Content Include="Resources\ServeCity.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ShiftsUI.aspx" />
     <Content Include="SignUpUI.aspx" />
+    <Content Include="StockUI.aspx" />
     <Content Include="StyleSheetUI.css" />
+    <Content Include="UserSettingsUI.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminMaster.Master.cs">
-      <DependentUpon>AdminMaster.Master</DependentUpon>
+    <Compile Include="ActivitysUI.aspx.cs">
+      <DependentUpon>ActivitysUI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminMaster.Master.designer.cs">
-      <DependentUpon>AdminMaster.Master</DependentUpon>
+    <Compile Include="ActivitysUI.aspx.designer.cs">
+      <DependentUpon>ActivitysUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CoursesUI.aspx.cs">
+      <DependentUpon>CoursesUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CoursesUI.aspx.designer.cs">
+      <DependentUpon>CoursesUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserSettingsUI.aspx.cs">
+      <DependentUpon>EditUserSettingsUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditUserSettingsUI.aspx.designer.cs">
+      <DependentUpon>EditUserSettingsUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HomePageUI.aspx.cs">
+      <DependentUpon>HomePageUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePageUI.aspx.designer.cs">
+      <DependentUpon>HomePageUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterUI.master.cs">
       <DependentUpon>MasterUI.master</DependentUpon>
@@ -122,13 +150,41 @@
     <Compile Include="MasterUI.master.designer.cs">
       <DependentUpon>MasterUI.master</DependentUpon>
     </Compile>
+    <Compile Include="MediaUI.aspx.cs">
+      <DependentUpon>MediaUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MediaUI.aspx.designer.cs">
+      <DependentUpon>MediaUI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShiftsUI.aspx.cs">
+      <DependentUpon>ShiftsUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShiftsUI.aspx.designer.cs">
+      <DependentUpon>ShiftsUI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignUpUI.aspx.cs">
       <DependentUpon>SignUpUI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SignUpUI.aspx.designer.cs">
       <DependentUpon>SignUpUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StockUI.aspx.cs">
+      <DependentUpon>StockUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockUI.aspx.designer.cs">
+      <DependentUpon>StockUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSettingsUI.aspx.cs">
+      <DependentUpon>UserSettingsUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSettingsUI.aspx.designer.cs">
+      <DependentUpon>UserSettingsUI.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +219,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MasterUI.master" />
-    <Content Include="AdminMaster.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
