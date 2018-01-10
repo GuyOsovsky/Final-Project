@@ -11,7 +11,7 @@
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -22,13 +22,13 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="SignUpUI.aspx" style="background-color: #336699">פיקצ'ור</a>
+                &nbsp;<a class="navbar-brand" href="SignUpUI.aspx"><img src="pictures/logo1.jpg" alt="logo" width="80" height="80"></a>
             </div>
-            <div>
+                <a class="navbar-brand" href="HomePageUI.aspx"><asp:Label ID="Label1" runat="server" Text="Police Volunteer Web" ForeColor="BlueViolet" Font-Size="Larger"></asp:Label></a>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a data-toggle="collapse" href="#User">משתמש</a>
+                            &nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#User">משתמש</a>
                             <div id="User" class="panel-collapse collapse">
                                 <ul class="list-group" id="Ul1">
                                     <li class="list-group-item"><a href="UserSettingsUI.aspx">פרטי משתמש</a></li>
@@ -36,8 +36,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="dropdown">
-                            <a data-toggle="collapse" href="#User">להוסיף!!</a>
+                        <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#Div1">הפעלות</a>
                             <div id="Div1" class="panel-collapse collapse">
                                 <ul class="list-group" id="Ul2">
                                     <li class="list-group-item"><a href="ShiftsUI.aspx">משמרות</a></li>
@@ -46,24 +45,20 @@
                                 </ul>
                             </div>
                         </li>
-                        <%--<li><a class="nav-link" href="SignUpUI.aspx">פרטי משתמש</a></li>
-                        <li><a class="nav-link" href="SignUpUI.aspx">הרשמה של מתנדב</a></li>
-                        <li><a class="nav-link" href="#section3">Section 3</a></li>--%>
-                        <li class="dropdown">
-<%--                            <a class="dropdown-toggle" data-toggle="collapse" role="button" aria-haspopup="true" href="#section4DropDown" aria-expanded="false">Section 4 <span class="caret"></span></a>--%>
-                            <a data-toggle="collapse" href="#collapse1">Collapsible list group</a>
+                        <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#collapse1">אחר</a>
                             <div id="collapse1" class="panel-collapse collapse">
                                 <ul class="list-group" id="section4DropDown">
-                                    <li class="list-group-item"><a href="#section41">Section 4-1</a></li>
-                                    <li class="list-group-item"><a href="#section42">Section 4-2</a></li>
+                                    <li class="list-group-item"><a href="MediaUI.aspx">מדיה</a></li>
                                 </ul>
                             </div>
+                            &nbsp;&nbsp;&nbsp;
                         </li>
                     </ul>
                 </div>
-                <div>
-                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                </div>
+            <div class="form-group" style="line-height:50%;">
+                <asp:TextBox ID="userNameLog" runat="server" TextMode="SingleLine" CssClass="form-control" Text="שם משתמש" dir="rtl" Font-Size="Small"></asp:TextBox>
+                <br />
+                <asp:TextBox ID="passwordLog" runat="server" TextMode="Password" CssClass="form-control" dir="rtl" Font-Size="Small"></asp:TextBox>
             </div>
         </nav>
 

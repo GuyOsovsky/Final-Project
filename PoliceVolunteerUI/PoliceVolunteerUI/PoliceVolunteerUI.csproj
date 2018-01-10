@@ -101,6 +101,7 @@
     </Content>
     <Content Include="js\SignUpValidation.js" />
     <Content Include="MediaUI.aspx" />
+    <Content Include="pictures\logo1.jpg" />
     <Content Include="Resources\ServeCity.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
