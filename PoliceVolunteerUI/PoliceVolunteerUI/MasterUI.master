@@ -24,42 +24,43 @@
                 </button>
                 &nbsp;<a class="navbar-brand" href="SignUpUI.aspx"><img src="pictures/logo1.jpg" alt="logo" width="80" height="80"></a>
             </div>
-                <a class="navbar-brand" href="HomePageUI.aspx"><asp:Label ID="Label1" runat="server" Text="Police Volunteer Web" ForeColor="BlueViolet" Font-Size="Larger"></asp:Label></a>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            &nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#User">משתמש</a>
-                            <div id="User" class="panel-collapse collapse">
-                                <ul class="list-group" id="Ul1">
-                                    <li class="list-group-item"><a href="UserSettingsUI.aspx">פרטי משתמש</a></li>
-                                    <li class="list-group-item"><a href="StockUI.aspx">ניהול פריטים</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#Div1">הפעלות</a>
-                            <div id="Div1" class="panel-collapse collapse">
-                                <ul class="list-group" id="Ul2">
-                                    <li class="list-group-item"><a href="ShiftsUI.aspx">משמרות</a></li>
-                                    <li class="list-group-item"><a href="ActivitysUI.aspx">אירועים</a></li>
-                                    <li class="list-group-item"><a href="CoursesUI.aspx">קורסים</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#collapse1">אחר</a>
-                            <div id="collapse1" class="panel-collapse collapse">
-                                <ul class="list-group" id="section4DropDown">
-                                    <li class="list-group-item"><a href="MediaUI.aspx">מדיה</a></li>
-                                </ul>
-                            </div>
-                            &nbsp;&nbsp;&nbsp;
-                        </li>
-                    </ul>
-                </div>
-            <div class="form-group" style="line-height:50%;">
+            <a class="navbar-brand" href="HomePageUI.aspx">
+                <asp:Label ID="Label1" runat="server" Text="Police Volunteer Web" ForeColor="BlueViolet" Font-Size="Larger"></asp:Label></a>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#User">משתמש</a>
+                        <div id="User" class="panel-collapse collapse">
+                            <ul class="list-group" id="Ul1">
+                                <li class="list-group-item"><a href="UserSettingsUI.aspx">פרטי משתמש</a></li>
+                                <li class="list-group-item"><a href="StockUI.aspx">ניהול פריטים</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#Div1">הפעלות</a>
+                        <div id="Div1" class="panel-collapse collapse">
+                            <ul class="list-group" id="Ul2">
+                                <li class="list-group-item"><a href="ShiftsUI.aspx">משמרות</a></li>
+                                <li class="list-group-item"><a href="ActivitysUI.aspx">אירועים</a></li>
+                                <li class="list-group-item"><a href="CoursesUI.aspx">קורסים</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="dropdown">&nbsp;&nbsp;&nbsp;<a data-toggle="collapse" href="#collapse1">אחר</a>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <ul class="list-group" id="section4DropDown" width="Small">
+                                <li class="list-group-item"><a href="MediaUI.aspx">מדיה</a></li>
+                            </ul>
+                        </div>
+                        &nbsp;&nbsp;&nbsp;
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group" style="line-height: 50%;">
                 <asp:TextBox ID="userNameLog" runat="server" TextMode="SingleLine" CssClass="form-control" Text="שם משתמש" dir="rtl" Font-Size="Small"></asp:TextBox>
                 <br />
                 <asp:TextBox ID="passwordLog" runat="server" TextMode="Password" CssClass="form-control" dir="rtl" Font-Size="Small"></asp:TextBox>
             </div>
+            <hr style="height: 110pt; visibility: hidden;" />
         </nav>
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

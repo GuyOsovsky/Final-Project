@@ -77,14 +77,14 @@ namespace PoliceVolnteerBL
         public void ChangeStatus(bool newStatus)
         {
             //is the new status different?
-            if(this.Status != newStatus)
+            if (this.Status != newStatus)
             {
                 //change status
                 VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.status, newStatus, FieldType.Boolean, OperatorType.Equals));
                 this.Status = newStatus;
             }
         }
-        
+
         public void AddNewCar(string CarID)
         {
             CarToVolunteerDAL.AddCar(PhoneNumber, CarID);
@@ -95,7 +95,7 @@ namespace PoliceVolnteerBL
             Queue<string> ret = new Queue<string>();
             //get all cars of the volunteer
             DataRowCollection Cars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
-            foreach(DataRow car in Cars)
+            foreach (DataRow car in Cars)
             {
                 //add the carid to the queue
                 ret.Enqueue(car["CarID"].ToString());
@@ -133,7 +133,7 @@ namespace PoliceVolnteerBL
             DataTable reports = this.GetCarReports(carID);
             //go to shift table
             Queue<FieldValue<ShiftsField>> shiftFilter = new Queue<FieldValue<ShiftsField>>();
-            foreach(DataRow report in reports.Rows)
+            foreach (DataRow report in reports.Rows)
             {
                 shiftFilter.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, report["ShiftCode"], FieldType.Number, OperatorType.Equals));
             }
@@ -144,7 +144,7 @@ namespace PoliceVolnteerBL
             shifts = (shifts.DefaultView).ToTable();
             //go to reports table
             Queue<FieldValue<CarsReportsField>> reportsFilter = new Queue<FieldValue<CarsReportsField>>();
-            foreach(DataRow shift in shifts.Rows)
+            foreach (DataRow shift in shifts.Rows)
             {
                 reportsFilter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shift["ShiftCode"], FieldType.Number, OperatorType.Equals));
             }
@@ -259,7 +259,7 @@ namespace PoliceVolnteerBL
 
         public void ShiftSignUp(int ShiftCode)
         {
-            if(this.Type.Independent)
+            if (this.Type.Independent)
             {
                 //get all the volunteers in the shift
                 DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
@@ -275,7 +275,7 @@ namespace PoliceVolnteerBL
                 //if there is no more place or there is already a non independent volunteer in the shift exit
                 if (VolunteersInShift.Count > 2 || VolunteersInShift.Count < 1)
                     return;
-                foreach(DataRow VolunteerInShift in VolunteersInShift)
+                foreach (DataRow VolunteerInShift in VolunteersInShift)
                 {
                     VolunteerBL volunteer = new VolunteerBL(VolunteerInShift["PhoneNumber"].ToString());
                     if (!volunteer.Type.Independent)
@@ -288,12 +288,12 @@ namespace PoliceVolnteerBL
 
         public void ActivitySignUp(int ActivityCode)
         {
-            ReportsDAL.AddReport(this.PhoneNumber,new DateTime(1999, 1, 1), ActivityCode, "");
+            ReportsDAL.AddReport(this.PhoneNumber, new DateTime(1999, 1, 1), ActivityCode, "");
         }
 
         public void ShiftReport(ShiftBL shift, string comment, string carID = "", double distance = 0)
         {
-            if(distance != 0)//if the volunteer has entered Car shift info so add the car shift to the database
+            if (distance != 0)//if the volunteer has entered Car shift info so add the car shift to the database
             {
                 //authenticate CarID for volunteer
                 if (CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, carID, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["PhoneNumber"].ToString() != this.PhoneNumber)
@@ -386,7 +386,7 @@ namespace PoliceVolnteerBL
             DataTable Shifts = GetShifts(date, Operator);
             //get the desired reports
             Queue<FieldValue<ShiftsToVolunteerField>> shiftReportFilter = new Queue<FieldValue<ShiftsToVolunteerField>>();
-            foreach(DataRow shift in Shifts.Rows)
+            foreach (DataRow shift in Shifts.Rows)
             {
                 shiftReportFilter.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, shift["ShiftCode"], FieldType.Number, OperatorType.Equals));
             }

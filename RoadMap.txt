@@ -129,14 +129,14 @@ MediasBL#
 טופס הרשמה#
 
 1.00.02
-הערות
+הערות#
 תיקון catch
 לשנות למפתח מורכב בmediaDAL
-לעדכן תמונת דאל
-להוסיף מחיקות לVolunteerToValidityDAL
+לעדכן תמונת דאל#
+להוסיף מחיקות לVolunteerToValidityDAL#
 לשנות drc
-//לבדוק GetTrasfersNotReturned()
-לאוסובסקי לתת הערות על המחלקה הראשית של הBL
+לבדוק GetTrasfersNotReturned()
+לאוסובסקי הערות למחלקה הראשית של הBL
 כיוון הכתיבה לפי השפה שנבחרה בדפדפן
 
 

@@ -79,6 +79,21 @@ namespace PoliceVolnteerDAL
             }
         }
 
-        //Dels
+        //delete all volunteer validity rows from VolunteerToValidity table
+        public static bool DelAllValiditys()
+        {
+            try
+            {
+                string deleteSQL;
+                deleteSQL = "DELETE * FROM VolunteerToValidity";
+                OleDbHelper2.DoQuery(deleteSQL);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
     }
 }
