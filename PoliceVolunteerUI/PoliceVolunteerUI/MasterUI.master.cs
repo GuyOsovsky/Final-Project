@@ -13,5 +13,9 @@ namespace PoliceVolunteerUI
         {
             
         }
+        protected void LogIn(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
