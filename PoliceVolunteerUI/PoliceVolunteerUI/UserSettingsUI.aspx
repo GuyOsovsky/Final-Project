@@ -3,11 +3,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class = "page-header">
-   
+   <center>
    <h1>
-      Example page header 
-      <small>Subtext for header</small>
+      פרטים אישיים
    </h1>
-   
-</div>
+   </center>
+   </div>
+   <asp:GridView ID="UserInformationGV" runat="server"></asp:GridView>
 </asp:Content>

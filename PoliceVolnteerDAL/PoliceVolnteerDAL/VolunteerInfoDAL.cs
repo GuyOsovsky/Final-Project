@@ -58,10 +58,20 @@ namespace PoliceVolnteerDAL
         }
 
         //get VolunteerInfo table by field and value
-        public static DataSet GetTable(FieldValue<VolunteerInfoDALField> fv)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fv"></param>
+        /// <param name="PoliceInfo">whether or not to join the police info</param>
+        /// <returns></returns>
+        public static DataSet GetTable(FieldValue<VolunteerInfoDALField> fv, bool PoliceInfo)
         {
-            string SQL = "SELECT * FROM VolunteerInfo WHERE ";
-            SQL += fv.ToString();
+            string SQL = "SELECT * FROM VolunteerInfo "; // fix this shit
+            //if (PoliceInfo)
+            //{
+            //    SQL += "FULL OUTER JOIN VolunteerPoliceInfo ON VolunteerInfo.PhoneNumber=VolunteerPoliceInfo.PhoneNumber ";
+            //}
+            SQL += "WHERE " + fv.ToString();
             return OleDbHelper2.Fill(SQL, "VolunteerInfo");
         }
 

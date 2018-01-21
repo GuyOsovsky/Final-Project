@@ -29,7 +29,15 @@ namespace PoliceVolnteerBL
 
         public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, int type)
         {
-            VolunteerInfoDAL.AddVolunteer(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAddress, homeCity, emailAddress, iD, policeID, serveCity, DateTime.Now.Date, type);
+            try
+            {
+                VolunteerInfoDAL.AddVolunteer(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAddress, homeCity, emailAddress, iD, policeID, serveCity, DateTime.Now.Date, type);
+            }
+            catch (Exception e)
+            {
+                this.PhoneNumber = "";
+                return;
+            }
             this.PhoneNumber = phoneNumber;
             this.EmergencyNumber = emergencyNumber;
             this.FName = fName;
@@ -49,7 +57,16 @@ namespace PoliceVolnteerBL
 
         public VolunteerBL(string phoneNumber)
         {
-            DataRow dr = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow dr;
+            try
+            {
+                dr = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals), true).Tables[0].Rows[0];
+            }
+            catch (Exception e)
+            {
+                this.PhoneNumber = "";
+                return;
+            }
             this.PhoneNumber = phoneNumber;
             this.EmergencyNumber = dr["EmergencyNumber"].ToString();
             this.FName = dr["FName"].ToString();
@@ -62,11 +79,70 @@ namespace PoliceVolnteerBL
             this.EmailAddress = dr["EmailAddress"].ToString();
             this.ID = dr["ID"].ToString();
             this.Status = bool.Parse(dr["status"].ToString());
-            dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
+            //dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.PoliceID = dr["PoliceID"].ToString();
             this.ServeCity = dr["ServeCity"].ToString();
             this.StartDate = DateTime.Parse(dr["StartDate"].ToString());
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
+        }
+
+        public VolunteerBL(string userName, string password)
+        {
+            DataRow dr;
+            try
+            {
+                Queue<FieldValue<VolunteerInfoDALField>> parameters = new Queue<FieldValue<VolunteerInfoDALField>>();
+                parameters.Enqueue(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.UserName, userName, FieldType.String, OperatorType.Equals));
+                parameters.Enqueue(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.Password, password, FieldType.String, OperatorType.Equals));
+                dr = VolunteerInfoDAL.GetTable(parameters, true).Tables[0].Rows[0];
+            }
+            catch (Exception e)
+            {
+                this.PhoneNumber = "";
+                return;
+            }
+            this.PhoneNumber = dr["PhoneNumber"].ToString();
+            this.EmergencyNumber = dr["EmergencyNumber"].ToString();
+            this.FName = dr["FName"].ToString();
+            this.LName = dr["LName"].ToString();
+            this.BirthDate = DateTime.Parse(dr["BirthDate"].ToString());
+            this.UserName = userName;
+            this.Password = password;
+            this.HomeAddress = dr["HomeAddress"].ToString();
+            this.HomeCity = dr["HomeCity"].ToString();
+            this.EmailAddress = dr["EmailAddress"].ToString();
+            this.ID = dr["ID"].ToString();
+            this.Status = bool.Parse(dr["status"].ToString());
+            dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
+            this.PoliceID = dr["PoliceID"].ToString();
+            this.ServeCity = dr["ServeCity"].ToString();
+            this.StartDate = DateTime.Parse(dr["StartDate"].ToString());
+            this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
+        }
+
+        public DataTable VolunteerToDataSet()
+        {
+            DataTable volunteer = new DataTable();
+            //volunteer.Columns.Add("PhoneNumber", typeof(String));
+            //volunteer.Columns.Add("EmergencyNumber", typeof(String));
+            //volunteer.Columns.Add("FName", typeof(String));
+            //volunteer.Columns.Add("LName", typeof(String));
+            //volunteer.Columns.Add("BirthDate", typeof(DateTime));
+            //volunteer.Columns.Add("UserName", typeof(String));
+            //volunteer.Columns.Add("Password", typeof(String));
+            //volunteer.Columns.Add("HomeAddress", typeof(String));
+            //volunteer.Columns.Add("HomeCity", typeof(String));
+            //volunteer.Columns.Add("EmailAddress", typeof(String));
+            //volunteer.Columns.Add("ID", typeof(String));
+            //volunteer.Columns.Add("status", typeof(bool));
+            //volunteer.Columns.Add("PoliceID", typeof(String));
+            //volunteer.Columns.Add("ServeCity", typeof(String));
+            //volunteer.Columns.Add("StartDate", typeof(DateTime));
+            //volunteer.Rows.Add(new DataRow());
+            DataTable volunteerTable = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals), true).Tables[0];
+            volunteerTable.Merge(volunteerTable);
+            //volunteer.//(policeInfoTable);
+            return volunteer;
         }
 
         public bool HasBirthDay()
