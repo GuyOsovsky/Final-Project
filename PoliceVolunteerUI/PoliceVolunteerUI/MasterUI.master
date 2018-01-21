@@ -74,6 +74,7 @@
                 <br />
                 <asp:Button ID="LogInSubmit" runat="server" OnClick="LogIn" Text="שלח" ValidationGroup="LogIn" />
             </div>
+            <hr style="height: 110pt; visibility: hidden;" />
         </nav>
 
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
