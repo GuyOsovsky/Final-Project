@@ -18,14 +18,15 @@ namespace PoliceVolnteerBL
         public int FileType { get; set; }
 
         //build and adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
-        public MediaBL(int ActivityCode, string fileName, byte[] FileBytes)
+        public MediaBL(int activityCode, string fileName, byte[] FileBytes)
         {
             //get new directory path
-            string newTargetPath = GetNewActivityDir(ActivityCode);
+            string newTargetPath = GetNewActivityDir(activityCode);
 
             //get format name (.txt,.mp3 ...)
             string fileFormat = Path.GetExtension(fileName);
 
+            //create file name + his format
             this.FileName = fileName;
 
             //is file format Valid
@@ -69,16 +70,16 @@ namespace PoliceVolnteerBL
                 throw e;
             }
 
-            MediaDAL.AddMedia(FileName, ActivityCode, FileType);
+            MediaDAL.AddMedia(FileName, activityCode, FileType);
         }
 
         //build from the database
         public MediaBL(string FileName)
         {
             this.FileName = FileName;
-            DataSet ds = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, FieldType.String, OperatorType.Equals));
-            this.ActivityCode = (int)ds.Tables[0].Rows[0]["ActivityCode"];
-            this.FileType = (int)ds.Tables[0].Rows[0]["FileType"];
+            DataSet mediaDataSet = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, FieldType.String, OperatorType.Equals));
+            this.ActivityCode = (int)mediaDataSet.Tables[0].Rows[0]["ActivityCode"];
+            this.FileType = (int)mediaDataSet.Tables[0].Rows[0]["FileType"];
         }
 
         //delete file from "files" by activity code and file name
@@ -116,9 +117,9 @@ namespace PoliceVolnteerBL
         }
 
         //return new combined path for creating a new folder for new activity
-        private static string GetNewActivityDir(int ActivityCode)
+        private static string GetNewActivityDir(int activityCode)
         {
-            ActivityBL activity = new ActivityBL(ActivityCode);
+            ActivityBL activity = new ActivityBL(activityCode);
             //create name
             string activityName = activity.ActivityName;
             string folderName = activityName + " " + activity.ActivityCode;

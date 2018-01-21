@@ -34,12 +34,12 @@ namespace PoliceVolnteerBL
         public ShiftBL(int ShiftCode)
         {
             this.ShiftCode = ShiftCode;
-            DataSet ds = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals));
-            this.TypeCode = (int)ds.Tables[0].Rows[0]["TypeCode"];
-            this.DateOfShift = (DateTime)ds.Tables[0].Rows[0]["DateOfShift"];
-            this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];
-            this.FinishTime = (DateTime)ds.Tables[0].Rows[0]["FinishTime"];
-            this.Place = (string)ds.Tables[0].Rows[0]["Place"];
+            DataSet ShiftsDataSet = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals));
+            this.TypeCode = (int)ShiftsDataSet.Tables[0].Rows[0]["TypeCode"];
+            this.DateOfShift = (DateTime)ShiftsDataSet.Tables[0].Rows[0]["DateOfShift"];
+            this.StartTime = (DateTime)ShiftsDataSet.Tables[0].Rows[0]["StartTime"];
+            this.FinishTime = (DateTime)ShiftsDataSet.Tables[0].Rows[0]["FinishTime"];
+            this.Place = (string)ShiftsDataSet.Tables[0].Rows[0]["Place"];
         }
 
         //return the period of shift time in hours

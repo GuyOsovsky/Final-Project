@@ -25,9 +25,9 @@ namespace PoliceVolnteerBL
         //build from the database
         public ShiftTypesBL(int typeCode)
         {
-            DataRow obj = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow ShiftsTypesRow = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.TypeCode = typeCode;
-            this.TypeName = obj["TypeName"].ToString();
+            this.TypeName = ShiftsTypesRow["TypeName"].ToString();
         }
     }
 }

@@ -10,8 +10,6 @@ namespace PoliceVolnteerDAL
 {
     public enum MediaField { FileName, ActivityCode, FileType }
 
-    //לשנות למפתח מורכב!!!!!
-
     public class MediaDAL
     {
         //Add new media row to Media table and return state boolean

@@ -255,8 +255,10 @@ namespace PoliceVolnteerBL
                 Console.WriteLine(mbl.ActivityCode + " " + mbl.FileName + " " + mbl.FileType);
             }*/
 
-            //MediaBL mbl = new MediaBL(6, "moshe.txt", new byte[] { 97, 98, 99 });
+            //MediaBL mbl = new MediaBL(6, "menash.txt", new byte[] { 97, 98, 99 });
 
+            VolunteersBL checkFunc = new VolunteersBL(false);
+            DataTable dt = checkFunc.GetTrasfersNotReturned();
             Console.WriteLine("work");
             Console.ReadKey();
         }

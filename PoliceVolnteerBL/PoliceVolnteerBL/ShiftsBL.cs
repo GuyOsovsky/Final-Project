@@ -17,10 +17,10 @@ namespace PoliceVolnteerBL
         public ShiftsBL()
         {
             this.ShiftList = new List<ShiftBL>();
-            DataRowCollection drc = ShiftsDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection shiftsRows = ShiftsDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < shiftsRows.Count; i++)
             {
-                ShiftList.Add(new ShiftBL((int)drc[i]["ShiftCode"]));
+                ShiftList.Add(new ShiftBL((int)shiftsRows[i]["ShiftCode"]));
             }
         }
 
@@ -35,10 +35,10 @@ namespace PoliceVolnteerBL
             ShiftsTable.DefaultView.RowFilter = filter.ToString();
             ShiftsTable = (ShiftsTable.DefaultView).ToTable();
 
-            DataRowCollection drc = ShiftsTable.Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection shiftsRows = ShiftsTable.Rows;
+            for (int i = 0; i < shiftsRows.Count; i++)
             {
-                ShiftList.Add(new ShiftBL((int)drc[i]["ShiftCode"]));
+                ShiftList.Add(new ShiftBL((int)shiftsRows[i]["ShiftCode"]));
             }
         }
 

@@ -17,10 +17,10 @@ namespace PoliceVolnteerBL
         public ValidityTypesBL()
         {
             this.ValidityTypeList = new List<ValidityTypeBL>();
-            DataRowCollection drc = ValidityTypesDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection validityTypesRows = ValidityTypesDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < validityTypesRows.Count; i++)
             {
-                ValidityTypeList.Add(new ValidityTypeBL((int)drc[i]["ValidityCode"]));
+                ValidityTypeList.Add(new ValidityTypeBL((int)validityTypesRows[i]["ValidityCode"]));
             }
         }
     }

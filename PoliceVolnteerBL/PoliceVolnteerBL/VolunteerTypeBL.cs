@@ -36,12 +36,12 @@ namespace PoliceVolnteerBL
         public VolunteerTypeBL(int TypeCode)
         {
             this.TypeCode = TypeCode;
-            DataRow dr = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
-            this.TypeName = (string)dr["TypeName"];
-            this.PermmisionShifts = (bool)dr["PermmisionShifts"];
-            this.PermmisionActivity = (bool)dr["PermmisionActivity"];
-            this.PermmisionStock = (bool)dr["PermmisionStock"];
-            this.Independent = (bool)dr["Independent"];
+            DataRow volunteerTypesRow = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            this.TypeName = (string)volunteerTypesRow["TypeName"];
+            this.PermmisionShifts = (bool)volunteerTypesRow["PermmisionShifts"];
+            this.PermmisionActivity = (bool)volunteerTypesRow["PermmisionActivity"];
+            this.PermmisionStock = (bool)volunteerTypesRow["PermmisionStock"];
+            this.Independent = (bool)volunteerTypesRow["Independent"];
         }
 
         //return all the permmisions of this specific volunteer

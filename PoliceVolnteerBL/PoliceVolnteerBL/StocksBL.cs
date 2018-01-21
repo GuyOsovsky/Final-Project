@@ -17,10 +17,10 @@ namespace PoliceVolnteerBL
         public StockBL()
         {
             this.StockList = new List<ItemBL>();
-            DataRowCollection drc = StockDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection stockRows = StockDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < stockRows.Count; i++)
             {
-                StockList.Add(new ItemBL((int)drc[i]["ItemID"]));
+                StockList.Add(new ItemBL((int)stockRows[i]["ItemID"]));
             }
         }
 

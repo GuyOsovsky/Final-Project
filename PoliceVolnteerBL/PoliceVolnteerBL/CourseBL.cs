@@ -46,17 +46,17 @@ namespace PoliceVolnteerBL
         //build from the database
         public CourseBL(int CourseCode)
         {
-            DataSet ds = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals));
+            DataSet courseDataSet = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals));
             this.CourseCode = CourseCode;
-            this.CourseName = (string)ds.Tables[0].Rows[0]["CourseName"];
-            this.CourseDate = (DateTime)ds.Tables[0].Rows[0]["CourseDate"];
-            this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];
-            this.FinishTime = (DateTime)ds.Tables[0].Rows[0]["FinishTime"];
-            this.NameOfInstructor = (string)ds.Tables[0].Rows[0]["NameOfInstructor"];
-            this.IsRequeired = (bool)ds.Tables[0].Rows[0]["IsRequeired"];
-            this.Place = (string)ds.Tables[0].Rows[0]["Place"];
-            this.Description = (string)ds.Tables[0].Rows[0]["Description"];
-            this.ValidityCode = (int)ds.Tables[0].Rows[0]["ValidityCode"];
+            this.CourseName = (string)courseDataSet.Tables[0].Rows[0]["CourseName"];
+            this.CourseDate = (DateTime)courseDataSet.Tables[0].Rows[0]["CourseDate"];
+            this.StartTime = (DateTime)courseDataSet.Tables[0].Rows[0]["StartTime"];
+            this.FinishTime = (DateTime)courseDataSet.Tables[0].Rows[0]["FinishTime"];
+            this.NameOfInstructor = (string)courseDataSet.Tables[0].Rows[0]["NameOfInstructor"];
+            this.IsRequeired = (bool)courseDataSet.Tables[0].Rows[0]["IsRequeired"];
+            this.Place = (string)courseDataSet.Tables[0].Rows[0]["Place"];
+            this.Description = (string)courseDataSet.Tables[0].Rows[0]["Description"];
+            this.ValidityCode = (int)courseDataSet.Tables[0].Rows[0]["ValidityCode"];
         }
 
         //return all the important fields(all fields without CourseCode and ValidityCode)

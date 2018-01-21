@@ -17,11 +17,11 @@ namespace PoliceVolnteerBL
         public ReportsBL(string phoneNumber = "", int activityCode = 0)
         {
             this.ReportList = new List<ReportBL>();
-            DataRowCollection drc = ReportsDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection reportRows = ReportsDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < reportRows.Count; i++)
             {
-                if ((phoneNumber == "" || (string)drc[i]["PhoneNumber"] == phoneNumber) && (activityCode == 0 || (int)drc[i]["ActivityCode"] == activityCode))
-                    ReportList.Add(new ReportBL((string)drc[i]["PhoneNumber"], (int)drc[i]["ActivityCode"]));
+                if ((phoneNumber == "" || (string)reportRows[i]["PhoneNumber"] == phoneNumber) && (activityCode == 0 || (int)reportRows[i]["ActivityCode"] == activityCode))
+                    ReportList.Add(new ReportBL((string)reportRows[i]["PhoneNumber"], (int)reportRows[i]["ActivityCode"]));
             }
         }
     }

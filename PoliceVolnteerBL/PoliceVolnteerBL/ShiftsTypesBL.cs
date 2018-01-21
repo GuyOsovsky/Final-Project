@@ -17,10 +17,10 @@ namespace PoliceVolnteerBL
         public ShiftsTypesBL()
         {
             this.ShiftTypeList = new List<ShiftTypesBL>();
-            DataRowCollection drc = ShiftsTypesDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection shiftsTypesRows = ShiftsTypesDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < shiftsTypesRows.Count; i++)
             {
-                ShiftTypeList.Add(new ShiftTypesBL((int)drc[i]["typeCode"]));
+                ShiftTypeList.Add(new ShiftTypesBL((int)shiftsTypesRows[i]["typeCode"]));
             }
         }
 
