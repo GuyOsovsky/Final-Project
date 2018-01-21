@@ -45,13 +45,13 @@ namespace PoliceVolnteerBL
             return sum;
         }
 
-        //לבדוק
         //return table of all the Unreturned items
         public DataTable GetTrasfersNotReturned()
         {
             DataTable NotReturnedItems;
             if (VolunteerList.Count > 0)
             {
+
                 NotReturnedItems = VolunteerList[0].GetItemsInPossession();
                 for (int i = 1; i < VolunteerList.Count; i++)
                 {

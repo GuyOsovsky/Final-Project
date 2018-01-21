@@ -19,13 +19,13 @@ namespace PoliceVolnteerBL
             if (to.Year == 1)
                 to = DateTime.Now;
             MediaList = new List<MediaBL>();
-            DataRowCollection drc = MediaDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection mediaRows = MediaDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < mediaRows.Count; i++)
             {
-                int activityCode = (int)(drc[i]["ActivityCode"]);
+                int activityCode = (int)(mediaRows[i]["ActivityCode"]);
                 ActivityBL activity = new ActivityBL(activityCode);
                 if (activity.ActivityDate >= from && activity.ActivityDate <= to)
-                    MediaList.Add(new MediaBL((string)drc[i]["FileName"]));
+                    MediaList.Add(new MediaBL((string)mediaRows[i]["FileName"]));
             }
         }
 
@@ -33,11 +33,11 @@ namespace PoliceVolnteerBL
         public MediasBL(int fileType)
         {
             MediaList = new List<MediaBL>();
-            DataRowCollection drc = MediaDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection mediaRows = MediaDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < mediaRows.Count; i++)
             {
-                if (((int)drc[i]["FileType"]) == fileType)
-                    MediaList.Add(new MediaBL((string)drc[i]["FileName"]));
+                if (((int)mediaRows[i]["FileType"]) == fileType)
+                    MediaList.Add(new MediaBL((string)mediaRows[i]["FileName"]));
             }
         }
     }

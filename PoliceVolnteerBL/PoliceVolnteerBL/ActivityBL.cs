@@ -40,15 +40,15 @@ namespace PoliceVolnteerBL
         public ActivityBL(int activityCode)
         {
             this.ActivityCode = activityCode;
-            DataSet ds = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
-            this.ActivityName = (string)ds.Tables[0].Rows[0]["ActivityName"];
-            this.ActivityDate = (DateTime)ds.Tables[0].Rows[0]["ActivityDate"];
-            this.StartTime = (DateTime)ds.Tables[0].Rows[0]["StartTime"];
-            this.FinishTime = (DateTime)ds.Tables[0].Rows[0]["FinishTime"];
-            this.ActivityManager = (string)ds.Tables[0].Rows[0]["ActivityManager"];
-            this.TypeCode = (int)ds.Tables[0].Rows[0]["TypeCode"];
-            this.Place = (string)ds.Tables[0].Rows[0]["Place"];
-            this.MinNumberOfVolunteer = (int)ds.Tables[0].Rows[0]["MinNumberOfVolunteer"];
+            DataSet activityDataSet = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
+            this.ActivityName = (string)activityDataSet.Tables[0].Rows[0]["ActivityName"];
+            this.ActivityDate = (DateTime)activityDataSet.Tables[0].Rows[0]["ActivityDate"];
+            this.StartTime = (DateTime)activityDataSet.Tables[0].Rows[0]["StartTime"];
+            this.FinishTime = (DateTime)activityDataSet.Tables[0].Rows[0]["FinishTime"];
+            this.ActivityManager = (string)activityDataSet.Tables[0].Rows[0]["ActivityManager"];
+            this.TypeCode = (int)activityDataSet.Tables[0].Rows[0]["TypeCode"];
+            this.Place = (string)activityDataSet.Tables[0].Rows[0]["Place"];
+            this.MinNumberOfVolunteer = (int)activityDataSet.Tables[0].Rows[0]["MinNumberOfVolunteer"];
         }
 
         //return VolunteersBL object with all the Volunteers in this specific activity

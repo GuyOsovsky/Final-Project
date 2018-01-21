@@ -29,11 +29,11 @@ namespace PoliceVolnteerBL
         //build from the database
         public ItemBL(int itemID)
         {
-            DataRow obj = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            DataRow stockRow = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
             this.ItemID = itemID;
-            this.ItemName = (string)obj["ItemName"];
-            this.AmountInStock = (int)obj["AmountInStock"];
-            this.Recycable = (bool)obj["Recyclable"];
+            this.ItemName = (string)stockRow["ItemName"];
+            this.AmountInStock = (int)stockRow["AmountInStock"];
+            this.Recycable = (bool)stockRow["Recyclable"];
         }
 
     }

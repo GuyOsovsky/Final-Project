@@ -17,10 +17,10 @@ namespace PoliceVolnteerBL
         public CoursesBL()
         {
             this.CourseList = new List<CourseBL>();
-            DataRowCollection drc = CourseDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection coursesRows = CourseDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < coursesRows.Count; i++)
             {
-                CourseList.Add(new CourseBL((int)drc[i]["CourseCode"]));
+                CourseList.Add(new CourseBL((int)coursesRows[i]["CourseCode"]));
             }
         }
 

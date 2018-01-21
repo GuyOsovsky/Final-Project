@@ -17,10 +17,10 @@ namespace PoliceVolnteerBL
         public VolunteerTypesBL()
         {
             this.VolunteerTypeList = new List<VolunteerTypeBL>();
-            DataRowCollection drc = VolunteerTypesDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection volunteerTypesRows = VolunteerTypesDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < volunteerTypesRows.Count; i++)
             {
-                VolunteerTypeList.Add(new VolunteerTypeBL((int)drc[i]["TypeCode"]));
+                VolunteerTypeList.Add(new VolunteerTypeBL((int)volunteerTypesRows[i]["TypeCode"]));
             }
         }
 

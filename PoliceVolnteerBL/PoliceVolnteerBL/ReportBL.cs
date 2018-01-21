@@ -33,11 +33,11 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<ReportsField>> parameters = new Queue<FieldValue<ReportsField>>();
             parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, FieldType.String, OperatorType.Equals));
             parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
-            DataSet ds = ReportsDAL.GetTable(parameters, true);
+            DataSet ReportsDataSet = ReportsDAL.GetTable(parameters, true);
             this.ActivityCode = activityCode;
             this.PhoneNumber = PhoneNumber;
-            this.ReportDate = (DateTime)ds.Tables[0].Rows[0]["ReportDate"];
-            this.Description = (string)ds.Tables[0].Rows[0]["Description"];
+            this.ReportDate = (DateTime)ReportsDataSet.Tables[0].Rows[0]["ReportDate"];
+            this.Description = (string)ReportsDataSet.Tables[0].Rows[0]["Description"];
         }
 
         //return textual report of a specific activiy + the report description

@@ -19,10 +19,10 @@ namespace PoliceVolnteerBL
             if (to.Year == 1)
                 to = DateTime.Now;
             this.ActivityList = new List<ActivityBL>();
-            DataRowCollection drc = ActivityDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < drc.Count; i++)
+            DataRowCollection activityRow = ActivityDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < activityRow.Count; i++)
             {
-                ActivityBL activity = new ActivityBL((int)drc[i]["ActivityCode"]);
+                ActivityBL activity = new ActivityBL((int)activityRow[i]["ActivityCode"]);
                 if(activity.ActivityDate >= from && activity.ActivityDate <= to)
                     ActivityList.Add(activity);
             }
