@@ -25,7 +25,7 @@ namespace PoliceVolunteerUI
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            Session["User"] = "";
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

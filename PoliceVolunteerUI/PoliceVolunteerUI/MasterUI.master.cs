@@ -29,7 +29,8 @@ namespace PoliceVolunteerUI
         }
         protected void LogOut(object sender, EventArgs e)
         {
-            Session["User"] = string.Empty;
+            Session["User"] = "";
+            
         }
     }
 }

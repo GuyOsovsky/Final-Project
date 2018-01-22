@@ -121,9 +121,10 @@ namespace PoliceVolnteerBL
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
         }
 
-        public DataTable VolunteerToDataSet()
+        public DataSet VolunteerToDataSet()
         {
-            DataTable volunteer = new DataTable();
+            DataSet volunteer = new DataSet();
+            volunteer.Tables.Add();
             //volunteer.Columns.Add("PhoneNumber", typeof(String));
             //volunteer.Columns.Add("EmergencyNumber", typeof(String));
             //volunteer.Columns.Add("FName", typeof(String));
@@ -140,8 +141,8 @@ namespace PoliceVolnteerBL
             //volunteer.Columns.Add("ServeCity", typeof(String));
             //volunteer.Columns.Add("StartDate", typeof(DateTime));
             //volunteer.Rows.Add(new DataRow());
-            DataTable volunteerTable = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals), true).Tables[0];
-            volunteerTable.Merge(volunteerTable);
+            volunteer = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals), true);
+            //volunteerTable.Merge(volunteerTable);
             //volunteer.//(policeInfoTable);
             return volunteer;
         }

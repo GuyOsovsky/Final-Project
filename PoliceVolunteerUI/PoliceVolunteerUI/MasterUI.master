@@ -90,7 +90,7 @@
             %>
             <div class="form-group" style="line-height: 50%;">
                 <%
-                    if (Session["User"] != "")
+                    if (Session["User"] == "")
                     { 
                 %>
                 <asp:TextBox ID="userNameLog" runat="server" TextMode="SingleLine" CssClass="form-control" Text="שם משתמש" dir="rtl" Font-Size="Small" ValidationGroup="LogIn"></asp:TextBox>
