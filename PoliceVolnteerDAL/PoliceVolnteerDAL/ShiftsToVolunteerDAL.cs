@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class ShiftsToVolunteerDAL
     {
         //Add new shifts to volunteer row to ShiftsToVolunteer table and return state boolean
-        public static bool AddShift(int shiftCode, string PhoneNumber, string comments)
+        public static void AddShift(int shiftCode, string PhoneNumber, string comments)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO ShiftsToVolunteer ([shiftCode], [PhoneNumber], [comments]) VALUES ('" + shiftCode + "','" + PhoneNumber + "','" + comments + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -61,22 +59,27 @@ namespace PoliceVolnteerDAL
         //change comment in shifts to volunteer row by phoneNumber and shift code(by 2 keys/complex key) from ShiftsToVolunteer table
         public static void UpdateComment(string PhoneNumber, int ShiftCode, string comment)
         {
-            string sql = "UPDATE ShiftsToVolunteer SET comments='" + comment + "' WHERE [PhoneNumber]='" + PhoneNumber + "' AND [shiftCode]=" + ShiftCode.ToString();
-            OleDbHelper2.DoQuery(sql);
+            try
+            {
+                string sql = "UPDATE ShiftsToVolunteer SET comments='" + comment + "' WHERE [PhoneNumber]='" + PhoneNumber + "' AND [shiftCode]=" + ShiftCode.ToString();
+                OleDbHelper2.DoQuery(sql);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         //delete all shifts to volunteer rows from ShiftsToVolunteer table
-        public static bool DelAll()
+        public static void DelAll()
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("DELETE * FROM ShiftsToVolunteer");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

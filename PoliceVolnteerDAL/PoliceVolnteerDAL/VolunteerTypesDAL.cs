@@ -13,7 +13,7 @@ namespace PoliceVolnteerDAL
     public class VolunteerTypesDAL
     {
         //Add new volunteer type row to VolunteerTypes table and return state boolean
-        public static bool AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
+        public static void AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
         {
             string sPermmisionShifts, sPermmisionActivity, sPermmisionStock, sIndependent;
             sPermmisionShifts = (vPermmisionShifts) ? "1" : "0";
@@ -24,12 +24,10 @@ namespace PoliceVolnteerDAL
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerTypes ([TypeName], [PermmisionShifts], [PermmisionActivity], [PermmisionStock], [Independent]) VALUES ('" + vTypeName + "','" + sPermmisionShifts + "','" + sPermmisionActivity + "','" + sPermmisionStock + "','" + sIndependent + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -65,36 +63,40 @@ namespace PoliceVolnteerDAL
         }
 
         //delete volunteer type row by type code(by key) from VolunteerTypes table
-        public static bool DelVolunteerType(int TypeCode)
+        public static void DelVolunteerType(int TypeCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM VolunteerTypes WHERE TypeCode=" + TypeCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //change value of volunteer type row field in VolunteerTypes table
-        public static bool UpdateFrom(int TypeCode, VolunteerTypesField eFrom, string updateStr)
+        public static void UpdateFrom(int TypeCode, VolunteerTypesField eFrom, string updateStr)
         {
             if (eFrom == VolunteerTypesField.TypeCode)
-                return false;
+                throw new Exception("TypeCode cannot be changed");
             try
             {
                 DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM VolunteerTypes WHERE TypeCode={0}", TypeCode), "VolunteerTypes");
-                DataRow dr = ds.Tables["VolunteerTypes"].Rows[0];
-                dr[eFrom.ToString()] = updateStr;
-                OleDbHelper2.update(ds, "SELECT * FROM VolunteerTypes", "VolunteerTypes");
-                return true;
+                if (ds.Tables["VolunteerTypes"].Rows.Count > 0)
+                {
+                    DataRow dr = ds.Tables["VolunteerTypes"].Rows[0];
+                    dr[eFrom.ToString()] = updateStr;
+                    OleDbHelper2.update(ds, "SELECT * FROM VolunteerTypes", "VolunteerTypes");
+                }
+                else
+                {
+                    throw new ArgumentException("TypeCode not valid");
+                }
             }
-            catch (IndexOutOfRangeException e)
+            catch (Exception e)
             {
                 throw e;
             }

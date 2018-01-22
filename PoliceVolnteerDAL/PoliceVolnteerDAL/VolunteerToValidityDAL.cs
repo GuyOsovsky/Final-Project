@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class VolunteerToValidityDAL
     {
         //Add new volunteer validity row to VolunteerToValidity table and return state boolean
-        public static bool Add(string PhoneNumber, int ValidityCode, DateTime EndDate)
+        public static void Add(string PhoneNumber, int ValidityCode, DateTime EndDate)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerToValidity ([PhoneNumber], [ValidityCode], [Status], [EndDate]) VALUES ('" + PhoneNumber + "','" + ValidityCode + "','" + "1" + "'," + EndDate.ToOADate() + ")");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -59,7 +57,7 @@ namespace PoliceVolnteerDAL
         }
 
         //update status of volunteer validity to true or false in VolunteerToValidity table
-        public static bool UpdateStatus(bool Status)
+        public static void UpdateStatus(bool Status)
         {
             try
             {
@@ -70,28 +68,29 @@ namespace PoliceVolnteerDAL
                     dr["status"] = Status;
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerToValidity", "VolunteerToValidity");
                 }
-                return true;
+                else
+                {
+                    throw new ArgumentException("Status not valid");
+                }
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all volunteer validity rows from VolunteerToValidity table
-        public static bool DelAllValiditys()
+        public static void DelAllValiditys()
         {
             try
             {
                 string deleteSQL;
                 deleteSQL = "DELETE * FROM VolunteerToValidity";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
-            catch
+            catch(Exception e)
             {
-                return false;
+                throw e;
             }
 
         }

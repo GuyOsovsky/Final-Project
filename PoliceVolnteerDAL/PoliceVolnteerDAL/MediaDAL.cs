@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class MediaDAL
     {
         //Add new media row to Media table and return state boolean
-        public static bool AddMedia(string mFileName, int mActivityCode, int mFileType)
+        public static void AddMedia(string mFileName, int mActivityCode, int mFileType)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO Media ([FileName], [ActivityCode], [FileType]) VALUES ('" + mFileName + "','" + mActivityCode + "','" + mFileType + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -59,19 +57,17 @@ namespace PoliceVolnteerDAL
         }
 
         //לשנות בהזדמנות למפתח מורכב
-        public static bool DelMedia(string fileName)
+        public static void DelMedia(string fileName)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM Media WHERE FileName='" + fileName + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }
