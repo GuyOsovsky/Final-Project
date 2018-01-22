@@ -13,18 +13,15 @@ namespace PoliceVolnteerDAL
     public class ValidityTypesDAL
     {
         //Add new validity types row to ValidityTypes table and return state boolean
-        public static bool AddNewValidity(string ValidityName)
+        public static void AddNewValidity(string ValidityName)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO ValidityTypes ([ValidityName]) VALUES ('" + ValidityName + "')");
-
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -60,36 +57,32 @@ namespace PoliceVolnteerDAL
         }
 
         //delete validity types row by validity code(by key) from ValidityTypes table
-        public static bool DelCourse(int validityCode)
+        public static void DelCourse(int validityCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM ValidityTypes WHERE ValidityCode=" + validityCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all validity types rows from ValidityTypes table
-        public static bool DelAll()
+        public static void DelAll()
         {
             try
             {
                 string deleteSQL;
                 deleteSQL = "DELETE * FROM ValidityTypes";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 

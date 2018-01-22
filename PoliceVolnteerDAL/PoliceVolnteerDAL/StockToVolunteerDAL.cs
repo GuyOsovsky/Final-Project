@@ -13,21 +13,16 @@ namespace PoliceVolnteerDAL
     public class StockToVolunteerDAL
     {
         //Add new stock to volunteer row to StockToVolunteer table and return state boolean
-        public static bool AddTransference(string phoneNumber, int itemID, int amount, DateTime borrowDate)
+        public static void AddTransference(string phoneNumber, int itemID, int amount, DateTime borrowDate)
         {
             try
             {
-                if (StockDAL.UpdateStock(itemID, -amount))
-                {
-                    OleDbHelper2.ExecuteNonQuery("INSERT INTO StockToVolunteer ([PhoneVolunteer],[ItemID],[Amount], [BorrowDate], [ReturnDate]) VALUES ('" + phoneNumber + "','" + itemID + "','" + amount + "','" + borrowDate.ToShortDateString() + "','" + new DateTime(1999, 1, 1).ToShortDateString() + "')");
-                    return true;
-                }
-                return false;
+                StockDAL.UpdateStock(itemID, -amount);
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO StockToVolunteer ([PhoneVolunteer],[ItemID],[Amount], [BorrowDate], [ReturnDate]) VALUES ('" + phoneNumber + "','" + itemID + "','" + amount + "','" + borrowDate.ToShortDateString() + "','" + new DateTime(1999, 1, 1).ToShortDateString() + "')");
             }
             catch(Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -63,32 +58,28 @@ namespace PoliceVolnteerDAL
         }
 
         //change return date value from defult date to today by transfer code(by key) in StockToVolunteer table
-        public static bool ReturnItem(int TransferCode)
+        public static void ReturnItem(int TransferCode)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("UPDATE StockToVolunteer SET ReturnDate=#" + DateTime.Now.ToShortDateString() + "# WHERE TrasferCode=" + TransferCode + "");
-                return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all stock to volunteer rows from StockToVolunteer table
-        public static bool DelAll()
+        public static void DelAll()
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("DELETE * FROM StockToVolunteer");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

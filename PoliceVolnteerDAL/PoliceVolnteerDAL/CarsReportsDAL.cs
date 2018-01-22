@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class CarsReportsDAL
     {
         //add new car report row to cars reports table and return state boolean
-        public static bool AddCarReport(int cShiftCode, string cCarID, double Distance)
+        public static void AddCarReport(int cShiftCode, string cCarID, double Distance)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO CarsReports ([ShiftCode], [CarID], [Distance]) VALUES ('" + cShiftCode + "','" + cCarID + "','" + Distance + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -59,19 +57,17 @@ namespace PoliceVolnteerDAL
         }
 
         //delete car report row by shift code(by key) from cars reports table
-        public static bool DelCarReport(int shiftCode)
+        public static void DelCarReport(int shiftCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM CarsReports WHERE ShiftCode=" + shiftCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

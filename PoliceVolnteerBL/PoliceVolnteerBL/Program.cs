@@ -257,8 +257,11 @@ namespace PoliceVolnteerBL
 
             //MediaBL mbl = new MediaBL(6, "menash.txt", new byte[] { 97, 98, 99 });
 
-            VolunteersBL checkFunc = new VolunteersBL(false);
-            DataTable dt = checkFunc.GetTrasfersNotReturned();
+            /*VolunteersBL checkFunc = new VolunteersBL(false);
+            DataTable dt = checkFunc.GetTrasfersNotReturned();*/
+
+            //VolunteerInfoDAL.UpdateFrom("b", new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, "g", FieldType.String, OperatorType.Equals));
+
             Console.WriteLine("work");
             Console.ReadKey();
         }

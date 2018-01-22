@@ -18,6 +18,7 @@ namespace PoliceVolnteerDAL
             //ValidityTypesDAL.AddNewValidity("third");
             //VolunteerInfoDAL.AddVolunteer("a", "a", "a", "a", new DateTime(2000, 5, 5), "a", "a", "a", "a", "a", "a", "a", "a", new DateTime(2000, 5, 5), 1);
             //VolunteerToValidityDAL.AddValidityToVolunteer("a", 2);
+            VolunteerInfoDAL.UpdateFrom("b",new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber,"g",FieldType.String,OperatorType.Equals));
             Console.WriteLine("work");
             Console.ReadKey();
         }

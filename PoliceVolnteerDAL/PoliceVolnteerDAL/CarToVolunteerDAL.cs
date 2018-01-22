@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class CarToVolunteerDAL
     {
         //Add new car row to CarToVolunteer table and return state boolean
-        public static bool AddCar(string vPhoneNumber, string CarID)
+        public static void AddCar(string vPhoneNumber, string CarID)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO CarToVolunteer ([PhoneNumber],[CarID]) VALUES ('" + vPhoneNumber + "','" + CarID + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -59,34 +57,30 @@ namespace PoliceVolnteerDAL
         }
 
         //delete car row by field and value
-        public static bool DelCar(FieldValue<CarVolunteerField> del)
+        public static void DelCar(FieldValue<CarVolunteerField> del)
         {
             try
             {
                 string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + del.ToString();
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch(Exception e)
             {
                 throw e;
-                return false;
             }
         }
 
         //delete all car rows from CarToVolunteer table
-        public static bool DelAllCars()
+        public static void DelAllCars()
         {
             try
             {
                 string deleteSQL = "DELETE * FROM CarToVolunteer";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

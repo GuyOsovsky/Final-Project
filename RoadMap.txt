@@ -130,13 +130,21 @@ MediasBL#
 
 1.00.02
 הערות#
-תיקון catch
 לעדכן תמונת דאל#
 להוסיף מחיקות לVolunteerToValidityDAL#
 לשנות drc#
 לבדוק GetTrasfersNotReturned() (עובד כמו כריש!)#
 לאוסובסקי- הערות למחלקה הראשית של הBL
-
+תיקון catch
+Exceptios BL
+StockDAL update Exceptions#
+ReportsDAL update Exceptions#
+StockToVolunteerDAL add Exceptions#
+VolunteerToValidityDAL update Exceptions#
+VolunteerTypesDAL update Exceptions#
+VolunteerPoliceInfoDAL update Exceptions#
+VolunteerInfoDAL add and update Exceptions#
+CoursesToVolunteerDAL participated Exceptions#
 
 1.00.03
 דף גולש(דף בית[+התחברות])
@@ -173,3 +181,9 @@ MediasBL#
 
 1.00.14
 כיוון הכתיבה לפי השפה שנבחרה בדפדפן
+
+
+סמדר:
+תאריך תקין - לא צעיר מידי בן 16 ולא שנת 2021!
+להשתמש בgridview ברמה - אפשר לערוך או לשנות שדות
+פקדים לגוון!

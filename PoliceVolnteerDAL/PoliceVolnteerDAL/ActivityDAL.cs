@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class ActivityDAL
     {
         //Add new activity row to activity table and return state boolean
-        public static bool AddActivity(string aActivityName, DateTime aActivityDate, DateTime aStartTime, DateTime aFinishTime, string aActivityManager, int aTypeCode, string aPlace, int aMinNumberOfVolunteer)
+        public static void AddActivity(string aActivityName, DateTime aActivityDate, DateTime aStartTime, DateTime aFinishTime, string aActivityManager, int aTypeCode, string aPlace, int aMinNumberOfVolunteer)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO Activity ([ActivityName], [ActivityDate], [StartTime], [FinishTime], [ActivityManager], [TypeCode], [Place], [MinNumberOfVolunteer]) VALUES ('" + aActivityName + "','" + aActivityDate.ToShortDateString() + "','" + aStartTime.ToShortTimeString() + "','" + aFinishTime.ToShortTimeString() + "','" + aActivityManager + "','" + aTypeCode + "','" + aPlace + "','" + aMinNumberOfVolunteer + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -59,35 +57,32 @@ namespace PoliceVolnteerDAL
         }
 
         //delete activity row by activity code(by key) from activity table
-        public static bool DelActivity(int activityCode)
+        public static void DelActivity(int activityCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM Activity WHERE ActivityCode=" + activityCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all activity rows from activity table
-        public static bool DelAllActivitys()
+        public static void DelAllActivitys()
         {
             try
             {
                 string deleteSQL;
                 deleteSQL = "DELETE * FROM Activity";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
-            catch
+            catch(Exception e)
             {
-                return false;
+                throw e;
             }
 
         }

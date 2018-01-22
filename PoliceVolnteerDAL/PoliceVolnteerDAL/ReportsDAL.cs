@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class ReportsDAL
     {
         //Add new report row to Reports table and return state boolean
-        public static bool AddReport(string rPhoneNumber, DateTime rReportDate, int rActivityCode, string rDescription)
+        public static void AddReport(string rPhoneNumber, DateTime rReportDate, int rActivityCode, string rDescription)
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ReportDate], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "','" + rReportDate.ToShortDateString() + "','"  + rActivityCode + "','" + rDescription + "')");
-                return true;
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO Reports ([PhoneNumber], [ReportDate], [ActivityCode], [Description]) VALUES ('" + rPhoneNumber + "','" + rReportDate.ToShortDateString() + "','" + rActivityCode + "','" + rDescription + "')");
             }
             catch (Exception e)
             {
                 throw e;
-                return false;
             }
         }
 
@@ -61,10 +59,10 @@ namespace PoliceVolnteerDAL
         }
 
         //change field value of report row by phoneNumber and activityCode in Reports table
-        public static bool UpdateFrom(string phoneNumber, int activityCode, FieldValue<ReportsField> change)
+        public static void UpdateFrom(string phoneNumber, int activityCode, FieldValue<ReportsField> change)
         {
-            if(change.Field == ReportsField.ActivityCode || change.Field == ReportsField.PhoneNumber)
-                return false;
+            if (change.Field == ReportsField.ActivityCode || change.Field == ReportsField.PhoneNumber)
+                throw new Exception("ActivityCode or PhoneNumber cannot be changed");
             try
             {
                 DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM Reports WHERE PhoneNumber='{0}' AND ActivityCode='{1}'", phoneNumber, activityCode), "Reports");
@@ -74,29 +72,29 @@ namespace PoliceVolnteerDAL
                     dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM Reports", "Reports");
                 }
-                return true;
+                else
+                {
+                    throw new ArgumentException("PhoneNumber or ActivityCode not valid");
+                }
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete report row by phoneNumber code(by key) from Reports table
-        public static bool DelReport(string phoneNumber)
+        public static void DelReport(string phoneNumber)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM Reports WHERE PhoneNumber='" + phoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }
