@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class TypeToActivityDAL
     {
         //Add new type to activity row to TypeToActivity table and return state boolean
-        public static bool AddTypeToActivity(string tTypeName)
+        public static void AddTypeToActivity(string tTypeName)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO TypeToActivity ([typeName]) VALUES ('" + tTypeName + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -59,19 +57,17 @@ namespace PoliceVolnteerDAL
         }
 
         //delete type to activity row by type code(by key) from TypeToActivity table
-        public static bool DelTypeToActivity(int typeCode)
+        public static void DelTypeToActivity(int typeCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM TypeToActivity WHERE typeCode=" + typeCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

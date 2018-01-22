@@ -13,7 +13,7 @@ namespace PoliceVolnteerDAL
     public static class VolunteerInfoDAL
     {
         //a function that adds a new volnteer to the system. the function creates the volunteer in the VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table if nececery.
-        public static bool AddVolunteer(string vPhoneNumber, string vEmergencyNumber, string vFName, string vLName, DateTime vBirthDate, string vUserName, string vPassword, string vHomeAddress, string vHomeCity, string vEmailAddress, string vID, string PoliceID, string ServeCity, DateTime startDate, int type, string CarID = "")
+        public static void AddVolunteer(string vPhoneNumber, string vEmergencyNumber, string vFName, string vLName, DateTime vBirthDate, string vUserName, string vPassword, string vHomeAddress, string vHomeCity, string vEmailAddress, string vID, string PoliceID, string ServeCity, DateTime startDate, int type, string CarID = "")
         {
             bool Info = false, PoliceInfo = false, CarInfo = false;
             try
@@ -30,7 +30,6 @@ namespace PoliceVolnteerDAL
                     CarToVolunteerDAL.AddCar(vPhoneNumber, CarID);
                     CarInfo = true;
                 }
-                return true;
             }
             catch(Exception e)
             {
@@ -46,8 +45,7 @@ namespace PoliceVolnteerDAL
                 {
                     DelUser(vPhoneNumber);
                 }
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -83,7 +81,7 @@ namespace PoliceVolnteerDAL
         }
 
         //change value of volunteer row field in VolunteerInfo table
-        public static bool UpdateFrom(string UPhoneNumber, FieldValue<VolunteerInfoDALField> change)
+        public static void UpdateFrom(string UPhoneNumber, FieldValue<VolunteerInfoDALField> change)
         {
             try
             {
@@ -94,17 +92,19 @@ namespace PoliceVolnteerDAL
                     dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerInfo", "VolunteerInfo");
                 }
-                return true;
+                else
+                {
+                    throw new ArgumentException("PhoneNumber not valid");
+                }
             }
             catch(Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete volunteer row by phone number(by key) from VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table
-        public static bool DelUser(string UPhoneNumber)
+        public static void DelUser(string UPhoneNumber)
         {
             try
             {
@@ -113,16 +113,15 @@ namespace PoliceVolnteerDAL
                 CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String, OperatorType.Equals));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
-            catch
+            catch(Exception e)
             {
-                return false;
+                throw e;
             }
         }
 
         //delete all volunteer rows from VolunteerInfo table, VolnteerPoliceInfo table and CarToVolnteer table
-        public static bool DelAllUsers()
+        public static void DelAllUsers()
         {
             try
             {
@@ -131,12 +130,10 @@ namespace PoliceVolnteerDAL
                 CarToVolunteerDAL.DelAllCars();
                 deleteSQL = "DELETE * FROM VolunteerInfo";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch(Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class CourseDAL
     {
         //Add new course row to Course table and return state boolean
-        public static bool AddCourse(string cCourseName, DateTime cCourseDate, DateTime cStartTime, DateTime cFinishTime, string cNameOfInstructor, string cIsRequeired, string cPlace, string cDescription, int cValidityCode)
+        public static void AddCourse(string cCourseName, DateTime cCourseDate, DateTime cStartTime, DateTime cFinishTime, string cNameOfInstructor, string cIsRequeired, string cPlace, string cDescription, int cValidityCode)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO Course ([CourseName], [CourseDate], [StartTime], [FinishTime], [NameOfInstructor], [IsRequeired], [Place], [Description], [ValidityCode]) VALUES ('" + cCourseName + "'," + cCourseDate.ToOADate() + "," + cStartTime.ToOADate() + "," + cFinishTime.ToOADate() + ",'" + cNameOfInstructor + "','" + cIsRequeired + "','" + cPlace + "','" + cDescription + "','" + cValidityCode + "')");
-                return true;
             }
             catch(Exception e)
             {
                 throw e;
-                return false;
             }
         }
 
@@ -59,23 +57,18 @@ namespace PoliceVolnteerDAL
         }
 
         //delete course row by course code(by key) from Course table
-        public static bool DelCourse(int courseCode)
+        public static void DelCourse(int courseCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM Course WHERE CourseCode=" + courseCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
-
-        
-
     }
 }

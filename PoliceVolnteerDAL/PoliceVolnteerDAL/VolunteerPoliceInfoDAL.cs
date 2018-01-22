@@ -13,17 +13,15 @@ namespace PoliceVolnteerDAL
     public class VolunteerPoliceInfoDAL
     {
         //Add new volunteer police row to VolunteerPoliceInfo table and return state boolean
-        public static bool AddVolunteer(string phoneNumber, string policeID, string serveCity, DateTime startDate, int type)
+        public static void AddVolunteer(string phoneNumber, string policeID, string serveCity, DateTime startDate, int type)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerPoliceInfo ([PhoneNumber],[PoliceID],[ServeCity],[StartDate],[Type]) VALUES ('" + phoneNumber + "','" + policeID + "','" + serveCity + "','" + startDate.ToShortDateString() + "','" + type + "')");
-                return true;
             }
             catch (Exception e)
             {
                 throw e;
-                return false;
             }
         }
 
@@ -59,10 +57,10 @@ namespace PoliceVolnteerDAL
         }
 
         //change value of volunteer police row field in VolunteerPoliceInfo table
-        public static bool UpdateFrom(string UPhoneNumber, FieldValue<VolunteerPoliceInfoDALField> change)
+        public static void UpdateFrom(string UPhoneNumber, FieldValue<VolunteerPoliceInfoDALField> change)
         {
             if (change.Field == VolunteerPoliceInfoDALField.PhoneNumber)
-                return false;
+                throw new Exception("PhoneNumber cannot be changed");
             try
             {
                 DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM VolunteerPoliceInfo WHERE PhoneNumber='{0}'", UPhoneNumber), "VolunteerPoliceInfo");
@@ -72,43 +70,42 @@ namespace PoliceVolnteerDAL
                     dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerPoliceInfo", "VolunteerPoliceInfo");
                 }
-                return true;
+                else
+                {
+                    throw new ArgumentException("PhoneNumber not valid");
+                }
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete volunteer police row by phone number(by key) from VolunteerPoliceInfo table
-        public static bool DelUser(string vPhoneNumber)
+        public static void DelUser(string vPhoneNumber)
         {
             try
             {
                 string deleteSQL = "DELETE * FROM VolunteerPoliceInfo WHERE PhoneNumber='" + vPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
-            catch
+            catch(Exception e)
             {
-                return false;
+                throw e;
             }
         }
 
         //delete all volunteer police rows from VolunteerPoliceInfo table
-        public static bool DelAllUsers()
+        public static void DelAllUsers()
         {
             try
             {
                 string deleteSQL = "DELETE * FROM VolunteerPoliceInfo";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

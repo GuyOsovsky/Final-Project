@@ -14,17 +14,15 @@ namespace PoliceVolnteerDAL
     public class CoursesToVolunteerDAL
     {
         //Add new course to volunteer row to CoursesToVolunteer table and return state boolean
-        public static bool AddCoursesToVolunteer(string cPhoneNumber, int cCourseCode)
+        public static void AddCoursesToVolunteer(string cPhoneNumber, int cCourseCode)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO CoursesToVolunteer ([PhoneNumber], [CourseCode], [status]) VALUES ('" + cPhoneNumber + "','" + cCourseCode + "','0')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -60,24 +58,22 @@ namespace PoliceVolnteerDAL
         }
 
         //delete course to volunteer row by phoneNumber and course code(by 2 keys/complex key) from CoursesToVolunteer table
-        public static bool DelCourse(string phoneNumber, int courseCode)
+        public static void DelCourse(string phoneNumber, int courseCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM CoursesToVolunteer WHERE CourseCode=" + courseCode + " AND PhoneNumber='" + phoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //change status of course to volunteer row to true in CoursesToVolunteer table by phoneNumber and course code(by 2 keys/complex key)
-        public static bool Participated(string phoneNumber, int courseCode)
+        public static void Participated(string phoneNumber, int courseCode)
         {
             try
             {
@@ -88,12 +84,14 @@ namespace PoliceVolnteerDAL
                     dr["status"] = "true";
                     OleDbHelper2.update(ds, "SELECT * FROM CoursesToVolunteer", "CoursesToVolunteer");
                 }
-                return true;
+                else
+                {
+                    throw new ArgumentException("CourseCode and PhoneNumber not valid");
+                }
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

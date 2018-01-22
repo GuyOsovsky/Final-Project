@@ -14,17 +14,15 @@ namespace PoliceVolnteerDAL
     public class ShiftsTypesDAL
     {
         //Add new shift type row to ShiftsType table and return state boolean
-        public static bool AddShift(string TypeName)
+        public static void AddShift(string TypeName)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO ShiftsType ([TypeName]) VALUES ('" + TypeName + "')");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
@@ -60,34 +58,30 @@ namespace PoliceVolnteerDAL
         }
 
         //delete shift type row by ShiftsType code(by key) from ShiftsType table
-        public static bool DelShift(int typeCode)
+        public static void DelShift(int typeCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM ShiftsType WHERE typeCode=" + typeCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all shift type rows from ShiftsType table
-        public static bool DelAll()
+        public static void DelAll()
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("DELETE * FROM ShiftsType");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

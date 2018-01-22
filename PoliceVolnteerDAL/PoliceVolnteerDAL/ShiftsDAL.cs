@@ -14,17 +14,15 @@ namespace PoliceVolnteerDAL
     public class ShiftsDAL
     {
         //Add new shift row to Shifts table and return state boolean
-        public static bool AddShift(int typeCode, DateTime dateshift, DateTime startTime, DateTime finishTime, string place)
+        public static void AddShift(int typeCode, DateTime dateshift, DateTime startTime, DateTime finishTime, string place)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO Shifts ([TypeCode], [DateOfShift], [StartTime], [FinishTime], [Place]) VALUES ('" + typeCode + "'," + dateshift.ToOADate() + "," + startTime.ToOADate() + "," + finishTime.ToOADate() + ",'" + place + "')");
-                return true;
             }
             catch (Exception e)
             {
                 throw e;
-                return false;
             }
         }
 
@@ -60,34 +58,30 @@ namespace PoliceVolnteerDAL
         }
 
         //delete shift row by shift code(by key) from Shifts table
-        public static bool DelShift(int shiftCode)
+        public static void DelShift(int shiftCode)
         {
             string deleteSQL;
             try
             {
                 deleteSQL = "DELETE * FROM Shifts WHERE ShiftCode=" + shiftCode + "";
                 OleDbHelper2.DoQuery(deleteSQL);
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all shift rows from Shifts table
-        public static bool DelAll()
+        public static void DelAll()
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("DELETE * FROM Shifts");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
     }

@@ -12,7 +12,7 @@ namespace PoliceVolnteerDAL
     public class StockDAL
     {
         //Add new stock row to Stock table and return state boolean
-        public static bool AddItemToStock(string iName, int startingNumber, bool Recycable)
+        public static void AddItemToStock(string iName, int startingNumber, bool Recycable)
         {
             try
             {
@@ -20,13 +20,10 @@ namespace PoliceVolnteerDAL
                 if (Recycable)
                     rec++;
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO Stock ([ItemName],[AmountInStock],[Recyclable]) VALUES ('" + iName + "','" + startingNumber + "','" + rec + "')");
-
-                return true;
             }
             catch(Exception e)
             {
-                //throw e
-                return false;
+                throw e;
             }
         }
 
@@ -62,7 +59,7 @@ namespace PoliceVolnteerDAL
         }
 
         //update number of items in stock row in Stock table
-        public static bool UpdateStock(int itemID, int amount)
+        public static void UpdateStock(int itemID, int amount)
         {
             try
             {
@@ -77,46 +74,43 @@ namespace PoliceVolnteerDAL
                     }
                     else
                     {
-                        return false;
+                        throw new Exception("New amount not valid");
                     }
                 }
-                return true;
+                else
+                {
+                    throw new ArgumentException("ItemID not valid");
+                }
             }
-
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete stock row by item code(by key) from Stock table
-        public static bool DelItem(int itemID)
+        public static void DelItem(int itemID)
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("DELETE * FROM Stock WHERE ItemID=" + itemID + "");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
         //delete all stock rows from Stock table
-        public static bool DelAll()
+        public static void DelAll()
         {
             try
             {
                 OleDbHelper2.ExecuteNonQuery("DELETE * FROM Stock");
-                return true;
             }
             catch (Exception e)
             {
-                //throw e;
-                return false;
+                throw e;
             }
         }
 
