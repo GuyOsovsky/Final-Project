@@ -13,6 +13,11 @@ namespace PoliceVolunteerUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void Fill_User_Settings()
+        {
             VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
             DataTable volunteerTable = new DataTable();
             volunteerTable.Columns.Add("מספר טלפון", typeof(String));
@@ -40,12 +45,35 @@ namespace PoliceVolunteerUI
             volunteerTable.Rows[0][9] = volunteer.PoliceID;
             volunteerTable.Rows[0][10] = volunteer.ServeCity;
             volunteerTable.Rows[0][11] = volunteer.StartDate;
+            //volunteerTable.Rows.Add();
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    volunteerTable.Rows[0][i] = "";
+            //}
             DataView dataView = new DataView(volunteerTable);
-            DataList1.DataSource = dataView;
-            DataList1.DataBind();
-            //UserInformationGV.DataSource = dataView;
-            //UserInformationGV.DataBind();
-            //UserInformationGV.
+            UserInformation.DataSource = dataView;
+            UserInformation.DataBind();
         }
+
+        protected void Edit_Settings(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void UserInformation_RowEditing(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void UserInformation_RowEditing_RowCancelingEdit(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void UserInformation_RowEditing_RowDeleting(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
