@@ -134,7 +134,7 @@ MediasBL#
 להוסיף מחיקות לVolunteerToValidityDAL#
 לשנות drc#
 לבדוק GetTrasfersNotReturned() (עובד כמו כריש!)#
-לאוסובסקי- הערות למחלקה הראשית של הBL
+לאוסובסקי- הערות למחלקה הראשית של הBL וגם ה-exceptions לתקן שם!
 תיקון catch
 Exceptios BL
 StockDAL update Exceptions#
@@ -145,6 +145,7 @@ VolunteerTypesDAL update Exceptions#
 VolunteerPoliceInfoDAL update Exceptions#
 VolunteerInfoDAL add and update Exceptions#
 CoursesToVolunteerDAL participated Exceptions#
+MediaBL DeleteFile Exceptions
 
 1.00.03
 דף גולש(דף בית[+התחברות])
