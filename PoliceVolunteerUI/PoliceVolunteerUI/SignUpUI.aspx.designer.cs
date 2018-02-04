@@ -148,6 +148,15 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator BirthDateRegularExpressionV;
         
         /// <summary>
+        /// DateCustomV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator DateCustomV;
+        
+        /// <summary>
         /// UserNameIN control.
         /// </summary>
         /// <remarks>

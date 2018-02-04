@@ -28,3 +28,11 @@ function checkId(sum, digit) {
         return true;
     return false;
 }
+function DateValidation() {
+    var date = document.getElementById("BirthDateIN").value;
+    var today = Date.now();
+    years = today.getFullYear() - date.getFullYear();
+    if (!(years > 15))
+        return false;
+    return true;
+}

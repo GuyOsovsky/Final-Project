@@ -78,19 +78,6 @@ namespace PoliceVolunteerUI
                 new VolunteerBL(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAdress, homeCity, email, id, policeId, serveCity, type);
             }
         }
-        //public string PhoneNumber { get; set; }
-        //public string EmergencyNumber { get; set; }
-        //public string FName { get; set; }
-        //public string LName { get; set; }
-        //public DateTime BirthDate { get; set; }
-        //public string UserName { get; set; }
-        //public string Password { get; set; }
-        //public string HomeAddress { get; set; }
-        //public string HomeCity { get; set; }
-        //public string EmailAddress { get; set; }
-        //public string ID { get; set; }
-        //public string PoliceID { get; set; }
-        //public string ServeCity { get; set; }
-        //public VolunteerTypeBL Type { get; set; }
+        
     }
 }
