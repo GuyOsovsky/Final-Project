@@ -55,22 +55,62 @@ namespace PoliceVolunteerUI
             UserInformation.DataBind();
         }
 
+        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //// First, make sure we're dealing a Data Row
+            if (e.Row.RowType != DataControlRowType.Header &&
+                e.Row.RowType != DataControlRowType.Footer &&
+                e.Row.RowType != DataControlRowType.Pager)
+            { 
+
+                if (e.Row.RowState != (DataControlRowState.Edit | DataControlRowState.Alternate) &&
+                    e.Row.RowState != (DataControlRowState.Edit | DataControlRowState.Normal))
+                {
+                    // חישוב מחיר כולל לשורה
+                    Label l1 = (Label)e.Row.Cells[4].FindControl("LabelSum");
+                    //object price = DataBinder.Eval(e.Row.DataItem, "Price");
+                    //object Quantity = DataBinder.Eval(e.Row.DataItem, "Quantity");
+                    short Quantity = Convert.ToInt16(e.Row.Cells[1].Text);
+                    decimal price = Convert.ToDecimal(e.Row.Cells[2].Text);
+                    decimal s = (decimal)(price * Quantity);
+                    l1.Text = s.ToString();
+                }
+                else
+                {
+                    Label l1 = (Label)e.Row.Cells[3].FindControl("LabelSum");
+                    //object price = DataBinder.Eval(e.Row.DataItem, "Price");
+                    //object Quantity = DataBinder.Eval(e.Row.DataItem, "Quantity");
+                    short Quantity = Convert.ToInt16(((TextBox)e.Row.Cells[1].Controls[0]).Text);
+                    decimal price = Convert.ToDecimal(e.Row.Cells[2].Text);
+
+                    decimal s = (decimal)(price * Quantity);
+                    l1.Text = s.ToString();
+                }
+            }
+
+            // הצגת מחיר סופי של הסל 
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                Label l1 = (Label)e.Row.Cells[3].FindControl("LabelFooter");
+
+                mShoppingBag = (Bag.ShoppingBag)Session["myShoppingBag"];
+
+                double s = mShoppingBag.GetFinalPrice();
+                l1.Text = s.ToString();
+            }
+        }
+
         protected void Edit_Settings(object sender, EventArgs e)
         {
 
         }
 
-        protected void UserInformation_RowEditing(object sender, EventArgs e)
+        protected void UserInformation_RowEditing_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
 
         }
 
-        protected void UserInformation_RowEditing_RowCancelingEdit(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void UserInformation_RowEditing_RowDeleting(object sender, EventArgs e)
+        protected void UserInformation_RowEditing1(object sender, GridViewEditEventArgs e)
         {
 
         }

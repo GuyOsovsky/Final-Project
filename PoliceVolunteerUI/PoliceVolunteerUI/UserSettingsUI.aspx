@@ -11,12 +11,11 @@
         </center>
     </div>
     <center>
-    <<%--asp:GridView ID="UserInformation" runat="server"></asp:GridView>--%>
-        <asp:GridView ID="UserInformation" runat="server" AutoGenerateColumns="False" OnRowEditing="UserInformation_RowEditing"
+        <asp:GridView ID="UserInformation" runat="server" AutoGenerateColumns="False" OnRowEditing="UserInformation_RowEditing1"
             Style="z-index: 101; left: 18px; position: relative; top: 9px" 
         OnRowCancelingEdit="UserInformation_RowEditing_RowCancelingEdit" 
         OnRowUpdating="UserInformation_RowEditing_RowUpdating" OnRowDataBound="GridView2_RowDataBound" 
-        OnRowDeleting="UserInformation_RowEditing_RowDeleting" BorderColor="#000099" CellPadding="4" ShowFooter="True" 
+        BorderColor="#000099" CellPadding="4" ShowFooter="True" 
                     ForeColor="#333333" GridLines="None" Width="100%" DataKeyNames="ProductID">
                    <AlternatingRowStyle BackColor="White" />
             <Columns>
