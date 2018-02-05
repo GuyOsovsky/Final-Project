@@ -5,6 +5,7 @@
     var sum = idSum(id);
     var isValid = checkId(sum, checkDigit);
     args.IsValid = isValid;
+
 }
 function idSum(id) {
     if (id > 99999999)
