@@ -5,6 +5,7 @@
     var sum = idSum(id);
     var isValid = checkId(sum, checkDigit);
     args.IsValid = isValid;
+
 }
 function idSum(id) {
     if (id > 99999999)
@@ -27,4 +28,11 @@ function checkId(sum, digit) {
     if ((sum - digit) % 10 == 0)
         return true;
     return false;
+}
+function DateValidation(oSrc, args) {
+    var date = args.Value;
+    userYear = date[0]+date[1]+date[2]+date[3];
+    var today = new Date();
+    var years = today.getFullYear() - userYear;
+    args.IsValid = years > 17 ? true : false;
 }

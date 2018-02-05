@@ -136,16 +136,16 @@ MediasBL#
 לבדוק GetTrasfersNotReturned() (עובד כמו כריש!)#
 לאוסובסקי- הערות למחלקה הראשית של הBL וגם ה-exceptions לתקן שם!
 תיקון catch
-Exceptios BL
-StockDAL update Exceptions#
-ReportsDAL update Exceptions#
-StockToVolunteerDAL add Exceptions#
-VolunteerToValidityDAL update Exceptions#
-VolunteerTypesDAL update Exceptions#
-VolunteerPoliceInfoDAL update Exceptions#
-VolunteerInfoDAL add and update Exceptions#
-CoursesToVolunteerDAL participated Exceptions#
-MediaBL DeleteFile Exceptions
+Exceptios BL:
+StockDAL update#
+ReportsDAL update#
+StockToVolunteerDAL add#
+VolunteerToValidityDAL update#
+VolunteerTypesDAL update#
+VolunteerPoliceInfoDAL update#
+VolunteerInfoDAL add and update#
+CoursesToVolunteerDAL participated#
+MediaBL DeleteFile#
 
 1.00.03
 דף גולש(דף בית[+התחברות])
