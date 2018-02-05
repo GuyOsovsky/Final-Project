@@ -55,7 +55,7 @@ namespace PoliceVolunteerUI
             UserInformation.DataBind();
         }
 
-        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void UserInformation_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ////// First, make sure we're dealing a Data Row
             //if (e.Row.RowType != DataControlRowType.Header &&
@@ -110,7 +110,12 @@ namespace PoliceVolunteerUI
 
         }
 
-        protected void UserInformation_RowEditing1(object sender, GridViewEditEventArgs e)
+        protected void UserInformation_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void UserInformation_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
         }
