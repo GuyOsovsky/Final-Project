@@ -319,13 +319,13 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator IDRegularExpressionV;
         
         /// <summary>
-        /// CustomValidator1 control.
+        /// IdCustomV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+        protected global::System.Web.UI.WebControls.CustomValidator IdCustomV;
         
         /// <summary>
         /// PoliceIDIN control.

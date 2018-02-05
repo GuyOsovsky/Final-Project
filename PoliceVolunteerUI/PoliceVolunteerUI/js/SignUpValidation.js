@@ -29,11 +29,10 @@ function checkId(sum, digit) {
         return true;
     return false;
 }
-function DateValidation() {
-    var date = document.getElementById("BirthDateIN").value;
-    var today = Date.now();
-    years = today.getFullYear() - date.getFullYear();
-    if (!(years > 15))
-        return false;
-    return true;
+function DateValidation(oSrc, args) {
+    var date = args.Value;
+    userYear = date[0]+date[1]+date[2]+date[3];
+    var today = new Date();
+    var years = today.getFullYear() - userYear;
+    args.IsValid = years > 17 ? true : false;
 }
