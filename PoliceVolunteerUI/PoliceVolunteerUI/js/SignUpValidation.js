@@ -1,10 +1,10 @@
-﻿function idValidation(obj) {
-    var id = document.getElementById("IDIN").value;
+﻿function idValidation(oSrc, args) {
+    var id = args.Value;
     var checkDigit = id % 10;
     id = parseInt(id /10);
     var sum = idSum(id);
     var isValid = checkId(sum, checkDigit);
-    alert(isValid);
+    args.IsValid = isValid;
 }
 function idSum(id) {
     if (id > 99999999)
@@ -12,7 +12,7 @@ function idSum(id) {
     var mulArr = [2, 1, 2, 1, 2, 1, 2, 1];
     var sum = 0;
     for (var i = 0 ; i < 8; i++) {
-        var temp = (id % 10) * mulArr[i]
+        var temp = (id % 10) * mulArr[i];
         if (temp > 9) {
             temp = parseInt(temp % 10) + parseInt((temp / 10) % 10);
         }

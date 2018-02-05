@@ -87,7 +87,8 @@
                 <br />
                 <asp:TextBox ID="IDIN" runat="server" TextMode="SingleLine" CssClass="form-control" ClientIDMode="Static" dir="rtl"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="IDRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="IDIN" ValidationGroup="ShinIn"></asp:RequiredFieldValidator>
-                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="CustomValidator" ControlToValidate="IDIN" ClientValidationFunction="idValidation" ValidationGroup="ShinIn"></asp:CustomValidator>
+                <asp:RegularExpressionValidator ID="IDRegularExpressionV" runat="server" ErrorMessage="אורך תעודת זהות לא מתאים" ValidationGroup="ShinIn" ValidationExpression="\d{9}" ControlToValidate="IDIN"></asp:RegularExpressionValidator> <%--fix the validation group--%>
+                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="תעודת זהות לא תקינה" ControlToValidate="IDIN" ClientValidationFunction="idValidation" ValidationGroup="ShinIn"></asp:CustomValidator>
             </div>
             <div class="form-group" >
                 <label for="PoliceIDIN">מספר מזהה במשטרה:</label>
