@@ -9,32 +9,31 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerBL
 {
-    public class ItemBL
+    public class StockBL
     {
-        public string ItemName { get; set; }
-        public int ItemID { get; set; }
-        public int AmountInStock { get; set; }
-        public bool Recycable { get; set; }
+        public List<ItemBL> StockList { get; set; }
 
-        //build and adding to database
-        public ItemBL(string itemName, int amountInStock, bool recycable)
+        //create StockList and add all the ItemBL objects
+        public StockBL()
         {
-            StockDAL.AddItemToStock(itemName, amountInStock, recycable);
-            this.ItemName = itemName;
-            this.AmountInStock = amountInStock;
-            this.Recycable = recycable;
-            this.ItemID = (int)StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemName, itemName, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["ItemID"];
+            this.StockList = new List<ItemBL>();
+            DataRowCollection stockRows = StockDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < stockRows.Count; i++)
+            {
+                StockList.Add(new ItemBL((int)stockRows[i]["ItemID"]));
+            }
         }
 
-        //build from the database
-        public ItemBL(int itemID)
+        //return all items from stock
+        public DataSet GetAllItems()
         {
-            DataRow stockRow = StockDAL.GetTable(new FieldValue<StockField>(StockField.ItemID, itemID, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
-            this.ItemID = itemID;
-            this.ItemName = (string)stockRow["ItemName"];
-            this.AmountInStock = (int)stockRow["AmountInStock"];
-            this.Recycable = (bool)stockRow["Recyclable"];
+            return StockDAL.GetTable();
         }
 
+        //return all existing transferences
+        public DataTable GetAllTransference()
+        {
+            return StockToVolunteerDAL.GetTable().Tables[0];
+        }
     }
 }

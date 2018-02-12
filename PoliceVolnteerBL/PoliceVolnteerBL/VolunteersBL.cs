@@ -52,10 +52,10 @@ namespace PoliceVolnteerBL
             if (VolunteerList.Count > 0)
             {
 
-                NotReturnedItems = VolunteerList[0].GetItemsInPossession();
+                NotReturnedItems = VolunteerList[0].GetItemsInPossession().Tables[0];
                 for (int i = 1; i < VolunteerList.Count; i++)
                 {
-                    NotReturnedItems.Merge(VolunteerList[i].GetItemsInPossession());
+                    NotReturnedItems.Merge(VolunteerList[i].GetItemsInPossession().Tables[0]);
                 }
                 return NotReturnedItems;
             }

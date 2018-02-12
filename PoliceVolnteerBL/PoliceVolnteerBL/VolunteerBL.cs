@@ -121,6 +121,11 @@ namespace PoliceVolnteerBL
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
         }
 
+        public static DataSet GetAllTable()
+        {
+            return VolunteerInfoDAL.GetTable();
+        }
+
         public DataSet VolunteerToDataSet()
         {
             DataSet volunteer = new DataSet();
@@ -278,7 +283,7 @@ namespace PoliceVolnteerBL
             CoursesToVolunteerDAL.AddCoursesToVolunteer(this.PhoneNumber, CourseCode);
         }
 
-        public DataTable GetItemsInPossession()
+        public DataSet GetItemsInPossession()
         {
             Queue<FieldValue<StockToVolunteerField>> parameters = new Queue<FieldValue<StockToVolunteerField>>();
             parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, FieldType.String, OperatorType.Equals));
@@ -288,7 +293,7 @@ namespace PoliceVolnteerBL
             {
                 parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ItemID, item["ItemID"], FieldType.Number, OperatorType.NotEquals));
             }
-            return StockToVolunteerDAL.GetTable(parameters, true).Tables[0];
+            return StockToVolunteerDAL.GetTable(parameters, true);
 
         }
 
@@ -318,15 +323,15 @@ namespace PoliceVolnteerBL
             }
         }
 
-        public DataTable GetValidities()
+        public DataSet GetValidities()
         {
-            return VolunteerToValidityDAL.GetTable(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
+            return VolunteerToValidityDAL.GetTable(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals));
         }
 
         public DataTable GetExpiraedValidities() //לאפשר למנהל לשנות אופסט של ימים שיתריע לו מתי נגמר למתנדב הרשיונות
         {
             //get all user's validities
-            DataTable AllValidities = this.GetValidities();
+            DataTable AllValidities = this.GetValidities().Tables[0];
             //create mask to filter validities by todays date
             FieldValue<VolunteerToValidityField> Mask = new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.EndDate, DateTime.Now.ToShortDateString(), FieldType.Date, OperatorType.LowerAndEquals);
             //filter unnececery validities

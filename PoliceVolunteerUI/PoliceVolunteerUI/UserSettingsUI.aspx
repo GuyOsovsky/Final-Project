@@ -3,7 +3,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="page-header">
+
+    <asp:GridView ID="UserInformation" runat="server" AutoGenerateColumns="true" >
+
+    </asp:GridView>
+
+    <asp:GridView ID="UserValiditys" runat="server" AutoGenerateColumns="true" >
+
+    </asp:GridView>
+
+    <%--<div class="page-header">
         <center>
             <h1>
                 פרטים אישיים
@@ -45,7 +54,7 @@
             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
         </asp:GridView>
 
-    <asp:Button ID="TableButton" runat="server" Text="edit" OnClick="Edit_Settings"></asp:Button>
+    <asp:Button ID="TableButton" runat="server" Text="edit" OnClick="Edit_Settings"></asp:Button>--%>
 
     <%--<asp:DataList ID="UserInformation" runat="server">--%>
    <%-- </asp:DataList>--%>

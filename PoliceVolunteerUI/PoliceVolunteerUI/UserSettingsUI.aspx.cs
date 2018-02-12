@@ -13,8 +13,45 @@ namespace PoliceVolunteerUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+            // The Page is accessed for the first time. 
+            if (!IsPostBack)
+            {
+                //PopulateGrid();
+                Fill_User_Settings();
+                Fill_User_Validitys();
+                
+                // Enable the GridView paging option and  
+                // specify the page size. 
+                //UserInformation.AllowPaging = true;
+                //UserInformation.PageSize = 15;
+
+
+                // Enable the GridView sorting option. 
+                //UserInformation.AllowSorting = true;
+
+                // Initialize the sorting expression. 
+                //ViewState["SortExpression"] = "PersonID ASC";
+
+
+                // Populate the GridView. 
+                //BindGridView();
+            } 
+
         }
+
+        /*protected DataSet GetData()
+        {
+            //VolunteerBL volnteerInfo = new VolunteerBL("a");
+            //return volnteerInfo.VolunteerToDataSet();
+            return VolunteerBL.GetAllTable();
+        }*/
+
+        /*protected void PopulateGrid()
+        {
+            UserInformation.DataSource = GetData();
+            UserInformation.DataBind();
+        }*/
 
         protected void Fill_User_Settings()
         {
@@ -55,6 +92,16 @@ namespace PoliceVolunteerUI
             UserInformation.DataBind();
         }
 
+        protected void Fill_User_Validitys()
+        {
+            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
+            DataSet ValidityDataSet = volunteer.GetValidities();
+            UserValiditys.DataSource = ValidityDataSet;
+            UserValiditys.DataBind();
+        }
+
+
+        /*
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             ////// First, make sure we're dealing a Data Row
@@ -113,7 +160,7 @@ namespace PoliceVolunteerUI
         protected void UserInformation_RowEditing1(object sender, GridViewEditEventArgs e)
         {
 
-        }
+        }*/
 
     }
 }

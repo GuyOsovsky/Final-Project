@@ -56,8 +56,8 @@
     <Compile Include="ShiftsBL.cs" />
     <Compile Include="ShiftsTypesBL.cs" />
     <Compile Include="ShiftTypesBL.cs" />
+    <Compile Include="ItemBL.cs" />
     <Compile Include="StockBL.cs" />
-    <Compile Include="StocksBL.cs" />
     <Compile Include="ValidityTypeBL.cs" />
     <Compile Include="ValidityTypesBL.cs" />
     <Compile Include="VolunteerBL.cs" />
