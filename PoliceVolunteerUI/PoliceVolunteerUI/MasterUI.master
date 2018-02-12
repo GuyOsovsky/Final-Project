@@ -93,7 +93,7 @@
                 <br />
                 <asp:TextBox ID="passwordLog" runat="server" TextMode="Password" CssClass="form-control" dir="rtl" Font-Size="Small" ValidationGroup="LogIn"></asp:TextBox>
                 <br />
-                <asp:Button ID="LogInSubmit" runat="server" OnClick="LogIn" Text="שלח" ValidationGroup="LogIn" />
+                <asp:Button ID="LogInSubmit" runat="server" OnClick="LogIn" Text="שלח" ValidationGroup="LogIn" Height="" />
                 <%
                     }
                     else
