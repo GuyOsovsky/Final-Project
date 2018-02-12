@@ -38,6 +38,5 @@
             <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
         </asp:GridView>
-    <asp:Button ID="TableButton" runat="server" Text="edit" OnClick="Edit_Settings"></asp:Button>
     </center>
 </asp:Content>
