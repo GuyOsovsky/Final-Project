@@ -10,22 +10,22 @@ namespace PoliceVolnteerBL
 {
     public class VolunteerBL
     {
-        public string PhoneNumber { get; set; }
-        public string EmergencyNumber { get; set; }
-        public string FName { get; set; }
-        public string LName { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string HomeAddress { get; set; }
-        public string HomeCity { get; set; }
-        public string EmailAddress { get; set; }
-        public string ID { get; set; }
-        public string PoliceID { get; set; }
-        public string ServeCity { get; set; }
-        public DateTime StartDate { get; set; }
-        public VolunteerTypeBL Type { get; set; }
-        public bool Status { get; set; }
+        public string PhoneNumber { get; private set; }
+        public string EmergencyNumber { get; private set; }
+        public string FName { get; private set; }
+        public string LName { get; private set; }
+        public DateTime BirthDate { get; private set; }
+        public string UserName { get; private set; }
+        public string Password { get; private set; }
+        public string HomeAddress { get; private set; }
+        public string HomeCity { get; private set; }
+        public string EmailAddress { get; private set; }
+        public string ID { get; private set; }
+        public string PoliceID { get; private set; }
+        public string ServeCity { get; private set; }
+        public DateTime StartDate { get; private set; }
+        public VolunteerTypeBL Type { get; private set; }
+        public bool Status { get; private set; }
 
         public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, int type)
         {
@@ -121,29 +121,87 @@ namespace PoliceVolnteerBL
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
         }
 
+        public void UpdateVolunteer(object field, object value)
+        {
+            FieldType valueType;
+            if (field is VolunteerInfoDALField)
+            {
+                switch ((VolunteerInfoDALField)field)
+                {
+                    case VolunteerInfoDALField.EmailAddress:
+                    case VolunteerInfoDALField.EmergencyNumber:
+                    case VolunteerInfoDALField.FName:
+                    case VolunteerInfoDALField.HomeAddress:
+                    case VolunteerInfoDALField.HomeCity:
+                    case VolunteerInfoDALField.ID:
+                    case VolunteerInfoDALField.LName:
+                    case VolunteerInfoDALField.Password:
+                    case VolunteerInfoDALField.PhoneNumber:
+                    case VolunteerInfoDALField.UserName:
+                        valueType = FieldType.String;
+                        break;
+                    case VolunteerInfoDALField.BirthDate:
+                        valueType = FieldType.Date;
+                        break;
+                    case VolunteerInfoDALField.status:
+                        valueType = FieldType.Boolean;
+                        break;
+                    default:
+                        valueType = FieldType.String; //change to throw exeption
+                        break;
+                }
+                VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>((VolunteerInfoDALField)field, value, valueType, OperatorType.Equals));
+            }
+            if (field is VolunteerPoliceInfoDALField)
+            {
+                switch ((VolunteerPoliceInfoDALField)field)
+                {
+                    case VolunteerPoliceInfoDALField.PoliceID:
+                    case VolunteerPoliceInfoDALField.ServeCity:
+                        valueType = FieldType.String;
+                        break;
+                    case VolunteerPoliceInfoDALField.StartDate:
+                        valueType = FieldType.Date;
+                        break;
+                    case VolunteerPoliceInfoDALField.Type:
+                        valueType = FieldType.Number;
+                        break;
+                    default:
+                        valueType = FieldType.String; //change to throw exeption
+                        break;
+                }
+                VolunteerPoliceInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerPoliceInfoDALField>((VolunteerPoliceInfoDALField)field, value, valueType, OperatorType.Equals));
+            }
+            
+        }
+
         public DataSet VolunteerToDataSet()
         {
             DataSet volunteer = new DataSet();
             volunteer.Tables.Add();
-            //volunteer.Columns.Add("PhoneNumber", typeof(String));
-            //volunteer.Columns.Add("EmergencyNumber", typeof(String));
-            //volunteer.Columns.Add("FName", typeof(String));
-            //volunteer.Columns.Add("LName", typeof(String));
-            //volunteer.Columns.Add("BirthDate", typeof(DateTime));
-            //volunteer.Columns.Add("UserName", typeof(String));
-            //volunteer.Columns.Add("Password", typeof(String));
-            //volunteer.Columns.Add("HomeAddress", typeof(String));
-            //volunteer.Columns.Add("HomeCity", typeof(String));
-            //volunteer.Columns.Add("EmailAddress", typeof(String));
-            //volunteer.Columns.Add("ID", typeof(String));
-            //volunteer.Columns.Add("status", typeof(bool));
-            //volunteer.Columns.Add("PoliceID", typeof(String));
-            //volunteer.Columns.Add("ServeCity", typeof(String));
-            //volunteer.Columns.Add("StartDate", typeof(DateTime));
-            //volunteer.Rows.Add(new DataRow());
-            volunteer = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals), true);
-            //volunteerTable.Merge(volunteerTable);
-            //volunteer.//(policeInfoTable);
+            volunteer.Tables[0].Columns.Add("מספר טלפון", typeof(String));
+            volunteer.Tables[0].Columns.Add("מספר חירום", typeof(String));
+            volunteer.Tables[0].Columns.Add("שם פרטי", typeof(String));
+            volunteer.Tables[0].Columns.Add("שם משפחה", typeof(String));
+            volunteer.Tables[0].Columns.Add("יום הולדת", typeof(DateTime));
+            volunteer.Tables[0].Columns.Add("כתובת מגורים", typeof(String));
+            volunteer.Tables[0].Columns.Add("כתובת אימייל", typeof(String));
+            volunteer.Tables[0].Columns.Add("תעודת זהות", typeof(String));
+            volunteer.Tables[0].Columns.Add("מספר זיהוי משטרתי", typeof(String));
+            volunteer.Tables[0].Columns.Add("עיר שירות", typeof(String));
+            volunteer.Tables[0].Columns.Add("תאריך התחלה", typeof(DateTime));
+            volunteer.Tables[0].Rows.Add();
+            volunteer.Tables[0].Rows[0][0] = this.PhoneNumber;
+            volunteer.Tables[0].Rows[0][1] = this.EmergencyNumber;
+            volunteer.Tables[0].Rows[0][2] = this.FName;
+            volunteer.Tables[0].Rows[0][3] = this.LName;
+            volunteer.Tables[0].Rows[0][4] = this.BirthDate;
+            volunteer.Tables[0].Rows[0][5] = this.HomeAddress;
+            volunteer.Tables[0].Rows[0][6] = this.EmergencyNumber;
+            volunteer.Tables[0].Rows[0][7] = this.ID;
+            volunteer.Tables[0].Rows[0][8] = this.PoliceID;
+            volunteer.Tables[0].Rows[0][9] = this.ServeCity;
+            volunteer.Tables[0].Rows[0][10] = this.StartDate;
             return volunteer;
         }
 
@@ -280,6 +338,7 @@ namespace PoliceVolnteerBL
 
         public DataTable GetItemsInPossession()
         {
+            //create parameters for searching the StockToVolunteer table
             Queue<FieldValue<StockToVolunteerField>> parameters = new Queue<FieldValue<StockToVolunteerField>>();
             parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, FieldType.String, OperatorType.Equals));
             parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ReturnDate, new DateTime(1999, 1, 1), FieldType.Date, OperatorType.Equals));
@@ -477,6 +536,7 @@ namespace PoliceVolnteerBL
 
         public DataTable GetActivitys(DateTime Date, OperatorType Operator)
         {
+            //create parameters to filter the table
             FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, Date.ToShortDateString(), FieldType.Date, Operator);
             DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<ActivityField>> ActivitysCode = new Queue<FieldValue<ActivityField>>();
