@@ -22,12 +22,12 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.GridView UserInformation;
         
         /// <summary>
-        /// UserValiditys control.
+        /// TableButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView UserValiditys;
+        protected global::System.Web.UI.WebControls.Button TableButton;
     }
 }

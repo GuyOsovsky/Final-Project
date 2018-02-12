@@ -6,161 +6,89 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PoliceVolnteerBL;
+using PoliceVolnteerDAL;
 
 namespace PoliceVolunteerUI
 {
     public partial class UserSettingsUI : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_LoadComplete(object sender, EventArgs e)
         {
 
-            // The Page is accessed for the first time. 
-            if (!IsPostBack)
-            {
-                //PopulateGrid();
-                Fill_User_Settings();
-                Fill_User_Validitys();
-                
-                // Enable the GridView paging option and  
-                // specify the page size. 
-                //UserInformation.AllowPaging = true;
-                //UserInformation.PageSize = 15;
-
-
-                // Enable the GridView sorting option. 
-                //UserInformation.AllowSorting = true;
-
-                // Initialize the sorting expression. 
-                //ViewState["SortExpression"] = "PersonID ASC";
-
-
-                // Populate the GridView. 
-                //BindGridView();
-            } 
-
+            FillUserSettings();
         }
 
-        /*protected DataSet GetData()
-        {
-            //VolunteerBL volnteerInfo = new VolunteerBL("a");
-            //return volnteerInfo.VolunteerToDataSet();
-            return VolunteerBL.GetAllTable();
-        }*/
-
-        /*protected void PopulateGrid()
-        {
-            UserInformation.DataSource = GetData();
-            UserInformation.DataBind();
-        }*/
-
-        protected void Fill_User_Settings()
+        protected void FillUserSettings()
         {
             VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
-            DataTable volunteerTable = new DataTable();
-            volunteerTable.Columns.Add("מספר טלפון", typeof(String));
-            volunteerTable.Columns.Add("מספר טלפון חירום", typeof(String));
-            volunteerTable.Columns.Add("שם פרטי", typeof(String));
-            volunteerTable.Columns.Add("שם משפחה", typeof(String));
-            volunteerTable.Columns.Add("תאריך לידה", typeof(DateTime));
-            volunteerTable.Columns.Add("שם משתמש", typeof(String));
-            volunteerTable.Columns.Add("כתובת מגורים", typeof(String));
-            volunteerTable.Columns.Add("עיר מגורים", typeof(String));
-            volunteerTable.Columns.Add("אימייל", typeof(String));
-            volunteerTable.Columns.Add("מספר זהות משטרתי", typeof(String));
-            volunteerTable.Columns.Add("עיר שירות", typeof(String));
-            volunteerTable.Columns.Add("תאריך התחלה", typeof(DateTime));
-            volunteerTable.Rows.Add();
-            volunteerTable.Rows[0][0] = volunteer.PhoneNumber;
-            volunteerTable.Rows[0][1] = volunteer.EmergencyNumber;
-            volunteerTable.Rows[0][2] = volunteer.FName;
-            volunteerTable.Rows[0][3] = volunteer.LName;
-            volunteerTable.Rows[0][4] = volunteer.BirthDate;
-            volunteerTable.Rows[0][5] = volunteer.UserName;
-            volunteerTable.Rows[0][6] = volunteer.HomeAddress;
-            volunteerTable.Rows[0][7] = volunteer.HomeCity;
-            volunteerTable.Rows[0][8] = volunteer.EmailAddress;
-            volunteerTable.Rows[0][9] = volunteer.PoliceID;
-            volunteerTable.Rows[0][10] = volunteer.ServeCity;
-            volunteerTable.Rows[0][11] = volunteer.StartDate;
-            //volunteerTable.Rows.Add();
-            //for (int i = 0; i < 12; i++)
-            //{
-            //    volunteerTable.Rows[0][i] = "";
-            //}
-            DataView dataView = new DataView(volunteerTable);
+            DataTable SettingsTable = new DataTable();
+            SettingsTable.Columns.Add("FieldName", typeof(String));
+            SettingsTable.Columns.Add("FieldValue", typeof(String));
+            DataTable volunteerTable = volunteer.VolunteerToDataSet().Tables[0];
+            for (int i = 0; i < volunteerTable.Columns.Count; i++)
+            {
+                SettingsTable.Rows.Add();
+                SettingsTable.Rows[i][0] = volunteerTable.Columns[i];
+                SettingsTable.Rows[i][1] = volunteerTable.Rows[0][i];
+            }
+            DataView dataView = new DataView(SettingsTable);
             UserInformation.DataSource = dataView;
             UserInformation.DataBind();
         }
 
-        protected void Fill_User_Validitys()
+        protected void UserInformationRowEditingRowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
-            DataSet ValidityDataSet = volunteer.GetValidities();
-            UserValiditys.DataSource = ValidityDataSet;
-            UserValiditys.DataBind();
+            UserInformation.EditIndex = -1;
         }
 
-
-        /*
-        protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void UserInformationRowEditing(object sender, GridViewEditEventArgs e)
         {
-            ////// First, make sure we're dealing a Data Row
-            //if (e.Row.RowType != DataControlRowType.Header &&
-            //    e.Row.RowType != DataControlRowType.Footer &&
-            //    e.Row.RowType != DataControlRowType.Pager)
-            //{ 
-
-            //    if (e.Row.RowState != (DataControlRowState.Edit | DataControlRowState.Alternate) &&
-            //        e.Row.RowState != (DataControlRowState.Edit | DataControlRowState.Normal))
-            //    {
-            //        // חישוב מחיר כולל לשורה
-            //        Label l1 = (Label)e.Row.Cells[4].FindControl("LabelSum");
-            //        //object price = DataBinder.Eval(e.Row.DataItem, "Price");
-            //        //object Quantity = DataBinder.Eval(e.Row.DataItem, "Quantity");
-            //        short Quantity = Convert.ToInt16(e.Row.Cells[1].Text);
-            //        decimal price = Convert.ToDecimal(e.Row.Cells[2].Text);
-            //        decimal s = (decimal)(price * Quantity);
-            //        l1.Text = s.ToString();
-            //    }
-            //    else
-            //    {
-            //        Label l1 = (Label)e.Row.Cells[3].FindControl("LabelSum");
-            //        //object price = DataBinder.Eval(e.Row.DataItem, "Price");
-            //        //object Quantity = DataBinder.Eval(e.Row.DataItem, "Quantity");
-            //        short Quantity = Convert.ToInt16(((TextBox)e.Row.Cells[1].Controls[0]).Text);
-            //        decimal price = Convert.ToDecimal(e.Row.Cells[2].Text);
-
-            //        decimal s = (decimal)(price * Quantity);
-            //        l1.Text = s.ToString();
-            //    }
-            //}
-
-            //// הצגת מחיר סופי של הסל 
-            //if (e.Row.RowType == DataControlRowType.Footer)
-            //{
-            //    Label l1 = (Label)e.Row.Cells[3].FindControl("LabelFooter");
-
-            //    mShoppingBag = (Bag.ShoppingBag)Session["myShoppingBag"];
-
-            //    double s = mShoppingBag.GetFinalPrice();
-            //    l1.Text = s.ToString();
-            //}
+            UserInformation.EditIndex = e.NewEditIndex;
         }
 
-        protected void Edit_Settings(object sender, EventArgs e)
+        protected void UserInformationRowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
+            GridViewRow row = UserInformation.Rows[e.RowIndex];
+            string UpdatedValue = ((TextBox)row.Cells[1].FindControl("txt_FieldValue")).Text;
+            object field = null;
+            switch (e.RowIndex)
+            {
+                case 0:
+                    field = VolunteerInfoDALField.PhoneNumber;
+                    break;
+                case 1:
+                    field = VolunteerInfoDALField.EmergencyNumber;
+                    break;
+                case 2:
+                    field = VolunteerInfoDALField.FName;
+                    break;
+                case 3:
+                    field = VolunteerInfoDALField.LName;
+                    break;
+                case 4:
+                    field = VolunteerInfoDALField.BirthDate;
+                    break;
+                case 5:
+                    field = VolunteerInfoDALField.HomeAddress;
+                    break;
+                case 6:
+                    field = VolunteerInfoDALField.EmailAddress;
+                    break;
+                case 7:
+                    field = VolunteerInfoDALField.ID;
+                    break;
+                case 8:
+                    field = VolunteerPoliceInfoDALField.PoliceID;
+                    break;
+                case 9:
+                    field = VolunteerPoliceInfoDALField.ServeCity;
+                    break;
+                case 10:
+                    field = VolunteerPoliceInfoDALField.StartDate;
+                    break;
+            }
+            (new VolunteerBL(Session["User"].ToString())).UpdateVolunteer(field, UpdatedValue);
+            UserInformation.EditIndex = -1;
         }
-
-        protected void UserInformation_RowEditing_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-
-        }
-
-        protected void UserInformation_RowEditing1(object sender, GridViewEditEventArgs e)
-        {
-
-        }*/
-
     }
 }
