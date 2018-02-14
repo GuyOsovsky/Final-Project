@@ -14,7 +14,10 @@ namespace PoliceVolunteerUI
     {
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-
+            if(Session["User"].ToString() == "")
+            {
+                Response.Redirect("HomePageUI.aspx");
+            }
             FillUserSettings();
         }
 
@@ -88,6 +91,10 @@ namespace PoliceVolunteerUI
                     break;
             }
             (new VolunteerBL(Session["User"].ToString())).UpdateVolunteer(field, UpdatedValue);
+            if(e.RowIndex == 0)
+            {
+                Session["User"] = UpdatedValue;
+            }
             UserInformation.EditIndex = -1;
         }
     }

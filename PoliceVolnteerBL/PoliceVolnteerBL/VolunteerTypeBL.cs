@@ -13,22 +13,36 @@ namespace PoliceVolnteerBL
     {
         public int TypeCode { get; set; }
         public string TypeName { get; set; }
+
+        //whether or not a volunteer can create new shifts and edit shifts
         public bool PermmisionShifts { get; set; }
+
+        //whether or not a volunteer can create new activities and edit activities
         public bool PermmisionActivity { get; set; }
+
+        //whether or not a volunteer can edit the stock
         public bool PermmisionStock { get; set; }
 
         //Determines whether this volunteer is able to go alone on car shifts
         public bool Independent { get; set; }
 
+        //whether or not a volunteer can create new courses and edit courses
+        public bool PermmisionCourse { get; set; }
+
+        //whether or not a volunteer can edit a volunteer and create a new volunteer
+        public bool PermmisionVolunteer { get; set; }
+
         //build and adding to database
-        public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity, bool PermmisionStock, bool Independent)
+        public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity, bool PermmisionStock, bool Independent, bool PermmisionCourse, bool PermmisionVolunteer)
         {
             this.TypeName = TypeName;
             this.PermmisionShifts = PermmisionShifts;
             this.PermmisionActivity = PermmisionActivity;
             this.PermmisionStock = PermmisionStock;
             this.Independent = Independent;
-            VolunteerTypesDAL.AddVolunteerType(TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent);
+            this.PermmisionCourse = PermmisionCourse;
+            this.PermmisionVolunteer = PermmisionVolunteer;
+            VolunteerTypesDAL.AddVolunteerType(TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent, PermmisionCourse, PermmisionVolunteer);
             this.TypeCode = (int)VolunteerTypesDAL.GetTable().Tables[0].Rows[VolunteerTypesDAL.GetTable().Tables[0].Rows.Count - 1]["TypeCode"];
         }
 
@@ -42,6 +56,8 @@ namespace PoliceVolnteerBL
             this.PermmisionActivity = (bool)volunteerTypesRow["PermmisionActivity"];
             this.PermmisionStock = (bool)volunteerTypesRow["PermmisionStock"];
             this.Independent = (bool)volunteerTypesRow["Independent"];
+            this.PermmisionCourse = (bool)volunteerTypesRow["PermmisionCourse"];
+            this.PermmisionVolunteer = (bool)volunteerTypesRow["PermmisionVolunteer"];
         }
 
         //return all the permmisions of this specific volunteer

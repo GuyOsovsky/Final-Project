@@ -8,22 +8,24 @@ using System.Data.OleDb;
 
 namespace PoliceVolnteerDAL
 {
-    public enum VolunteerTypesField { TypeCode, TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent }
+    public enum VolunteerTypesField { TypeCode, TypeName, PermmisionShifts, PermmisionActivity, PermmisionStock, Independent, PermmisionCourse, PermmisionVolunteer}
 
     public class VolunteerTypesDAL
     {
         //Add new volunteer type row to VolunteerTypes table and return state boolean
-        public static void AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent)
+        public static void AddVolunteerType(string vTypeName, bool vPermmisionShifts, bool vPermmisionActivity, bool vPermmisionStock, bool vIndependent, bool vPermmisionCourse, bool vPermmisionVolunteer)
         {
-            string sPermmisionShifts, sPermmisionActivity, sPermmisionStock, sIndependent;
+            string sPermmisionShifts, sPermmisionActivity, sPermmisionStock, sIndependent, sPermmisionCourse, sPermmisionVolunteer;
             sPermmisionShifts = (vPermmisionShifts) ? "1" : "0";
             sPermmisionActivity = (vPermmisionActivity) ? "1" : "0";
             sPermmisionStock = (vPermmisionStock) ? "1" : "0";
             sIndependent = (vIndependent) ? "1" : "0";
-            
+            sPermmisionCourse = (vPermmisionCourse) ? "1" : "0";
+            sPermmisionVolunteer = (vPermmisionVolunteer) ? "1" : "0";
+
             try
             {
-                OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerTypes ([TypeName], [PermmisionShifts], [PermmisionActivity], [PermmisionStock], [Independent]) VALUES ('" + vTypeName + "','" + sPermmisionShifts + "','" + sPermmisionActivity + "','" + sPermmisionStock + "','" + sIndependent + "')");
+                OleDbHelper2.ExecuteNonQuery("INSERT INTO VolunteerTypes ([TypeName], [PermmisionShifts], [PermmisionActivity], [PermmisionStock], [Independent], [PermmisionCourse], [PermmisionVolunteer]) VALUES ('" + vTypeName + "','" + sPermmisionShifts + "','" + sPermmisionActivity + "','" + sPermmisionStock + "','" + sIndependent + "','" + sPermmisionCourse + "','" + sPermmisionVolunteer + "')");
             }
             catch (Exception e)
             {

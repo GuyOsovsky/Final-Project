@@ -13,6 +13,14 @@ namespace PoliceVolunteerUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["User"].ToString() == "")
+            {
+                Response.Redirect("HomePageUI.aspx");
+            }
+            //if (if the user does not have the Permmision)
+            //{
+            //    Response.Redirect("HomePageUI.aspx");
+            //}
             if (!IsPostBack)
             {
                 LoadCitiesHome();
