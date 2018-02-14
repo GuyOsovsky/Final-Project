@@ -14,7 +14,12 @@ namespace PoliceVolunteerUI
         {
             
         }
-
+        protected bool IsAbleVolunteer()
+        {
+            if (Session["User"].ToString() == "") return false;
+            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
+            return volunteer.Type.PermmisionVolunteer;
+        }
         protected void LogIn(object sender, EventArgs e)
         {
             string userName = userNameLog.Text;
@@ -30,7 +35,7 @@ namespace PoliceVolunteerUI
         protected void LogOut(object sender, EventArgs e)
         {
             Session["User"] = "";
-            
+            Response.Redirect("HomePageUI.aspx");
         }
     }
 }
