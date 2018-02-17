@@ -42,7 +42,15 @@ namespace PoliceVolnteerDAL
             typeDB = type;
             operatorType = Operator;
         }
-        
+
+        public FieldValue(T e, object v, FieldType type)
+        {
+            field = e;
+            value = v;
+            typeDB = type;
+            operatorType = OperatorType.Equals;
+        }
+
         //to string in a format adaptive for SQL
         public override string ToString()
         {

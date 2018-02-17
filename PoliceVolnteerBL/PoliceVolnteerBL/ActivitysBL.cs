@@ -13,6 +13,11 @@ namespace PoliceVolnteerBL
     {
         public List<ActivityBL> ActivityList { get; private set; }
 
+        public static DataSet GetActivities()
+        {
+            return ActivityDAL.GetTable();
+        }
+
         //create ActivityList and add ActivityBL objects that were in a period of time
         public ActivitysBL(DateTime from = new DateTime(), DateTime to = new DateTime())
         {

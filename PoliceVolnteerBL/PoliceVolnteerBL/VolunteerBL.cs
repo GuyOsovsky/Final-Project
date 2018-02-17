@@ -432,6 +432,11 @@ namespace PoliceVolnteerBL
             ReportsDAL.AddReport(this.PhoneNumber, new DateTime(1999, 1, 1), ActivityCode, "");
         }
 
+        public void ActivitySignOut(int ActivityCode)
+        {
+            ReportsDAL.DelReport(this.PhoneNumber, ActivityCode);
+        }
+
         public void ShiftReport(ShiftBL shift, string comment, string carID = "", double distance = 0)
         {
             if (distance != 0)//if the volunteer has entered Car shift info so add the car shift to the database
@@ -445,9 +450,10 @@ namespace PoliceVolnteerBL
             ShiftsToVolunteerDAL.UpdateComment(this.PhoneNumber, shift.ShiftCode, comment);
         }
 
-        public void ActiviryReport(ActivityBL activity, string description)
+        public void ActivityReport(ActivityBL activity, string description, DateTime reportDate)
         {
-
+            ReportBL report = new ReportBL(this.PhoneNumber, activity.ActivityCode);
+            report.UpdateDescription(description, reportDate);
         }
 
         public double GetDistance(DateTime FromDate, DateTime ToDate)
@@ -541,7 +547,7 @@ namespace PoliceVolnteerBL
         public DataTable GetActivitys(DateTime Date, OperatorType Operator)
         {
             //create parameters to filter the table
-            FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, Date.ToShortDateString(), FieldType.Date, Operator);
+            FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, Date, FieldType.Date, Operator);
             DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<ActivityField>> ActivitysCode = new Queue<FieldValue<ActivityField>>();
             foreach (DataRow Row in Rows)
@@ -552,7 +558,20 @@ namespace PoliceVolnteerBL
             ds.Tables[0].DefaultView.RowFilter = Mask.ToString();
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
             return FilteredTable;
+        }
 
+        public DataTable GetActivitys()
+        {
+            //create parameters to filter the table
+            DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            Queue<FieldValue<ActivityField>> ActivitysCode = new Queue<FieldValue<ActivityField>>();
+            foreach (DataRow Row in Rows)
+            {
+                ActivitysCode.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityCode, Row["ActivityCode"], FieldType.Number, OperatorType.Equals));
+            }
+            DataSet ds = ActivityDAL.GetTable(ActivitysCode, false);
+            DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
+            return FilteredTable;
         }
 
         public DataTable GetActivityReports()

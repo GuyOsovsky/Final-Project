@@ -84,12 +84,12 @@ namespace PoliceVolnteerDAL
         }
 
         //delete report row by phoneNumber code(by key) from Reports table
-        public static void DelReport(string phoneNumber)
+        public static void DelReport(string phoneNumber, int activityCode)
         {
             string deleteSQL;
             try
             {
-                deleteSQL = "DELETE * FROM Reports WHERE PhoneNumber='" + phoneNumber + "'";
+                deleteSQL = "DELETE * FROM Reports WHERE PhoneNumber='" + phoneNumber + "' AND ActivityCode=" + activityCode;
                 OleDbHelper2.DoQuery(deleteSQL);
             }
             catch (Exception e)

@@ -45,5 +45,11 @@ namespace PoliceVolnteerBL
         {
             return (new ActivityBL(this.ActivityCode)).GetActivityReport() + this.Description + "\n";
         }
+
+        public void UpdateDescription(string descriptionContent, DateTime updateDate)
+        {
+            ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.Description, descriptionContent, FieldType.String));
+            ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.ReportDate, updateDate, FieldType.Date));
+        }
     }
 }
