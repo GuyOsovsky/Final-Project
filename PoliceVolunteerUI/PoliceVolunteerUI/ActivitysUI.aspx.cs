@@ -28,6 +28,15 @@ namespace PoliceVolunteerUI
             FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, DateTime.Now, FieldType.Date, OperatorType.Greater);
             activitys.Tables[0].DefaultView.RowFilter = Mask.ToString();
             DataTable FilteredTable = (activitys.Tables[0].DefaultView).ToTable();
+            for(int i = 0; i < FilteredTable.Rows.Count; i++)
+            {
+                ReportsBL reports = new ReportsBL(Session["User"].ToString(), int.Parse(FilteredTable.Rows[i]["ActivityCode"].ToString()));
+                if (reports.ReportList.Count > 0)
+                {
+                    FilteredTable.Rows[i].Delete();
+                    i--;
+                }
+            }
             DataView dataView = new DataView(FilteredTable);
             ActivitysInformation.DataSource = dataView;
             ActivitysInformation.DataBind();

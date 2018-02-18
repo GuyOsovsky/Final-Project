@@ -70,21 +70,6 @@ namespace PoliceVolnteerDAL
             }
         }
 
-        //delete shift row by shift code(by key) from shift table
-        public static void DelShiftToVolunteer(string phoneNumber, int shiftCode)
-        {
-            string deleteSQL;
-            try
-            {
-                deleteSQL = "DELETE * FROM ShiftsToVolunteer WHERE shiftCode=" + shiftCode + " AND PhoneNumber='" + phoneNumber + "'";
-                OleDbHelper2.DoQuery(deleteSQL);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
         //delete all shifts to volunteer rows from ShiftsToVolunteer table
         public static void DelAll()
         {
