@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <center>
+        <h1>משמרות עתידיות</h1>
+    </center>
     <asp:GridView ID="ShiftsInformation" runat="server" AutoGenerateColumns="False"
         Style="z-index: 101; left: 18px; position: relative; top: 9px"
         BorderColor="#000099" CellPadding="4" ShowFooter="True"
@@ -14,9 +17,9 @@
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="ShiftType" HeaderText="סוג המשמרת" ReadOnly="True" />
-            <asp:BoundField DataField="DateOfShift" HeaderText="תאריך" ReadOnly="True" />
-            <asp:BoundField DataField="StartTime" HeaderText="שעת התחלה" ReadOnly="True" />
-            <asp:BoundField DataField="FinishTime" HeaderText="שעת סיום" ReadOnly="True" />
+            <asp:BoundField DataField="DateOfShift" DataFormatString="{0:d}" HeaderText="תאריך" ReadOnly="True" />
+            <asp:BoundField DataField="StartTime" DataFormatString="{0:t}" HeaderText="שעת התחלה" ReadOnly="True" />
+            <asp:BoundField DataField="FinishTime" DataFormatString="{0:t}" HeaderText="שעת סיום" ReadOnly="True" />
             <asp:BoundField DataField="Place" HeaderText="מקום" ReadOnly="True" />
             <asp:TemplateField>
                 <ItemTemplate>
@@ -29,6 +32,10 @@
         <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
     </asp:GridView>
 
+    <br /><br /><br /><br /><br />
+    <center>
+        <h1>משמרות שנרשמת אליהן</h1>
+    </center>
     <asp:GridView ID="SignedShifts" runat="server" AutoGenerateColumns="False"
         Style="z-index: 101; left: 18px; position: relative; top: 9px"
         BorderColor="#000099" CellPadding="4" ShowFooter="True"
@@ -41,9 +48,9 @@
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="ShiftType" HeaderText="סוג המשמרת" ReadOnly="True" />
-            <asp:BoundField DataField="DateOfShift" HeaderText="תאריך" ReadOnly="True" />
-            <asp:BoundField DataField="StartTime" HeaderText="שעת התחלה" ReadOnly="True" />
-            <asp:BoundField DataField="FinishTime" HeaderText="שעת סיום" ReadOnly="True" />
+            <asp:BoundField DataField="DateOfShift" DataFormatString="{0:d}" HeaderText="תאריך" ReadOnly="True" />
+            <asp:BoundField DataField="StartTime" DataFormatString="{0:t}" HeaderText="שעת התחלה" ReadOnly="True" />
+            <asp:BoundField DataField="FinishTime" DataFormatString="{0:t}" HeaderText="שעת סיום" ReadOnly="True" />
             <asp:BoundField DataField="Place" HeaderText="מקום" ReadOnly="True" />
             <asp:TemplateField>
                 <ItemTemplate>

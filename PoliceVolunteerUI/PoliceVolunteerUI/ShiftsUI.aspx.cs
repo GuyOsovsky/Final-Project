@@ -12,7 +12,7 @@ namespace PoliceVolunteerUI
 {
     public partial class ShiftsUI : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (Session["User"].ToString() == "")
             {
@@ -28,6 +28,22 @@ namespace PoliceVolunteerUI
             FieldValue<ShiftsField> Mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, FieldType.Date, OperatorType.Greater);
             shifts.Tables[0].DefaultView.RowFilter = Mask.ToString();
             DataTable FilteredTable = (shifts.Tables[0].DefaultView).ToTable();
+
+            for (int i = 0; i < FilteredTable.Rows.Count; i++)
+            {
+                VolunteerBL user = new VolunteerBL(Session["User"].ToString());
+                DataTable UserShifts = user.GetShifts(DateTime.Now, OperatorType.Greater);
+                for (int j = 0; j < UserShifts.Rows.Count; j++)
+                {
+                    if(UserShifts.Rows[j]["ShiftCode"].ToString() == FilteredTable.Rows[i]["ShiftCode"].ToString())
+                    {
+                        FilteredTable.Rows[i].Delete();
+                        i--;
+                        break;
+                    }
+                }
+
+            }
             DataView dataView = new DataView(FilteredTable);
             ShiftsInformation.DataSource = dataView;
             ShiftsInformation.DataBind();

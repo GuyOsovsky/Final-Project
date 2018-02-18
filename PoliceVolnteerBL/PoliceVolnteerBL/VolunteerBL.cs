@@ -527,6 +527,18 @@ namespace PoliceVolnteerBL
 
         }
 
+        public DataTable GetShifts()
+        {
+            //get all shifts regarding the volunteer
+            DataRowCollection Rows = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            Queue<FieldValue<ShiftsField>> ShiftsCode = new Queue<FieldValue<ShiftsField>>();
+            foreach (DataRow Row in Rows)
+            {
+                ShiftsCode.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Row["shiftCode"], FieldType.Number, OperatorType.Equals));
+            }
+            return ShiftsDAL.GetTable(ShiftsCode, false).Tables[0];
+        }
+
         public DataTable GetShiftReports()
         {
             return ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
