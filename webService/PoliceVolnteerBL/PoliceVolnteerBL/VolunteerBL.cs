@@ -427,11 +427,6 @@ namespace PoliceVolnteerBL
             }
         }
 
-        public void ShiftSignOut(int shiftCode)
-        {
-            ShiftsToVolunteerDAL.DelShiftToVolunteer(this.PhoneNumber, shiftCode);
-        }
-
         public void ActivitySignUp(int ActivityCode)
         {
             ReportsDAL.AddReport(this.PhoneNumber, new DateTime(1999, 1, 1), ActivityCode, "");

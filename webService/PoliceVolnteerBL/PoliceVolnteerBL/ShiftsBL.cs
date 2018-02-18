@@ -43,18 +43,18 @@ namespace PoliceVolnteerBL
         }
 
         //return table of the important details of all the shifts + shift type
-        public DataSet GetDetails()
+        public DataTable GetDetails()
         {
-            DataSet shifts = ShiftsDAL.GetTable();
+            DataTable shifts = ShiftsDAL.GetTable().Tables[0];
             //adding ShiftType column to table
-            shifts.Tables[0].Columns.Add("ShiftType", typeof(string));
-            foreach (DataRow shift in shifts.Tables[0].Rows)
+            shifts.Columns.Add("ShiftType", typeof(string));
+            foreach (DataRow shift in shifts.Rows)
             {
                 shift["ShiftType"] = (new ShiftTypesBL(int.Parse(shift["TypeCode"].ToString()))).TypeName;
             }
             //remove not necessary colomns
-            //shifts.Columns.Remove("ShiftCode");
-            shifts.Tables[0].Columns.Remove("TypeCode");
+            shifts.Columns.Remove("ShiftCode");
+            shifts.Columns.Remove("TypeCode");
             return shifts;
         }
     }
