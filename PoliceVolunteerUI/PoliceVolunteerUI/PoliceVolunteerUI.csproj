@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="ActivitysUI.aspx" />
     <Content Include="App_Data\database police.accdb" />
+    <Content Include="BigMapUI.aspx" />
     <Content Include="CoursesUI.aspx" />
     <Content Include="css\bootstrap-grid.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -119,6 +120,13 @@
     </Compile>
     <Compile Include="ActivitysUI.aspx.designer.cs">
       <DependentUpon>ActivitysUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BigMapUI.aspx.cs">
+      <DependentUpon>BigMapUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BigMapUI.aspx.designer.cs">
+      <DependentUpon>BigMapUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="CoursesUI.aspx.cs">
       <DependentUpon>CoursesUI.aspx</DependentUpon>
