@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li class="dropdown" style="width: 100px; <% if (Session["User"] == "")
-                                                                 {%>visibility: hidden; <%} %>">&nbsp;&nbsp;&nbsp;
+                                                                 {%>visibility: hidden; <%} %>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <%
                             if (Session["User"] != "")
                             { 
@@ -69,7 +69,7 @@
                         </div>
                     </li>
                     <li class="dropdown" style="width: 100px; <% if (Session["User"] == "")
-                                                                 {%>visibility: hidden; <%} %>">&nbsp;&nbsp;&nbsp;
+                                                                 {%>visibility: hidden; <%} %>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <%
                                 if (Session["User"] != "")
                                 { 
