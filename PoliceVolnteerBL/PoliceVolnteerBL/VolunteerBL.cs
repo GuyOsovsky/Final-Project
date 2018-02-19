@@ -340,6 +340,14 @@ namespace PoliceVolnteerBL
             CoursesToVolunteerDAL.AddCoursesToVolunteer(this.PhoneNumber, CourseCode);
         }
 
+        public void CourseSignOut(int courseCode)
+        {
+            CourseBL course = new CourseBL(courseCode);
+            if (course.IsRequeired)
+                return;
+            CoursesToVolunteerDAL.DelCourse(this.PhoneNumber, courseCode);
+        }
+
         public DataSet GetItemsInPossession()
         {
             //create parameters for searching the StockToVolunteer table

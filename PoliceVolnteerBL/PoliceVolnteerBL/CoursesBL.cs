@@ -13,6 +13,11 @@ namespace PoliceVolnteerBL
     {
         public List<CourseBL> CourseList { get; set; }
 
+        public static DataSet GetCourses()
+        {
+            return CourseDAL.GetTable();
+        }
+
         //create CourseList and add all the CourseBL objects
         public CoursesBL()
         {
