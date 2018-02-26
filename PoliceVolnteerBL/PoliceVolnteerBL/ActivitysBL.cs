@@ -11,38 +11,45 @@ namespace PoliceVolnteerBL
 {
     public class ActivitysBL
     {
-        public List<ActivityBL> ActivityList { get; private set; }
+        public DataSet Activitys { get; set; }
 
-        public static DataSet GetActivities()
+        /// <summary>
+        /// creates an object with all activitys
+        /// </summary>
+        public ActivitysBL()
         {
-            return ActivityDAL.GetTable();
+            this.Activitys = ActivityDAL.GetTable();
         }
 
-        //create ActivityList and add ActivityBL objects that were in a period of time
-        public ActivitysBL(DateTime from = new DateTime(), DateTime to = new DateTime())
+        /// <summary>
+        /// creates an object with activitys which their date is after the from parameter
+        /// </summary>
+        /// <param name="from">from which date to start adding activitys to the object</param>
+        public ActivitysBL(DateTime from)
         {
-            if (to.Year == 1)
-                to = DateTime.Now;
-            this.ActivityList = new List<ActivityBL>();
-            DataRowCollection activityRow = ActivityDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < activityRow.Count; i++)
-            {
-                ActivityBL activity = new ActivityBL((int)activityRow[i]["ActivityCode"]);
-                if(activity.ActivityDate >= from && activity.ActivityDate <= to)
-                    ActivityList.Add(activity);
-            }
+            this.Activitys = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityDate, from, Table.Activity, FieldType.Date, OperatorType.GreaterAndEquals));
         }
-
-        //retrun sum of activities that were in a period of time
-        public int SumOfActivities(DateTime from, DateTime to)
+        /// <summary>
+        /// creates an object with activitys ranging from a date to another date
+        /// </summary>
+        /// <param name="from">from which date to start adding activitys to the object</param>
+        /// <param name="to">to which date to add activitys to the object</param>
+        public ActivitysBL(DateTime from, DateTime to)
         {
-            int count = 0;
-            for (int i = 0; i < this.ActivityList.Count; i++)
-            {
-                if (ActivityList[i].ActivityDate >= from && ActivityList[i].ActivityDate <= to)
-                    count++;
-            }
-            return count;
+            Queue<FieldValue<ActivityField>> parameters = new Queue<FieldValue<ActivityField>>();
+            parameters.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityDate, from, Table.Activity, FieldType.Date, OperatorType.GreaterAndEquals));
+            parameters.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityDate, to, Table.Activity, FieldType.Date, OperatorType.Lower));
+            this.Activitys = ActivityDAL.GetTable(parameters, true);
+        }
+        /// <summary>
+        /// retrun sum of activities that were in a period of time
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public int SumOfActivities()
+        {
+            return this.Activitys.Tables[0].Rows.Count;
         }
 
 

@@ -11,10 +11,10 @@ namespace PoliceVolnteerBL
 {
     public class ReportBL
     {
-        public string PhoneNumber { get; set; }
-        public DateTime ReportDate { get; set; }
-        public int ActivityCode { get; set; }
-        public string Description { get; set; }
+        public string PhoneNumber { get; private set; }
+        public DateTime ReportDate { get; private set; }
+        public int ActivityCode { get; private set; }
+        public string Description { get; private set; }
 
         //build and adding to database
         public ReportBL(string PhoneNumber, DateTime ReportDate, int ActivityCode, string Description)
@@ -23,7 +23,7 @@ namespace PoliceVolnteerBL
             this.ReportDate = ReportDate;
             this.ActivityCode = ActivityCode;
             this.Description = Description;
-            ReportsDAL.AddReport(PhoneNumber,ReportDate, ActivityCode, Description);
+            ReportsDAL.AddReport(PhoneNumber, ReportDate, ActivityCode, Description);
         }
 
         //build from the database
@@ -31,8 +31,8 @@ namespace PoliceVolnteerBL
         {
             this.PhoneNumber = PhoneNumber;
             Queue<FieldValue<ReportsField>> parameters = new Queue<FieldValue<ReportsField>>();
-            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, FieldType.String, OperatorType.Equals));
-            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.PhoneNumber, PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, Table.Reports, FieldType.Number, OperatorType.Equals));
             DataSet ReportsDataSet = ReportsDAL.GetTable(parameters, true);
             this.ActivityCode = activityCode;
             this.PhoneNumber = PhoneNumber;
@@ -48,8 +48,16 @@ namespace PoliceVolnteerBL
 
         public void UpdateDescription(string descriptionContent, DateTime updateDate)
         {
-            ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.Description, descriptionContent, FieldType.String));
-            ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.ReportDate, updateDate, FieldType.Date));
+            ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.Description, descriptionContent, Table.Reports, FieldType.String));
+            ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.ReportDate, updateDate, Table.Reports, FieldType.Date));
+        }
+
+        public DataRow ToDataRow()
+        {
+            Queue<FieldValue<ReportsField>> parameters = new Queue<FieldValue<ReportsField>>();
+            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, this.ActivityCode, Table.Reports, FieldType.Number, OperatorType.Equals));
+            return ReportsDAL.GetTable(parameters, true).Tables[0].Rows[0];
         }
     }
 }

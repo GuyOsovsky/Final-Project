@@ -40,7 +40,7 @@ namespace PoliceVolnteerBL
         public ActivityBL(int activityCode)
         {
             this.ActivityCode = activityCode;
-            DataSet activityDataSet = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, activityCode, FieldType.Number, OperatorType.Equals));
+            DataSet activityDataSet = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, activityCode, Table.Activity, FieldType.Number, OperatorType.Equals));
             this.ActivityName = (string)activityDataSet.Tables[0].Rows[0]["ActivityName"];
             this.ActivityDate = (DateTime)activityDataSet.Tables[0].Rows[0]["ActivityDate"];
             this.StartTime = (DateTime)activityDataSet.Tables[0].Rows[0]["StartTime"];
@@ -56,9 +56,9 @@ namespace PoliceVolnteerBL
         {
             ReportsBL reports = new ReportsBL("", this.ActivityCode);
             VolunteersBL ret = new VolunteersBL(true);
-            foreach (ReportBL report in reports.ReportList)
+            foreach (DataRow report in reports.Reports.Tables[0].Rows)
             {
-                ret.AddVolunteer(new VolunteerBL(report.PhoneNumber));
+                ret.AddVolunteer(new VolunteerBL(report["PhoneNumber"].ToString()));
             }
             return ret;
         }
@@ -72,7 +72,7 @@ namespace PoliceVolnteerBL
             report += "start time: " + this.StartTime + "\n";
             report += "finish time: " + this.FinishTime + "\n";
             report += "manager: " + this.ActivityManager + "\n";
-            report += "type: " + TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeCode, this.TypeCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0]["typeName"].ToString() + "\n";
+            report += "type: " + TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeCode, this.TypeCode, Table.TypeToActivity, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0]["typeName"].ToString() + "\n";
             report += "place: " + this.Place + "\n";
             report += "number of Participants: " + this.GetAllVolunteers().VolunteerList.Count.ToString() + "\n";
             return report;

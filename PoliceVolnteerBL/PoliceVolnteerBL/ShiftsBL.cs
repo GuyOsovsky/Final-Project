@@ -31,8 +31,8 @@ namespace PoliceVolnteerBL
             this.ShiftList = new List<ShiftBL>();
             DataTable ShiftsTable = ShiftsDAL.GetTable().Tables[0];
             //filter out unwanted shifts(by date)
-            FieldValue<ShiftsField> filter = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, FieldType.Date, OperatorType.GreaterAndEquals);
-            ShiftsTable.DefaultView.RowFilter = filter.ToString();
+            FieldValue<ShiftsField> filter = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals);
+            ShiftsTable.DefaultView.RowFilter = filter.ToSql();
             ShiftsTable = (ShiftsTable.DefaultView).ToTable();
 
             DataRowCollection shiftsRows = ShiftsTable.Rows;

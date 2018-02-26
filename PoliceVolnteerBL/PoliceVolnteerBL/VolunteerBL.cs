@@ -60,14 +60,14 @@ namespace PoliceVolnteerBL
             DataRow dr;
             try
             {
-                dr = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals), true).Tables[0].Rows[0];
+                dr = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, Table.VolunteerInfo, FieldType.String, OperatorType.Equals), true).Tables[0].Rows[0];
             }
             catch (Exception e)
             {
                 this.PhoneNumber = "";
                 return;
             }
-            DataRow volunteerInfoRow = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals), false).Tables[0].Rows[0];
+            DataRow volunteerInfoRow = VolunteerInfoDAL.GetTable(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, phoneNumber, Table.VolunteerInfo, FieldType.String, OperatorType.Equals), false).Tables[0].Rows[0];
             this.PhoneNumber = phoneNumber;
             this.EmergencyNumber = volunteerInfoRow["EmergencyNumber"].ToString();
             this.FName = volunteerInfoRow["FName"].ToString();
@@ -80,7 +80,7 @@ namespace PoliceVolnteerBL
             this.EmailAddress = volunteerInfoRow["EmailAddress"].ToString();
             this.ID = volunteerInfoRow["ID"].ToString();
             this.Status = bool.Parse(volunteerInfoRow["status"].ToString());
-            volunteerInfoRow = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, phoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
+            volunteerInfoRow = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, phoneNumber, Table.VolunteerPoliceInfo, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.PoliceID = volunteerInfoRow["PoliceID"].ToString();
             this.ServeCity = volunteerInfoRow["ServeCity"].ToString();
             this.StartDate = DateTime.Parse(volunteerInfoRow["StartDate"].ToString());
@@ -93,8 +93,8 @@ namespace PoliceVolnteerBL
             try
             {
                 Queue<FieldValue<VolunteerInfoDALField>> parameters = new Queue<FieldValue<VolunteerInfoDALField>>();
-                parameters.Enqueue(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.UserName, userName, FieldType.String, OperatorType.Equals));
-                parameters.Enqueue(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.Password, password, FieldType.String, OperatorType.Equals));
+                parameters.Enqueue(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.UserName, userName, Table.VolunteerInfo, FieldType.String, OperatorType.Equals));
+                parameters.Enqueue(new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.Password, password, Table.VolunteerInfo, FieldType.String, OperatorType.Equals));
                 dr = VolunteerInfoDAL.GetTable(parameters, true).Tables[0].Rows[0];
             }
             catch (Exception e)
@@ -114,7 +114,7 @@ namespace PoliceVolnteerBL
             this.EmailAddress = dr["EmailAddress"].ToString();
             this.ID = dr["ID"].ToString();
             this.Status = bool.Parse(dr["status"].ToString());
-            dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
+            dr = VolunteerPoliceInfoDAL.GetTable(new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.PhoneNumber, this.PhoneNumber, Table.VolunteerPoliceInfo, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.PoliceID = dr["PoliceID"].ToString();
             this.ServeCity = dr["ServeCity"].ToString();
             this.StartDate = DateTime.Parse(dr["StartDate"].ToString());
@@ -155,7 +155,7 @@ namespace PoliceVolnteerBL
                         valueType = FieldType.String; //change to throw exeption
                         break;
                 }
-                VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>((VolunteerInfoDALField)field, value, valueType, OperatorType.Equals));
+                VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>((VolunteerInfoDALField)field, value, Table.VolunteerInfo, valueType, OperatorType.Equals));
             }
             if (field is VolunteerPoliceInfoDALField)
             {
@@ -175,7 +175,7 @@ namespace PoliceVolnteerBL
                         valueType = FieldType.String; //change to throw exeption
                         break;
                 }
-                VolunteerPoliceInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerPoliceInfoDALField>((VolunteerPoliceInfoDALField)field, value, valueType, OperatorType.Equals));
+                VolunteerPoliceInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerPoliceInfoDALField>((VolunteerPoliceInfoDALField)field, value, Table.VolunteerPoliceInfo, valueType, OperatorType.Equals));
             }
         }
 
@@ -208,7 +208,7 @@ namespace PoliceVolnteerBL
             volunteer.Tables[0].Rows[0][10] = this.StartDate;
             return volunteer;
         }
-
+        //does
         public bool HasBirthDay()
         {
             return (this.BirthDate.Day == DateTime.Now.Day && this.BirthDate.Month == DateTime.Now.Month);
@@ -220,7 +220,7 @@ namespace PoliceVolnteerBL
             if (this.Status != newStatus)
             {
                 //change status
-                VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.status, newStatus, FieldType.Boolean, OperatorType.Equals));
+                VolunteerInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.status, newStatus, Table.VolunteerInfo, FieldType.Boolean, OperatorType.Equals));
                 this.Status = newStatus;
             }
         }
@@ -234,7 +234,7 @@ namespace PoliceVolnteerBL
         {
             Queue<string> ret = new Queue<string>();
             //get all cars of the volunteer
-            DataRowCollection Cars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            DataRowCollection Cars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             foreach (DataRow car in Cars)
             {
                 //add the carid to the queue
@@ -245,13 +245,13 @@ namespace PoliceVolnteerBL
 
         public void DeleteCar(string CarID)
         {
-            CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, FieldType.String, OperatorType.Equals));
+            CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, Table.CarToVolunteer, FieldType.String, OperatorType.Equals));
         }
 
         public DataTable GetCarReports(string carID)
         {
             //get all reports of this car
-            DataTable reports = CarsReportsDAL.GetTable(new FieldValue<CarsReportsField>(CarsReportsField.CarID, carID, FieldType.String, OperatorType.Equals)).Tables[0];
+            DataTable reports = CarsReportsDAL.GetTable(new FieldValue<CarsReportsField>(CarsReportsField.CarID, carID, Table.CarsReports, FieldType.String, OperatorType.Equals)).Tables[0];
             return reports;
         }
 
@@ -261,7 +261,7 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<CarsReportsField>> filter = new Queue<FieldValue<CarsReportsField>>();
             foreach (string id in GetCars())
             {
-                filter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, id, FieldType.String, OperatorType.Equals));
+                filter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, id, Table.CarsReports, FieldType.String, OperatorType.Equals));
             }
             DataTable reports = CarsReportsDAL.GetTable(filter, false).Tables[0];
             return reports;
@@ -275,18 +275,18 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<ShiftsField>> shiftFilter = new Queue<FieldValue<ShiftsField>>();
             foreach (DataRow report in reports.Rows)
             {
-                shiftFilter.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, report["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                shiftFilter.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, report["ShiftCode"], Table.Shifts, FieldType.Number, OperatorType.Equals));
             }
             DataTable shifts = ShiftsDAL.GetTable(shiftFilter, false).Tables[0];
             //filter unwanted shifts
-            FieldValue<ShiftsField> mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, date, FieldType.Date, Operator);
-            shifts.DefaultView.RowFilter = mask.ToString();
+            FieldValue<ShiftsField> mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, date, Table.Shifts, FieldType.Date, Operator);
+            shifts.DefaultView.RowFilter = mask.ToSql();
             shifts = (shifts.DefaultView).ToTable();
             //go to reports table
             Queue<FieldValue<CarsReportsField>> reportsFilter = new Queue<FieldValue<CarsReportsField>>();
             foreach (DataRow shift in shifts.Rows)
             {
-                reportsFilter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shift["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                reportsFilter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shift["ShiftCode"], Table.CarsReports, FieldType.Number, OperatorType.Equals));
             }
             reports = CarsReportsDAL.GetTable(reportsFilter, false).Tables[0];
             return reports;
@@ -300,18 +300,18 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<ShiftsField>> shiftFilter = new Queue<FieldValue<ShiftsField>>();
             foreach (DataRow report in reports.Rows)
             {
-                shiftFilter.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, report["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                shiftFilter.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, report["ShiftCode"], Table.Shifts, FieldType.Number, OperatorType.Equals));
             }
             DataTable shifts = ShiftsDAL.GetTable(shiftFilter, false).Tables[0];
             //filter unwanted shifts
-            FieldValue<ShiftsField> mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, date, FieldType.Date, Operator);
-            shifts.DefaultView.RowFilter = mask.ToString();
+            FieldValue<ShiftsField> mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, date, Table.Shifts, FieldType.Date, Operator);
+            shifts.DefaultView.RowFilter = mask.ToSql();
             shifts = (shifts.DefaultView).ToTable();
             //go to reports table
             Queue<FieldValue<CarsReportsField>> reportsFilter = new Queue<FieldValue<CarsReportsField>>();
             foreach (DataRow shift in shifts.Rows)
             {
-                reportsFilter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shift["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                reportsFilter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shift["ShiftCode"], Table.CarsReports, FieldType.Number, OperatorType.Equals));
             }
             reports = CarsReportsDAL.GetTable(reportsFilter, false).Tables[0];
             return reports;
@@ -320,17 +320,17 @@ namespace PoliceVolnteerBL
         public DataTable GetCourses(DateTime Date, OperatorType Operator)
         {
             //create filter
-            FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, Date, FieldType.Date, Operator);
+            FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, Date, Table.Course, FieldType.Date, Operator);
             //get all reports of volunteer
-            DataRowCollection Rows = CoursesToVolunteerDAL.GetTable(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            DataRowCollection Rows = CoursesToVolunteerDAL.GetTable(new FieldValue<CoursesToVolunteerField>(CoursesToVolunteerField.PhoneNumber, this.PhoneNumber, Table.CoursesToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<CourseField>> CourseCode = new Queue<FieldValue<CourseField>>();
             foreach (DataRow Row in Rows)
             {
-                CourseCode.Enqueue(new FieldValue<CourseField>(CourseField.CourseCode, Row["CourseCode"], FieldType.Number, OperatorType.Equals));
+                CourseCode.Enqueue(new FieldValue<CourseField>(CourseField.CourseCode, Row["CourseCode"], Table.Course, FieldType.Number, OperatorType.Equals));
             }
             DataSet ds = CourseDAL.GetTable(CourseCode, false);
             //filter unwanted reports
-            ds.Tables[0].DefaultView.RowFilter = Mask.ToString();
+            ds.Tables[0].DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
             return FilteredTable;
         }
@@ -352,12 +352,12 @@ namespace PoliceVolnteerBL
         {
             //create parameters for searching the StockToVolunteer table
             Queue<FieldValue<StockToVolunteerField>> parameters = new Queue<FieldValue<StockToVolunteerField>>();
-            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, FieldType.String, OperatorType.Equals));
-            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ReturnDate, new DateTime(1999, 1, 1), FieldType.Date, OperatorType.Equals));
-            DataRowCollection Recycable = StockDAL.GetTable(new FieldValue<StockField>(StockField.Recyclable, true, FieldType.Boolean, OperatorType.Equals)).Tables[0].Rows;
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, Table.StockToVolunteer, FieldType.String, OperatorType.Equals));
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ReturnDate, new DateTime(1999, 1, 1), Table.StockToVolunteer, FieldType.Date, OperatorType.Equals));
+            DataRowCollection Recycable = StockDAL.GetTable(new FieldValue<StockField>(StockField.Recyclable, true, Table.Stock, FieldType.Boolean, OperatorType.Equals)).Tables[0].Rows;
             foreach (DataRow item in Recycable)
             {
-                parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ItemID, item["ItemID"], FieldType.Number, OperatorType.NotEquals));
+                parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.ItemID, item["ItemID"], Table.StockToVolunteer, FieldType.Number, OperatorType.NotEquals));
             }
             return StockToVolunteerDAL.GetTable(parameters, true);
 
@@ -381,7 +381,7 @@ namespace PoliceVolnteerBL
                 VolunteerTypeBL NewType = new VolunteerTypeBL(RankCode);
                 this.Type = NewType;
                 //change object in database
-                VolunteerPoliceInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.Type, RankCode, FieldType.Number, OperatorType.Equals));
+                VolunteerPoliceInfoDAL.UpdateFrom(this.PhoneNumber, new FieldValue<VolunteerPoliceInfoDALField>(VolunteerPoliceInfoDALField.Type, RankCode, Table.VolunteerPoliceInfo, FieldType.Number, OperatorType.Equals));
             }
             catch (Exception e)
             {
@@ -391,7 +391,7 @@ namespace PoliceVolnteerBL
 
         public DataSet GetValidities()
         {
-            return VolunteerToValidityDAL.GetTable(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals));
+            return VolunteerToValidityDAL.GetTable(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, this.PhoneNumber, Table.VolunteerToValidity, FieldType.String, OperatorType.Equals));
         }
 
         public DataTable GetExpiraedValidities() //לאפשר למנהל לשנות אופסט של ימים שיתריע לו מתי נגמר למתנדב הרשיונות
@@ -399,9 +399,9 @@ namespace PoliceVolnteerBL
             //get all user's validities
             DataTable AllValidities = this.GetValidities().Tables[0];
             //create mask to filter validities by todays date
-            FieldValue<VolunteerToValidityField> Mask = new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.EndDate, DateTime.Now.ToShortDateString(), FieldType.Date, OperatorType.LowerAndEquals);
+            FieldValue<VolunteerToValidityField> Mask = new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.EndDate, DateTime.Now.ToShortDateString(), Table.VolunteerToValidity, FieldType.Date, OperatorType.LowerAndEquals);
             //filter unnececery validities
-            AllValidities.DefaultView.RowFilter = Mask.ToString();
+            AllValidities.DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredValidities = (AllValidities.DefaultView).ToTable();
             return FilteredValidities;
         }
@@ -411,7 +411,7 @@ namespace PoliceVolnteerBL
             if (this.Type.Independent)
             {
                 //get all the volunteers in the shift
-                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
+                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
                 if (VolunteersInShift.Count > 1)//if there is no more place in the shift exit
                     return;
                 //add him in the shift
@@ -420,7 +420,7 @@ namespace PoliceVolnteerBL
             else
             {
                 //get all volunteers in the shifts
-                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
+                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
                 //if there is no more place or there is already a non independent volunteer in the shift exit
                 if (VolunteersInShift.Count > 2 || VolunteersInShift.Count < 1)
                     return;
@@ -455,7 +455,7 @@ namespace PoliceVolnteerBL
             if (distance != 0)//if the volunteer has entered Car shift info so add the car shift to the database
             {
                 //authenticate CarID for volunteer
-                if (CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, carID, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["PhoneNumber"].ToString() != this.PhoneNumber)
+                if (CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, carID, Table.CarToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["PhoneNumber"].ToString() != this.PhoneNumber)
                     return;
                 CarsReportsDAL.AddCarReport(shift.ShiftCode, carID, distance);
             }
@@ -472,12 +472,12 @@ namespace PoliceVolnteerBL
         public double GetDistance(DateTime FromDate, DateTime ToDate)
         {
             //get all the volunteer's car
-            DataRowCollection AllCars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            DataRowCollection AllCars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             //search for all known shifts the car has been used in
             Queue<FieldValue<CarsReportsField>> ReportParameters = new Queue<FieldValue<CarsReportsField>>();
             foreach (DataRow Car in AllCars)
             {
-                ReportParameters.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, Car["CarID"], FieldType.String, OperatorType.Equals));
+                ReportParameters.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, Car["CarID"], Table.CarsReports, FieldType.String, OperatorType.Equals));
             }
             if (ReportParameters.Count == 0)
                 return 0;
@@ -486,22 +486,22 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<ShiftsField>> ShiftParameters = new Queue<FieldValue<ShiftsField>>();
             foreach (DataRow Shift in shifts.Rows)
             {
-                ShiftParameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Shift["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                ShiftParameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Shift["ShiftCode"], Table.Shifts, FieldType.Number, OperatorType.Equals));
             }
             if (ShiftParameters.Count == 0)
                 return 0;
-            FieldValue<ShiftsField> Mask1 = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, FromDate, FieldType.Date, OperatorType.GreaterAndEquals);
-            FieldValue<ShiftsField> Mask2 = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, ToDate, FieldType.Date, OperatorType.LowerAndEquals);
+            FieldValue<ShiftsField> Mask1 = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, FromDate, Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals);
+            FieldValue<ShiftsField> Mask2 = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, ToDate, Table.Shifts, FieldType.Date, OperatorType.LowerAndEquals);
             DataTable Filter = ShiftsDAL.GetTable(ShiftParameters, false).Tables[0];
-            Filter.DefaultView.RowFilter = Mask1.ToString();
+            Filter.DefaultView.RowFilter = Mask1.ToSql();
             Filter = (Filter.DefaultView).ToTable();
-            Filter.DefaultView.RowFilter = Mask2.ToString();
+            Filter.DefaultView.RowFilter = Mask2.ToSql();
             Filter = (Filter.DefaultView).ToTable();
             //get all needed reports
             ReportParameters = new Queue<FieldValue<CarsReportsField>>();
             foreach (DataRow shiftCode in Filter.Rows)
             {
-                ReportParameters.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shiftCode["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                ReportParameters.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.ShiftCode, shiftCode["ShiftCode"], Table.CarsReports, FieldType.Number, OperatorType.Equals));
             }
             if (ReportParameters.Count == 0)
                 return 0;
@@ -518,17 +518,17 @@ namespace PoliceVolnteerBL
         public DataTable GetShifts(DateTime Date, OperatorType Operator)
         {
             //mask for later filtration
-            FieldValue<ShiftsField> Mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, Date, FieldType.Date, Operator);
+            FieldValue<ShiftsField> Mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, Date, Table.Shifts, FieldType.Date, Operator);
             //get all shifts regarding the volunteer
-            DataRowCollection Rows = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            DataRowCollection Rows = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<ShiftsField>> ShiftsCode = new Queue<FieldValue<ShiftsField>>();
             foreach (DataRow Row in Rows)
             {
-                ShiftsCode.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Row["shiftCode"], FieldType.Number, OperatorType.Equals));
+                ShiftsCode.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Row["shiftCode"], Table.Shifts, FieldType.Number, OperatorType.Equals));
             }
             DataSet ds = ShiftsDAL.GetTable(ShiftsCode, false);
             //filter shifts using date and operator
-            ds.Tables[0].DefaultView.RowFilter = Mask.ToString();
+            ds.Tables[0].DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
 
             return FilteredTable;
@@ -538,18 +538,18 @@ namespace PoliceVolnteerBL
         public DataTable GetShifts()
         {
             //get all shifts regarding the volunteer
-            DataRowCollection Rows = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            DataRowCollection Rows = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<ShiftsField>> ShiftsCode = new Queue<FieldValue<ShiftsField>>();
             foreach (DataRow Row in Rows)
             {
-                ShiftsCode.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Row["shiftCode"], FieldType.Number, OperatorType.Equals));
+                ShiftsCode.Enqueue(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, Row["shiftCode"], Table.Shifts, FieldType.Number, OperatorType.Equals));
             }
             return ShiftsDAL.GetTable(ShiftsCode, false).Tables[0];
         }
 
         public DataTable GetShiftReports()
         {
-            return ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
+            return ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0];
         }
 
         public DataTable GetShiftReports(DateTime date, OperatorType Operator)
@@ -560,11 +560,11 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<ShiftsToVolunteerField>> shiftReportFilter = new Queue<FieldValue<ShiftsToVolunteerField>>();
             foreach (DataRow shift in Shifts.Rows)
             {
-                shiftReportFilter.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, shift["ShiftCode"], FieldType.Number, OperatorType.Equals));
+                shiftReportFilter.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, shift["ShiftCode"], Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals));
             }
             DataTable reports = ShiftsToVolunteerDAL.GetTable(shiftReportFilter, false).Tables[0];
-            FieldValue<ShiftsToVolunteerField> Mask = new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, FieldType.String, Operator);
-            reports.DefaultView.RowFilter = Mask.ToString();
+            FieldValue<ShiftsToVolunteerField> Mask = new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, Operator);
+            reports.DefaultView.RowFilter = Mask.ToSql();
             reports = (reports.DefaultView).ToTable();
             return reports;
         }
@@ -572,15 +572,15 @@ namespace PoliceVolnteerBL
         public DataTable GetActivitys(DateTime Date, OperatorType Operator)
         {
             //create parameters to filter the table
-            FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, Date, FieldType.Date, Operator);
-            DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, Date, Table.Activity, FieldType.Date, Operator);
+            DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<ActivityField>> ActivitysCode = new Queue<FieldValue<ActivityField>>();
             foreach (DataRow Row in Rows)
             {
-                ActivitysCode.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityCode, Row["ActivityCode"], FieldType.Number, OperatorType.Equals));
+                ActivitysCode.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityCode, Row["ActivityCode"], Table.Activity, FieldType.Number, OperatorType.Equals));
             }
             DataSet ds = ActivityDAL.GetTable(ActivitysCode, false);
-            ds.Tables[0].DefaultView.RowFilter = Mask.ToString();
+            ds.Tables[0].DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
             return FilteredTable;
         }
@@ -588,11 +588,11 @@ namespace PoliceVolnteerBL
         public DataTable GetActivitys()
         {
             //create parameters to filter the table
-            DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
+            DataRowCollection Rows = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
             Queue<FieldValue<ActivityField>> ActivitysCode = new Queue<FieldValue<ActivityField>>();
             foreach (DataRow Row in Rows)
             {
-                ActivitysCode.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityCode, Row["ActivityCode"], FieldType.Number, OperatorType.Equals));
+                ActivitysCode.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityCode, Row["ActivityCode"], Table.Activity, FieldType.Number, OperatorType.Equals));
             }
             DataSet ds = ActivityDAL.GetTable(ActivitysCode, false);
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
@@ -601,7 +601,7 @@ namespace PoliceVolnteerBL
 
         public DataTable GetActivityReports()
         {
-            return ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals)).Tables[0];
+            return ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals)).Tables[0];
         }
 
         public DataTable GetActivityReports(DateTime date, OperatorType Operator)
@@ -612,11 +612,11 @@ namespace PoliceVolnteerBL
             Queue<FieldValue<ReportsField>> ActivityFilter = new Queue<FieldValue<ReportsField>>();
             foreach (DataRow activity in Activities.Rows)
             {
-                ActivityFilter.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, activity["ActivityCode"], FieldType.Number, OperatorType.Equals));
+                ActivityFilter.Enqueue(new FieldValue<ReportsField>(ReportsField.ActivityCode, activity["ActivityCode"], Table.Reports, FieldType.Number, OperatorType.Equals));
             }
             DataTable reports = ReportsDAL.GetTable(ActivityFilter, false).Tables[0];
-            FieldValue<ReportsField> Mask = new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, FieldType.String, OperatorType.Equals);
-            reports.DefaultView.RowFilter = Mask.ToString();
+            FieldValue<ReportsField> Mask = new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals);
+            reports.DefaultView.RowFilter = Mask.ToSql();
             reports = (reports.DefaultView).ToTable();
             return reports;
         }

@@ -77,7 +77,7 @@ namespace PoliceVolnteerBL
         public MediaBL(string FileName)
         {
             this.FileName = FileName;
-            DataSet mediaDataSet = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, FieldType.String, OperatorType.Equals));
+            DataSet mediaDataSet = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, Table.Media, FieldType.String, OperatorType.Equals));
             this.ActivityCode = (int)mediaDataSet.Tables[0].Rows[0]["ActivityCode"];
             this.FileType = (int)mediaDataSet.Tables[0].Rows[0]["FileType"];
         }

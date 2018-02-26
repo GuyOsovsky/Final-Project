@@ -36,7 +36,7 @@ namespace PoliceVolnteerDAL
         public static DataSet GetTable(FieldValue<ShiftsField> fv)
         {
             string SQL = "SELECT * FROM Shifts WHERE ";
-            SQL += fv.ToString();
+            SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "Shifts");
         }
 
@@ -47,13 +47,13 @@ namespace PoliceVolnteerDAL
             string SQL = "SELECT * FROM Shifts WHERE ";
             while (qfv.Count > 1)
             {
-                SQL += qfv.Dequeue().ToString();
+                SQL += qfv.Dequeue().ToSql();
                 if (Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
-            SQL += qfv.Dequeue().ToString();
+            SQL += qfv.Dequeue().ToSql();
             return OleDbHelper2.Fill(SQL, "Shifts");
         }
 

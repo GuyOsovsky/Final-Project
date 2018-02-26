@@ -34,7 +34,7 @@ namespace PoliceVolnteerBL
         public ShiftBL(int ShiftCode)
         {
             this.ShiftCode = ShiftCode;
-            DataSet ShiftsDataSet = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, ShiftCode, FieldType.Number, OperatorType.Equals));
+            DataSet ShiftsDataSet = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, ShiftCode, Table.Shifts, FieldType.Number, OperatorType.Equals));
             this.TypeCode = (int)ShiftsDataSet.Tables[0].Rows[0]["TypeCode"];
             this.DateOfShift = (DateTime)ShiftsDataSet.Tables[0].Rows[0]["DateOfShift"];
             this.StartTime = (DateTime)ShiftsDataSet.Tables[0].Rows[0]["StartTime"];
@@ -51,7 +51,7 @@ namespace PoliceVolnteerBL
         //return table of all the phone numbers of the participants in this specific shift
         public DataTable GetParticipantsPhoneNumbers()
         {
-            DataTable shiftsToVolunteer = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), FieldType.Number, OperatorType.Equals)).Tables[0];
+            DataTable shiftsToVolunteer = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0];
             shiftsToVolunteer.Columns.Remove("shiftCode");
             shiftsToVolunteer.Columns.Remove("comments");
             return shiftsToVolunteer;

@@ -35,7 +35,7 @@ namespace PoliceVolnteerDAL
         public static DataSet GetTable(FieldValue<CarVolunteerField> fv)
         {
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
-            SQL += fv.ToString();
+            SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
@@ -46,13 +46,13 @@ namespace PoliceVolnteerDAL
             string SQL = "SELECT * FROM CarToVolunteer WHERE ";
             while (qfv.Count > 1)
             {
-                SQL += qfv.Dequeue().ToString();
+                SQL += qfv.Dequeue().ToSql();
                 if (Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
-            SQL += qfv.Dequeue().ToString();
+            SQL += qfv.Dequeue().ToSql();
             return OleDbHelper2.Fill(SQL, "CarToVolunteer");
         }
 
@@ -61,7 +61,7 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + del.ToString();
+                string deleteSQL = "DELETE * FROM CarToVolunteer WHERE " + del.ToSql();
                 OleDbHelper2.DoQuery(deleteSQL);
             }
             catch(Exception e)

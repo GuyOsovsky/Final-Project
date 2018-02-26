@@ -18,33 +18,36 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
+            //fill activity gridview
             FillActivitys();
             FillSignedActivitys();
         }
 
         protected void FillActivitys()
         {
-            DataSet activitys = ActivitysBL.GetActivities();
-            FieldValue<ActivityField> Mask = new FieldValue<ActivityField>(ActivityField.ActivityDate, DateTime.Now, FieldType.Date, OperatorType.Greater);
-            activitys.Tables[0].DefaultView.RowFilter = Mask.ToString();
-            DataTable FilteredTable = (activitys.Tables[0].DefaultView).ToTable();
-            for(int i = 0; i < FilteredTable.Rows.Count; i++)
+            //get all future activitys
+            DataSet activitys = (new ActivitysBL(DateTime.Now)).Activitys;
+            //filter out registered activitys
+            for (int i = 0; i < activitys.Tables[0].Rows.Count; i++)
             {
-                ReportsBL reports = new ReportsBL(Session["User"].ToString(), int.Parse(FilteredTable.Rows[i]["ActivityCode"].ToString()));
-                if (reports.ReportList.Count > 0)
+                ReportsBL reports = new ReportsBL(Session["User"].ToString(), int.Parse(activitys.Tables[0].Rows[i]["ActivityCode"].ToString()));
+                if (reports.Reports.Tables[0].Rows.Count > 0)
                 {
-                    FilteredTable.Rows[i].Delete();
-                    i--;
+                    activitys.Tables[0].Rows[i].Delete();
+                    //i--;
                 }
             }
-            DataView dataView = new DataView(FilteredTable);
+            //bind data to gridview
+            DataView dataView = new DataView(activitys.Tables[0]);
             ActivitysInformation.DataSource = dataView;
             ActivitysInformation.DataBind();
         }
 
         protected void FillSignedActivitys()
         {
+            //get all registered activitys
             DataView dataView = new DataView((new VolunteerBL(Session["User"].ToString()).GetActivitys(DateTime.Now, PoliceVolnteerDAL.OperatorType.Greater)));
+            //bind data to gridview
             SignedActivitys.DataSource = dataView;
             SignedActivitys.DataBind();
         }

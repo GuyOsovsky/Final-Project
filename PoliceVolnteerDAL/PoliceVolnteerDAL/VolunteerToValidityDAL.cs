@@ -35,7 +35,7 @@ namespace PoliceVolnteerDAL
         public static DataSet GetTable(FieldValue<VolunteerToValidityField> fv)
         {
             string SQL = "SELECT * FROM VolunteerToValidity WHERE ";
-            SQL += fv.ToString();
+            SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "VolunteerToValidity");
         }
 
@@ -46,13 +46,13 @@ namespace PoliceVolnteerDAL
             string SQL = "SELECT * FROM VolunteerToValidity WHERE ";
             while (qfv.Count > 1)
             {
-                SQL += qfv.Dequeue().ToString();
+                SQL += qfv.Dequeue().ToSql();
                 if (Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
-            SQL += qfv.Dequeue().ToString();
+            SQL += qfv.Dequeue().ToSql();
             return OleDbHelper2.Fill(SQL, "VolunteerToValidity");
         }
 

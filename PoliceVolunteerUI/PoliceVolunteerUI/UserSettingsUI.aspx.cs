@@ -18,13 +18,16 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
+            //fill gridview
             FillUserSettings();
         }
 
         protected void FillUserSettings()
         {
+            //create datatable
             VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
             DataTable SettingsTable = new DataTable();
+            //fill datatable
             SettingsTable.Columns.Add("FieldName", typeof(String));
             SettingsTable.Columns.Add("FieldValue", typeof(String));
             DataTable volunteerTable = volunteer.VolunteerToDataSet().Tables[0];
@@ -34,6 +37,7 @@ namespace PoliceVolunteerUI
                 SettingsTable.Rows[i][0] = volunteerTable.Columns[i];
                 SettingsTable.Rows[i][1] = volunteerTable.Rows[0][i];
             }
+            //bind data to gridview
             DataView dataView = new DataView(SettingsTable);
             UserInformation.DataSource = dataView;
             UserInformation.DataBind();
@@ -41,17 +45,21 @@ namespace PoliceVolunteerUI
 
         protected void UserInformationRowEditingRowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            //deselect row
             UserInformation.EditIndex = -1;
         }
 
         protected void UserInformationRowEditing(object sender, GridViewEditEventArgs e)
         {
+            //select row
             UserInformation.EditIndex = e.NewEditIndex;
         }
 
         protected void UserInformationRowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            //get selected row
             GridViewRow row = UserInformation.Rows[e.RowIndex];
+            //update in database
             string UpdatedValue = ((TextBox)row.Cells[1].FindControl("txt_FieldValue")).Text;
             object field = null;
             switch (e.RowIndex)
@@ -95,6 +103,7 @@ namespace PoliceVolunteerUI
             {
                 Session["User"] = UpdatedValue;
             }
+            //diselect row
             UserInformation.EditIndex = -1;
         }
     }

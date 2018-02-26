@@ -28,14 +28,25 @@ namespace PoliceVolnteerDAL
         //get all Reports table
         public static DataSet GetTable()
         {
-            return OleDbHelper2.Fill("select * from Reports", "Reports");
+            return OleDbHelper2.Fill("select Reports.*, ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status FROM ((Reports INNER JOIN Activity ON Reports.ActivityCode = Activity.ActivityCode) INNER JOIN VolunteerInfo ON Reports.PhoneNumber = VolunteerInfo.PhoneNumber)", "Reports");
         }
 
         //get Reports table by field and value
         public static DataSet GetTable(FieldValue<ReportsField> fv)
         {
-            string SQL = "SELECT * FROM Reports WHERE ";
-            SQL += fv.ToString();
+            string SQL = "SELECT Reports.*, ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status FROM ((Reports INNER JOIN Activity ON Reports.ActivityCode = Activity.ActivityCode) INNER JOIN VolunteerInfo ON Reports.PhoneNumber = VolunteerInfo.PhoneNumber) WHERE ";
+            //fv.Field.ToString();//
+            int i;
+            for (i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
+            {
+                if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)i).ToString())
+                {
+                    SQL += fv.ToDetailedSql();
+                    break;
+                }
+            }
+            if(i == Enum.GetNames(typeof(ActivityField)).Length)
+                SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 
@@ -43,18 +54,40 @@ namespace PoliceVolnteerDAL
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ReportsField>> qfv, bool Operation)
         {
+            FieldValue<ReportsField> fv;
+            int i;
             if (qfv.Count == 0)
                 return new DataSet();
-            string SQL = "SELECT * FROM Reports WHERE ";
+            string SQL = "SELECT Reports.*, ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status FROM ((Reports INNER JOIN Activity ON Reports.ActivityCode = Activity.ActivityCode) INNER JOIN VolunteerInfo ON Reports.PhoneNumber = VolunteerInfo.PhoneNumber) WHERE ";
             while (qfv.Count > 1)
             {
-                SQL += qfv.Dequeue().ToString();
+                fv = qfv.Dequeue();
+                for (i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
+                {
+                    if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)i).ToString())
+                    {
+                        SQL += fv.ToDetailedSql();
+                        break;
+                    }
+                }
+                if (i == Enum.GetNames(typeof(ActivityField)).Length)
+                    SQL += fv.ToSql();
                 if (Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
-            SQL += qfv.Dequeue().ToString();
+            fv = qfv.Dequeue();
+            for (i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
+            {
+                if (fv.Field.ToString() == ((ActivityField)i).ToString())
+                {
+                    SQL += fv.ToDetailedSql();
+                    break;
+                }
+            }
+            if (i == Enum.GetNames(typeof(ActivityField)).Length)
+                SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 

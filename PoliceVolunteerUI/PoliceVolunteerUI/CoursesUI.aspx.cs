@@ -18,17 +18,22 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
+
+            //fill gridviews
             FillCourses();
             FillSignedCourses();
         }
 
         protected void FillCourses()
         {
+            //get all courses
             DataSet courses = CoursesBL.GetCourses();
-            FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, FieldType.Date, OperatorType.Greater);
-            courses.Tables[0].DefaultView.RowFilter = Mask.ToString();
+            //filter by date
+            FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.Greater);
+            courses.Tables[0].DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredTable = (courses.Tables[0].DefaultView).ToTable();
-            for (int i = 0; i < FilteredTable.Rows.Count; i++)//
+            //filter by courses the user already registered to
+            for (int i = 0; i < FilteredTable.Rows.Count; i++)
             {
                 VolunteerBL user = new VolunteerBL(Session["User"].ToString());
                 DataTable UserCourses = user.GetCourses(DateTime.Now, OperatorType.Greater);
@@ -41,7 +46,8 @@ namespace PoliceVolunteerUI
                         break;
                     }
                 }
-            }//
+            }
+            //bind data to gridview
             DataView dataView = new DataView(FilteredTable);
             CoursesInformation.DataSource = dataView;
             CoursesInformation.DataBind();
@@ -49,6 +55,7 @@ namespace PoliceVolunteerUI
 
         protected void FillSignedCourses()
         {
+            //get all registered courses
             DataView dataView = new DataView((new VolunteerBL(Session["User"].ToString()).GetCourses(DateTime.Now, PoliceVolnteerDAL.OperatorType.Greater)));
             SignedActivitys.DataSource = dataView;
             SignedActivitys.DataBind();

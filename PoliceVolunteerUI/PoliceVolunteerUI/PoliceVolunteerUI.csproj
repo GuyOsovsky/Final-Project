@@ -57,9 +57,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActivitysAdminUI.aspx" />
     <Content Include="ActivitysUI.aspx" />
     <Content Include="App_Data\database police.accdb" />
     <Content Include="BigMapUI.aspx" />
+    <Content Include="CarsUI.aspx" />
+    <Content Include="CoursesAdminUI.aspx" />
     <Content Include="CoursesUI.aspx" />
     <Content Include="css\bootstrap-grid.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -106,6 +109,7 @@
     <Content Include="Resources\ServeCity.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ShiftsAdminUI.aspx" />
     <Content Include="ShiftsUI.aspx" />
     <Content Include="SignUpUI.aspx" />
     <Content Include="StockUI.aspx" />
@@ -114,6 +118,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivitysAdminUI.aspx.cs">
+      <DependentUpon>ActivitysAdminUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActivitysAdminUI.aspx.designer.cs">
+      <DependentUpon>ActivitysAdminUI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ActivitysUI.aspx.cs">
       <DependentUpon>ActivitysUI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,6 +138,20 @@
     </Compile>
     <Compile Include="BigMapUI.aspx.designer.cs">
       <DependentUpon>BigMapUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CarsUI.aspx.cs">
+      <DependentUpon>CarsUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarsUI.aspx.designer.cs">
+      <DependentUpon>CarsUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CoursesAdminUI.aspx.cs">
+      <DependentUpon>CoursesAdminUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CoursesAdminUI.aspx.designer.cs">
+      <DependentUpon>CoursesAdminUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="CoursesUI.aspx.cs">
       <DependentUpon>CoursesUI.aspx</DependentUpon>
@@ -167,6 +192,13 @@
       <DependentUpon>MediaUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShiftsAdminUI.aspx.cs">
+      <DependentUpon>ShiftsAdminUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShiftsAdminUI.aspx.designer.cs">
+      <DependentUpon>ShiftsAdminUI.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShiftsUI.aspx.cs">
       <DependentUpon>ShiftsUI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

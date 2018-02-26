@@ -36,7 +36,7 @@ namespace PoliceVolnteerDAL
         public static DataSet GetTable(FieldValue<StockToVolunteerField> fv)//string select, StockEnum field)
         {
             string SQL = "SELECT * FROM StockToVolunteer WHERE ";
-            SQL += fv.ToString();
+            SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "StockToVolunteer");
         }
 
@@ -47,13 +47,13 @@ namespace PoliceVolnteerDAL
             string SQL = "SELECT * FROM StockToVolunteer WHERE ";
             while (qfv.Count > 1)
             {
-                SQL += qfv.Dequeue().ToString();
+                SQL += qfv.Dequeue().ToSql();
                 if (Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
-            SQL += qfv.Dequeue().ToString();
+            SQL += qfv.Dequeue().ToSql();
             return OleDbHelper2.Fill(SQL, "StockToVolunteer");
         }
 

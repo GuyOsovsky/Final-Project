@@ -46,7 +46,7 @@ namespace PoliceVolnteerBL
         //build from the database
         public CourseBL(int CourseCode)
         {
-            DataSet courseDataSet = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals));
+            DataSet courseDataSet = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, Table.Course, FieldType.Number, OperatorType.Equals));
             this.CourseCode = CourseCode;
             this.CourseName = (string)courseDataSet.Tables[0].Rows[0]["CourseName"];
             this.CourseDate = (DateTime)courseDataSet.Tables[0].Rows[0]["CourseDate"];
@@ -62,7 +62,7 @@ namespace PoliceVolnteerBL
         //return all the important fields(all fields without CourseCode and ValidityCode)
         public DataTable GetDetails()
         {
-            DataTable detailsTable = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, FieldType.Number, OperatorType.Equals)).Tables[0];
+            DataTable detailsTable = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, Table.Course, FieldType.Number, OperatorType.Equals)).Tables[0];
             //remove minor fields
             detailsTable.Columns.Remove("CourseCode");
             detailsTable.Columns.Remove("ValidityCode");

@@ -18,17 +18,20 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
+            //fill shifts gridview
             FillShifts();
             FillSignedShifts();
         }
 
         protected void FillShifts()
         {
+            //get all shifts
             DataSet shifts = (new ShiftsBL(DateTime.Now)).GetDetails();
-            FieldValue<ShiftsField> Mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, FieldType.Date, OperatorType.Greater);
-            shifts.Tables[0].DefaultView.RowFilter = Mask.ToString();
+            //filter by date
+            FieldValue<ShiftsField> Mask = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Date, OperatorType.Greater);
+            shifts.Tables[0].DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredTable = (shifts.Tables[0].DefaultView).ToTable();
-
+            //filter all registered shifts
             for (int i = 0; i < FilteredTable.Rows.Count; i++)
             {
                 VolunteerBL user = new VolunteerBL(Session["User"].ToString());
@@ -44,6 +47,7 @@ namespace PoliceVolunteerUI
                 }
 
             }
+            //bind data to gridview
             DataView dataView = new DataView(FilteredTable);
             ShiftsInformation.DataSource = dataView;
             ShiftsInformation.DataBind();
@@ -51,12 +55,15 @@ namespace PoliceVolunteerUI
 
         protected void FillSignedShifts()
         {
+            //get all registered shifts
             DataTable shifts = (new VolunteerBL(Session["User"].ToString()).GetShifts(DateTime.Now, PoliceVolnteerDAL.OperatorType.Greater));
+            //add type column
             shifts.Columns.Add("ShiftType", typeof(string));
             foreach (DataRow shift in shifts.Rows)
             {
                 shift["ShiftType"] = (new ShiftTypesBL(int.Parse(shift["TypeCode"].ToString()))).TypeName;
             }
+            //bind data to gridview
             DataView dataView = new DataView(shifts);
             SignedShifts.DataSource = dataView;
             SignedShifts.DataBind();

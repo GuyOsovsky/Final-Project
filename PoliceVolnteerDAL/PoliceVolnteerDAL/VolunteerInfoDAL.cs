@@ -35,7 +35,7 @@ namespace PoliceVolnteerDAL
             {
                 if (CarInfo)
                 {
-                    CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber, FieldType.String, OperatorType.Equals));
+                    CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, vPhoneNumber,Table.CarToVolunteer, FieldType.String, OperatorType.Equals));
                 }
                 if (PoliceInfo)
                 {
@@ -69,7 +69,7 @@ namespace PoliceVolnteerDAL
             //{
             //    SQL += "FULL OUTER JOIN VolunteerPoliceInfo ON VolunteerInfo.PhoneNumber=VolunteerPoliceInfo.PhoneNumber ";
             //}
-            SQL += "WHERE " + fv.ToString();
+            SQL += "WHERE " + fv.ToSql();
             return OleDbHelper2.Fill(SQL, "VolunteerInfo");
         }
 
@@ -80,13 +80,13 @@ namespace PoliceVolnteerDAL
             string SQL = "SELECT * FROM VolunteerInfo WHERE ";
             while (qfv.Count > 1)
             {
-                SQL += qfv.Dequeue().ToString();
+                SQL += qfv.Dequeue().ToSql();
                 if(Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
-            SQL += qfv.Dequeue().ToString();
+            SQL += qfv.Dequeue().ToSql();
             return OleDbHelper2.Fill(SQL, "VolunteerInfo");
         }
 
@@ -120,7 +120,7 @@ namespace PoliceVolnteerDAL
             {
                 string deleteSQL;
                 VolunteerPoliceInfoDAL.DelUser(UPhoneNumber);
-                CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, FieldType.String, OperatorType.Equals));
+                CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, UPhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals));
                 deleteSQL = "DELETE * FROM VolunteerInfo WHERE PhoneNumber='" + UPhoneNumber + "'";
                 OleDbHelper2.DoQuery(deleteSQL);
             }
