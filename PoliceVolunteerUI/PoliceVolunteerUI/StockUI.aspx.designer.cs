@@ -13,21 +13,21 @@ namespace PoliceVolunteerUI {
     public partial class StockUI {
         
         /// <summary>
-        /// ItemsInPossession control.
+        /// ItemsToBorrow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ItemsInPossession;
+        protected global::System.Web.UI.WebControls.GridView ItemsToBorrow;
         
         /// <summary>
-        /// AllStockItems control.
+        /// BorrowedItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView AllStockItems;
+        protected global::System.Web.UI.WebControls.GridView BorrowedItems;
     }
 }

@@ -262,6 +262,8 @@ namespace PoliceVolnteerBL
 
             //VolunteerInfoDAL.UpdateFrom("b", new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, "g", FieldType.String, OperatorType.Equals));
 
+            ItemBL item = new ItemBL("plates", 0, true);
+
             Console.WriteLine("work");
             Console.ReadKey();
         }
