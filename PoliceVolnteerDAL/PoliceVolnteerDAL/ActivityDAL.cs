@@ -28,13 +28,13 @@ namespace PoliceVolnteerDAL
         //get all activity table
         public static DataSet GetTable()
         {
-            return OleDbHelper2.Fill("select * from Activity", "Activity");
+            return OleDbHelper2.Fill("select * from (Activity INNER JOIN TypeToActivity ON Activity.TypeCode = TypeToActivity.typeCode)", "Activity");
         }
 
         //get activity table by field and value
         public static DataSet GetTable(FieldValue<ActivityField> fv)
         {
-            string SQL = "SELECT * FROM Activity WHERE ";
+            string SQL = "SELECT * FROM (Activity INNER JOIN TypeToActivity ON Activity.TypeCode = TypeToActivity.typeCode) WHERE ";
             SQL += fv.ToSql();
             return OleDbHelper2.Fill(SQL, "Activity");
         }
@@ -43,7 +43,7 @@ namespace PoliceVolnteerDAL
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ActivityField>> qfv, bool Operation)
         {
-            string SQL = "SELECT * FROM Activity WHERE ";
+            string SQL = "SELECT * FROM (Activity INNER JOIN TypeToActivity ON Activity.TypeCode = TypeToActivity.typeCode) WHERE ";
             while (qfv.Count > 1)
             {
                 SQL += qfv.Dequeue().ToSql();

@@ -85,13 +85,13 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator FNameRequiredV;
         
         /// <summary>
-        /// FNameRegularExpressionV control.
+        /// FNameCustomV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator FNameRegularExpressionV;
+        protected global::System.Web.UI.WebControls.CustomValidator FNameCustomV;
         
         /// <summary>
         /// LNameIN control.
@@ -112,13 +112,13 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator LNameRequiredV;
         
         /// <summary>
-        /// LNameRegularExpressionV control.
+        /// LNameCustomV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator LNameRegularExpressionV;
+        protected global::System.Web.UI.WebControls.CustomValidator LNameCustomV;
         
         /// <summary>
         /// BirthDateIN control.

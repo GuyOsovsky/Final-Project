@@ -22,6 +22,33 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.GridView ActivitysInformation;
         
         /// <summary>
+        /// ActivitysChooseReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ActivitysChooseReports;
+        
+        /// <summary>
+        /// VolunteerChooseReports control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList VolunteerChooseReports;
+        
+        /// <summary>
+        /// ReportsUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ReportsUpdate;
+        
+        /// <summary>
         /// Reports control.
         /// </summary>
         /// <remarks>
