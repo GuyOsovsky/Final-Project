@@ -36,3 +36,15 @@ function DateValidation(oSrc, args) {
     var years = today.getFullYear() - userYear;
     args.IsValid = years > 17 ? true : false;
 }
+
+function nameValidation(oSrc, args) {
+    var inputTxt = args.Value;
+    var letters = /^[A-Za-zא-ת]+$/;
+    if (inputTxt.value.match(letters)) {
+        return true;
+    }
+    else {
+        alert("message");
+        return false;
+    }
+}

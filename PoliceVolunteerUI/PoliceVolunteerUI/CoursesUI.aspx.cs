@@ -27,7 +27,7 @@ namespace PoliceVolunteerUI
         protected void FillCourses()
         {
             //get all courses
-            DataSet courses = CoursesBL.GetCourses();
+            DataSet courses = (new CoursesBL()).Courses;
             //filter by date
             FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.Greater);
             courses.Tables[0].DefaultView.RowFilter = Mask.ToSql();

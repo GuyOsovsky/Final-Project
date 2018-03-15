@@ -25,16 +25,14 @@
                 <br />
                 <asp:TextBox ID="FNameIN" runat="server" TextMode="SingleLine" CssClass="form-control" dir="rtl"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="FNameRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="FNameIN" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="FNameRegularExpressionV" runat="server" ErrorMessage="RegularExpressionValidator" ValidationExpression="\w{2-20}" ControlToValidate="FNameIN" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
-
+                <asp:CustomValidator ID="FNameCustomV" runat="server" ErrorMessage="זה לא שם תקין" ControlToValidate="FNameIN" ClientValidationFunction="nameValidation"></asp:CustomValidator>
             </div>
             <div class="form-group" >
                 <label for="LNameIN">שם משפחה:</label>
                 <br />
                 <asp:TextBox ID="LNameIN" runat="server" TextMode="SingleLine" CssClass="form-control" dir="rtl"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="LNameRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="LNameIN" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="LNameRegularExpressionV" runat="server" ErrorMessage="RegularExpressionValidator" ValidationExpression="\w{2-20}" ControlToValidate="LNameIN" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
-
+                <asp:CustomValidator ID="LNameCustomV" runat="server" ErrorMessage="זה לא שם תקין" ControlToValidate="LNameIN" ClientValidationFunction="nameValidation"></asp:CustomValidator>
             </div>
             <div class="form-group" >
                 <label for="BirthDateIN">תאריך לידה:</label>

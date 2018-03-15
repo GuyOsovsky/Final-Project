@@ -29,7 +29,7 @@ namespace PoliceVolnteerBL
 
         public ReportsBL(int activityCode)
         {
-            this.Reports = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, Table.Reports, FieldType.String, OperatorType.Equals));
+            this.Reports = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, Table.Reports, FieldType.Number, OperatorType.Equals));
         }
 
         public ReportsBL()
