@@ -35,27 +35,18 @@ namespace PoliceVolnteerDAL
         public static DataSet GetTable(FieldValue<ReportsField> fv)
         {
             string SQL = "SELECT Reports.*, ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status FROM ((Reports INNER JOIN Activity ON Reports.ActivityCode = Activity.ActivityCode) INNER JOIN VolunteerInfo ON Reports.PhoneNumber = VolunteerInfo.PhoneNumber) WHERE ";
-            bool isDetailed = false;
-            for (int i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
+            //fv.Field.ToString();//
+            int i;
+            for (i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
             {
-                //finish this!!!!!!!!!!!! fucking stupid
-                for(int j = 0; j < Enum.GetNames(typeof(VolunteerInfoDALField)).Length; j++)
+                if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)i).ToString())
                 {
-                    if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)j).ToString())
-                    {
-                        isDetailed = true;
-                        break;
-                    }
-                }
-                if (isDetailed)
+                    SQL += fv.ToDetailedSql();
                     break;
+                }
             }
-            if(!isDetailed)
+            if(i == Enum.GetNames(typeof(ActivityField)).Length)
                 SQL += fv.ToSql();
-            else
-            {
-                SQL += fv.ToDetailedSql();
-            }
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 
@@ -64,60 +55,39 @@ namespace PoliceVolnteerDAL
         public static DataSet GetTable(Queue<FieldValue<ReportsField>> qfv, bool Operation)
         {
             FieldValue<ReportsField> fv;
+            int i;
             if (qfv.Count == 0)
                 return new DataSet();
-            bool isDetailed;
             string SQL = "SELECT Reports.*, ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer, EmergencyNumber, FName, LName, BirthDate, UserName, Password, HomeAddress, HomeCity, EmailAddress, ID, status FROM ((Reports INNER JOIN Activity ON Reports.ActivityCode = Activity.ActivityCode) INNER JOIN VolunteerInfo ON Reports.PhoneNumber = VolunteerInfo.PhoneNumber) WHERE ";
             while (qfv.Count > 1)
             {
                 fv = qfv.Dequeue();
-                isDetailed = false;
-                for (int i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
+                for (i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
                 {
-                    for (int j = 0; j < Enum.GetNames(typeof(VolunteerInfoDALField)).Length; j++)
+                    if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)i).ToString())
                     {
-                        if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)j).ToString())
-                        {
-                            isDetailed = true;
-                            break;
-                        }
-                    }
-                    if (isDetailed)
+                        SQL += fv.ToDetailedSql();
                         break;
+                    }
                 }
-                if (!isDetailed)
+                if (i == Enum.GetNames(typeof(ActivityField)).Length)
                     SQL += fv.ToSql();
-                else
-                {
-                    SQL += fv.ToDetailedSql();
-                }
                 if (Operation)
                     SQL += " AND ";
                 else
                     SQL += " OR ";
             }
             fv = qfv.Dequeue();
-            isDetailed = false;
-            for (int i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
+            for (i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
             {
-                //finish this!!!!!!!!!!!! fucking stupid
-                for (int j = 0; j < Enum.GetNames(typeof(VolunteerInfoDALField)).Length; j++)
+                if (fv.Field.ToString() == ((ActivityField)i).ToString())
                 {
-                    if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)j).ToString())
-                    {
-                        isDetailed = true;
-                        break;
-                    }
-                }
-                if (isDetailed)
+                    SQL += fv.ToDetailedSql();
                     break;
+                }
             }
-            if (!isDetailed)
+            if (i == Enum.GetNames(typeof(ActivityField)).Length)
                 SQL += fv.ToSql();
-            else
-            {
-                SQL += fv.ToDetailedSql();
-            }
             return OleDbHelper2.Fill(SQL, "Reports");
         }
 

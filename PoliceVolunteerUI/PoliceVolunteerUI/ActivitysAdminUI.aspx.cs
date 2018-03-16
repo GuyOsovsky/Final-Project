@@ -25,26 +25,109 @@ namespace PoliceVolunteerUI
             //fill activity gridview
             FillActivitys();
             FillReports();
+            if (!IsPostBack)
+            {
+                FillActivityList();
+                FillVolunteerList();
+            }
         }
 
         protected void FillActivitys()
         {
             //get all activitys
             DataSet activitys = (new ActivitysBL()).Activitys;
+            activitys.Tables[0].Rows.Add();
             //bind data to gridview
             DataView dataView = new DataView(activitys.Tables[0]);
             ActivitysInformation.DataSource = dataView;
+            ActivitysInformation.EditIndex = activitys.Tables[0].Rows.Count - 1;
             ActivitysInformation.DataBind();
         }
 
         protected void FillReports()
         {
             ////get all registered activitys
-            ReportsBL reports = new ReportsBL();
+            ReportsBL reports;
+            if (ActivitysChooseReports.Text != "" && VolunteerChooseReports.Text != "")
+                reports = new ReportsBL(VolunteerChooseReports.SelectedValue.ToString(), int.Parse(ActivitysChooseReports.SelectedValue.ToString()));
+            else if (ActivitysChooseReports.Text == "" && VolunteerChooseReports.Text != "")
+                reports = new ReportsBL(VolunteerChooseReports.SelectedValue.ToString());
+            else if (ActivitysChooseReports.Text != "" && VolunteerChooseReports.Text == "")
+                reports = new ReportsBL(int.Parse(ActivitysChooseReports.SelectedValue.ToString()));
+            else
+                reports = new ReportsBL("");//get an empty dataset
             DataView dataView = new DataView(reports.Reports.Tables[0]);
             //bind data to gridview
             Reports.DataSource = dataView;
             Reports.DataBind();
         }
+
+        protected void FillActivityList()
+        {
+            //clear list
+            ActivitysChooseReports.Items.Clear();
+            //load activitys
+            ActivitysBL activitys = new ActivitysBL();
+            //add a blank space
+            ActivitysChooseReports.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            //add all activitys to the list
+            foreach (DataRow activity in activitys.Activitys.Tables[0].Rows)
+            {
+                ActivitysChooseReports.Items.Add(new ListItem(activity["ActivityName"].ToString(), activity["ActivityCode"].ToString()));
+            }
+            ActivitysChooseReports.DataBind();
+        }
+
+        protected void FillVolunteerList()
+        {
+            //clear list
+            VolunteerChooseReports.Items.Clear();
+            //load volunteers
+            VolunteersBL volunteers = new VolunteersBL(false);
+            //add a blank space
+            VolunteerChooseReports.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            //add all volunteers to list
+            foreach (VolunteerBL volunteer in volunteers.VolunteerList)
+            {
+                VolunteerChooseReports.Items.Add(new ListItem(volunteer.FName + " " + volunteer.LName, volunteer.PhoneNumber));
+            }
+            VolunteerChooseReports.DataBind();
+        }
+
+        protected void FillActivityTypesList(object sender, EventArgs e)
+        {
+            ActivityTypes types = new ActivityTypes();
+            foreach (DataRow row in types.activityTypes.Tables[0].Rows)
+            {
+                ((DropDownList)sender).Items.Add(new ListItem(row["typeName"].ToString(), row["typeCode"].ToString()));
+            }
+            ((DropDownList)sender).DataBind();
+        }
+
+        protected void FillActivityManagerList(object sender, EventArgs e)
+        {
+            VolunteersBL volunteers = new VolunteersBL(false);
+            foreach (VolunteerBL volunteer in volunteers.VolunteerList)
+            {
+                ((DropDownList)sender).Items.Add(new ListItem(volunteer.FName + " " + volunteer.LName, volunteer.PhoneNumber));
+            }
+            ((DropDownList)sender).DataBind();
+        }
+
+        protected void AddNewActivity(object sender, EventArgs e)
+        {
+            GridViewRow row = ActivitysInformation.Rows[ActivitysInformation.EditIndex];
+            string activityName = ((TextBox)row.Cells[1].FindControl("InputActivityName")).Text;
+            DateTime activityDate = DateTime.ParseExact(((TextBox)row.Cells[2].FindControl("InputActivityDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime activityStartTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("InputActivityStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
+            DateTime activityFinishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("InputActivityFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
+            string activityPlace = ((TextBox)row.Cells[5].FindControl("InputActivityPlace")).Text;
+            string activityManeger = ((DropDownList)row.Cells[6].FindControl("InputActivityManeger")).SelectedValue.ToString();
+            int activityMinParticipents = int.Parse(((TextBox)row.Cells[7].FindControl("InputActivityMinParticipents")).Text);
+            int activityTypeCode = int.Parse(((DropDownList)row.Cells[8].FindControl("InputActivityTypeName")).SelectedValue.ToString()); 
+            ActivityBL activity = new ActivityBL(activityName, activityDate, activityStartTime, activityFinishTime, activityManeger, activityTypeCode, activityPlace, activityMinParticipents);
+
+        }
+
     }
 }

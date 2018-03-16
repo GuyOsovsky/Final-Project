@@ -11,45 +11,42 @@ namespace PoliceVolnteerBL
 {
     public class CoursesBL
     {
-        public DataSet Courses { get; set; }
+        public List<CourseBL> CourseList { get; set; }
 
+        public static DataSet GetCourses()
+        {
+            return CourseDAL.GetTable();
+        }
 
         //create CourseList and add all the CourseBL objects
         public CoursesBL()
         {
-            this.Courses = CourseDAL.GetTable();
-        }
-
-        public CoursesBL(DateTime from)
-        {
-            this.Courses = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseDate, from, Table.Course, FieldType.Date, OperatorType.Greater));
-        }
-
-        public CoursesBL(DateTime from, DateTime to)
-        {
-            Queue<FieldValue<CourseField>> parameters = new Queue<FieldValue<CourseField>>();
-            parameters.Enqueue(new FieldValue<CourseField>(CourseField.CourseDate, from, Table.Course, FieldType.Date, OperatorType.GreaterAndEquals));
-            parameters.Enqueue(new FieldValue<CourseField>(CourseField.CourseDate, to, Table.Course, FieldType.Date, OperatorType.Lower));
-            this.Courses = CourseDAL.GetTable(parameters, true);
+            this.CourseList = new List<CourseBL>();
+            DataRowCollection coursesRows = CourseDAL.GetTable().Tables[0].Rows;
+            for (int i = 0; i < coursesRows.Count; i++)
+            {
+                CourseList.Add(new CourseBL((int)coursesRows[i]["CourseCode"]));
+            }
         }
 
         //return the sum of courses in a peroid of time
         public int SumOfCoursesInPeriod(DateTime from, DateTime to)
         {
-            return this.Courses.Tables[0].Rows.Count;
+            int sum = 0;
+            foreach (CourseBL index in CourseList)
+                if(index.CourseDate >= from && index.CourseDate <= to)
+                    sum++;
+            return sum;
         }
 
         //return the sum of all the participants in all the courses in a period of time
-        public int SumOfParticipants(DateTime from, DateTime to)
+        public int SumOfParticipantsInPeriod(DateTime from, DateTime to)
         {
             //add to list all the courses code of courses that were in a period of time
             List<int> courseCodeSetInPeriod = new List<int>();
-            foreach (DataRow row in this.Courses.Tables[0].Rows)
-            {
-                CourseBL index = new CourseBL(int.Parse(row["CourseCode"].ToString()));
-                if (index.CourseDate >= from && index.CourseDate <= to)
+            foreach (CourseBL index in CourseList)
+                if(index.CourseDate >= from && index.CourseDate <= to)
                     courseCodeSetInPeriod.Add(index.CourseCode);
-            }
 
             DataTable coursesToVolunteer = CoursesToVolunteerDAL.GetTable().Tables[0];
 
