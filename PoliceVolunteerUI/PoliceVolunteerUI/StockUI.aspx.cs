@@ -24,20 +24,11 @@ namespace PoliceVolunteerUI
             }
         }
 
-        protected void FillItemsToBorrow() 
+        protected void FillItemsToBorrow()
         {
             StockBL stock = new StockBL();
-            DataTable items = stock.GetAllItems().Tables[0];
-            for (int i = 0; i < items.Rows.Count; i++)
-            {
-                if((int)items.Rows[i]["AmountInStock"]==0)
-                {
-                    items.Rows[i].Delete();
-                    //i--; //fixed
-                }
-            }
-            DataView dataView = new DataView(items);
-            ItemsToBorrow.DataSource = dataView;
+            DataTable items = (new StockBL()).Stock.Tables[0];
+            ItemsToBorrow.DataSource = items.AsEnumerable().Where(row => (int)row["AmountInStock"] > 0).CopyToDataTable();
             ItemsToBorrow.DataBind();
         }
 
@@ -48,29 +39,69 @@ namespace PoliceVolunteerUI
             items.Tables[0].Columns.Add("ItemName", typeof(string));
             for (int i = 0; i < items.Tables[0].Rows.Count; i++)
             {
-                items.Tables[0].Rows[i]["ItemName"] = (new ItemBL((int)items.Tables[0].Rows[i]["ItemID"])).ItemName;
+                items.Tables[0].Rows[i]["ItemName"] = (new ItemBL((int)items.Tables[0].Rows[i]["ItemID"])).itemName;
             }
             BorrowedItems.DataSource = items;
             BorrowedItems.DataBind();
         }
 
-        //לא להראות למתמש מה הוא לקח אם לא ניתן להחזיר את החפץ
-
-        /*protected void LoadItemsInPossession()
+        protected void BorrowItem(object sender, EventArgs e)
         {
-            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
-            DataSet items = volunteer.GetItemsInPossession();
-            ItemsInPossession.DataSource = items;
-            ItemsInPossession.DataBind();
+            GridViewRow row = ItemsToBorrow.Rows[int.Parse(((Button)sender).CommandArgument)];
+            
+            TextBox AmountText = row.FindControl("AmountToBorrow") as TextBox;
+            
+            int amount;
+            if (int.TryParse(AmountText.Text, out amount) && amount > 0)
+            {
+                if (int.Parse(ItemsToBorrow.Rows[row.RowIndex].Cells[2].Text) - amount > 0)
+                {
+                    Label itemIDLable = (Label)row.FindControl("HiddenItemIDColumn");
+
+                    ItemBL item = new ItemBL(int.Parse(itemIDLable.Text));
+
+                    item.BorrowItemFromStock(Session["User"].ToString(), amount);
+
+                    Response.Redirect("StockUI.aspx");
+                }
+                else
+                {
+                    AmountText.Text = "כמות מופרזת";
+                }
+            }
+            else
+            {
+                AmountText.Text = "מספר לא חוקי";
+            }
         }
 
-        protected void LoadStock()
+        protected void ReturnItem(object sender, EventArgs e)
         {
-            StockBL stock = new StockBL();
-            DataSet items = stock.GetAllItems();
-            AllStockItems.DataSource = items;
-            AllStockItems.DataBind();
-        }*/
+            GridViewRow row = BorrowedItems.Rows[int.Parse(((Button)sender).CommandArgument)];
+
+            int transferCode = int.Parse(((Label)row.FindControl("HiddenTransferCodeColumn")).Text);
+            int itemID = int.Parse(((Label)row.FindControl("HiddenItemIDColumn")).Text);
+
+            ItemBL item = new ItemBL(itemID);
+            item.ReturnItemToStock(transferCode, itemID, int.Parse(BorrowedItems.Rows[row.RowIndex].Cells[3/*2*/].Text));
+
+            Response.Redirect("StockUI.aspx");
+        }
+
+        protected bool isAbleStock()
+        {
+            if (Session["User"].ToString() == "") return false;
+            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
+            return volunteer.Type.PermmisionStock;
+        }
+
+        //change to validator!
+        protected void AddItem(object sender, EventArgs e)
+        {
+            string itemName = itemNameTextBox.Text;
+            int amount = int.Parse(itemsAmountTextBox.Text);
+            //ItemBL item = new ItemBL()
+        }
 
     }
 }

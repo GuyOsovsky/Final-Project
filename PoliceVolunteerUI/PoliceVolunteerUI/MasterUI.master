@@ -107,7 +107,7 @@
                     if (Session["User"] == "")
                     { 
                 %>
-                <asp:TextBox ID="userNameLog" runat="server" TextMode="SingleLine" CssClass="form-control" Text="שם משתמש" dir="rtl" Font-Size="Small" ValidationGroup="LogIn"></asp:TextBox>
+                <asp:TextBox ID="userNameLog" runat="server" TextMode="SingleLine" CssClass="form-control" Text="a" dir="rtl" Font-Size="Small" ValidationGroup="LogIn"></asp:TextBox>
                 <br />
                 <asp:TextBox ID="passwordLog" runat="server" TextMode="Password" CssClass="form-control" dir="rtl" Font-Size="Small" ValidationGroup="LogIn"></asp:TextBox>
                 <br />

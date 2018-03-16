@@ -11,29 +11,20 @@ namespace PoliceVolnteerBL
 {
     public class StockBL
     {
-        public List<ItemBL> StockList { get; set; }
+        public DataSet Stock { get; set; }
 
-        //create StockList and add all the ItemBL objects
+        /// <summary>
+        /// creates an object with all activitys
+        /// </summary>
         public StockBL()
         {
-            this.StockList = new List<ItemBL>();
-            DataRowCollection stockRows = StockDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < stockRows.Count; i++)
-            {
-                StockList.Add(new ItemBL((int)stockRows[i]["ItemID"]));
-            }
-        }
-
-        //return all items from stock
-        public DataSet GetAllItems()
-        {
-            return StockDAL.GetTable();
+            this.Stock = StockDAL.GetTable();
         }
 
         //return all existing transferences
-        public DataTable GetAllTransference()
+        public static DataSet GetAllTransference()
         {
-            return StockToVolunteerDAL.GetTable().Tables[0];
+            return StockToVolunteerDAL.GetTable();
         }
     }
 }
