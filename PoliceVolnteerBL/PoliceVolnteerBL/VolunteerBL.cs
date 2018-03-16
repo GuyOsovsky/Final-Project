@@ -621,6 +621,9 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
-
+        public void DeleteUser()
+        {
+            VolunteerInfoDAL.DelUser(this.PhoneNumber);
+        }
     }
 }

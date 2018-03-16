@@ -106,5 +106,11 @@ namespace PoliceVolunteerUI
             //diselect row
             UserInformation.EditIndex = -1;
         }
+
+        protected void DeleteUser(object sender, EventArgs e)
+        {
+            (new VolunteerBL(Session["User"].ToString())).DeleteUser();
+            Session["User"] = "";
+        }
     }
 }
