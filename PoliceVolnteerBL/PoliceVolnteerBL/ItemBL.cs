@@ -47,5 +47,9 @@ namespace PoliceVolnteerBL
             StockDAL.UpdateStock(itemID, amount);
         }
 
+        static public void DelItem(int itemID)
+        {
+            StockDAL.DelItem(itemID);
+        }
     }
 }
