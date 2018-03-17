@@ -67,7 +67,7 @@ namespace PoliceVolnteerDAL
                 if (ds.Tables["Stock"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["Stock"].Rows[0];
-                    if (int.Parse(dr["AmountInStock"].ToString()) + amount > 0)
+                    if (int.Parse(dr["AmountInStock"].ToString()) + amount >= 0)
                     {
                         dr["AmountInStock"] = int.Parse(dr["AmountInStock"].ToString()) + amount;
                         OleDbHelper2.update(ds, "SELECT * FROM Stock", "Stock");

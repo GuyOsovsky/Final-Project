@@ -31,13 +31,13 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.GridView BorrowedItems;
         
         /// <summary>
-        /// Table1 control.
+        /// AddTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
+        protected global::System.Web.UI.WebControls.Table AddTable;
         
         /// <summary>
         /// TableRow1 control.
@@ -58,6 +58,24 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox itemNameTextBox;
         
         /// <summary>
+        /// itemNameRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator itemNameRequiredV;
+        
+        /// <summary>
+        /// itemNameCustomV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator itemNameCustomV;
+        
+        /// <summary>
         /// itemsAmountTextBox control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,24 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox itemsAmountTextBox;
+        
+        /// <summary>
+        /// amountRequiredV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator amountRequiredV;
+        
+        /// <summary>
+        /// amountCustomV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator amountCustomV;
         
         /// <summary>
         /// isRecyclableCheckBox control.
@@ -83,5 +119,32 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddButton1;
+        
+        /// <summary>
+        /// VolunteerChooseStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList VolunteerChooseStock;
+        
+        /// <summary>
+        /// SetItemsTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SetItemsTable;
+        
+        /// <summary>
+        /// Transfers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView Transfers;
     }
 }

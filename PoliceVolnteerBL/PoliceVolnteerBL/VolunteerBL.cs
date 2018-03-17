@@ -363,6 +363,14 @@ namespace PoliceVolnteerBL
 
         }
 
+        public DataSet GetItems()
+        {
+            //create parameters for searching the StockToVolunteer table
+            Queue<FieldValue<StockToVolunteerField>> parameters = new Queue<FieldValue<StockToVolunteerField>>();
+            parameters.Enqueue(new FieldValue<StockToVolunteerField>(StockToVolunteerField.PhoneVolunteer, this.PhoneNumber, Table.StockToVolunteer, FieldType.String, OperatorType.Equals));
+            return StockToVolunteerDAL.GetTable(parameters, true);
+        }
+
         public void TakeItem(int ItemCode, int Amount, DateTime Date)
         {
             StockToVolunteerDAL.AddTransference(this.PhoneNumber, ItemCode, Amount, Date);
