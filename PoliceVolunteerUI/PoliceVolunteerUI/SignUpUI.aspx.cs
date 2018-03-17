@@ -84,6 +84,21 @@ namespace PoliceVolunteerUI
                 string serveCity = ServeCityIN.Text;
                 int type = int.Parse(TypeIN.Text);
                 new VolunteerBL(phoneNumber, emergencyNumber, fName, lName, birthDate, userName, password, homeAdress, homeCity, email, id, policeId, serveCity, type);
+                PhoneNumberIN.Text = "";
+                EmergencyNumberIN.Text = "";
+                FNameIN.Text = "";
+                LNameIN.Text = "";
+                BirthDateIN.Text = "";
+                UserNameIN.Text = "";
+                PasswordIN.Text = "";
+                PasswordCMP.Text = "";
+                HomeAdressIN.Text = "";
+                HomeCityIN.Text = "";
+                EmailIN.Text = "";
+                IDIN.Text = "";
+                PoliceIDIN.Text = "";
+                ServeCityIN.Text = "";
+                TypeIN.Text = "";
             }
         }
         
