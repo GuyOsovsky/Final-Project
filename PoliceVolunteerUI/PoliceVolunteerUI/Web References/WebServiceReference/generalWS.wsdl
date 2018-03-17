@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetFutureActivitys">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFutureActivitysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFutureActivitysResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="activityCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActivityResult" type="tns:ActivityBL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActivityBL">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActivityDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinishTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActivityManager" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TypeCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Place" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinNumberOfVolunteer" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFutureCourses">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFutureCoursesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFutureCoursesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCourse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="courseCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCourseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCourseResult" type="tns:CourseBL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CourseBL">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CourseCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CourseName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CourseDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FinishTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameOfInstructor" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsRequeired" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Place" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ValidityCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddVolunteer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emergencyPhoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="homeAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="homeCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="policeID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serveCity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="typeCode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddVolunteerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetVolunteer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVolunteerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVolunteerResult" type="tns:VolunteerBL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VolunteerBL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmergencyNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BirthDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HomeAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HomeCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PoliceID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServeCity" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="tns:VolunteerTypeBL" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VolunteerTypeBL">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TypeCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PermmisionShifts" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PermmisionActivity" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PermmisionStock" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Independent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PermmisionCourse" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PermmisionVolunteer" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetFutureActivitysSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFutureActivitys" />
+  </wsdl:message>
+  <wsdl:message name="GetFutureActivitysSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFutureActivitysResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActivitySoapIn">
+    <wsdl:part name="parameters" element="tns:GetActivity" />
+  </wsdl:message>
+  <wsdl:message name="GetActivitySoapOut">
+    <wsdl:part name="parameters" element="tns:GetActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFutureCoursesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFutureCourses" />
+  </wsdl:message>
+  <wsdl:message name="GetFutureCoursesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFutureCoursesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCourseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCourse" />
+  </wsdl:message>
+  <wsdl:message name="GetCourseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddVolunteerSoapIn">
+    <wsdl:part name="parameters" element="tns:AddVolunteer" />
+  </wsdl:message>
+  <wsdl:message name="AddVolunteerSoapOut">
+    <wsdl:part name="parameters" element="tns:AddVolunteerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVolunteerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVolunteer" />
+  </wsdl:message>
+  <wsdl:message name="GetVolunteerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVolunteerResponse" />
+  </wsdl:message>
+  <wsdl:portType name="generalWSSoap">
+    <wsdl:operation name="GetFutureActivitys">
+      <wsdl:input message="tns:GetFutureActivitysSoapIn" />
+      <wsdl:output message="tns:GetFutureActivitysSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <wsdl:input message="tns:GetActivitySoapIn" />
+      <wsdl:output message="tns:GetActivitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFutureCourses">
+      <wsdl:input message="tns:GetFutureCoursesSoapIn" />
+      <wsdl:output message="tns:GetFutureCoursesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCourse">
+      <wsdl:input message="tns:GetCourseSoapIn" />
+      <wsdl:output message="tns:GetCourseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddVolunteer">
+      <wsdl:input message="tns:AddVolunteerSoapIn" />
+      <wsdl:output message="tns:AddVolunteerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVolunteer">
+      <wsdl:input message="tns:GetVolunteerSoapIn" />
+      <wsdl:output message="tns:GetVolunteerSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="generalWSSoap" type="tns:generalWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFutureActivitys">
+      <soap:operation soapAction="http://tempuri.org/GetFutureActivitys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <soap:operation soapAction="http://tempuri.org/GetActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFutureCourses">
+      <soap:operation soapAction="http://tempuri.org/GetFutureCourses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourse">
+      <soap:operation soapAction="http://tempuri.org/GetCourse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddVolunteer">
+      <soap:operation soapAction="http://tempuri.org/AddVolunteer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVolunteer">
+      <soap:operation soapAction="http://tempuri.org/GetVolunteer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="generalWSSoap12" type="tns:generalWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFutureActivitys">
+      <soap12:operation soapAction="http://tempuri.org/GetFutureActivitys" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <soap12:operation soapAction="http://tempuri.org/GetActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFutureCourses">
+      <soap12:operation soapAction="http://tempuri.org/GetFutureCourses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCourse">
+      <soap12:operation soapAction="http://tempuri.org/GetCourse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddVolunteer">
+      <soap12:operation soapAction="http://tempuri.org/AddVolunteer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVolunteer">
+      <soap12:operation soapAction="http://tempuri.org/GetVolunteer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="generalWS">
+    <wsdl:port name="generalWSSoap" binding="tns:generalWSSoap">
+      <soap:address location="http://localhost:52352/generalWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="generalWSSoap12" binding="tns:generalWSSoap12">
+      <soap12:address location="http://localhost:52352/generalWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

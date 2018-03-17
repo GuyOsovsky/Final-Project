@@ -49,7 +49,6 @@
     <Compile Include="App_Code\OleDbHelper2.cs" />
     <Compile Include="App_Data\database_policeDataSet.cs">
       <DependentUpon>database_policeDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="App_Data\database_policeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

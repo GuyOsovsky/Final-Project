@@ -21,6 +21,19 @@ namespace PoliceVolnteerBL
         public string Place { get; set; }
         public int MinNumberOfVolunteer { get; set; }
 
+
+        public ActivityBL()
+        {
+            this.ActivityCode = -1;
+            this.ActivityName = "";
+            this.ActivityDate = new DateTime();
+            this.StartTime = new DateTime();
+            this.FinishTime = new DateTime();
+            this.ActivityManager = "";
+            this.TypeCode = -1;
+            this.Place = "";
+            this.MinNumberOfVolunteer = -1;
+        }
         //build and adding to database
         public ActivityBL(string ActivityName, DateTime ActivityDate, DateTime StartTime, DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolunteer)
         {

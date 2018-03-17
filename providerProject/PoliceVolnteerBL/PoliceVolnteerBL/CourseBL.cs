@@ -22,6 +22,19 @@ namespace PoliceVolnteerBL
         public string Description { get; set; }
         public int ValidityCode { get; set; }
 
+
+        public CourseBL()
+        {
+            this.CourseCode = -1;
+            this.CourseName = "";
+            this.CourseDate = new DateTime();
+            this.StartTime = new DateTime();
+            this.FinishTime = new DateTime();
+            this.NameOfInstructor = "";
+            this.Place = "";
+            this.Description = "";
+            this.ValidityCode = -1;
+        }
         //build and adding to database
         public CourseBL(string CourseName, DateTime CourseDate, DateTime StartTime, DateTime FinishTime, string NameOfInstruc, bool IsRequeired, string Place, string Description, int ValidityCode)
         {

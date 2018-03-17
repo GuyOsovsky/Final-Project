@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\WebService.csproj", "{3FD24860-F303-40FC-9BB2-E300244E56E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliceVolnteerBL", "F:\Git\Final-Project\webService\PoliceVolnteerBL\PoliceVolnteerBL\PoliceVolnteerBL.csproj", "{4F2BE74E-9B7F-4790-BB15-F672AC13E945}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliceVolnteerBL", "..\PoliceVolnteerBL\PoliceVolnteerBL\PoliceVolnteerBL.csproj", "{4F2BE74E-9B7F-4790-BB15-F672AC13E945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliceVolnteerDAL", "F:\Git\Final-Project\webService\PoliceVolnteerDAL\PoliceVolnteerDAL\PoliceVolnteerDAL.csproj", "{C60FED36-F24C-41A6-967F-3230BF650D99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PoliceVolnteerDAL", "..\PoliceVolnteerDAL\PoliceVolnteerDAL\PoliceVolnteerDAL.csproj", "{C60FED36-F24C-41A6-967F-3230BF650D99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

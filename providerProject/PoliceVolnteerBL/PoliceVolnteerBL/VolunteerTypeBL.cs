@@ -32,6 +32,17 @@ namespace PoliceVolnteerBL
         //whether or not a volunteer can edit a volunteer and create a new volunteer
         public bool PermmisionVolunteer { get; set; }
 
+        public VolunteerTypeBL()
+        {
+            this.TypeCode = -1;
+            this.TypeName = "";
+            this.PermmisionActivity = false;
+            this.PermmisionCourse = false;
+            this.PermmisionShifts = false;
+            this.PermmisionStock = false;
+            this.PermmisionVolunteer = false;
+        }
+
         //build and adding to database
         public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity, bool PermmisionStock, bool Independent, bool PermmisionCourse, bool PermmisionVolunteer)
         {
@@ -51,6 +62,19 @@ namespace PoliceVolnteerBL
         {
             this.TypeCode = TypeCode;
             DataRow volunteerTypesRow = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode, Table.VolunteerTypes, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
+            this.TypeName = (string)volunteerTypesRow["TypeName"];
+            this.PermmisionShifts = (bool)volunteerTypesRow["PermmisionShifts"];
+            this.PermmisionActivity = (bool)volunteerTypesRow["PermmisionActivity"];
+            this.PermmisionStock = (bool)volunteerTypesRow["PermmisionStock"];
+            this.Independent = (bool)volunteerTypesRow["Independent"];
+            this.PermmisionCourse = (bool)volunteerTypesRow["PermmisionCourse"];
+            this.PermmisionVolunteer = (bool)volunteerTypesRow["PermmisionVolunteer"];
+        }
+
+        public VolunteerTypeBL(string TypeName)
+        {
+            this.TypeName = TypeName;
+            DataRow volunteerTypesRow = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeName, TypeName, Table.VolunteerTypes, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0];
             this.TypeName = (string)volunteerTypesRow["TypeName"];
             this.PermmisionShifts = (bool)volunteerTypesRow["PermmisionShifts"];
             this.PermmisionActivity = (bool)volunteerTypesRow["PermmisionActivity"];

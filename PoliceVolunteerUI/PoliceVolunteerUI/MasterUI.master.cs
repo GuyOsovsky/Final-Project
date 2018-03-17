@@ -30,7 +30,7 @@ namespace PoliceVolunteerUI
             string password = passwordLog.Text;
             //check if the volunteer exist
             VolunteerBL volunteer = new VolunteerBL(userName, password);
-            if (volunteer.PhoneNumber != "")
+            if (volunteer.PhoneNumber != "" && volunteer.Status)
             {
                 Session["User"] = volunteer.PhoneNumber;
             }

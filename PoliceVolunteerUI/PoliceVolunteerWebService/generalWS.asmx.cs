@@ -9,40 +9,26 @@ using PoliceVolnteerBL;
 namespace PoliceVolunteerWebService
 {
     /// <summary>
-    /// Summary description for ActivityWS
+    /// Summary description for generalWS
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class ActivityWS : System.Web.Services.WebService
+    public class generalWS : System.Web.Services.WebService
     {
         [WebMethod]
-        public DataSet GetAllActivitys()
+        public DataSet GetFutureActivitys()
         {
-            ActivitysBL activitys = new ActivitysBL();
+            ActivitysBL activitys = new ActivitysBL(DateTime.Now);
             return activitys.Activitys;
         }
 
         [WebMethod]
-        public DataSet GetActivitys(DateTime from, DateTime to)
+        public DataSet GetFutureCourses()
         {
-            ActivitysBL activitys = new ActivitysBL(from, to);
-            return activitys.Activitys;
-        }
-
-        [WebMethod]
-        public DataSet GetAllCourses()
-        {
-            CoursesBL courses = new CoursesBL();
-            return courses.Courses;
-        }
-
-        [WebMethod]
-        public DataSet GetCourses(DateTime from, DateTime to)
-        {
-            CoursesBL courses = new CoursesBL(from, to);
+            CoursesBL courses = new CoursesBL(DateTime.Now);
             return courses.Courses;
         }
 

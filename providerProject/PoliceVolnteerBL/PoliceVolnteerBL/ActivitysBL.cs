@@ -29,6 +29,7 @@ namespace PoliceVolnteerBL
         {
             this.Activitys = ActivityDAL.GetTable(new FieldValue<ActivityField>(ActivityField.ActivityDate, from, Table.Activity, FieldType.Date, OperatorType.GreaterAndEquals));
         }
+        
         /// <summary>
         /// creates an object with activitys ranging from a date to another date
         /// </summary>
@@ -41,12 +42,10 @@ namespace PoliceVolnteerBL
             parameters.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityDate, to, Table.Activity, FieldType.Date, OperatorType.Lower));
             this.Activitys = ActivityDAL.GetTable(parameters, true);
         }
+        
         /// <summary>
         /// retrun sum of activities that were in a period of time
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <returns></returns>
         public int SumOfActivities()
         {
             return this.Activitys.Tables[0].Rows.Count;

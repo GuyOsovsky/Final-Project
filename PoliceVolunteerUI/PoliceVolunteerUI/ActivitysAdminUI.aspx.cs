@@ -25,6 +25,7 @@ namespace PoliceVolunteerUI
             //fill activity gridview
             FillActivitys();
             FillReports();
+            FillOtherActivitys();
             if (!IsPostBack)
             {
                 FillActivityList();
@@ -42,6 +43,13 @@ namespace PoliceVolunteerUI
             ActivitysInformation.DataSource = dataView;
             ActivitysInformation.EditIndex = activitys.Tables[0].Rows.Count - 1;
             ActivitysInformation.DataBind();
+        }
+
+        protected void FillOtherActivitys()
+        {
+            WebServiceReference.generalWS webService = new WebServiceReference.generalWS();
+            OtherActivitys.DataSource = webService.GetFutureActivitys().Tables[0];
+            OtherActivitys.DataBind();
         }
 
         protected void FillReports()
@@ -127,6 +135,19 @@ namespace PoliceVolunteerUI
             int activityTypeCode = int.Parse(((DropDownList)row.Cells[8].FindControl("InputActivityTypeName")).SelectedValue.ToString()); 
             ActivityBL activity = new ActivityBL(activityName, activityDate, activityStartTime, activityFinishTime, activityManeger, activityTypeCode, activityPlace, activityMinParticipents);
 
+        }
+
+        //protected void DeleteActivity(object sender, EventArgs e)
+        //{
+        //    ActivityBL activity = new ActivityBL(0);
+        //}
+
+        protected void AddNewOtherActivity(object sender, EventArgs e)
+        {
+            GridViewRow row = OtherActivitys.Rows[int.Parse(((Button)sender).CommandArgument)];
+            WebServiceReference.generalWS webService = new WebServiceReference.generalWS();
+            WebServiceReference.ActivityBL newActivity = webService.GetActivity(int.Parse(((Label)row.Cells[0].FindControl("lblActivityCode")).Text));
+            ActivityBL activity = new ActivityBL(newActivity.ActivityName, newActivity.ActivityDate, newActivity.StartTime, newActivity.FinishTime, newActivity.ActivityManager, newActivity.TypeCode, newActivity.Place, newActivity.MinNumberOfVolunteer);
         }
 
     }

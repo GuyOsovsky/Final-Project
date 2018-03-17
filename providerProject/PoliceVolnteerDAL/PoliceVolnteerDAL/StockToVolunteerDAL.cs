@@ -62,7 +62,17 @@ namespace PoliceVolnteerDAL
         {
             try
             {
-                OleDbHelper2.ExecuteNonQuery("UPDATE StockToVolunteer SET ReturnDate=#" + DateTime.Now.ToShortDateString() + "# WHERE TrasferCode=" + TransferCode + "");
+                DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM StockToVolunteer WHERE TransferCode={0}", TransferCode), "StockToVolunteer");
+                if (ds.Tables["StockToVolunteer"].Rows.Count > 0)
+                {
+                    DataRow dr = ds.Tables["StockToVolunteer"].Rows[0];
+                    dr["ReturnDate"] = DateTime.Now.ToShortDateString();
+                    OleDbHelper2.update(ds, "SELECT * FROM StockToVolunteer", "StockToVolunteer");
+                }
+                else
+                {
+                    throw new ArgumentException("TransferCode not valid");
+                }
             }
             catch (Exception e)
             {

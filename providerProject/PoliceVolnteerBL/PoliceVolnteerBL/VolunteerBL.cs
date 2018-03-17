@@ -27,6 +27,26 @@ namespace PoliceVolnteerBL
         public VolunteerTypeBL Type { get; private set; }
         public bool Status { get; private set; }
 
+        public VolunteerBL()
+        {
+            this.PhoneNumber = "";
+            this.EmergencyNumber = "";
+            this.FName = "";
+            this.LName = "";
+            this.BirthDate = new DateTime();
+            this.UserName = "";
+            this.Password = "";
+            this.HomeAddress = "";
+            this.HomeCity = "";
+            this.EmailAddress = "";
+            this.ID = "";
+            this.PoliceID = "";
+            this.ServeCity = "";
+            this.StartDate = new DateTime();
+            this.Type = new VolunteerTypeBL();
+            this.Status = false;
+        }
+
         public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, int type)
         {
             try
@@ -621,6 +641,9 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
-
+        public void DeleteUser()
+        {
+            VolunteerInfoDAL.DelUser(this.PhoneNumber);
+        }
     }
 }

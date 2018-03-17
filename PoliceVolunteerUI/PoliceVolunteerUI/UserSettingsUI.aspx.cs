@@ -109,7 +109,7 @@ namespace PoliceVolunteerUI
 
         protected void DeleteUser(object sender, EventArgs e)
         {
-            (new VolunteerBL(Session["User"].ToString())).DeleteUser();
+            (new VolunteerBL(Session["User"].ToString())).ChangeStatus(false);
             Session["User"] = "";
         }
     }
