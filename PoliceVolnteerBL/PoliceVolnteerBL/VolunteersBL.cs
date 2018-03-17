@@ -19,7 +19,8 @@ namespace PoliceVolnteerBL
             if (!isEmpty)
             {
                 foreach (DataRow row in VolunteerInfoDAL.GetTable().Tables[0].Rows)
-                    VolunteerList.Add(new VolunteerBL(row["PhoneNumber"].ToString()));
+                    if(new VolunteerBL(row["PhoneNumber"].ToString()).Status)
+                        VolunteerList.Add(new VolunteerBL(row["PhoneNumber"].ToString()));
             }
         }
 

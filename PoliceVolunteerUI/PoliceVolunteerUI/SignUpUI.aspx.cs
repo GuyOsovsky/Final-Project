@@ -93,12 +93,12 @@ namespace PoliceVolunteerUI
                 PasswordIN.Text = "";
                 PasswordCMP.Text = "";
                 HomeAdressIN.Text = "";
-                HomeCityIN.Text = "";
+                //HomeCityIN.Text = "";
                 EmailIN.Text = "";
                 IDIN.Text = "";
                 PoliceIDIN.Text = "";
-                ServeCityIN.Text = "";
-                TypeIN.Text = "";
+                //ServeCityIN.Text = "";
+                //TypeIN.Text = "";
             }
         }
         

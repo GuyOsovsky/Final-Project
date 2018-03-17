@@ -138,5 +138,16 @@ namespace PoliceVolunteerUI
             //diselect row
             UserInformation.EditIndex = -1;
         }
+
+        protected void DeleteSelectedUser(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                VolunteerBL volunteer = new VolunteerBL(SearchUser.SelectedValue);
+                volunteer.ChangeStatus(false);
+                FillUsersToSearch();
+                FillUserSettings();
+            }
+        }
     }
 }
