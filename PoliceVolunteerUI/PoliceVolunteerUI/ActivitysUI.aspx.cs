@@ -25,8 +25,11 @@ namespace PoliceVolunteerUI
 
         protected void FillActivitys()
         {
+            Queue<FieldValue<ActivityField>> parameters = new Queue<FieldValue<ActivityField>>();
+            parameters.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityDate, DateTime.Now, PoliceVolnteerDAL.Table.Activity, FieldType.Date, OperatorType.GreaterAndEquals));
+            parameters.Enqueue(new FieldValue<ActivityField>(ActivityField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Activity, FieldType.Time, OperatorType.Greater));
             //get all future activitys
-            DataSet activitys = (new ActivitysBL(DateTime.Now)).Activitys;
+            DataSet activitys = (new ActivitysBL(parameters, true)).Activitys;
             //filter out registered activitys
             for (int i = 0; i < activitys.Tables[0].Rows.Count; i++)
             {

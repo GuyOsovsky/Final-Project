@@ -33,6 +33,11 @@ namespace PoliceVolnteerBL
             this.Courses = CourseDAL.GetTable(parameters, true);
         }
 
+        public CoursesBL(Queue<FieldValue<CourseField>> parameters, bool operation)
+        {
+            this.Courses = CourseDAL.GetTable(parameters, operation);
+        }
+
         //return the sum of courses in a peroid of time
         public int SumOfCoursesInPeriod(DateTime from, DateTime to)
         {

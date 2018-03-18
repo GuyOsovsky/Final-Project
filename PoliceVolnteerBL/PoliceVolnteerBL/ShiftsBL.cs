@@ -11,35 +11,31 @@ namespace PoliceVolnteerBL
 {
     public class ShiftsBL
     {
-        public List<ShiftBL> ShiftList { get; private set; }
+        public DataSet shifts { get; private set; }
 
         //create ShiftList and add all the ShiftBL objects 
         public ShiftsBL()
         {
-            this.ShiftList = new List<ShiftBL>();
-            DataRowCollection shiftsRows = ShiftsDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < shiftsRows.Count; i++)
-            {
-                ShiftList.Add(new ShiftBL((int)shiftsRows[i]["ShiftCode"]));
-            }
+            this.shifts = ShiftsDAL.GetTable();
         }
 
         //create ShiftList and add ShiftBL objects by "start date time"
         public ShiftsBL(DateTime fromDate)
         {
-            //create the table
-            this.ShiftList = new List<ShiftBL>();
-            DataTable ShiftsTable = ShiftsDAL.GetTable().Tables[0];
-            //filter out unwanted shifts(by date)
-            FieldValue<ShiftsField> filter = new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals);
-            ShiftsTable.DefaultView.RowFilter = filter.ToSql();
-            ShiftsTable = (ShiftsTable.DefaultView).ToTable();
+            this.shifts = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals));
+        }
 
-            DataRowCollection shiftsRows = ShiftsTable.Rows;
-            for (int i = 0; i < shiftsRows.Count; i++)
-            {
-                ShiftList.Add(new ShiftBL((int)shiftsRows[i]["ShiftCode"]));
-            }
+        public ShiftsBL(DateTime fromDate, DateTime toDate)
+        {
+            Queue<FieldValue<ShiftsField>> parameters = new Queue<FieldValue<ShiftsField>>();
+            parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals));
+            parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, toDate, Table.Shifts, FieldType.Date, OperatorType.Lower));
+            this.shifts = ShiftsDAL.GetTable(parameters, true);
+        }
+
+        public ShiftsBL(Queue<FieldValue<ShiftsField>> parameters, bool operation)
+        {
+            this.shifts = ShiftsDAL.GetTable(parameters, operation);
         }
 
         //return table of the important details of all the shifts + shift type
