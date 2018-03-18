@@ -26,8 +26,8 @@ namespace PoliceVolunteerUI
         protected void FillShifts()
         {
             Queue<FieldValue<ShiftsField>> parameters = new Queue<FieldValue<ShiftsField>>();
-            parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals));
-            parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Time, OperatorType.Greater));
+            parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Date, OperatorType.Greater));
+            //parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Time, OperatorType.Greater));
             //get all shifts
             DataSet shifts = (new ShiftsBL(parameters, true)).GetDetails();
             DataTable FilteredTable = shifts.Tables[0];
@@ -41,7 +41,7 @@ namespace PoliceVolunteerUI
                     if(UserShifts.Rows[j]["ShiftCode"].ToString() == FilteredTable.Rows[i]["ShiftCode"].ToString())
                     {
                         FilteredTable.Rows[i].Delete();
-                        i--;
+                        //i--;
                         break;
                     }
                 }

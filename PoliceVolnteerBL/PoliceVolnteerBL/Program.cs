@@ -296,13 +296,9 @@ namespace PoliceVolnteerBL
             //CarsReportsDAL.AddCarReport(13, "1485236", 45.52);
             //CarsReportsDAL.AddCarReport(10, "9625847", 35.15);
             //CarsReportsDAL.AddCarReport(9, "1254321", 15.5);
-
-<<<<<<< HEAD
             //CourseBL cbl = new CourseBL("pistol licence", new DateTime(2018, 4, 21, 10, 0, 0), new DateTime(2018, 4, 21, 10, 0, 0), new DateTime(2018, 4, 21, 13, 0, 0), "dvir osher", true, "kfar saba", "get hand gun validity", 50);
             //cbl = new CourseBL("rifle licence", new DateTime(2018, 5, 12, 10, 0, 0), new DateTime(2018, 5, 12, 10, 0, 0), new DateTime(2018, 5, 12, 15, 0, 0), "guy osov", true, "kfar saba", "get hand rifle validity", 51);
             //cbl = new CourseBL("Kojak licence", new DateTime(2019, 5, 12, 10, 0, 0), new DateTime(2019, 5, 12, 10, 0, 0), new DateTime(2019, 5, 12, 15, 0, 0), "moshe kafia", true, "kfar saba", "get Kojak validity", 52);
-=======
->>>>>>> 0c35c718a0d0f742973b3e0a43a62bcbf2ab12f1
 
             Console.WriteLine("work");
             Console.ReadKey();
