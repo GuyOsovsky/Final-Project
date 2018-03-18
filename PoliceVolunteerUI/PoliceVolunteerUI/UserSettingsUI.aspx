@@ -26,6 +26,7 @@
                     </ItemTemplate>   
                     <EditItemTemplate>   
                         <asp:TextBox ID="txt_FieldValue" runat="server" Text='<%#Eval("FieldValue") %>'></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="fieldValueRequiredV" runat="server" ErrorMessage="לא הוכנס ערך"></asp:RequiredFieldValidator>
                     </EditItemTemplate>  
                 </asp:TemplateField>   
                 <asp:CommandField ShowEditButton="True" />
@@ -35,18 +36,4 @@
             <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
         </asp:GridView>
     </center>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <asp:Button ID="DeleteUserBtn" runat="server" Text="מחיקת המשתמש" OnClick="DeleteUser" ValidationGroup="deleteUser" />
-    <asp:CheckBox ID="DeleteValidation" runat="server" ValidationGroup="deleteUser" />
-    <asp:CustomValidator ID="DeleteUseValidator" runat="server" ErrorMessage="לא אישרת את במחיקה" ValidationGroup="deleteUser" ClientValidationFunction="deleteUserValidation"></asp:CustomValidator>
-    <script type="text/javascript">
-        function deleteUserValidation(oSrc, args) {
-            var checkBox = document.getElementById("DeleteValidation");
-            args.isValid = checkBox.checked;
-        }
-    </script>
 </asp:Content>

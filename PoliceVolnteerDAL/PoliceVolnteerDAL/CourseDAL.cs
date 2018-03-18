@@ -43,6 +43,8 @@ namespace PoliceVolnteerDAL
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<CourseField>> qfv, bool Operation)
         {
+            if (qfv.Count == 0)
+                return GetTable(new FieldValue<CourseField>(CourseField.CourseCode, -1, Table.Course, FieldType.Number, OperatorType.Equals));
             string SQL = "SELECT * FROM Course WHERE ";
             while (qfv.Count > 1)
             {

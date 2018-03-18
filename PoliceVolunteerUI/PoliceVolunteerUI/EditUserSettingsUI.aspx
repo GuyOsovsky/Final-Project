@@ -36,6 +36,6 @@
         <br />
         <br />
         <br />
-        <asp:Button ID="DeleteSelectedUserButton" runat="server" Text="מחיקת המשתמש" OnClick="DeleteSelectedUser" OnClientClick="return confirm('Are you sure you want to?');" ValidationGroup="deleteUser" />
+        <asp:Button ID="DeleteSelectedUserButton" runat="server" Text="מחיקת המשתמש" OnClick="DeleteSelectedUser" OnClientClick="return confirm('מאם אתה בטוח שאתה רוצה למחוק משתמש זה?');" ValidationGroup="deleteUser" />
     </center>
 </asp:Content>

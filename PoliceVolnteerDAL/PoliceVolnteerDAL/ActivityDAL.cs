@@ -43,6 +43,8 @@ namespace PoliceVolnteerDAL
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ActivityField>> qfv, bool Operation)
         {
+            if (qfv.Count == 0)
+                return GetTable(new FieldValue<ActivityField>(ActivityField.ActivityCode, -1, Table.Activity, FieldType.Number, OperatorType.Equals));
             string SQL = "SELECT * FROM (Activity INNER JOIN TypeToActivity ON Activity.TypeCode = TypeToActivity.typeCode) WHERE ";
             while (qfv.Count > 1)
             {

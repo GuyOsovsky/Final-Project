@@ -44,6 +44,8 @@ namespace PoliceVolnteerDAL
         /// <summary>the operation parameter True is for and, False is for or</summary>
         public static DataSet GetTable(Queue<FieldValue<ShiftsField>> qfv, bool Operation)
         {
+            if (qfv.Count == 0)
+                return GetTable(new FieldValue<ShiftsField>(ShiftsField.ShiftCode, -1, Table.Shifts, FieldType.Number, OperatorType.Equals));
             string SQL = "SELECT * FROM Shifts WHERE ";
             while (qfv.Count > 1)
             {
