@@ -26,12 +26,12 @@ namespace PoliceVolunteerUI
 
         protected void FillCourses()
         {
+            Queue<FieldValue<CourseField>> parameters = new Queue<FieldValue<CourseField>>();
+            parameters.Enqueue(new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.GreaterAndEquals));
+            parameters.Enqueue(new FieldValue<CourseField>(CourseField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Time, OperatorType.Greater);
             //get all courses
-            DataSet courses = (new CoursesBL()).Courses;
-            //filter by date
-            FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.Greater);
-            courses.Tables[0].DefaultView.RowFilter = Mask.ToSql();
-            DataTable FilteredTable = (courses.Tables[0].DefaultView).ToTable();
+            DataSet courses = (new CoursesBL(parameters, true)).Courses;
+            DataTable FilteredTable = courses.Tables[0];
             //filter by courses the user already registered to
             for (int i = 0; i < FilteredTable.Rows.Count; i++)
             {

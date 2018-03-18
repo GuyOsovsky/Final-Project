@@ -42,6 +42,11 @@ namespace PoliceVolnteerBL
             parameters.Enqueue(new FieldValue<ActivityField>(ActivityField.ActivityDate, to, Table.Activity, FieldType.Date, OperatorType.Lower));
             this.Activitys = ActivityDAL.GetTable(parameters, true);
         }
+
+        public ActivitysBL(Queue<FieldValue<ActivityField>> parameters, bool operation)
+        {
+            this.Activitys = ActivityDAL.GetTable(parameters, operation);
+        }
         
         /// <summary>
         /// retrun sum of activities that were in a period of time
