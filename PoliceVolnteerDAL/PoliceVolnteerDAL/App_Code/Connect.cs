@@ -19,8 +19,8 @@ namespace PoliceVolnteerDAL
 
             //***
             //return @"provider =Microsoft.ACE.OLEDB.12.0; Data source=C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb11.accdb";
-           // return @"provider=Microsoft.ACE.OLEDB.12.0; Data source= C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb111.accdb";
-          //  return @"provider=Microsoft.Jet.OLEDB.4.0; Data source= C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb111.mdb";
+            // return @"provider=Microsoft.ACE.OLEDB.12.0; Data source= C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb111.accdb";
+            //  return @"provider=Microsoft.Jet.OLEDB.4.0; Data source= C:\DrivingSchoolPro\DrivingSchoolDal\DrivingSchoolDal\App_Data\AtMaDb111.mdb";
 
             //********* string connString = @"Provider=Microsoft.Jet.OLEDB.4.0;data source=" + path;  //mdb  עבור סיומת
             //********* string connString = @"provider=Microsoft.ACE.OLEDB.12.0; Data source=" + path;  // accdb עבור סיומת

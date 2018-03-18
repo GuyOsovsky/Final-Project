@@ -220,7 +220,7 @@ namespace PoliceVolnteerBL
             file.Read(byteArr2, 0, int.Parse(file.Length.ToString()));
             file.Close();
             MediaBL m = new MediaBL(7, name+Path.GetExtension(file.Name), byteArr2);*/
-            
+
             //Console.Write("Subfolder name : ");
             //string fileName = Console.ReadLine();
 
@@ -262,7 +262,41 @@ namespace PoliceVolnteerBL
 
             //VolunteerInfoDAL.UpdateFrom("b", new FieldValue<VolunteerInfoDALField>(VolunteerInfoDALField.PhoneNumber, "g", FieldType.String, OperatorType.Equals));
 
-            ItemBL item = new ItemBL("plates", 0, true);
+            //ItemBL item = new ItemBL("plates", 0, true);
+
+            //ValidityTypeBL vtbl = new ValidityTypeBL("Pistol");
+            //vtbl = new ValidityTypeBL("Rifle");
+            //vtbl = new ValidityTypeBL("Kojak");
+
+            //VolunteerToValidityDAL.Add("0507986481", 52, DateTime.Now);
+            //VolunteerToValidityDAL.Add("0524978648", 50, DateTime.Now);
+            //VolunteerToValidityDAL.Add("0524978648", 51, DateTime.Now);
+            //VolunteerToValidityDAL.Add("0524978648", 52, DateTime.Now);
+            //VolunteerToValidityDAL.Add("0527948679", 51, DateTime.Now);
+
+            //ShiftTypesBL stbl = new ShiftTypesBL("tour");
+            //stbl = new ShiftTypesBL("guard");
+            //DateTime now = DateTime.Now;
+            //ShiftBL sbl = new ShiftBL(11, now, now, new DateTime(now.Year, now.Month, now.Day, now.Hour + 5, now.Minute, now.Second), "kfar saba");
+            //now.AddDays(10);
+            //sbl = new ShiftBL(12, now, now, new DateTime(now.Year, now.Month, now.Day, now.Hour + 2, now.Minute, now.Second), "kfar saba");
+            //now.AddDays(2);
+            //sbl = new ShiftBL(11, now, now, new DateTime(now.Year, now.Month, now.Day, now.Hour + 1, now.Minute, now.Second), "hodash");
+
+
+            //DateTime now = new DateTime(2018,4,21,8,40,0);
+            //ShiftBL sbl = new ShiftBL(11, now, now, new DateTime(now.Year, now.Month, now.Day, now.Hour + 5, now.Minute, now.Second), "kfar saba");
+            //now = now.AddDays(3);
+            //sbl = new ShiftBL(12, now, now, new DateTime(now.Year, now.Month, now.Day, now.Hour + 2, now.Minute, now.Second), "kfar saba");
+            //now = now.AddDays(2);
+            //sbl = new ShiftBL(11, now, now, new DateTime(now.Year, now.Month, now.Day, now.Hour + 1, now.Minute, now.Second), "hodash");
+
+            //CarsReportsDAL.AddCarReport(8, "1254321", 23.1);
+            //CarsReportsDAL.AddCarReport(11, "8833388", 1.23);
+            //CarsReportsDAL.AddCarReport(13, "1485236", 45.52);
+            //CarsReportsDAL.AddCarReport(10, "9625847", 35.15);
+            //CarsReportsDAL.AddCarReport(9, "1254321", 15.5);
+
 
             Console.WriteLine("work");
             Console.ReadKey();
