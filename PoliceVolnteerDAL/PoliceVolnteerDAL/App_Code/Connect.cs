@@ -12,7 +12,7 @@ namespace PoliceVolnteerDAL
         {
             //string path = System.IO.Directory.GetCurrentDirectory();
             //path = path.Remove(path.Length - 1 - 9 - 34);
-            ////return @"provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\Guy.DESKTOP-AOI7D6B\Desktop\שרותי רשת\פרוייקט גמר\PoliceVolnteerDAL\PoliceVolnteerDAL\App_Data\database police.accdb";
+            //return @"provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\Guy.DESKTOP-AOI7D6B\Desktop\שרותי רשת\פרוייקט גמר\PoliceVolnteerDAL\PoliceVolnteerDAL\App_Data\database police.accdb";
             //return @"provider=Microsoft.ACE.OLEDB.12.0; Data source=" + path + @"\PoliceVolnteerDAL\PoliceVolnteerDAL\App_Data\database police.accdb";
 
             return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""|DataDirectory|\" + filename + @""";Persist Security Info=True";
