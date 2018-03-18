@@ -38,7 +38,6 @@ namespace PoliceVolnteerDAL
             bool isDetailed = false;
             for (int i = 0; i < Enum.GetNames(typeof(ActivityField)).Length; i++)
             {
-                //finish this!!!!!!!!!!!! fucking stupid
                 for(int j = 0; j < Enum.GetNames(typeof(VolunteerInfoDALField)).Length; j++)
                 {
                     if (fv.Field.ToString() == ((ActivityField)i).ToString() || fv.Field.ToString() == ((VolunteerInfoDALField)j).ToString())
