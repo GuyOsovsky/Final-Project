@@ -27,8 +27,8 @@ namespace PoliceVolunteerUI
         protected void FillCourses()
         {
             Queue<FieldValue<CourseField>> parameters = new Queue<FieldValue<CourseField>>();
-            parameters.Enqueue(new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.GreaterAndEquals));
-            parameters.Enqueue(new FieldValue<CourseField>(CourseField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Time, OperatorType.Greater));
+            parameters.Enqueue(new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.Greater));
+            //parameters.Enqueue(new FieldValue<CourseField>(CourseField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Time, OperatorType.Greater));
             //get all courses
             DataSet courses = (new CoursesBL(parameters, true)).Courses;
             DataTable FilteredTable = courses.Tables[0];

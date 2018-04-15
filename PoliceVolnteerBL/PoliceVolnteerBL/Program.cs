@@ -304,8 +304,6 @@ namespace PoliceVolnteerBL
             //CourseBL cbl = new CourseBL("karabine licence", new DateTime(2019, 5, 22, 10, 0, 0), new DateTime(2019, 5, 22, 10, 0, 0), new DateTime(2019, 5, 22, 19, 30, 0), "yair dror", true, "hodash", "get karabine validity", 53);
             //cbl = new CourseBL("sniper licence", new DateTime(2019, 7, 1, 12, 0, 0), new DateTime(2019, 7, 1, 12, 0, 0), new DateTime(2019, 7, 1, 21, 0, 0), "matanel atar", true, "kfar saba", "get sniper validity", 54);
             //cbl = new CourseBL("police vehicle licence", new DateTime(2020, 1, 1, 11, 0, 0), new DateTime(2020, 1, 1, 11, 0, 0), new DateTime(2020, 1, 1, 21, 0, 0), "moshe kafia", true, "kfar saba", "get police vehicle validity", 55);
-            
-
             Console.WriteLine("work");
             Console.ReadKey();
         }
