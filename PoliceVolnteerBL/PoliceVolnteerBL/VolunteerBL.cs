@@ -343,8 +343,6 @@ namespace PoliceVolnteerBL
         public void CourseSignOut(int courseCode)
         {
             CourseBL course = new CourseBL(courseCode);
-            if (course.IsRequeired)
-                return;
             CoursesToVolunteerDAL.DelCourse(this.PhoneNumber, courseCode);
         }
 

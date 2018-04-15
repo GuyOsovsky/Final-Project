@@ -28,7 +28,7 @@ namespace PoliceVolunteerUI
         {
             Queue<FieldValue<CourseField>> parameters = new Queue<FieldValue<CourseField>>();
             parameters.Enqueue(new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.GreaterAndEquals));
-            parameters.Enqueue(new FieldValue<CourseField>(CourseField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Time, OperatorType.Greater);
+            parameters.Enqueue(new FieldValue<CourseField>(CourseField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Time, OperatorType.Greater));
             //get all courses
             DataSet courses = (new CoursesBL(parameters, true)).Courses;
             DataTable FilteredTable = courses.Tables[0];
@@ -42,7 +42,7 @@ namespace PoliceVolunteerUI
                     if (UserCourses.Rows[j]["CourseCode"].ToString() == FilteredTable.Rows[i]["CourseCode"].ToString())
                     {
                         FilteredTable.Rows[i].Delete();
-                        i--;
+                        //i--;
                         break;
                     }
                 }
