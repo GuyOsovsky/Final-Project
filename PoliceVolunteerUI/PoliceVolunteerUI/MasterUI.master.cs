@@ -12,7 +12,14 @@ namespace PoliceVolunteerUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (Session["User"].ToString() != "")
+            {
+                UserIdentefier.Text = "שלום " + (new VolunteerBL(Session["User"].ToString())).FName + " " + (new VolunteerBL(Session["User"].ToString())).LName;
+            }
+            else
+            {
+                UserIdentefier.Text = "";
+            }
         }
 
         //is admin and is able to manage other volunteers
@@ -37,6 +44,8 @@ namespace PoliceVolunteerUI
             //clear text boxes
             userNameLog.Text = string.Empty;
             passwordLog.Text = string.Empty;
+            //refresh page
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void LogOut(object sender, EventArgs e)
