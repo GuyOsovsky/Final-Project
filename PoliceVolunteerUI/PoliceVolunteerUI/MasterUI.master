@@ -129,6 +129,10 @@
                     {
                 %>
                 <asp:Button ID="LogOutButton" Font-Size="Large" Height="30px" runat="server" OnClick="LogOut" Text="התנתק" ValidationGroup="LogIn" />
+                <br />
+                <br />
+                <br />
+                <asp:Label ID="UserIdentefier" runat="server" Font-Size="Large" Height="30px" ForeColor="Red"></asp:Label>
                 <% 
                     } 
                 %>
