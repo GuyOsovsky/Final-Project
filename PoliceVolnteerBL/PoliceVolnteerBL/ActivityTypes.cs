@@ -10,11 +10,28 @@ namespace PoliceVolnteerBL
 {
     public class ActivityTypes
     {
-        public DataSet activityTypes { get; set; }
+        public int TypeCode { get; set; }
+        public string TypeName { get; set; }
 
-        public ActivityTypes()
+        /// <summary>
+        /// creates a new object with a certain code
+        /// </summary>
+        /// <param name="typeCode"></param>
+        public ActivityTypes(int typeCode)
         {
-            activityTypes = TypeToActivityDAL.GetTable();
+            this.TypeCode = typeCode;
+            this.TypeName = TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeCode, typeCode, Table.TypeToActivity, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0]["typeCode"].ToString();
+        }
+
+        /// <summary>
+        /// creates a new type to the db
+        /// </summary>
+        /// <param name="name"></param>
+        public ActivityTypes(string name)
+        {
+            TypeToActivityDAL.AddTypeToActivity(name);
+            this.TypeName = name;
+            this.TypeCode = int.Parse(TypeToActivityDAL.GetTable(new FieldValue<TypeToActivityField>(TypeToActivityField.typeName, name, Table.TypeToActivity, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["typeName"].ToString());
         }
     }
 }

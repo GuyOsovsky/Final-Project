@@ -17,11 +17,14 @@ namespace PoliceVolnteerBL
         public DateTime StartTime { get; set; }
         public DateTime FinishTime { get; set; }
         public string ActivityManager { get; set; }
-        public int TypeCode { get; set; }
+        public ActivityTypes TypeCode { get; set; }
         public string Place { get; set; }
         public int MinNumberOfVolunteer { get; set; }
 
-        //build and adding to database
+
+        /// <summary>
+        /// build and adding to database
+        /// </summary>
         public ActivityBL(string ActivityName, DateTime ActivityDate, DateTime StartTime, DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolunteer)
         {
             this.ActivityName = ActivityName;
@@ -29,14 +32,16 @@ namespace PoliceVolnteerBL
             this.StartTime = StartTime;
             this.FinishTime = FinishTime;
             this.ActivityManager = ActivityManager;
-            this.TypeCode = TypeCode;
+            this.TypeCode = new ActivityTypes(TypeCode);
             this.Place = Place;
             this.MinNumberOfVolunteer = MinNumberOfVolunteer;
             ActivityDAL.AddActivity(ActivityName, ActivityDate, StartTime, FinishTime, ActivityManager, TypeCode, Place, MinNumberOfVolunteer);
             this.ActivityCode = (int)ActivityDAL.GetTable().Tables[0].Rows[ActivityDAL.GetTable().Tables[0].Rows.Count - 1]["ActivityCode"];
         }
 
-        //build from the database
+        /// <summary>
+        /// build from the database
+        /// </summary>
         public ActivityBL(int activityCode)
         {
             this.ActivityCode = activityCode;
@@ -46,12 +51,15 @@ namespace PoliceVolnteerBL
             this.StartTime = (DateTime)activityDataSet.Tables[0].Rows[0]["StartTime"];
             this.FinishTime = (DateTime)activityDataSet.Tables[0].Rows[0]["FinishTime"];
             this.ActivityManager = (string)activityDataSet.Tables[0].Rows[0]["ActivityManager"];
-            this.TypeCode = (int)activityDataSet.Tables[0].Rows[0]["TypeCode"];
+            this.TypeCode = new ActivityTypes((int)activityDataSet.Tables[0].Rows[0]["TypeCode"]);
             this.Place = (string)activityDataSet.Tables[0].Rows[0]["Place"];
             this.MinNumberOfVolunteer = (int)activityDataSet.Tables[0].Rows[0]["MinNumberOfVolunteer"];
         }
 
-        //return VolunteersBL object with all the Volunteers in this specific activity
+
+        /// <summary>
+        /// return VolunteersBL object with all the Volunteers in this specific activity
+        /// </summary>
         public VolunteersBL GetAllVolunteers()
         {
             ReportsBL reports = new ReportsBL("", this.ActivityCode);
@@ -63,7 +71,9 @@ namespace PoliceVolnteerBL
             return ret;
         }
 
-        //return textual report of this specific activiy
+        /// <summary>
+        /// return textual report of this specific activiy
+        /// </summary>
         public string GetActivityReport()
         {
             string report = "ACTIVITY REPORT\t\t\t\tcode: " + this.ActivityCode + "\n";
@@ -78,7 +88,9 @@ namespace PoliceVolnteerBL
             return report;
         }
 
-        //retrun all the reports from this specific activity
+        /// <summary>
+        /// retrun all the reports from this specific activity
+        /// </summary>
         public ReportsBL GetAllReports(string phoneNumber = "")
         {
             return new ReportsBL(phoneNumber , this.ActivityCode);

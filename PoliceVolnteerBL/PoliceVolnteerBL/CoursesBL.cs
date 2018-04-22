@@ -13,18 +13,25 @@ namespace PoliceVolnteerBL
     {
         public DataSet Courses { get; set; }
 
-
-        //create CourseList and add all the CourseBL objects
+        /// <summary>
+        /// create CourseList and add all the CourseBL objects
+        /// </summary>
         public CoursesBL()
         {
             this.Courses = CourseDAL.GetTable();
         }
 
+        /// <summary>
+        /// creates an object with all courses from a cetain date
+        /// </summary>
         public CoursesBL(DateTime from)
         {
             this.Courses = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseDate, from, Table.Course, FieldType.Date, OperatorType.Greater));
         }
 
+        /// <summary>
+        /// creates an object with all courses from a cetain date to a certain date
+        /// </summary>
         public CoursesBL(DateTime from, DateTime to)
         {
             Queue<FieldValue<CourseField>> parameters = new Queue<FieldValue<CourseField>>();
@@ -33,18 +40,25 @@ namespace PoliceVolnteerBL
             this.Courses = CourseDAL.GetTable(parameters, true);
         }
 
+        /// <summary>
+        /// creates an object with all courses which correspond to specific parameters
+        /// </summary>
         public CoursesBL(Queue<FieldValue<CourseField>> parameters, bool operation)
         {
             this.Courses = CourseDAL.GetTable(parameters, operation);
         }
 
-        //return the sum of courses in a peroid of time
+        /// <summary>
+        /// return the sum of courses in a peroid of time
+        /// </summary>
         public int SumOfCoursesInPeriod(DateTime from, DateTime to)
         {
             return this.Courses.Tables[0].Rows.Count;
         }
 
-        //return the sum of all the participants in all the courses in a period of time
+        /// <summary>
+        /// return the sum of all the participants in all the courses in a period of time
+        /// </summary>
         public int SumOfParticipants(DateTime from, DateTime to)
         {
             //add to list all the courses code of courses that were in a period of time

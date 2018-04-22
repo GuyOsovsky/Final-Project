@@ -17,7 +17,9 @@ namespace PoliceVolnteerBL
         public int ActivityCode { get; set; }
         public int FileType { get; set; }
 
-        //build and adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
+        /// <summary>
+        /// build and adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
+        /// </summary>
         public MediaBL(int activityCode, string fileName, byte[] FileBytes)
         {
             //get new directory path
@@ -73,7 +75,10 @@ namespace PoliceVolnteerBL
             MediaDAL.AddMedia(FileName, activityCode, FileType);
         }
 
-        //build from the database
+        /// <summary>
+        /// build from the database
+        /// </summary>
+        /// <param name="FileName"></param>
         public MediaBL(string FileName)
         {
             this.FileName = FileName;
@@ -82,7 +87,9 @@ namespace PoliceVolnteerBL
             this.FileType = (int)mediaDataSet.Tables[0].Rows[0]["FileType"];
         }
 
-        //delete file from "files" by activity code and file name
+        /// <summary>
+        /// delete file from "files" by activity code and file name
+        /// </summary>
         public static bool DeleteFile(int activityCode, string fileName)
         {
             //get directory name
@@ -116,7 +123,9 @@ namespace PoliceVolnteerBL
             }
         }
 
-        //return new combined path for creating a new folder for new activity
+        /// <summary>
+        /// return new combined path for creating a new folder for new activity
+        /// </summary>
         private static string GetNewActivityDir(int activityCode)
         {
             ActivityBL activity = new ActivityBL(activityCode);

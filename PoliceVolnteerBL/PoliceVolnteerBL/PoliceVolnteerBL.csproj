@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ActivityBL.cs" />
     <Compile Include="ActivitysBL.cs" />
+    <Compile Include="ActivitysTypes.cs" />
     <Compile Include="ActivityTypes.cs" />
     <Compile Include="CourseBL.cs" />
     <Compile Include="CoursesBL.cs" />
@@ -68,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="UML.cd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PoliceVolnteerDAL\PoliceVolnteerDAL\PoliceVolnteerDAL.csproj">

@@ -104,7 +104,7 @@ namespace PoliceVolunteerUI
 
         protected void FillActivityTypesList(object sender, EventArgs e)
         {
-            ActivityTypes types = new ActivityTypes();
+            ActivitysTypes types = new ActivitysTypes();
             foreach (DataRow row in types.activityTypes.Tables[0].Rows)
             {
                 ((DropDownList)sender).Items.Add(new ListItem(row["typeName"].ToString(), row["typeCode"].ToString()));
