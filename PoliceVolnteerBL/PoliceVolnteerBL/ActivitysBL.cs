@@ -43,6 +43,11 @@ namespace PoliceVolnteerBL
             this.Activitys = ActivityDAL.GetTable(parameters, true);
         }
 
+        /// <summary>
+        /// creates an object with all activitys which correspond to specific parameters
+        /// </summary>
+        /// <param name="parameters">queue of parameters to filter activitys</param>
+        /// <param name="operation">and/or operation on parameters</param>
         public ActivitysBL(Queue<FieldValue<ActivityField>> parameters, bool operation)
         {
             this.Activitys = ActivityDAL.GetTable(parameters, operation);

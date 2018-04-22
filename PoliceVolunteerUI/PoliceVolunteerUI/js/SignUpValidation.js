@@ -41,10 +41,25 @@ function nameValidation(oSrc, args) {
     var inputTxt = args.Value;
     var letters = /^[A-Za-zא-ת]+$/;
     if (inputTxt.value.match(letters)) {
-        return true;
+        args.IsValid = true;
     }
     else {
         alert("message");
-        return false;
+        args.IsValid = false;
     }
+}
+function phoneNumberValidation(oSrc, args) {
+    var phoneNumber = String(args.Value);
+    if (phoneNumber.length != 10) {
+        oSrc.innerText = "מספר טלפון לא תקין";
+        args.IsValid = false;
+        return;
+    }
+    if (phoneNumber[0] != '0' || phoneNumber[1] != '5') {
+        args.IsValid = false;
+        oSrc.innerText = "זהו לא מספר טלפון ישראלי";
+        return;
+    }
+    args.IsValid = true;
+    oSrc.errormessage = "";
 }

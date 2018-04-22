@@ -10,14 +10,14 @@
             <br />
             <asp:TextBox ID="PhoneNumberIN" runat="server" TextMode="Phone" CssClass="form-control" dir="rtl"></asp:TextBox>
             <asp:RequiredFieldValidator ID="PhoneNumberRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="PhoneNumberIN" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="PhoneNumberRegularExpressionV" runat="server" ErrorMessage="זהו לא מספר טלפון תקין" ControlToValidate="PhoneNumberIN" ValidationExpression="\d[0-9]{9}" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
+            <asp:CustomValidator ID="PhoneNumberValidation" runat="server" ControlToValidate="PhoneNumberIN" ClientValidationFunction="phoneNumberValidation" ValidationGroup="SignIn"></asp:CustomValidator>
         </div>
         <div class="form-group">
             <label for="EmergencyNumberIN">מספר חירום:</label>
             <br />
             <asp:TextBox ID="EmergencyNumberIN" runat="server" TextMode="Phone" CssClass="form-control" dir="rtl"></asp:TextBox>
             <asp:RequiredFieldValidator ID="EmergencyNumberRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="EmergencyNumberIN" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="EmergencyNumberRegularExpressionV" runat="server" ErrorMessage="זהו לא מספר טלפון תקין" ControlToValidate="EmergencyNumberIN" ValidationExpression="\d[0-9]{9}" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
+            <asp:CustomValidator ID="EmergencyPhoneNumberValidation" runat="server" ControlToValidate="EmergencyNumberIN" ClientValidationFunction="phoneNumberValidation" ValidationGroup="SignIn"></asp:CustomValidator>
         </div>
         <div class="form-group">
             <label for="FNameIN">שם פרטי:</label>
@@ -38,7 +38,6 @@
             <br />
             <asp:TextBox ID="BirthDateIN" runat="server" TextMode="Date" CssClass="form-control" dir="rtl"></asp:TextBox>
             <asp:RequiredFieldValidator ID="BirthDateRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="BirthDateIN" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="BirthDateRegularExpressionV" runat="server" ErrorMessage="זה לא תאריך תקין" ControlToValidate="BirthDateIN" ValidationExpression="\d{4}\-\d{2}\-\d{2}" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
             <asp:CustomValidator ID="DateCustomV" runat="server" ErrorMessage="תאריך לא חוקי" ControlToValidate="BirthDateIN" ClientValidationFunction="DateValidation" ValidationGroup="SignIn"></asp:CustomValidator>
         </div>
         <div class="form-group">
@@ -53,7 +52,7 @@
             <br />
             <asp:TextBox ID="PasswordIN" runat="server" TextMode="Password" CssClass="form-control" dir="rtl"></asp:TextBox>
             <asp:RequiredFieldValidator ID="PasswordRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="PasswordIN" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="PasswordRegularExpressionV" runat="server" ErrorMessage="זאת לא סיסמא תקינה" ControlToValidate="PasswordIN" ValidationExpression="\w[a-z,A-Z]+\d+\w[a-z,A-Z]*" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="PasswordRegularExpressionV" runat="server" ErrorMessage="זאת לא סיסמא תקינה" ControlToValidate="PasswordIN" ValidationExpression="\d*\w[a-z,A-Z]+\d+\w[a-z,A-Z]*" ValidationGroup="SignIn"></asp:RegularExpressionValidator>
         </div>
         <div class="form-group">
             <label for="PasswordCMP">בבקשה חזור על הסיסמא:</label>
