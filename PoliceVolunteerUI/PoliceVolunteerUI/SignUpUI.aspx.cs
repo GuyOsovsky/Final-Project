@@ -32,16 +32,15 @@ namespace PoliceVolunteerUI
         private void LoadCitiesHome()
         {
             //load home city input xml
-            string lang = Request.UserLanguages.Contains("he-IL") ? "Heb" : "En";
+            //string lang = Request.UserLanguages.Contains("he-IL") ? "Heb" : "En";
+            string lang = "Heb";
             XmlDocument doc = new XmlDocument();
             doc.Load("http://img2.timg.co.il/forums/1_102884894.xml");
             XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
             HomeCityIN.DataSource = cities.Cast<XmlNode>().Select(node => node.Attributes[lang].Value).ToArray();
             HomeCityIN.DataBind();
-
-            //load serve city input xml
-            
         }
+        //load serve city input xml
         private void LoadCitiesServe()
         {
             string lang = Request.UserLanguages.Contains("he-IL") ? "Heb" : "En";

@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PoliceVolnteerBL.ActivityBL">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAIAAAAQAABCAAAACIAAAAAAAAEIAQAAQAgA=</HashCode>
+      <FileName>ActivityBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TypeCode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ActivitysBL">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>ActivitysBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Activitys" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ActivityTypes">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>ActivityTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.CourseBL">
+    <Position X="4" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAACAgAgIABAAQAAAAAAIAgAAAEAAEAAAABAAAA=</HashCode>
+      <FileName>CourseBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ValidityCode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.CoursesBL">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAQAAAAABAAAAA=</HashCode>
+      <FileName>CoursesBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Courses" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ItemBL">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABACAAAAAAAAAAAAAAAAAAIAAAADAAAACAAA=</HashCode>
+      <FileName>ItemBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.MediaBL">
+    <Position X="8.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAABAAAAAAAAAAACAAAAAAAAAAEAAABAAAA=</HashCode>
+      <FileName>MediaBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.MediasBL">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MediasBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MediaList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ReportBL">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECAAQAAAAAgAAAAAAAAQAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReportBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ReportsBL">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ReportsBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Reports" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ShiftBL">
+    <Position X="6.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAACAAgAAAQAAAABCAAAIAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>ShiftBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TypeCode" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ShiftsBL">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ShiftsBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="shifts" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ShiftsTypesBL">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShiftsTypesBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ShiftTypeList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ShiftTypesBL">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShiftTypesBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.StockBL">
+    <Position X="6" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAABAAAAAAAAIgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StockBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Stock" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ValidityTypeBL">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ValidityTypeBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.ValidityTypesBL">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ValidityTypesBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ValidityTypeList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.VolunteerBL">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BMBAFABkCSQQgRJFEABAQAQWASUBAgACAQEAAkAQAgw=</HashCode>
+      <FileName>VolunteerBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.VolunteersBL">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAQgAAAA=</HashCode>
+      <FileName>VolunteersBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="VolunteerList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="PoliceVolnteerBL.VolunteerTypeBL">
+    <Position X="12.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAABAAQAQABQABAAAAEAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>VolunteerTypeBL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoliceVolnteerBL.VolunteerTypesBL">
+    <Position X="12.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>VolunteerTypesBL.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="VolunteerTypeList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="System.Data.DataSet" Collapsed="true">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Font Name="Tahoma" Size="9" />
+</ClassDiagram>

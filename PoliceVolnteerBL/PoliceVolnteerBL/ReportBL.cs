@@ -16,7 +16,9 @@ namespace PoliceVolnteerBL
         public int ActivityCode { get; private set; }
         public string Description { get; private set; }
 
-        //build and adding to database
+        /// <summary>
+        /// build and adding to database
+        /// </summary>
         public ReportBL(string PhoneNumber, DateTime ReportDate, int ActivityCode, string Description)
         {
             this.PhoneNumber = PhoneNumber;
@@ -26,7 +28,9 @@ namespace PoliceVolnteerBL
             ReportsDAL.AddReport(PhoneNumber, ReportDate, ActivityCode, Description);
         }
 
-        //build from the database
+        /// <summary>
+        /// build from the database
+        /// </summary>
         public ReportBL(string PhoneNumber, int activityCode)
         {
             this.PhoneNumber = PhoneNumber;
@@ -40,18 +44,26 @@ namespace PoliceVolnteerBL
             this.Description = (string)ReportsDataSet.Tables[0].Rows[0]["Description"];
         }
 
-        //return textual report of a specific activiy + the report description
+        /// <summary>
+        /// return textual report of a specific activiy + the report description
+        /// </summary>
         public string getReport()
         {
             return (new ActivityBL(this.ActivityCode)).GetActivityReport() + this.Description + "\n";
         }
 
+        /// <summary>
+        /// adds a description
+        /// </summary>
         public void UpdateDescription(string descriptionContent, DateTime updateDate)
         {
             ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.Description, descriptionContent, Table.Reports, FieldType.String));
             ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.ReportDate, updateDate, Table.Reports, FieldType.Date));
         }
 
+        /// <summary>
+        /// creates a datarow according to the property
+        /// </summary>
         public DataRow ToDataRow()
         {
             Queue<FieldValue<ReportsField>> parameters = new Queue<FieldValue<ReportsField>>();

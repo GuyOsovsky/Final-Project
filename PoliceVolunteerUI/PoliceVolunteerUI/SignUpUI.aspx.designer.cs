@@ -31,13 +31,13 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PhoneNumberRequiredV;
         
         /// <summary>
-        /// PhoneNumberRegularExpressionV control.
+        /// PhoneNumberValidation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator PhoneNumberRegularExpressionV;
+        protected global::System.Web.UI.WebControls.CustomValidator PhoneNumberValidation;
         
         /// <summary>
         /// EmergencyNumberIN control.
@@ -58,13 +58,13 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator EmergencyNumberRequiredV;
         
         /// <summary>
-        /// EmergencyNumberRegularExpressionV control.
+        /// EmergencyPhoneNumberValidation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmergencyNumberRegularExpressionV;
+        protected global::System.Web.UI.WebControls.CustomValidator EmergencyPhoneNumberValidation;
         
         /// <summary>
         /// FNameIN control.
@@ -137,15 +137,6 @@ namespace PoliceVolunteerUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator BirthDateRequiredV;
-        
-        /// <summary>
-        /// BirthDateRegularExpressionV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator BirthDateRegularExpressionV;
         
         /// <summary>
         /// DateCustomV control.

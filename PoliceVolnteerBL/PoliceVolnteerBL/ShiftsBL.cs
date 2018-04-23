@@ -13,18 +13,25 @@ namespace PoliceVolnteerBL
     {
         public DataSet shifts { get; private set; }
 
-        //create ShiftList and add all the ShiftBL objects 
+        /// <summary>
+        /// create ShiftList and add all the ShiftBL objects 
+        /// </summary>
         public ShiftsBL()
         {
             this.shifts = ShiftsDAL.GetTable();
         }
 
-        //create ShiftList and add ShiftBL objects by "start date time"
+        /// <summary>
+        /// create ShiftList and add ShiftBL objects by "start date time"
+        /// </summary>
         public ShiftsBL(DateTime fromDate)
         {
             this.shifts = ShiftsDAL.GetTable(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, fromDate, Table.Shifts, FieldType.Date, OperatorType.GreaterAndEquals));
         }
 
+        /// <summary>
+        /// create ShiftList and add ShiftBL objects by "start date time" and "finish date"
+        /// </summary>
         public ShiftsBL(DateTime fromDate, DateTime toDate)
         {
             Queue<FieldValue<ShiftsField>> parameters = new Queue<FieldValue<ShiftsField>>();
@@ -33,12 +40,17 @@ namespace PoliceVolnteerBL
             this.shifts = ShiftsDAL.GetTable(parameters, true);
         }
 
+        /// <summary>
+        /// creates ShiftList and add ShiftBL objects by specific parameters
+        /// </summary>
         public ShiftsBL(Queue<FieldValue<ShiftsField>> parameters, bool operation)
         {
             this.shifts = ShiftsDAL.GetTable(parameters, operation);
         }
 
-        //return table of the important details of all the shifts + shift type
+        /// <summary>
+        /// return table of the important details of all the shifts + shift type
+        /// </summary>
         public DataSet GetDetails()
         {
             DataSet shifts = ShiftsDAL.GetTable();
