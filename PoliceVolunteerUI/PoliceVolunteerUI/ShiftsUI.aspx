@@ -6,10 +6,9 @@
         <h1>משמרות עתידיות</h1>
     </center>
     <asp:GridView ID="ShiftsInformation" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px"
-        BorderColor="#000099" CellPadding="4" ShowFooter="True"
-        ForeColor="#333333" GridLines="None" Width="100%">
-        <AlternatingRowStyle BackColor="White" />
+        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
+        <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>
             <asp:TemplateField Visible="false">
                 <ItemTemplate>
@@ -27,7 +26,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-        <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+        <RowStyle BackColor="#f4fbff" ForeColor="#333333" />
         <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
         <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
     </asp:GridView>
@@ -37,10 +36,9 @@
         <h1>משמרות שנרשמת אליהן</h1>
     </center>
     <asp:GridView ID="SignedShifts" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px"
-        BorderColor="#000099" CellPadding="4" ShowFooter="True"
-        ForeColor="#333333" GridLines="None" Width="100%">
-        <AlternatingRowStyle BackColor="White" />
+        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
+        <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>
             <asp:TemplateField Visible="false">
                 <ItemTemplate>
@@ -58,7 +56,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
-        <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+        <RowStyle BackColor="#f4fbff" ForeColor="#333333" />
         <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
         <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
     </asp:GridView>

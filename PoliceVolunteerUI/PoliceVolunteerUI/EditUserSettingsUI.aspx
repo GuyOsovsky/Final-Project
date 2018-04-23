@@ -10,7 +10,7 @@
         <asp:Button ID="UpdateGridView" runat="server" Text="חפש" OnClick="Page_LoadComplete"></asp:Button>
         <asp:GridView ID="UserInformation" runat="server" AutoGenerateColumns="False" OnRowEditing="UserInformationRowEditing"
             Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
-            GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true"
+        GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true"
             OnRowCancelingEdit="UserInformationRowEditingRowCancelingEdit" 
             OnRowUpdating="UserInformationRowUpdating"
             >

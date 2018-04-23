@@ -20,14 +20,14 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-md sticky-top navbar-fixed-top navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md sticky-top navbar-fixed-top navbar-dark bg-success">
             <div class="nav navbar-header">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 &nbsp;
                 <a class="navbar-brand" href="HomePageUI.aspx">
-                    <img src="pictures/logo1.jpg" alt="logo" width="1400" height="1400" />
+                    <img src="pictures/logo2.png" alt="logo" width="1400" height="1400" />
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -38,7 +38,7 @@
                             if (Session["User"] != "")
                             { 
                         %>
-                        <a data-toggle="collapse" href="#User">משתמש</a>
+                        <a data-toggle="collapse" href="#User" style="color:darkblue">משתמש</a>
                         <div id="User" class="panel-collapse collapse">
                             <ul class="list-group" id="UserDropDown">
                                 <li class="list-group-item"><a href="UserSettingsUI.aspx">פרטי משתמש</a></li>
@@ -55,7 +55,7 @@
                             if (Session["User"] != "")
                             { 
                         %>
-                        <a data-toggle="collapse" href="#Actions">פעילויות</a>
+                        <a data-toggle="collapse" href="#Actions" style="color:darkblue">פעילויות</a>
                         <div id="Actions" class="panel-collapse collapse">
                             <ul class="list-group" id="Ul2">
                                 <li class="list-group-item"><a href="ShiftsUI.aspx">משמרות</a></li>
@@ -73,7 +73,7 @@
                                 if (Session["User"] != "")
                                 { 
                             %>
-                        <a data-toggle="collapse" href="#Other">אחר</a>
+                        <a data-toggle="collapse" href="#Other" style="color:darkblue">אחר</a>
                         <div id="Other" class="panel-collapse collapse">
                             <ul class="list-group" id="OtherDropDown">
                                 <li class="list-group-item"><a href="MediaUI.aspx">מדיה</a></li>
@@ -87,7 +87,7 @@
                             {  
                         %>
                         <li class="dropdown" style="width: 160px;">&nbsp;&nbsp;&nbsp;
-                            <a data-toggle="collapse" href="#VolunteerManagement">ניהול מתנדבים</a>
+                            <a data-toggle="collapse" href="#VolunteerManagement" style="color:darkblue">ניהול מתנדבים</a>
                             <div id="VolunteerManagement" class="panel-collapse collapse">
                                 <ul class="list-group" id="ManagementDropDown">
                                     <li class="list-group-item"><a href="EditUserSettingsUI.aspx">ניהול מתנדבים</a></li>
@@ -97,7 +97,7 @@
                         &nbsp;&nbsp;&nbsp;
                         </li>
                         <li class="dropdown" style="width: 160px;">&nbsp;&nbsp;&nbsp;
-                            <a data-toggle="collapse" href="#ActionsManagment">ניהול פעילויות</a>
+                            <a data-toggle="collapse" href="#ActionsManagment" style="color:darkblue">ניהול פעילויות</a>
                             <div id="ActionsManagment" class="panel-collapse collapse">
                                 <ul class="list-group" id="Ul1">
                                     <li class="list-group-item"><a href="ShiftsAdminUI.aspx">ניהול משמרות</a></li>
