@@ -21,6 +21,10 @@ namespace PoliceVolnteerBL
             this.Stock = StockDAL.GetTable();
         }
 
+        /// <summary>
+        /// checks if an item exits in the stock
+        /// </summary>
+        /// <returns>id of the item' -1 if the item does not exits</returns>
         public int ExistingItemID(string itemName, bool isRecyclable)
         {
             Queue<FieldValue<StockField>> q = new Queue<FieldValue<StockField>>();
@@ -31,13 +35,18 @@ namespace PoliceVolnteerBL
                 return -1;
             return (int)check.Tables[0].Rows[0]["ItemID"];
         }
-
-        //return all existing transferences
+        
+        /// <summary>
+        /// return all existing transferences
+        /// </summary>
         public static DataSet GetAllTransference()
         {
             return StockToVolunteerDAL.GetTable();
         }
 
+        /// <summary>
+        /// adds to the quantity of an exiting item
+        /// </summary>
         public static void AddExistsItems(int itemID, int amount)
         {
             StockDAL.UpdateStock(itemID, amount);

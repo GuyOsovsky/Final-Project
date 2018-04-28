@@ -11,7 +11,9 @@ namespace PoliceVolnteerBL
     {
         public List<VolunteerBL> VolunteerList { get; set; }
 
-        //create VolunteerList of VolunteerBL object, empty or full(with all the volunteers that exists)
+        /// <summary>
+        /// create VolunteerList of VolunteerBL object, empty or full(with all the volunteers that exists)
+        /// </summary>
         /// <param name="isEmpty">tells the program if the list should be empty or not</param>
         public VolunteersBL(bool isEmpty)
         {
@@ -24,19 +26,25 @@ namespace PoliceVolnteerBL
             }
         }
 
-        //add new volunteer to list
+        /// <summary>
+        /// add new volunteer to list
+        /// </summary>
         public void AddVolunteer(VolunteerBL volunteer)
         {
             this.VolunteerList.Add(volunteer);
         }
 
-        //delete exist volunteer from list
+        /// <summary>
+        /// delete exist volunteer from list
+        /// </summary>
         public void DelVolunteer(VolunteerBL volunteer)
         {
             this.VolunteerList.Remove(this.VolunteerList.Find(x => x.PhoneNumber.Contains(volunteer.PhoneNumber)));
         }
 
-        //return sum of volunteers that active
+        /// <summary>
+        /// return sum of volunteers that active
+        /// </summary>
         public int SumOfActivesVolunteers()
         {
             int sum = 0;
@@ -46,7 +54,9 @@ namespace PoliceVolnteerBL
             return sum;
         }
 
-        //return table of all the Unreturned items
+        /// <summary>
+        /// return table of all the Unreturned items
+        /// </summary>
         public DataTable GetTrasfersNotReturned()
         {
             DataTable NotReturnedItems;

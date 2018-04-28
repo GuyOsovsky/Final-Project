@@ -16,7 +16,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// creates a new object with a certain code
         /// </summary>
-        /// <param name="typeCode"></param>
         public ActivityTypes(int typeCode)
         {
             this.TypeCode = typeCode;
@@ -26,7 +25,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// creates a new type to the db
         /// </summary>
-        /// <param name="name"></param>
         public ActivityTypes(string name)
         {
             TypeToActivityDAL.AddTypeToActivity(name);

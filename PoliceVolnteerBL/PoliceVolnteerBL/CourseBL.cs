@@ -48,7 +48,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// build from the database
         /// </summary>
-        /// <param name="CourseCode"></param>
         public CourseBL(int CourseCode)
         {
             DataSet courseDataSet = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, Table.Course, FieldType.Number, OperatorType.Equals));

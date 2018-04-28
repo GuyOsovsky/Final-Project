@@ -13,16 +13,20 @@ namespace PoliceVolnteerBL
     {
         public int TypeCode { get; set; }
         public string TypeName { get; set; }
-
-        //build and adding to database
+        
+        /// <summary>
+        /// build and adding to database
+        /// </summary>
         public ShiftTypesBL(string typeName)
         {
             ShiftsTypesDAL.AddShift(typeName);
             this.TypeCode = (int)ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.TypeName, typeName, Table.ShiftsType, FieldType.String, OperatorType.Equals)).Tables[0].Rows[0]["typeCode"];
             this.TypeName = typeName;
         }
-
-        //build from the database
+        
+        /// <summary>
+        /// build from the database
+        /// </summary>
         public ShiftTypesBL(int typeCode)
         {
             DataRow ShiftsTypesRow = ShiftsTypesDAL.GetTable(new FieldValue<ShiftsTypeField>(ShiftsTypeField.typeCode, typeCode, Table.ShiftsType, FieldType.Number, OperatorType.Equals)).Tables[0].Rows[0];
