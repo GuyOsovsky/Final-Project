@@ -25,40 +25,63 @@ namespace PoliceVolunteerUI
 
         protected void FillOurCourses()
         {
+            //get all courses
             CoursesBL allCourses = new CoursesBL(DateTime.Now);
+            allCourses.Courses.Tables[0].Rows.Add();
+            allCourses.Courses.Tables[0].Columns.Add("Validity", typeof(string));
 
+            for (int i = 0; i < allCourses.Courses.Tables[0].Rows.Count-1; i++)
+            {
+                allCourses.Courses.Tables[0].Rows[i]["Validity"] = new ValidityTypeBL(int.Parse(allCourses.Courses.Tables[0].Rows[i]["ValidityCode"].ToString())).ValidityName;
+            }
+
+            //bind data to gridview
             DataView dataView = new DataView(allCourses.Courses.Tables[0]);
             CoursesInformation.DataSource = dataView;
+            CoursesInformation.EditIndex = allCourses.Courses.Tables[0].Rows.Count - 1;
             CoursesInformation.DataBind();
+        }
 
-            //CoursesInformation.DataSource = dataView;
-            //CoursesInformation.DataBind();
+        protected void AddNewCourse(object sender, EventArgs e)
+        {
+            GridViewRow row = CoursesInformation.Rows[CoursesInformation.EditIndex];
+            string courseName = ((TextBox)row.Cells[1].FindControl("inputCourseName")).Text;
+            DateTime courseDate = DateTime.ParseExact(((TextBox)row.Cells[2].FindControl("inputCourseDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime startTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("inputCourseStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime finishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("inputCourseFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            
+            VolunteerBL instructor = new VolunteerBL(Session["User"].ToString());
+            string nameOfInstructor = instructor.FName + " " + instructor.LName;
+            
+            string place = ((TextBox)row.Cells[5].FindControl("inputCoursePlace")).Text;
+            string description = ((TextBox)row.Cells[6].FindControl("inputCourseDescription")).Text;
+            ValidityTypeBL newValidity = new ValidityTypeBL(((DropDownList)row.Cells[7].FindControl("InputValidityType")).Text);
+            CourseBL course = new CourseBL(courseName, courseDate, startTime, finishTime, nameOfInstructor, false, place, description, newValidity.ValidityCode);
+        }
 
-            ////get all courses
-            //DataSet courses = (new CoursesBL()).Courses;
-            ////filter by date
-            //FieldValue<CourseField> Mask = new FieldValue<CourseField>(CourseField.CourseDate, DateTime.Now, PoliceVolnteerDAL.Table.Course, FieldType.Date, OperatorType.Greater);
-            //courses.Tables[0].DefaultView.RowFilter = Mask.ToSql();
-            //DataTable FilteredTable = (courses.Tables[0].DefaultView).ToTable();
-            ////filter by courses the user already registered to
-            //for (int i = 0; i < FilteredTable.Rows.Count; i++)
-            //{
-            //    VolunteerBL user = new VolunteerBL(Session["User"].ToString());
-            //    DataTable UserCourses = user.GetCourses(DateTime.Now, OperatorType.Greater);
-            //    for (int j = 0; j < UserCourses.Rows.Count; j++)
-            //    {
-            //        if (UserCourses.Rows[j]["CourseCode"].ToString() == FilteredTable.Rows[i]["CourseCode"].ToString())
-            //        {
-            //            FilteredTable.Rows[i].Delete();
-            //            i--;
-            //            break;
-            //        }
-            //    }
-            //}
-            ////bind data to gridview
-            //DataView dataView = new DataView(FilteredTable);
-            //CoursesInformation.DataSource = dataView;
-            //CoursesInformation.DataBind();
+        //protected void AddNewActivity(object sender, EventArgs e)
+        //{
+        //    GridViewRow row = ActivitysInformation.Rows[ActivitysInformation.EditIndex];
+        //    string activityName = ((TextBox)row.Cells[1].FindControl("InputActivityName")).Text;
+        //    DateTime activityDate = DateTime.ParseExact(((TextBox)row.Cells[2].FindControl("InputActivityDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
+        //    DateTime activityStartTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("InputActivityStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
+        //    DateTime activityFinishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("InputActivityFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
+        //    string activityPlace = ((TextBox)row.Cells[5].FindControl("InputActivityPlace")).Text;
+        //    string activityManeger = ((DropDownList)row.Cells[6].FindControl("InputActivityManeger")).SelectedValue.ToString();
+        //    int activityMinParticipents = int.Parse(((TextBox)row.Cells[7].FindControl("InputActivityMinParticipents")).Text);
+        //    int activityTypeCode = int.Parse(((DropDownList)row.Cells[8].FindControl("InputActivityTypeName")).SelectedValue.ToString());
+        //    ActivityBL activity = new ActivityBL(activityName, activityDate, activityStartTime, activityFinishTime, activityManeger, activityTypeCode, activityPlace, activityMinParticipents);
+
+        //}
+
+        protected void FillValidityTypesList(object sender, EventArgs e)
+        {
+            ValidityTypesBL types = new ValidityTypesBL();
+            for (int i = 0; i < types.ValidityTypeList.Count; i++)
+            {
+                ((DropDownList)sender).Items.Add(new ListItem(types.ValidityTypeList[i].ValidityName));
+            }
+            ((DropDownList)sender).DataBind();
         }
 
         protected void FillOtherCourses()
