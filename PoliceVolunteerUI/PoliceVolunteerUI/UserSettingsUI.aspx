@@ -13,29 +13,6 @@
         </center>
     </div>
     <center>
-        <%--<asp:GridView ID="UserInformation" runat="server" AutoGenerateColumns="False" OnRowEditing="UserInformationRowEditing"
-            Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
-            GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true"
-            OnRowCancelingEdit="UserInformationRowEditingRowCancelingEdit" 
-            OnRowUpdating="UserInformationRowUpdating">
-            <AlternatingRowStyle BackColor="#dbffe5" />
-            <Columns>
-                <asp:BoundField DataField="FieldName" HeaderText="קטגוריה" ReadOnly="True" />
-                <asp:TemplateField>   
-                    <ItemTemplate>   
-                        <asp:Label ID="lbl_FieldValue" runat="server" Text='<%#Eval("FieldValue") %>'></asp:Label>   
-                    </ItemTemplate>   
-                    <EditItemTemplate>   
-                        <asp:TextBox ID="txt_FieldValue" runat="server" Text='<%#Eval("FieldValue") %>'></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="fieldValueRequiredV" runat="server" ErrorMessage="לא הוכנס ערך"></asp:RequiredFieldValidator>
-                    </EditItemTemplate>  
-                </asp:TemplateField>   
-                <asp:CommandField ShowEditButton="True" />
-            </Columns>
-            <RowStyle BackColor="#f4fbff" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-        </asp:GridView>--%>
         <div class="col-sm-4">
             <asp:Panel ID="UserSettings" runat="server">
                 <asp:Label ID="PhoneNumberLbl" runat="server" Text="מספר טלפון:"></asp:Label>
@@ -89,6 +66,51 @@
                 <br />
                 <asp:Button ID="updateButton" runat="server" Text="עדכן"></asp:Button>
             </asp:Panel>
+        </div>
+        <br /><br /><br />
+        <div class="page-header">
+        <center>
+            <h1>
+                המכוניות שלך
+            </h1>
+        </center>
+        </div>
+        <div class="col-sm-4">
+            <asp:GridView ID="carsInformation" runat="server" AutoGenerateColumns="False"
+            Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+            GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
+            <AlternatingRowStyle BackColor="#dbffe5" />
+            <Columns>
+                <asp:TemplateField HeaderText="מכונית מספר">   
+                    <ItemTemplate>   
+                        <asp:Label ID="lblRowNumber" runat="server" Text='<%# ((GridViewRow) Container).RowIndex + 1 %>'></asp:Label>   
+                    </ItemTemplate>   
+                    <EditItemTemplate>   
+                        <asp:Label ID="lblRowNumber" runat="server" Text='<%# ((GridViewRow) Container).RowIndex + 1 %>'></asp:Label> 
+                    </EditItemTemplate>  
+                </asp:TemplateField>   
+                <asp:TemplateField HeaderText="מספר זיהוי של המכונית">   
+                    <ItemTemplate>   
+                        <asp:Label ID="lblCarID" runat="server" Text='<%# Eval("CarID") %>'></asp:Label>   
+                    </ItemTemplate>   
+                    <EditItemTemplate>   
+                        <asp:TextBox ID="InputCarID" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="CarIDRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newCar" ControlToValidate="InputCarID"></asp:RequiredFieldValidator>
+                    </EditItemTemplate>  
+                </asp:TemplateField>   
+                <asp:TemplateField>   
+                    <ItemTemplate>   
+                        <asp:Button ID="DeleteBtn" runat="server" Text="מחק מכונית" OnClientClick="return confirm('are you sure you want delete this car to your collection?')" OnClick="deleteCar" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"/> 
+                    </ItemTemplate> 
+                    <EditItemTemplate>   
+                        <asp:Button ID="UpdateBtn" runat="server" ValidationGroup="newCar" Text="הוסף מכונית חדשה" OnClientClick="return confirm('are you sure you want add this car to your collection?')" OnClick="AddNewCar" /> 
+                    </EditItemTemplate>  
+                </asp:TemplateField>  
+            </Columns>
+            <RowStyle BackColor="#f4fbff" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+        </asp:GridView>
         </div>
     </center>
 </asp:Content>

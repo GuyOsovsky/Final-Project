@@ -254,17 +254,10 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// returns all the registered cars of the volunteer
         /// </summary>
-        public Queue<string> GetCars()
+        public DataSet GetCars()
         {
-            Queue<string> ret = new Queue<string>();
             //get all cars of the volunteer
-            DataRowCollection Cars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
-            foreach (DataRow car in Cars)
-            {
-                //add the carid to the queue
-                ret.Enqueue(car["CarID"].ToString());
-            }
-            return ret;
+            return CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals));
         }
 
         /// <summary>
@@ -292,9 +285,9 @@ namespace PoliceVolnteerBL
         {
             //get all reports of volunteer
             Queue<FieldValue<CarsReportsField>> filter = new Queue<FieldValue<CarsReportsField>>();
-            foreach (string id in GetCars())
+            foreach (DataRow id in GetCars().Tables[0].Rows)
             {
-                filter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, id, Table.CarsReports, FieldType.String, OperatorType.Equals));
+                filter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, id["CarID"].ToString(), Table.CarsReports, FieldType.String, OperatorType.Equals));
             }
             DataTable reports = CarsReportsDAL.GetTable(filter, false).Tables[0];
             return reports;

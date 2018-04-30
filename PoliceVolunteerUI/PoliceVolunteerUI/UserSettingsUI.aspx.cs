@@ -23,6 +23,7 @@ namespace PoliceVolunteerUI
             //FillUserSettings();
             LoadCitiesHome();
             loadUserSettings();
+            loadCars();
         }
 
         protected void DeleteUser(object sender, EventArgs e)
@@ -40,6 +41,18 @@ namespace PoliceVolunteerUI
             XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
             HomeCity.DataSource = cities.Cast<XmlNode>().Select(node => node.Attributes[lang].Value).ToArray();
             HomeCity.DataBind();
+        }
+
+        private void loadCars()
+        {
+            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
+            DataTable cars = volunteer.GetCars().Tables[0];
+            cars.Rows.Add();
+            //bind data to gridview
+            DataView dataView = new DataView(cars);
+            carsInformation.DataSource = dataView;
+            carsInformation.EditIndex = cars.Rows.Count - 1;
+            carsInformation.DataBind();
         }
 
         private void loadUserSettings()
@@ -106,6 +119,17 @@ namespace PoliceVolunteerUI
             }
             (new VolunteerBL(Session["User"].ToString())).UpdateVolunteer(field, value);
         }
+        protected void AddNewCar(object sender, EventArgs e)
+        {
+            GridViewRow row = carsInformation.Rows[carsInformation.EditIndex];
+            (new VolunteerBL(Session["User"].ToString())).AddNewCar(((TextBox)row.Cells[1].FindControl("InputCarID")).Text);
+        }
 
+        protected void deleteCar(object sender, EventArgs e)
+        {
+            GridViewRow row = carsInformation.Rows[int.Parse(((Button)sender).CommandArgument)];
+            (new VolunteerBL(Session["User"].ToString())).DeleteCar(((Label)row.Cells[1].FindControl("lblCarID")).Text);
+        }
+        
     }
 }
