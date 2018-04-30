@@ -16,8 +16,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// create MediaList and add MediaBL objects that were in a period of time
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
         public MediasBL(DateTime from = new DateTime(), DateTime to = new DateTime())
         {
             if (to.Year == 1)
@@ -36,7 +34,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// return all file by file type(format - txt,mp3...)
         /// </summary>
-        /// <param name="fileType"></param>
         public MediasBL(int fileType)
         {
             MediaList = new List<MediaBL>();

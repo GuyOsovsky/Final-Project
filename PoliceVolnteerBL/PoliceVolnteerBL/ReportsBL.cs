@@ -35,7 +35,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// creates an object with all reports of an activitys
         /// </summary>
-        /// <param name="activityCode"></param>
         public ReportsBL(int activityCode)
         {
             this.Reports = ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.ActivityCode, activityCode, Table.Reports, FieldType.Number, OperatorType.Equals));

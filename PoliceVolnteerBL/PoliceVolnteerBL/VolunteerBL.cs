@@ -27,7 +27,11 @@ namespace PoliceVolnteerBL
         public VolunteerTypeBL Type { get; private set; }
         public bool Status { get; private set; }
 
-        public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, int type)
+        /// <summary>
+        /// creates a new object and adds it to the db
+        /// </summary>
+        public VolunteerBL(string phoneNumber, string emergencyNumber, string fName, string lName, DateTime birthDate, string userName, 
+            string password, string homeAddress, string homeCity, string emailAddress, string iD, string policeID, string serveCity, int type)
         {
             try
             {
@@ -55,6 +59,9 @@ namespace PoliceVolnteerBL
             this.Status = true;
         }
 
+        /// <summary>
+        /// creates a new object according to a registered volunteer
+        /// </summary>
         public VolunteerBL(string phoneNumber)
         {
             DataRow dr;
@@ -87,6 +94,9 @@ namespace PoliceVolnteerBL
             this.Type = new VolunteerTypeBL(int.Parse(volunteerInfoRow["Type"].ToString()));
         }
 
+        /// <summary>
+        /// creates a new object according a registered volunteer
+        /// </summary>
         public VolunteerBL(string userName, string password)
         {
             DataRow dr;
@@ -120,12 +130,12 @@ namespace PoliceVolnteerBL
             this.StartDate = DateTime.Parse(dr["StartDate"].ToString());
             this.Type = new VolunteerTypeBL(int.Parse(dr["Type"].ToString()));
         }
-        
-        public static DataSet GetAllTable()
-        {
-            return VolunteerInfoDAL.GetTable();
-        }
 
+        /// <summary>
+        /// updates a certain field of the volunteer in the db
+        /// </summary>
+        /// <param name="field">enum of the field in the db</param>
+        /// <param name="value">the value to be put in the db</param>
         public void UpdateVolunteer(object field, object value)
         {
             FieldType valueType;
@@ -179,6 +189,9 @@ namespace PoliceVolnteerBL
             }
         }
 
+        /// <summary>
+        /// generates a new dataset of the volunteer
+        /// </summary>
         public DataSet VolunteerToDataSet()
         {
             DataSet volunteer = new DataSet();
@@ -208,12 +221,17 @@ namespace PoliceVolnteerBL
             volunteer.Tables[0].Rows[0][10] = this.StartDate;
             return volunteer;
         }
-        //does
+        /// <summary>
+        /// does have birth day today
+        /// </summary>
         public bool HasBirthDay()
         {
             return (this.BirthDate.Day == DateTime.Now.Day && this.BirthDate.Month == DateTime.Now.Month);
         }
 
+        /// <summary>
+        /// changes the status of a volunteer(active/not active)
+        /// </summary>
         public void ChangeStatus(bool newStatus)
         {
             //Is the new status different?
@@ -225,29 +243,34 @@ namespace PoliceVolnteerBL
             }
         }
 
+        /// <summary>
+        /// registers a new car of the volunteer
+        /// </summary>
         public void AddNewCar(string CarID)
         {
             CarToVolunteerDAL.AddCar(PhoneNumber, CarID);
         }
 
-        public Queue<string> GetCars()
+        /// <summary>
+        /// returns all the registered cars of the volunteer
+        /// </summary>
+        public DataSet GetCars()
         {
-            Queue<string> ret = new Queue<string>();
             //get all cars of the volunteer
-            DataRowCollection Cars = CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0].Rows;
-            foreach (DataRow car in Cars)
-            {
-                //add the carid to the queue
-                ret.Enqueue(car["CarID"].ToString());
-            }
-            return ret;
+            return CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.PhoneNumber, this.PhoneNumber, Table.CarToVolunteer, FieldType.String, OperatorType.Equals));
         }
 
+        /// <summary>
+        /// deletes a car from the colunteer collection
+        /// </summary>
         public void DeleteCar(string CarID)
         {
             CarToVolunteerDAL.DelCar(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, CarID, Table.CarToVolunteer, FieldType.String, OperatorType.Equals));
         }
 
+        /// <summary>
+        /// returns a patrol shift report of a specific car
+        /// </summary>
         public DataTable GetCarReports(string carID)
         {
             //get all reports of this car
@@ -255,18 +278,24 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
+        /// <summary>
+        /// returns all the reports of the cars
+        /// </summary>
         public DataTable GetCarReports()
         {
             //get all reports of volunteer
             Queue<FieldValue<CarsReportsField>> filter = new Queue<FieldValue<CarsReportsField>>();
-            foreach (string id in GetCars())
+            foreach (DataRow id in GetCars().Tables[0].Rows)
             {
-                filter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, id, Table.CarsReports, FieldType.String, OperatorType.Equals));
+                filter.Enqueue(new FieldValue<CarsReportsField>(CarsReportsField.CarID, id["CarID"].ToString(), Table.CarsReports, FieldType.String, OperatorType.Equals));
             }
             DataTable reports = CarsReportsDAL.GetTable(filter, false).Tables[0];
             return reports;
         }
 
+        /// <summary>
+        /// returns all car reports of a specific car with a date and an operand
+        /// </summary>
         public DataTable GetCarReports(DateTime date, OperatorType Operator, string carID)
         {
             //get all reports of the car
@@ -292,6 +321,9 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
+        /// <summary>
+        /// returns all reports of all the cars of the volunteer according to a date and an operand
+        /// </summary>
         public DataTable GetCarReports(DateTime date, OperatorType Operator)
         {
             //get all reports of the volunteer
@@ -317,6 +349,9 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
+        /// <summary>
+        /// returns all courses participated by the volunteer according to a date and an operand
+        /// </summary>
         public DataTable GetCourses(DateTime Date, OperatorType Operator)
         {
             //create filter
@@ -329,23 +364,32 @@ namespace PoliceVolnteerBL
                 CourseCode.Enqueue(new FieldValue<CourseField>(CourseField.CourseCode, Row["CourseCode"], Table.Course, FieldType.Number, OperatorType.Equals));
             }
             DataSet ds = CourseDAL.GetTable(CourseCode, false);
-            //filter unwanted reports
+            //filter unwanted courses
             ds.Tables[0].DefaultView.RowFilter = Mask.ToSql();
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
             return FilteredTable;
         }
 
+        /// <summary>
+        /// signs up a volunteer to a course
+        /// </summary>
         public void CourseSignUp(int CourseCode)
         {
             CoursesToVolunteerDAL.AddCoursesToVolunteer(this.PhoneNumber, CourseCode);
         }
 
+        /// <summary>
+        /// signs out a volunteer from a course
+        /// </summary>
         public void CourseSignOut(int courseCode)
         {
             CourseBL course = new CourseBL(courseCode);
             CoursesToVolunteerDAL.DelCourse(this.PhoneNumber, courseCode);
         }
 
+        /// <summary>
+        /// returns all the items the vounteer have taken and not returned and need to return
+        /// </summary>
         public DataSet GetItemsInPossession()
         {
             //create parameters for searching the StockToVolunteer table
@@ -361,6 +405,9 @@ namespace PoliceVolnteerBL
 
         }
 
+        /// <summary>
+        /// returns all the items the volunteerhave taken in the past
+        /// </summary>
         public DataSet GetItems()
         {
             //create parameters for searching the StockToVolunteer table
@@ -369,16 +416,25 @@ namespace PoliceVolnteerBL
             return StockToVolunteerDAL.GetTable(parameters, true);
         }
 
+        /// <summary>
+        /// create a new take request of the volunteer to a specific item
+        /// </summary>
         public void TakeItem(int ItemCode, int Amount, DateTime Date)
         {
             StockToVolunteerDAL.AddTransference(this.PhoneNumber, ItemCode, Amount, Date);
         }
 
+        /// <summary>
+        /// create a return request for returning an item the volunteer had taken
+        /// </summary>
         public void ReturnItem(int TransactionCode)
         {
             StockToVolunteerDAL.ReturnItem(TransactionCode);
         }
 
+        /// <summary>
+        /// changes the rank of the volunteer
+        /// </summary>
         public void ChangeRank(int RankCode)
         {
             try
@@ -395,11 +451,18 @@ namespace PoliceVolnteerBL
             }
         }
 
+        /// <summary>
+        /// returns all the validitys the volunteer has
+        /// </summary>
+        /// <returns></returns>
         public DataSet GetValidities()
         {
             return VolunteerToValidityDAL.GetTable(new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.PhoneNumber, this.PhoneNumber, Table.VolunteerToValidity, FieldType.String, OperatorType.Equals));
         }
 
+        /// <summary>
+        /// returns all the validitys the volunteer has to renew
+        /// </summary>
         public DataTable GetExpiraedValidities() //לאפשר למנהל לשנות אופסט של ימים שיתריע לו מתי נגמר למתנדב הרשיונות
         {
             //get all user's validities
@@ -412,6 +475,9 @@ namespace PoliceVolnteerBL
             return FilteredValidities;
         }
 
+        /// <summary>
+        /// signs the volunteer to a shift
+        /// </summary>
         public void ShiftSignUp(int ShiftCode)
         {
             if (this.Type.Independent)
@@ -441,21 +507,33 @@ namespace PoliceVolnteerBL
             }
         }
 
+        /// <summary>
+        /// signs out the volunteer from a shift
+        /// </summary>
         public void ShiftSignOut(int shiftCode)
         {
             ShiftsToVolunteerDAL.DelShiftToVolunteer(this.PhoneNumber, shiftCode);
         }
 
+        /// <summary>
+        /// signs the volunteer for an activitys
+        /// </summary>
         public void ActivitySignUp(int ActivityCode)
         {
             ReportsDAL.AddReport(this.PhoneNumber, new DateTime(1999, 1, 1), ActivityCode, "");
         }
 
+        /// <summary>
+        /// signs out the volunteer from an activity
+        /// </summary>
         public void ActivitySignOut(int ActivityCode)
         {
             ReportsDAL.DelReport(this.PhoneNumber, ActivityCode);
         }
 
+        /// <summary>
+        /// creates a new report of shift. if it was a patrol shift with a car the volunteer has to fill in some more data
+        /// </summary>
         public void ShiftReport(ShiftBL shift, string comment, string carID = "", double distance = 0)
         {
             if (distance != 0)//if the volunteer has entered Car shift info so add the car shift to the database
@@ -469,12 +547,18 @@ namespace PoliceVolnteerBL
             ShiftsToVolunteerDAL.UpdateComment(this.PhoneNumber, shift.ShiftCode, comment);
         }
 
+        /// <summary>
+        /// creates a new activity report
+        /// </summary>
         public void ActivityReport(ActivityBL activity, string description, DateTime reportDate)
         {
             ReportBL report = new ReportBL(this.PhoneNumber, activity.ActivityCode);
             report.UpdateDescription(description, reportDate);
         }
 
+        /// <summary>
+        /// gets the total distance the volunteer made with all his cars during patrol shifts
+        /// </summary>
         public double GetDistance(DateTime FromDate, DateTime ToDate)
         {
             //get all the volunteer's car
@@ -521,6 +605,9 @@ namespace PoliceVolnteerBL
             return totalDistance;
         }
 
+        /// <summary>
+        /// returns all shifts the volunteer has done and will do according to a date and operand
+        /// </summary>
         public DataTable GetShifts(DateTime Date, OperatorType Operator)
         {
             //mask for later filtration
@@ -541,6 +628,9 @@ namespace PoliceVolnteerBL
 
         }
 
+        /// <summary>
+        /// returns all shifts the volunteer has done and will do
+        /// </summary>
         public DataTable GetShifts()
         {
             //get all shifts regarding the volunteer
@@ -553,11 +643,17 @@ namespace PoliceVolnteerBL
             return ShiftsDAL.GetTable(ShiftsCode, false).Tables[0];
         }
 
+        /// <summary>
+        /// returns all the reports the volunteer did on shifts
+        /// </summary>
         public DataTable GetShiftReports()
         {
             return ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, OperatorType.Equals)).Tables[0];
         }
 
+        /// <summary>
+        /// returns all the reports the volunteer did on shifts according to a date and an operand
+        /// </summary>
         public DataTable GetShiftReports(DateTime date, OperatorType Operator)
         {
             //get all shifts by date
@@ -575,6 +671,9 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
+        /// <summary>
+        /// returns all activitys the volunteeer has done and will do according to a date and an operand
+        /// </summary>
         public DataTable GetActivitys(DateTime Date, OperatorType Operator)
         {
             //create parameters to filter the table
@@ -591,6 +690,9 @@ namespace PoliceVolnteerBL
             return FilteredTable;
         }
 
+        /// <summary>
+        /// returns all activitys the volunteeer has done and will do
+        /// </summary>
         public DataTable GetActivitys()
         {
             //create parameters to filter the table
@@ -605,11 +707,17 @@ namespace PoliceVolnteerBL
             return FilteredTable;
         }
 
+        /// <summary>
+        /// returns all the reports the volunteer did on activitys
+        /// </summary>
         public DataTable GetActivityReports()
         {
             return ReportsDAL.GetTable(new FieldValue<ReportsField>(ReportsField.PhoneNumber, this.PhoneNumber, Table.Reports, FieldType.String, OperatorType.Equals)).Tables[0];
         }
 
+        /// <summary>
+        /// returns all the reports the volunteer did on activitys according to a date and an operand
+        /// </summary>
         public DataTable GetActivityReports(DateTime date, OperatorType Operator)
         {
             //get all activities
@@ -627,9 +735,5 @@ namespace PoliceVolnteerBL
             return reports;
         }
 
-        public void DeleteUser()
-        {
-            VolunteerInfoDAL.DelUser(this.PhoneNumber);
-        }
     }
 }

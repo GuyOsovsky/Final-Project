@@ -57,7 +57,6 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// return table of all the phone numbers of the participants in this specific shift
         /// </summary>
-        /// <returns></returns>
         public DataTable GetParticipantsPhoneNumbers()
         {
             DataTable shiftsToVolunteer = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode.ToString(), Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0];

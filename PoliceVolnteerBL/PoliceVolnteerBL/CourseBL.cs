@@ -20,12 +20,13 @@ namespace PoliceVolnteerBL
         public bool IsRequeired { get; set; }
         public string Place { get; set; }
         public string Description { get; set; }
-        public ValidityTypeBL ValidityCode { get; set; }
+        public ValidityTypeBL Validity { get; set; }
 
         /// <summary>
         /// build and adding to database
         /// </summary>
-        public CourseBL(string CourseName, DateTime CourseDate, DateTime StartTime, DateTime FinishTime, string NameOfInstruc, bool IsRequeired, string Place, string Description, int ValidityCode)
+        public CourseBL(string CourseName, DateTime CourseDate, DateTime StartTime, DateTime FinishTime,
+            string NameOfInstruc, bool IsRequeired, string Place, string Description, int ValidityCode)
         {
             this.CourseName = CourseName;
             this.CourseDate = CourseDate;
@@ -42,13 +43,12 @@ namespace PoliceVolnteerBL
             this.Description = Description;
             CourseDAL.AddCourse(CourseName, CourseDate, StartTime, FinishTime, NameOfInstruc, isRequeired, Place, Description, ValidityCode);
             this.CourseCode = (int)CourseDAL.GetTable().Tables[0].Rows[CourseDAL.GetTable().Tables[0].Rows.Count - 1]["CourseCode"];
-            this.ValidityCode = new ValidityTypeBL(ValidityCode);
+            this.Validity = new ValidityTypeBL(ValidityCode);
         }
 
         /// <summary>
         /// build from the database
         /// </summary>
-        /// <param name="CourseCode"></param>
         public CourseBL(int CourseCode)
         {
             DataSet courseDataSet = CourseDAL.GetTable(new FieldValue<CourseField>(CourseField.CourseCode, CourseCode, Table.Course, FieldType.Number, OperatorType.Equals));
@@ -61,7 +61,7 @@ namespace PoliceVolnteerBL
             this.IsRequeired = (bool)courseDataSet.Tables[0].Rows[0]["IsRequeired"];
             this.Place = (string)courseDataSet.Tables[0].Rows[0]["Place"];
             this.Description = (string)courseDataSet.Tables[0].Rows[0]["Description"];
-            this.ValidityCode = new ValidityTypeBL((int)courseDataSet.Tables[0].Rows[0]["ValidityCode"]);
+            this.Validity = new ValidityTypeBL((int)courseDataSet.Tables[0].Rows[0]["ValidityCode"]);
         }
 
         /// <summary>

@@ -32,7 +32,9 @@ namespace PoliceVolnteerBL
         //whether or not a volunteer can edit a volunteer and create a new volunteer
         public bool PermmisionVolunteer { get; set; }
 
-        //build and adding to database
+        /// <summary>
+        /// build and adding to database
+        /// </summary>
         public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity, bool PermmisionStock, bool Independent, bool PermmisionCourse, bool PermmisionVolunteer)
         {
             this.TypeName = TypeName;
@@ -46,7 +48,9 @@ namespace PoliceVolnteerBL
             this.TypeCode = (int)VolunteerTypesDAL.GetTable().Tables[0].Rows[VolunteerTypesDAL.GetTable().Tables[0].Rows.Count - 1]["TypeCode"];
         }
 
-        //build from the database
+        /// <summary>
+        /// build from the database
+        /// </summary>
         public VolunteerTypeBL(int TypeCode)
         {
             this.TypeCode = TypeCode;
@@ -60,6 +64,9 @@ namespace PoliceVolnteerBL
             this.PermmisionVolunteer = (bool)volunteerTypesRow["PermmisionVolunteer"];
         }
 
+        /// <summary>
+        /// build from the database
+        /// </summary>
         public VolunteerTypeBL(string TypeName)
         {
             this.TypeName = TypeName;
@@ -73,7 +80,9 @@ namespace PoliceVolnteerBL
             this.PermmisionVolunteer = (bool)volunteerTypesRow["PermmisionVolunteer"];
         }
 
-        //return all the permmisions of this specific volunteer
+        /// <summary>
+        /// return all the permmisions of this specific volunteer
+        /// </summary>
         public DataTable GetPermmisions()
         {
             DataTable allPermmisions = VolunteerTypesDAL.GetTable(new FieldValue<VolunteerTypesField>(VolunteerTypesField.TypeCode, TypeCode, Table.VolunteerTypes, FieldType.Number, OperatorType.Equals)).Tables[0];

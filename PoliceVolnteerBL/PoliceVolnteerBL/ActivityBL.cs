@@ -25,7 +25,8 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// build and adding to database
         /// </summary>
-        public ActivityBL(string ActivityName, DateTime ActivityDate, DateTime StartTime, DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolunteer)
+        public ActivityBL(string ActivityName, DateTime ActivityDate, DateTime StartTime,
+            DateTime FinishTime, string ActivityManager, int TypeCode, string Place, int MinNumberOfVolunteer)
         {
             this.ActivityName = ActivityName;
             this.ActivityDate = ActivityDate;
