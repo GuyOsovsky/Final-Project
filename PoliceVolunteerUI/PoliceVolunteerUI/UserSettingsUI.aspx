@@ -18,47 +18,52 @@
                 <asp:Label ID="PhoneNumberLbl" runat="server" Text="מספר טלפון:"></asp:Label>
                 <br />
                 <asp:TextBox ID="PhoneNumber" runat="server" TextMode="SingleLine" dir="rtl" OnTextChanged="updateVolunteer"></asp:TextBox>
+                <br />
                 <asp:RequiredFieldValidator ID="PhoneNumberRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="PhoneNumber" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
                 <asp:CustomValidator ID="PhoneNumberCustomV" runat="server" ControlToValidate="PhoneNumber" ClientValidationFunction="phoneNumberValidation" ValidationGroup="UserSettings"></asp:CustomValidator>
                 <br />
                 <asp:Label ID="EmergencyPhoneNumberLbl" runat="server" Text="מספר חירום:"></asp:Label>
                 <br />
                 <asp:TextBox ID="EmergencyPhoneNumber" runat="server" TextMode="SingleLine" dir="rtl" OnTextChanged="updateVolunteer"></asp:TextBox>
+                <br />
                 <asp:RequiredFieldValidator ID="EmergencyPhoneNumberRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="EmergencyPhoneNumber" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
                 <asp:CustomValidator ID="EmergencyPhoneNumberCustomV" runat="server" ControlToValidate="EmergencyPhoneNumber" ClientValidationFunction="phoneNumberValidation" ValidationGroup="UserSettings"></asp:CustomValidator>
                 <br />
                 <asp:Label ID="FNameLbl" runat="server" Text="שם פרטי:"></asp:Label>
                 <br />
                 <asp:TextBox ID="FName" runat="server" TextMode="SingleLine" dir="rtl" OnTextChanged="updateVolunteer"></asp:TextBox>
+                <br />
                 <asp:RequiredFieldValidator ID="FNameRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="FName" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
                 <asp:CustomValidator ID="FNameCustomV" runat="server" ErrorMessage="זה לא שם תקין" ControlToValidate="FName" ClientValidationFunction="nameValidation" ValidationGroup="UserSettings"></asp:CustomValidator>
                 <br />
                 <asp:Label ID="LNameLbl" runat="server" Text="שם משפחה:"></asp:Label>
                 <br />
                 <asp:TextBox ID="LName" runat="server" TextMode="SingleLine" dir="rtl" OnTextChanged="updateVolunteer"></asp:TextBox>
+                <br />
                 <asp:RequiredFieldValidator ID="LNameRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="LName" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
                 <asp:CustomValidator ID="LNameCustomV" runat="server" ErrorMessage="זה לא שם תקין" ControlToValidate="LName" ClientValidationFunction="nameValidation" ValidationGroup="UserSettings"></asp:CustomValidator>
                 <br />
                 <asp:label ID="HomeAddresLbl" runat="server" Text="כתובת מגורים:"></asp:label>
                 <br />
                 <asp:TextBox ID="HomeAdress" runat="server" TextMode="SingleLine" dir="rtl" OnTextChanged="updateVolunteer"></asp:TextBox>
+                <br />
                 <asp:RequiredFieldValidator ID="HomeAdressRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="HomeAdress" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
                 <br />
                 <asp:label ID="HomeCityLbl" runat="server" Text="עיר מגורים:">עיר מגורים:</asp:label>
                 <br />
                 <asp:DropDownList ID="HomeCity" runat="server" dir="rtl" OnTextChanged="updateVolunteer"></asp:DropDownList>
+                <br />
                 <asp:RequiredFieldValidator ID="HomeCityRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="HomeCity" ValidationGroup="SignIn"></asp:RequiredFieldValidator>
                 <br />
                 <asp:label ID="EmailLbl" runat="server" Text="אימייל:"></asp:label>
                 <br />
                 <asp:TextBox ID="Email" runat="server" TextMode="Email" dir="rtl" OnTextChanged="updateVolunteer"></asp:TextBox>
+                <br />
                 <asp:RequiredFieldValidator ID="EmailRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="Email" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
                 <br />
                 <asp:label ID="PoliceIDLbl" runat="server" Text="מספר מזהה במשטרה"></asp:label>
                 <br />
                 <asp:TextBox ID="PoliceID" runat="server" TextMode="SingleLine" dir="rtl" Enabled="false"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="PoliceIDRequiredV" runat="server" ErrorMessage="שדה זה הינו חובה" ControlToValidate="PoliceID" ValidationGroup="UserSettings"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="PoliceIDRegularExpressionV" runat="server" ErrorMessage="זה לא מספר מזהה תקין" ControlToValidate="PoliceID" ValidationExpression="\d+" ValidationGroup="UserSettings"></asp:RegularExpressionValidator>
                 <br />
                 <asp:label ID="ServeCityLbl" runat="server" Text="עיר שירות:"></asp:label>
                 <br />

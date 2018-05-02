@@ -265,24 +265,6 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.TextBox PoliceID;
         
         /// <summary>
-        /// PoliceIDRequiredV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PoliceIDRequiredV;
-        
-        /// <summary>
-        /// PoliceIDRegularExpressionV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator PoliceIDRegularExpressionV;
-        
-        /// <summary>
         /// ServeCityLbl control.
         /// </summary>
         /// <remarks>

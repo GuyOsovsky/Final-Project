@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using PoliceVolnteerBL;
 using PoliceVolnteerDAL;
 using System.Data;
+using System.Xml;
 
 namespace PoliceVolunteerUI
 {
@@ -18,11 +19,14 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
-            FillUserSettings();
             if (!IsPostBack)
             {
                 FillUsersToSearch();
             }
+            LoadCitiesHome();
+            LoadCitiesServe();
+            Loadstatus();
+            FillUserSettings();
         }
 
         protected void FillUsersToSearch()
@@ -45,109 +49,111 @@ namespace PoliceVolunteerUI
         {
             if (SearchUser.SelectedValue == "")
             {
-                UserInformation.DataSource = null;
-                UserInformation.DataBind();
+                PhoneNumber.Text = "";
+                EmergencyPhoneNumber.Text = "";
+                FName.Text = "";
+                LName.Text = "";
+                HomeAdress.Text = "";
+                Email.Text = "";
+                PoliceID.Text = "";
+                ServeCity.SelectedIndex = -1;
+                Status.SelectedIndex = -1;
+                HomeCity.SelectedIndex = -1;
                 return;
             }
-            //create datatable
             VolunteerBL volunteer = new VolunteerBL(SearchUser.SelectedValue);
-            DataTable SettingsTable = new DataTable();
-            //fill datatable
-            SettingsTable.Columns.Add("FieldName", typeof(String));
-            SettingsTable.Columns.Add("FieldValue", typeof(String));
-            DataTable volunteerTable = volunteer.VolunteerToDataSet().Tables[0];
-            for (int i = 0; i < volunteerTable.Columns.Count; i++)
+            PhoneNumber.Text = volunteer.PhoneNumber;
+            EmergencyPhoneNumber.Text = volunteer.EmergencyNumber;
+            FName.Text = volunteer.FName;
+            LName.Text = volunteer.LName;
+            HomeAdress.Text = volunteer.HomeAddress;
+            Email.Text = volunteer.EmailAddress;
+            PoliceID.Text = volunteer.PoliceID;
+            int serveCityIndex = -1;
+            XmlDocument doc = new XmlDocument();
+            doc.Load(Server.MapPath("\\Resources\\ServeCity.xml"));
+            XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
+            string[] serveCitys = cities.Cast<XmlNode>().Select(node => node.Attributes["En"].Value).ToArray();
+            for (int i = 0; i < serveCitys.Length; i++)
             {
-                SettingsTable.Rows.Add();
-                SettingsTable.Rows[i][0] = volunteerTable.Columns[i];
-                if (volunteerTable.Columns[i].DataType == typeof(DateTime))
+                if (volunteer.HomeCity.Equals(serveCitys[i]))
                 {
-                    SettingsTable.Rows[i][1] = DateTime.Parse(volunteerTable.Rows[0][i].ToString()).ToShortDateString();
-                }
-                else
-                {
-                    SettingsTable.Rows[i][1] = volunteerTable.Rows[0][i];
+                    serveCityIndex = i;
+                    break;
                 }
             }
-            //bind data to gridview
-            DataView dataView = new DataView(SettingsTable);
-            UserInformation.DataSource = dataView;
-            UserInformation.DataBind();
-        }
-
-        protected void UserInformationRowEditingRowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            //deselect row
-            UserInformation.EditIndex = -1;
-        }
-
-        protected void UserInformationRowEditing(object sender, GridViewEditEventArgs e)
-        {
-            //select row
-            UserInformation.EditIndex = e.NewEditIndex;
-        }
-
-        protected void UserInformationRowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            //get selected row
-            GridViewRow row = UserInformation.Rows[e.RowIndex];
-            //update in database
-            string UpdatedValue = ((TextBox)row.Cells[1].FindControl("txt_FieldValue")).Text;
-            object field = null;
-            switch (e.RowIndex)
+            ServeCity.SelectedIndex = serveCityIndex;
+            Status.SelectedIndex = int.Parse(volunteer.Status ? "0" : "1");
+            int homeCityIndex = -1;
+            doc = new XmlDocument();
+            doc.Load("http://img2.timg.co.il/forums/1_102884894.xml");
+            cities = doc.DocumentElement.SelectNodes("City");
+            string[] citys = cities.Cast<XmlNode>().Select(node => node.Attributes["En"].Value).ToArray();
+            for (int i = 0; i < citys.Length; i++)
             {
-                case 0:
-                    field = VolunteerInfoDALField.PhoneNumber;
+                if (volunteer.HomeCity.Equals(citys[i]))
+                {
+                    homeCityIndex = i;
                     break;
-                case 1:
-                    field = VolunteerInfoDALField.EmergencyNumber;
+                }
+            }
+            HomeCity.SelectedIndex = homeCityIndex;
+        }
+
+        //load serve city input xml
+        private void LoadCitiesServe()
+        {
+            string lang = Request.UserLanguages.Contains("he-IL") ? "Heb" : "En";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(Server.MapPath("\\Resources\\ServeCity.xml"));
+            XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
+            ServeCity.DataSource = cities.Cast<XmlNode>().Select(node => node.Attributes[lang].Value).ToArray();
+            ServeCity.DataBind();
+        }
+
+        private void LoadCitiesHome()
+        {
+            //load home city input xml
+            string lang = "Heb";
+            XmlDocument doc = new XmlDocument();
+            doc.Load("http://img2.timg.co.il/forums/1_102884894.xml");
+            XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
+            HomeCity.DataSource = cities.Cast<XmlNode>().Select(node => node.Attributes[lang].Value).ToArray();
+            HomeCity.DataBind();
+        }
+
+        private void Loadstatus()
+        {
+            Status.Items.Clear();
+            Status.Items.Add(new ListItem("כן", "true"));
+            Status.Items.Add(new ListItem("לא", "false"));
+            Status.DataBind();
+        }
+
+        protected void updateVolunteer(object sender, EventArgs e)
+        {
+            object field = null;
+            string value = "";
+            switch (((WebControl)sender).ID.ToString())
+            {
+                case "Status":
+                    field = VolunteerInfoDALField.status;
                     break;
-                case 2:
-                    field = VolunteerInfoDALField.FName;
-                    break;
-                case 3:
-                    field = VolunteerInfoDALField.LName;
-                    break;
-                case 4:
-                    field = VolunteerInfoDALField.BirthDate;
-                    break;
-                case 5:
-                    field = VolunteerInfoDALField.HomeAddress;
-                    break;
-                case 6:
-                    field = VolunteerInfoDALField.EmailAddress;
-                    break;
-                case 7:
-                    field = VolunteerInfoDALField.ID;
-                    break;
-                case 8:
-                    field = VolunteerPoliceInfoDALField.PoliceID;
-                    break;
-                case 9:
+                case "ServeCity":
                     field = VolunteerPoliceInfoDALField.ServeCity;
                     break;
-                case 10:
-                    field = VolunteerPoliceInfoDALField.StartDate;
+                default:
                     break;
             }
-            (new VolunteerBL(SearchUser.SelectedValue)).UpdateVolunteer(field, UpdatedValue);
-            if (e.RowIndex == 0)
+            if (sender is TextBox)
             {
-                Session["User"] = UpdatedValue;
+                value = ((TextBox)sender).Text;
             }
-            //diselect row
-            UserInformation.EditIndex = -1;
-        }
-
-        protected void DeleteSelectedUser(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
+            else if (sender is DropDownList)
             {
-                VolunteerBL volunteer = new VolunteerBL(SearchUser.SelectedValue);
-                volunteer.ChangeStatus(false);
-                FillUsersToSearch();
-                FillUserSettings();
+                value = ((DropDownList)sender).SelectedValue;
             }
+            (new VolunteerBL(SearchUser.SelectedValue)).UpdateVolunteer(field, value);
         }
     }
 }

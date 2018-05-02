@@ -67,7 +67,10 @@ namespace PoliceVolunteerUI
             PoliceID.Text = volunteer.PoliceID;
             ServeCity.Text = volunteer.ServeCity;
             int homeCityIndex = -1;
-            string[] citys = (string[])HomeCity.DataSource;
+            XmlDocument doc = new XmlDocument();
+            doc.Load("http://img2.timg.co.il/forums/1_102884894.xml");
+            XmlNodeList cities = doc.DocumentElement.SelectNodes("City");
+            string[] citys = cities.Cast<XmlNode>().Select(node => node.Attributes["En"].Value).ToArray();
             for (int i = 0; i < citys.Length; i++)
             {
                 if (volunteer.HomeCity.Equals(citys[i]))
@@ -119,6 +122,7 @@ namespace PoliceVolunteerUI
             }
             (new VolunteerBL(Session["User"].ToString())).UpdateVolunteer(field, value);
         }
+
         protected void AddNewCar(object sender, EventArgs e)
         {
             GridViewRow row = carsInformation.Rows[carsInformation.EditIndex];

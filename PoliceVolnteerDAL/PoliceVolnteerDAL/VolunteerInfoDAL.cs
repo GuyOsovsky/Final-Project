@@ -99,7 +99,10 @@ namespace PoliceVolnteerDAL
                 if (ds.Tables["VolunteerInfo"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["VolunteerInfo"].Rows[0];
-                    dr[change.Field.ToString()] = change.Value.ToString();
+                    if(change.Field.ToString() == "status")
+                        dr[change.Field.ToString()] = change.Value.ToString() == "true";
+                    else
+                        dr[change.Field.ToString()] = change.Value.ToString();
                     OleDbHelper2.update(ds, "SELECT * FROM VolunteerInfo", "VolunteerInfo");
                 }
                 else
