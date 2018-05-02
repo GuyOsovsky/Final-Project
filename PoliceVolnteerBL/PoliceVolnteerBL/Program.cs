@@ -204,7 +204,8 @@ namespace PoliceVolnteerBL
             }*/
 
             //MediaBL m = new MediaBL(7);
-            /*Console.Write("Name: ");
+            
+            Console.Write("Name: ");
             string name = Console.ReadLine();
             
             OpenFileDialog fileDialogBox = new OpenFileDialog();
@@ -219,7 +220,7 @@ namespace PoliceVolnteerBL
             byte[] byteArr2 = new byte[file.Length];
             file.Read(byteArr2, 0, int.Parse(file.Length.ToString()));
             file.Close();
-            MediaBL m = new MediaBL(7, name+Path.GetExtension(file.Name), byteArr2);*/
+            MediaBL m = new MediaBL(7, name+Path.GetExtension(file.Name), byteArr2);
 
             //Console.Write("Subfolder name : ");
             //string fileName = Console.ReadLine();
@@ -304,6 +305,9 @@ namespace PoliceVolnteerBL
             //CourseBL cbl = new CourseBL("karabine licence", new DateTime(2019, 5, 22, 10, 0, 0), new DateTime(2019, 5, 22, 10, 0, 0), new DateTime(2019, 5, 22, 19, 30, 0), "yair dror", true, "hodash", "get karabine validity", 53);
             //cbl = new CourseBL("sniper licence", new DateTime(2019, 7, 1, 12, 0, 0), new DateTime(2019, 7, 1, 12, 0, 0), new DateTime(2019, 7, 1, 21, 0, 0), "matanel atar", true, "kfar saba", "get sniper validity", 54);
             //cbl = new CourseBL("police vehicle licence", new DateTime(2020, 1, 1, 11, 0, 0), new DateTime(2020, 1, 1, 11, 0, 0), new DateTime(2020, 1, 1, 21, 0, 0), "moshe kafia", true, "kfar saba", "get police vehicle validity", 55);
+
+            
+
             Console.WriteLine("work");
             Console.ReadKey();
         }

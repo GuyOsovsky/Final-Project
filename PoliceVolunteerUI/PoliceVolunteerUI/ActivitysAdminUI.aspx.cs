@@ -127,8 +127,8 @@ namespace PoliceVolunteerUI
             GridViewRow row = ActivitysInformation.Rows[ActivitysInformation.EditIndex];
             string activityName = ((TextBox)row.Cells[1].FindControl("InputActivityName")).Text;
             DateTime activityDate = DateTime.ParseExact(((TextBox)row.Cells[2].FindControl("InputActivityDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime activityStartTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("InputActivityStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
-            DateTime activityFinishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("InputActivityFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
+            DateTime activityStartTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("InputActivityStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime activityFinishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("InputActivityFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
             string activityPlace = ((TextBox)row.Cells[5].FindControl("InputActivityPlace")).Text;
             string activityManeger = ((DropDownList)row.Cells[6].FindControl("InputActivityManeger")).SelectedValue.ToString();
             int activityMinParticipents = int.Parse(((TextBox)row.Cells[7].FindControl("InputActivityMinParticipents")).Text);

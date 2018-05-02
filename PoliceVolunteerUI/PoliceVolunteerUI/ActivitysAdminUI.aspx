@@ -99,7 +99,7 @@
                     %>
                 </ItemTemplate>--%>
                 <EditItemTemplate>
-                    <asp:Button ID="UpdateBtn" runat="server" ValidationGroup="newActivity" Text="עדכן" OnClick="AddNewActivity" />
+                    <asp:Button ID="UpdateBtn" runat="server" ValidationGroup="newActivity" Text="הוסף" OnClick="AddNewActivity" />
                 </EditItemTemplate>
             </asp:TemplateField>
         </Columns>
