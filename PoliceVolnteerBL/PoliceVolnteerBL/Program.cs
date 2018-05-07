@@ -204,23 +204,23 @@ namespace PoliceVolnteerBL
             }*/
 
             //MediaBL m = new MediaBL(7);
-            
-            Console.Write("Name: ");
-            string name = Console.ReadLine();
-            
-            OpenFileDialog fileDialogBox = new OpenFileDialog();
 
-            string filePath = "none";
-            if (fileDialogBox.ShowDialog() == DialogResult.OK)
-            {
-                filePath = fileDialogBox.FileName;
-                Console.WriteLine("File path : " + filePath);
-            }
-            FileStream file = File.Open(filePath, FileMode.Open);
-            byte[] byteArr2 = new byte[file.Length];
-            file.Read(byteArr2, 0, int.Parse(file.Length.ToString()));
-            file.Close();
-            MediaBL m = new MediaBL(7, name+Path.GetExtension(file.Name), byteArr2);
+            //Console.Write("Name: ");
+            //string name = Console.ReadLine();
+
+            //OpenFileDialog fileDialogBox = new OpenFileDialog();
+
+            //string filePath = "none";
+            //if (fileDialogBox.ShowDialog() == DialogResult.OK)
+            //{
+            //    filePath = fileDialogBox.FileName;
+            //    Console.WriteLine("File path : " + filePath);
+            //}
+            //FileStream file = File.Open(filePath, FileMode.Open);
+            //byte[] byteArr2 = new byte[file.Length];
+            //file.Read(byteArr2, 0, int.Parse(file.Length.ToString()));
+            //file.Close();
+            //MediaBL m = new MediaBL(7, name+Path.GetExtension(file.Name), byteArr2);
 
             //Console.Write("Subfolder name : ");
             //string fileName = Console.ReadLine();
@@ -306,7 +306,9 @@ namespace PoliceVolnteerBL
             //cbl = new CourseBL("sniper licence", new DateTime(2019, 7, 1, 12, 0, 0), new DateTime(2019, 7, 1, 12, 0, 0), new DateTime(2019, 7, 1, 21, 0, 0), "matanel atar", true, "kfar saba", "get sniper validity", 54);
             //cbl = new CourseBL("police vehicle licence", new DateTime(2020, 1, 1, 11, 0, 0), new DateTime(2020, 1, 1, 11, 0, 0), new DateTime(2020, 1, 1, 21, 0, 0), "moshe kafia", true, "kfar saba", "get police vehicle validity", 55);
 
-            
+            ShiftBL sbl = new ShiftBL(11, new DateTime(2019, 1, 1, 10, 30, 0), new DateTime(2019, 1, 1, 10, 30, 0), new DateTime(2019, 1, 1, 11, 30, 0), "הוד השרון, מגדיאל");
+            sbl = new ShiftBL(11, new DateTime(2019, 1, 2, 11, 40, 0), new DateTime(2019, 1, 2, 11, 40, 0), new DateTime(2019, 1, 2, 12, 40, 0), "הוד השרון, מרכז");
+            sbl = new ShiftBL(11, new DateTime(2019, 1, 3, 12, 50, 0), new DateTime(2019, 1, 3, 12, 50, 0), new DateTime(2019, 1, 3, 13, 50, 0), "הוד השרון, פארק 4 עונות");
 
             Console.WriteLine("work");
             Console.ReadKey();
