@@ -35,7 +35,8 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// build and adding to database
         /// </summary>
-        public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity, bool PermmisionStock, bool Independent, bool PermmisionCourse, bool PermmisionVolunteer)
+        public VolunteerTypeBL(string TypeName, bool PermmisionShifts, bool PermmisionActivity,
+            bool PermmisionStock, bool Independent, bool PermmisionCourse, bool PermmisionVolunteer)
         {
             this.TypeName = TypeName;
             this.PermmisionShifts = PermmisionShifts;
