@@ -53,8 +53,6 @@ namespace PoliceVolnteerBL
         /// </summary>
         public DataSet GetDetails()
         {
-            DataSet shifts = ShiftsDAL.GetTable();
-            //adding ShiftType column to table
             shifts.Tables[0].Columns.Add("ShiftType", typeof(string));
             foreach (DataRow shift in shifts.Tables[0].Rows)
             {

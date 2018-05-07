@@ -25,11 +25,11 @@ namespace PoliceVolunteerUI
 
         protected void FillShifts()
         {
-            Queue<FieldValue<ShiftsField>> parameters = new Queue<FieldValue<ShiftsField>>();
-            parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Date, OperatorType.Greater));
-            //parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Time, OperatorType.Greater));
-            //get all shifts
-            DataSet shifts = (new ShiftsBL(parameters, true)).GetDetails();
+            //Queue<FieldValue<ShiftsField>> parameters = new Queue<FieldValue<ShiftsField>>();
+            //parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.DateOfShift, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Date, OperatorType.Greater));
+            ////parameters.Enqueue(new FieldValue<ShiftsField>(ShiftsField.StartTime, DateTime.Now, PoliceVolnteerDAL.Table.Shifts, FieldType.Time, OperatorType.Greater));
+            ////get all shifts
+            DataSet shifts = (new ShiftsBL(DateTime.Now)).GetDetails();
             DataTable FilteredTable = shifts.Tables[0];
             //filter all registered shifts
             for (int i = 0; i < FilteredTable.Rows.Count; i++)
