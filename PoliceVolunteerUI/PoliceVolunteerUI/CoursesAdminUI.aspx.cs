@@ -59,21 +59,6 @@ namespace PoliceVolunteerUI
             CourseBL course = new CourseBL(courseName, courseDate, startTime, finishTime, nameOfInstructor, false, place, description, newValidity.ValidityCode);
         }
 
-        //protected void AddNewActivity(object sender, EventArgs e)
-        //{
-        //    GridViewRow row = ActivitysInformation.Rows[ActivitysInformation.EditIndex];
-        //    string activityName = ((TextBox)row.Cells[1].FindControl("InputActivityName")).Text;
-        //    DateTime activityDate = DateTime.ParseExact(((TextBox)row.Cells[2].FindControl("InputActivityDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
-        //    DateTime activityStartTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("InputActivityStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
-        //    DateTime activityFinishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("InputActivityFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture); ;
-        //    string activityPlace = ((TextBox)row.Cells[5].FindControl("InputActivityPlace")).Text;
-        //    string activityManeger = ((DropDownList)row.Cells[6].FindControl("InputActivityManeger")).SelectedValue.ToString();
-        //    int activityMinParticipents = int.Parse(((TextBox)row.Cells[7].FindControl("InputActivityMinParticipents")).Text);
-        //    int activityTypeCode = int.Parse(((DropDownList)row.Cells[8].FindControl("InputActivityTypeName")).SelectedValue.ToString());
-        //    ActivityBL activity = new ActivityBL(activityName, activityDate, activityStartTime, activityFinishTime, activityManeger, activityTypeCode, activityPlace, activityMinParticipents);
-
-        //}
-
         protected void FillValidityTypesList(object sender, EventArgs e)
         {
             ValidityTypesBL types = new ValidityTypesBL();

@@ -45,7 +45,8 @@ namespace WebService
         }
 
         [WebMethod]
-        public void AddVolunteer(string phoneNumber, string emergencyPhoneNumber, string fName, string lName, DateTime bDate, string userName, string password, string homeAddress, string homeCity, string emailAddress, string id, string policeID, string serveCity, int typeCode)
+        public void AddVolunteer(string phoneNumber, string emergencyPhoneNumber, string fName, string lName, DateTime bDate,
+            string userName, string password, string homeAddress, string homeCity, string emailAddress, string id, string policeID, string serveCity, int typeCode)
         {
             VolunteerBL volunteer = new VolunteerBL(phoneNumber, emergencyPhoneNumber, fName, lName, bDate, userName, password, homeAddress, homeCity, emailAddress, id, policeID, serveCity, typeCode);
         }

@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
+        <h1>חיפוש מתנדב:</h1>
         <asp:DropDownList ID="SearchUser" runat="server"></asp:DropDownList>
         <asp:Button ID="UpdateGridView" runat="server" Text="חפש" OnClick="Page_LoadComplete"></asp:Button>
         <div class="col-sm-4">
