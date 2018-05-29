@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Windows.Forms;
+using System.Web;
 
 namespace PoliceVolnteerBL
 {
@@ -17,100 +18,98 @@ namespace PoliceVolnteerBL
         public int ActivityCode { get; set; }
         public int FileType { get; set; }
 
-        /// <summary>
-        /// build and adding to database, create new folder if necessary, create file from FileBytes in the new folder that created before, in "files" folder.
-        /// </summary>
-        public MediaBL(int activityCode, string fileName, byte[] FileBytes)
+        //buid media object and save it in database
+        public MediaBL(string fileName, int activityCode, int fileType)
         {
-            //get new directory path
-            string newTargetPath = GetNewActivityDir(activityCode);
-
-            //get format name (.txt,.mp3 ...)
-            string fileFormat = Path.GetExtension(fileName);
-
-            //create file name + his format
+            //fullname (filename + .formatname)
             this.FileName = fileName;
 
-            //is file format Valid
-            bool isValid = false;
-            
+            this.ActivityCode = activityCode;
+
+            this.FileType = fileType;
+
+            //add to database
+            MediaDAL.AddMedia(fileName, activityCode, fileType);
+        }
+
+        //return filetype from types table
+        static public int CheckFormatValidation(string fileFullName)
+        {
+            //get format name (.txt,.mp3 ...)
+            string fileFormat = Path.GetExtension(fileFullName);
+
+            //get types table
             DataTable typesTable = FileTypesDAL.GetTable().Tables[0];
-            
-            //check if file format is fits to one of the formats in database 
+
+            //check if file format is fits to one of the formats in database, and return type  code
             foreach (DataRow dataRow in typesTable.Rows)
             {
                 if (dataRow["TypeName"].ToString() == fileFormat)
-                {
-                    this.FileType = int.Parse(dataRow["TypeCode"].ToString());
-                    isValid = true;
-                    break;
-                }
+                    return int.Parse(dataRow["TypeCode"].ToString());
             }
-            if (!isValid)
-            {
-                Console.WriteLine("{0} is not a valid format!", fileFormat);
-                return;
-            }
+            //if not exists in database return -1
+            return -1;
+        }
 
-            try
+        //create valid file types limit string for uploaded files 
+        static public string LimitString()
+        {
+            string result = " | ";
+            ////get types table
+            DataTable typesTable = FileTypesDAL.GetTable().Tables[0];
+            foreach (DataRow dataRow in typesTable.Rows)
             {
-                //Create new directory
-                System.IO.Directory.CreateDirectory(newTargetPath);
-                //create new file from byte array in the new directory
-                using (var fileStream = new FileStream(Path.Combine(newTargetPath, fileName), FileMode.Create, FileAccess.Write))
-                {
-                    fileStream.Write(FileBytes, 0, FileBytes.Length);
-                }
+                //add existing types to string from database
+                result += dataRow["TypeName"].ToString() + " | ";
             }
-            catch (Exception e)
-            {
-                //if sum of files in new directory equals zero delete this new directory(folder)
-                if (Directory.GetFiles(newTargetPath).Length == 0)
-                {
-                    Directory.Delete(newTargetPath);
-                }
-                throw e;
-            }
-
-            MediaDAL.AddMedia(FileName, activityCode, FileType);
+            return result;
         }
 
         /// <summary>
-        /// build from the database
+        /// build object from the database
         /// </summary>
         /// <param name="FileName"></param>
         public MediaBL(string FileName)
         {
             this.FileName = FileName;
+            //get row of dataset by filename
             DataSet mediaDataSet = MediaDAL.GetTable(new FieldValue<MediaField>(MediaField.FileName, FileName, Table.Media, FieldType.String, OperatorType.Equals));
             this.ActivityCode = (int)mediaDataSet.Tables[0].Rows[0]["ActivityCode"];
             this.FileType = (int)mediaDataSet.Tables[0].Rows[0]["FileType"];
         }
 
         /// <summary>
-        /// delete file from "files" by activity code and file name
+        /// delete file from server and from database by activity code and file name, and in some cases delete directory/folder too
         /// </summary>
         public static bool DeleteFile(int activityCode, string fileName)
         {
             //get directory name
-            string targetPath = GetNewActivityDir(activityCode);
+            string targetPath = NewActivityDir(activityCode);
+            //try to delete file and in some cases directory/folder too
             try
             {
-                //if sum of files in new directory equals zero delete this directory(folder)
+                //if sum of files in new directory equals zero - delete this directory/folder
                 if (Directory.GetFiles(targetPath).Length == 0)
                 {
+                    //delete directory/folder
                     Directory.Delete(targetPath);
                     return false;
                 }
                 //get path for the file that need to be deleted
                 string deletePath = Path.Combine(targetPath, fileName);
+                //if exists
                 if (File.Exists(deletePath))
                 {
+                    //delete file from server
                     File.Delete(deletePath);
-                    ActivityDAL.DelActivity(activityCode);
-                    //if after we deleted the file, the folder is empty, delete folder
+
+                    //delete file from database
+                    MediaDAL.DelMedia(fileName);
+                    
+                    //if after we deleted the file and now the folder is empty, delete folder too
                     if (Directory.GetFiles(targetPath).Length == 0)
                     {
+                        //delete directory/folder
                         Directory.Delete(targetPath);
                     }
                     return true;
@@ -119,27 +118,39 @@ namespace PoliceVolnteerBL
             }
             catch(Exception e)
             {
+                //throw error to upper layer
                 throw e;
             }
         }
 
         /// <summary>
-        /// return new combined path for creating a new folder for new activity
+        /// create new folder by activitycode if not exist, and return folder path
         /// </summary>
-        private static string GetNewActivityDir(int activityCode)
+        public static string NewActivityDir(int activityCode)
         {
+            //get acticity object by activity code
             ActivityBL activity = new ActivityBL(activityCode);
-            //create name
-            string activityName = activity.ActivityName;
-            string folderName = activityName + " " + activity.ActivityCode;
-            //get local path("files" folder path)
-            string localPath = System.IO.Directory.GetCurrentDirectory();
-            localPath = localPath.Remove(localPath.Length - (5 + 3 + (2 * 1)));
-            string targetPath = localPath + @"\Files";
-            //combine name and new path
-            string pathString = System.IO.Path.Combine(targetPath, folderName);
-            return pathString;
-        }
+            
+            //create folder name by activityname and activitycode
+            string folderName = activity.ActivityName + " " + activity.ActivityCode;
 
+            //get main folder for server files
+            string targetPath = HttpContext.Current.Server.MapPath("~/Files/");
+
+            //combine folder name and main folder path
+            string pathString = System.IO.Path.Combine(targetPath, folderName);
+
+            //try to create the new directory/folder and return the new path
+            try
+            {
+                System.IO.Directory.CreateDirectory(pathString);
+                return pathString;
+            }
+            catch(Exception e)
+            {
+                //throw error to upper layer
+                throw e;
+            }
+        }
     }
 }

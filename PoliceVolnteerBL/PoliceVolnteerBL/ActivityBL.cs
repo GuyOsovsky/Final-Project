@@ -52,7 +52,7 @@ namespace PoliceVolnteerBL
             this.StartTime = (DateTime)activityDataSet.Tables[0].Rows[0]["StartTime"];
             this.FinishTime = (DateTime)activityDataSet.Tables[0].Rows[0]["FinishTime"];
             this.ActivityManager = (string)activityDataSet.Tables[0].Rows[0]["ActivityManager"];
-            this.TypeCode = new ActivityTypes((int)activityDataSet.Tables[0].Rows[0]["TypeCode"]);
+            this.TypeCode = new ActivityTypes((int)activityDataSet.Tables[0].Rows[0]["Activity.TypeCode"]);
             this.Place = (string)activityDataSet.Tables[0].Rows[0]["Place"];
             this.MinNumberOfVolunteer = (int)activityDataSet.Tables[0].Rows[0]["MinNumberOfVolunteer"];
         }
