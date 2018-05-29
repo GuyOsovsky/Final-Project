@@ -82,6 +82,16 @@ namespace PoliceVolunteerUI
             WebServiceReference.generalWS webService = new WebServiceReference.generalWS();
             WebServiceReference.CourseBL otherCourse = webService.GetCourse(int.Parse(((Label)row.Cells[0].FindControl("lblCourseCode")).Text));
             CourseBL course = new CourseBL(otherCourse.CourseName, otherCourse.CourseDate, otherCourse.StartTime, otherCourse.FinishTime, otherCourse.NameOfInstructor, otherCourse.IsRequeired, otherCourse.Place, otherCourse.Description, otherCourse.ValidityCode);
+            DataTable allCourses = (new CoursesBL(DateTime.Now)).Courses.Tables[0];
+            for (int i = 0; i < allCourses.Rows.Count; i++)
+            {
+                CourseBL compare = new CourseBL(int.Parse(allCourses.Rows[i]["CourseCode"].ToString()));
+                if (compare.Equals(course))
+                {
+                    course.DeleteCourse();
+                    break;
+                }
+            }
         }
     }
 }
