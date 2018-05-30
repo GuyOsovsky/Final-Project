@@ -22,15 +22,17 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
-            //fill activity gridview
-            FillActivitys();
-            FillReports();
-            FillOtherActivitys();
+            
             if (!IsPostBack)
             {
                 FillActivityList();
                 FillVolunteerList();
             }
+
+            //fill activity gridview
+            FillActivitys();
+            FillReports();
+            FillOtherActivitys();
         }
 
         protected void FillActivitys()

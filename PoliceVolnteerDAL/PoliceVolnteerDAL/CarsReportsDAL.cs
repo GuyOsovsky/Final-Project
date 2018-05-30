@@ -17,6 +17,8 @@ namespace PoliceVolnteerDAL
         {
             try
             {
+                if (Distance < 1 && Distance != 0)
+                    Distance *= -1;
                 OleDbHelper2.ExecuteNonQuery("INSERT INTO CarsReports ([ShiftCode], [CarID], [Distance]) VALUES ('" + cShiftCode + "','" + cCarID + "','" + Distance + "')");
             }
             catch (Exception e)

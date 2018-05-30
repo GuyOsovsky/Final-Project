@@ -59,9 +59,20 @@ namespace PoliceVolnteerBL
                 shift["ShiftType"] = (new ShiftTypesBL(int.Parse(shift["TypeCode"].ToString()))).TypeName;
             }
             //remove not necessary colomns
-            //shifts.Columns.Remove("ShiftCode");
             shifts.Tables[0].Columns.Remove("TypeCode");
             return shifts;
+        }
+
+        public static DataTable GetAllShiftReports()
+        {
+            DataTable shiftReports = ShiftsToVolunteerDAL.GetTable().Tables[0];
+            return shiftReports;
+        }
+
+        public static DataTable GetAllCarReports()
+        {
+            DataTable carReports = CarsReportsDAL.GetTable().Tables[0];
+            return carReports;
         }
     }
 }

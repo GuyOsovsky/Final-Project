@@ -74,5 +74,10 @@ namespace PoliceVolnteerBL
             emptyTable.Clear();
             return emptyTable;
         }
+
+        public static DataTable GetAllCars()
+        {
+            return CarToVolunteerDAL.GetTable().Tables[0];
+        }
     }
 }

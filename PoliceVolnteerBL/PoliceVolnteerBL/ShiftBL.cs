@@ -63,7 +63,6 @@ namespace PoliceVolnteerBL
             shiftsToVolunteer.Columns.Remove("shiftCode");
             shiftsToVolunteer.Columns.Remove("comments");
             return shiftsToVolunteer;
-
         }
     }
 }

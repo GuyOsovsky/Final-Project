@@ -4,19 +4,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
-        <h1>כל הפעילויות</h1>
+        <h1>כל האירועים</h1>
     </center>
 
     <asp:GridView ID="ActivitysInformation" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>
+            
             <asp:TemplateField Visible="false">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityCode" runat="server" Text='<%# Eval("ActivityCode")%>' />
                 </ItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="שם הפעילות">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityName" runat="server" Text='<%#Eval("ActivityName") %>' />
@@ -26,6 +28,7 @@
                     <asp:RequiredFieldValidator ID="ActivityNameRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newActivity" ControlToValidate="InputActivityName"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="תאריך">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityDate" runat="server" Text='<% #Eval("ActivityDate").ToString() != "" ? ((DateTime)Eval("ActivityDate")).ToShortDateString() : "" %>' />
@@ -35,6 +38,7 @@
                     <asp:RequiredFieldValidator ID="ActivityDateRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newActivity" ControlToValidate="InputActivityDate"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="שעת התחלה">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityStartTime" runat="server" Text='<%# Eval("StartTime").ToString() != "" ? ((DateTime)Eval("StartTime")).ToShortTimeString() : "" %>' />
@@ -44,6 +48,7 @@
                     <asp:RequiredFieldValidator ID="ActivityStartTimeRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newActivity" ControlToValidate="InputActivityStartTime"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="שעת סיום">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityFinishTime" runat="server" Text='<%#Eval("FinishTime").ToString() != "" ? ((DateTime)Eval("FinishTime")).ToShortTimeString() : "" %>' />
@@ -53,6 +58,7 @@
                     <asp:RequiredFieldValidator ID="ActivityFinishTimeRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newActivity" ControlToValidate="InputActivityFinishTime"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="מקום">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityPlace" runat="server" Text='<%#Eval("Place") %>' />
@@ -62,6 +68,7 @@
                     <asp:RequiredFieldValidator ID="ActivityPlaceRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newActivity" ControlToValidate="InputActivityPlace"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="סוג">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityTypeName" runat="server" Text='<%#Eval("typeName") %>' />
@@ -70,6 +77,7 @@
                     <asp:DropDownList ID="InputActivityTypeName" runat="server" OnLoad="FillActivityTypesList"></asp:DropDownList>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="מנהל פעילות">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityManeger" runat="server" Text='<%#Eval("ActivityManager") %>' />
@@ -78,6 +86,7 @@
                     <asp:DropDownList ID="InputActivityManeger" runat="server" OnLoad="FillActivityManagerList"></asp:DropDownList>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="מספר משתתפים מינימלי">
                 <ItemTemplate>
                     <asp:Label ID="lblActivityMinParticipents" runat="server" Text='<%#Eval("MinNumberOfVolunteer") %>' />
@@ -87,21 +96,13 @@
                     <asp:RequiredFieldValidator ID="ActivityMinParticipentsRequiredFieldV" runat="server" ErrorMessage="שדה זה הינו חובה" ValidationGroup="newActivity" ControlToValidate="InputActivityMinParticipents"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField>
-                <%--<ItemTemplate>
-                    <%
-                        if (DateTime.ParseExact(((TextBox)((GridViewRow) ).Cells[2].FindControl("InputActivityDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture).Subtract(DateTime.Now) > TimeSpan.FromSeconds(0)) 
-                        { 
-                    %>
-                    <asp:Button ID="DeleteBtn" runat="server" ValidationGroup="DeleteActivity" Text="מחק" OnClick="DeleteActivity" CommandArgumend="<%# ((GridViewRow) Container).RowIndex %>" />
-                    <%
-                        }
-                    %>
-                </ItemTemplate>--%>
                 <EditItemTemplate>
                     <asp:Button ID="UpdateBtn" runat="server" ValidationGroup="newActivity" Text="הוסף" OnClick="AddNewActivity" />
                 </EditItemTemplate>
             </asp:TemplateField>
+
         </Columns>
         <RowStyle BackColor="#f4fbff" ForeColor="#333333" />
         <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
@@ -114,12 +115,25 @@
     <br />
     <center>
         <h1>דיווחים</h1>
-        פעילות:&nbsp;&nbsp;<asp:DropDownList ID="ActivitysChooseReports" runat="server"></asp:DropDownList>
-        <br />
-        מתנדב:&nbsp;&nbsp; <asp:DropDownList ID="VolunteerChooseReports" runat="server"></asp:DropDownList>
-        <br />
-        <asp:Button ID="ReportsUpdate" runat="server" Text="עדכן" OnClick="Page_LoadComplete" CausesValidation="False" />
     </center>
+    <center>:פעילות</center>
+    <center>
+        <asp:DropDownList ID="ActivitysChooseReports" runat="server"></asp:DropDownList>
+        <br />
+    </center>
+    
+    <center>:מתנדב</center>
+    
+    <center>
+        <asp:DropDownList ID="VolunteerChooseReports" runat="server"></asp:DropDownList>
+        <br />
+        <br />
+    </center>
+    
+    <center>
+        <asp:Button ID="ReportsUpdate" runat="server" Text="הצג" OnClick="Page_LoadComplete" CausesValidation="False" />
+    </center>
+    
     <br />
     <asp:GridView ID="Reports" runat="server" AutoGenerateColumns="False"
         Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
@@ -152,9 +166,8 @@
     <br />
     <br />
     <br />
-    <br />
     <center>
-        <h1>פעילויות מתוכננות של יחידות אחרות</h1>
+        <h1>ארועים מתוכננים של יחידות אחרות</h1>
     </center>
     <asp:GridView ID="OtherActivitys" runat="server" AutoGenerateColumns="False"
         Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
