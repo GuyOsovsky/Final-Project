@@ -148,6 +148,16 @@ namespace PoliceVolunteerUI
             WebServiceReference.generalWS webService = new WebServiceReference.generalWS();
             WebServiceReference.ActivityBL newActivity = webService.GetActivity(int.Parse(((Label)row.Cells[0].FindControl("lblActivityCode")).Text));
             ActivityBL activity = new ActivityBL(newActivity.ActivityName, newActivity.ActivityDate, newActivity.StartTime, newActivity.FinishTime, newActivity.ActivityManager, newActivity.TypeCode, newActivity.Place, newActivity.MinNumberOfVolunteer);
+            DataTable allActivitys = (new ActivitysBL(DateTime.Now)).Activitys.Tables[0];
+            for (int i = 0; i < allActivitys.Rows.Count; i++)
+            {
+                ActivityBL compare = new ActivityBL(int.Parse(allActivitys.Rows[i]["ActivityCode"].ToString()));
+                if (compare.Equals(activity))
+                {
+                    activity.DeleteActivity();
+                    break;
+                }
+            }
         }
 
     }

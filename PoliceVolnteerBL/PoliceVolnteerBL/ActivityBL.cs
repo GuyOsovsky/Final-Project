@@ -96,5 +96,21 @@ namespace PoliceVolnteerBL
         {
             return new ReportsBL(phoneNumber , this.ActivityCode);
         }
+
+        /// <summary>
+        /// deletes the activity from the db
+        /// </summary>
+        public void DeleteActivity()
+        {
+            ActivityDAL.DelActivity(this.ActivityCode);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is ActivityBL))
+                return false;
+            ActivityBL compare = (ActivityBL)obj;
+            return ((compare.ActivityDate.Equals(this.ActivityDate)) && (compare.FinishTime.Equals(this.FinishTime)) && (compare.StartTime.Equals(this.StartTime)) && (compare.Place == this.Place) && (compare.ActivityManager == this.ActivityManager));
+        }
     }
 }

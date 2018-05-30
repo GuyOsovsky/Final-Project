@@ -36,9 +36,9 @@
                 <br />
                 <asp:TextBox ID="Email" runat="server" TextMode="Email" dir="rtl" Enabled="false"></asp:TextBox>
                 <br />
-                <asp:label ID="StatusLbl" runat="server" Text="סטטוס פעילות:"></asp:label>
+                <label for="TypeLbl">דרגה:</label>
                 <br />
-                <asp:DropDownList ID="Status" runat="server" CssClass="form-control" dir="rtl" OnTextChanged="updateVolunteer"></asp:DropDownList>
+                <asp:DropDownList ID="Type" runat="server" CssClass="form-control" dir="rtl" OnTextChanged="updateVolunteer"></asp:DropDownList>
                 <br />
                 <asp:label ID="PoliceIDLbl" runat="server" Text="מספר מזהה במשטרה"></asp:label>
                 <br />
@@ -47,6 +47,10 @@
                 <asp:label ID="ServeCityLbl" runat="server" Text="עיר שירות:" OnTextChanged="updateVolunteer"></asp:label>
                 <br />
                 <asp:DropDownList ID="ServeCity" runat="server" CssClass="form-control" dir="rtl"></asp:DropDownList>
+                <br />
+                <asp:label ID="StatusLbl" runat="server" Text="סטטוס פעילות:"></asp:label>
+                <br />
+                <asp:DropDownList ID="Status" runat="server" CssClass="form-control" dir="rtl" OnTextChanged="updateVolunteer"></asp:DropDownList>
                 <br />
                 <asp:Button ID="updateButton" runat="server" Text="עדכן"></asp:Button>
             </asp:Panel>

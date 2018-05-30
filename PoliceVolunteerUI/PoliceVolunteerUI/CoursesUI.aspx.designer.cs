@@ -13,6 +13,15 @@ namespace PoliceVolunteerUI {
     public partial class CoursesUI {
         
         /// <summary>
+        /// SignedActivitys control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView SignedActivitys;
+        
+        /// <summary>
         /// CoursesInformation control.
         /// </summary>
         /// <remarks>
@@ -22,12 +31,12 @@ namespace PoliceVolunteerUI {
         protected global::System.Web.UI.WebControls.GridView CoursesInformation;
         
         /// <summary>
-        /// SignedActivitys control.
+        /// validities control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView SignedActivitys;
+        protected global::System.Web.UI.WebControls.GridView validities;
     }
 }

@@ -26,6 +26,7 @@ namespace PoliceVolunteerUI
             LoadCitiesHome();
             LoadCitiesServe();
             Loadstatus();
+            LoadTypes();
             FillUserSettings();
         }
 
@@ -43,6 +44,20 @@ namespace PoliceVolunteerUI
                 SearchUser.Items.Add(new ListItem(volunteer.FName + " " + volunteer.LName, volunteer.PhoneNumber));
             }
             SearchUser.DataBind();
+        }
+
+        private void LoadTypes()
+        {
+            //load types from BL
+            Queue<string> types = new Queue<string>();
+            VolunteerTypesBL typeQueue = new VolunteerTypesBL();
+            //get all names of types
+            foreach (VolunteerTypeBL type in typeQueue.VolunteerTypeList)
+            {
+                Type.Items.Add(new ListItem(type.TypeName, type.TypeCode.ToString()));
+            }
+            //load types into control
+            Type.DataBind();
         }
 
         protected void FillUserSettings()
@@ -98,6 +113,16 @@ namespace PoliceVolunteerUI
                 }
             }
             HomeCity.SelectedIndex = homeCityIndex;
+            Type.Items.Clear();
+            VolunteerTypesBL allTypes = new VolunteerTypesBL();
+            int typeIndex;
+            for(typeIndex = 0; typeIndex < allTypes.VolunteerTypeList.Count; typeIndex++)
+            {
+                Type.Items.Add(new ListItem(allTypes.VolunteerTypeList[typeIndex].TypeName, allTypes.VolunteerTypeList[typeIndex].TypeCode.ToString()));
+                if (allTypes.VolunteerTypeList[typeIndex].TypeCode == volunteer.Type.TypeCode)
+                    Type.SelectedIndex = typeIndex;
+            }
+            Type.DataBind();
         }
 
         //load serve city input xml
@@ -141,6 +166,9 @@ namespace PoliceVolunteerUI
                     break;
                 case "ServeCity":
                     field = VolunteerPoliceInfoDALField.ServeCity;
+                    break;
+                case "Type":
+                    field = VolunteerPoliceInfoDALField.Type;
                     break;
                 default:
                     break;

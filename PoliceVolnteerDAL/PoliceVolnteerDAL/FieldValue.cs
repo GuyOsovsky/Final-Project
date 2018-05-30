@@ -93,7 +93,8 @@ namespace PoliceVolnteerDAL
                 ret += "#";
             if (typeDB == FieldType.Date)
             {
-                ret += ((DateTime)value).Month + "/" + ((DateTime)value).Day + "/" + ((DateTime)value).Year;
+                DateTime date = DateTime.Parse(value.ToString());
+                ret += date.Month + "/" + date.Day + "/" + date.Year;
             }
             else
             {

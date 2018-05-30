@@ -22,6 +22,16 @@ namespace PoliceVolunteerUI
             //fill gridviews
             FillCourses();
             FillSignedCourses();
+            FillValiditys();
+        }
+
+        protected void FillValiditys()
+        {
+            DataTable table = (new VolunteerBL(Session["User"].ToString())).GetValidities().Tables[0];
+            table.Columns["VolunteerToValidity.ValidityCode"].ColumnName = "validityCode";
+            DataView dataview = new DataView(table);
+            validities.DataSource = dataview;
+            validities.DataBind();
         }
 
         protected void FillCourses()
@@ -73,6 +83,28 @@ namespace PoliceVolunteerUI
             GridViewRow row = SignedActivitys.Rows[int.Parse(((Button)sender).CommandArgument)];
             VolunteerBL User = new VolunteerBL(Session["User"].ToString());
             User.CourseSignOut(int.Parse(((Label)row.Cells[0].FindControl("lblCourseCode")).Text));
+        }
+
+        protected void Validities_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
+                DataTable expiredValiditys = volunteer.GetValidities().Tables[0];
+                foreach(DataRow validity in expiredValiditys.Rows)
+                {
+                    if (((Label)e.Row.Cells[0].FindControl("lblValidityCode")).Text == validity["VolunteerToValidity.ValidityCode"].ToString())
+                    {
+                        DateTime validityExpire = DateTime.Parse(validity["EndDate"].ToString());
+                        DateTime current = DateTime.Now;
+                        if ((current.Subtract(validityExpire)).TotalDays > -30)
+                        {
+                            e.Row.Font.Bold = false;
+                            e.Row.BackColor = System.Drawing.Color.Red;
+                        }
+                    }
+                }
+            }
         }
     }
 }
