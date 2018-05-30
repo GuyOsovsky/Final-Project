@@ -7,7 +7,7 @@
         <h1>קורסים עתידיים</h1>
     </center>
     <asp:GridView ID="CoursesInformation" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>
@@ -42,7 +42,7 @@
         <h1>קורסים שנרשמת אליהן</h1>
     </center>
     <asp:GridView ID="SignedActivitys" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>

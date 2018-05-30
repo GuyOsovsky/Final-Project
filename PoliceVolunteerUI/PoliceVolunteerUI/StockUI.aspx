@@ -14,7 +14,7 @@
     <br />
 
     <asp:GridView ID="ItemsToBorrow" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>
@@ -63,7 +63,7 @@
     <br />
 
     <asp:GridView ID="BorrowedItems" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>
@@ -105,7 +105,7 @@
     </div>
     <br />
 
-    <asp:Table ID="AddTable" runat="server" Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+    <asp:Table ID="AddTable" runat="server" Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <asp:TableHeaderRow>
             <asp:TableHeaderCell>שם הפריט</asp:TableHeaderCell>
@@ -153,7 +153,7 @@
 
 
     <asp:GridView ID="Transfers" runat="server" AutoGenerateColumns="False"
-        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
         GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
         <AlternatingRowStyle BackColor="#dbffe5" />
         <Columns>

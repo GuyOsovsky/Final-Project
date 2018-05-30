@@ -123,21 +123,32 @@ namespace PoliceVolunteerUI
                 //add cell to row cells
                 row.Cells.Add(showCell);
 
-                //add delete cell
-                TableCell deleteCell = new TableCell();
-                //add delete button
-                Button deleteBtn = new Button();
-                deleteBtn.Text = "מחק";
+                if (IsAbleVolunteer())
+                {
+                    //add delete cell
+                    TableCell deleteCell = new TableCell();
+                    //add delete button
+                    Button deleteBtn = new Button();
+                    deleteBtn.Text = "מחק";
 
-                //add click event for deleting file
-                deleteBtn.Click += deleteBtn_Click;
+                    //add click event for deleting file
+                    deleteBtn.Click += deleteBtn_Click;
 
-                //add button to cell controls
-                deleteCell.Controls.Add(deleteBtn);
-                //add cell to row cells
-                row.Cells.Add(deleteCell);
+                    //add button to cell controls
+                    deleteCell.Controls.Add(deleteBtn);
+                    //add cell to row cells
+                    row.Cells.Add(deleteCell);
+                }
 
             }
+        }
+
+        //is admin and is able to manage media
+        protected bool IsAbleVolunteer()
+        {
+            if (Session["User"].ToString() == "") return false;
+            VolunteerBL volunteer = new VolunteerBL(Session["User"].ToString());
+            return volunteer.Type.PermmisionVolunteer;
         }
 
         //delete file from database and physically from server

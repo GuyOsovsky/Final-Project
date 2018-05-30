@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
-        <h1>משמרות עתידיות</h1>
+        <h1>משמרות עתידיות שניתן להירשם אליהן</h1>
     </center>
     <asp:GridView ID="ShiftsInformation" runat="server" AutoGenerateColumns="False"
         Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"

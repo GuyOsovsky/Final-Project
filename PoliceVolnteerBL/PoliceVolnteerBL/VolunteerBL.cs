@@ -478,32 +478,69 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// signs the volunteer to a shift
         /// </summary>
-        public void ShiftSignUp(int ShiftCode)
+        public void ShiftSignUp(int shiftCode)
+        {
+            //if (this.Type.Independent)
+            //{
+            //    //get all the volunteers in the shift
+            //    DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
+            //    if (VolunteersInShift.Count > 1)//if there is no more place in the shift exit
+            //        return;
+            //    //add him in the shift
+            //    ShiftsToVolunteerDAL.AddShift(ShiftCode, this.PhoneNumber, "");
+            //}
+            //else
+            //{
+            //    //get all volunteers in the shifts
+            //    DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
+            //    //if there is no more place or there is already a non independent volunteer in the shift exit
+            //    if (VolunteersInShift.Count > 2 || VolunteersInShift.Count < 1)
+            //        return;
+            //    foreach (DataRow VolunteerInShift in VolunteersInShift)
+            //    {
+            //        VolunteerBL volunteer = new VolunteerBL(VolunteerInShift["PhoneNumber"].ToString());
+            //        if (!volunteer.Type.Independent)
+            //            return;
+            //    }
+            //    //add him to the shift
+            //    ShiftsToVolunteerDAL.AddShift(ShiftCode, this.PhoneNumber, "");
+            //}
+            if (CanSignUpToShift(shiftCode))
+            {
+                if(this.Type.Independent)
+                    ShiftsToVolunteerDAL.AddShift(shiftCode, this.PhoneNumber, "");
+                else
+                    ShiftsToVolunteerDAL.AddShift(shiftCode, this.PhoneNumber, "");
+            }
+        }
+
+        public bool CanSignUpToShift(int shiftCode)
         {
             if (this.Type.Independent)
             {
                 //get all the volunteers in the shift
-                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
+                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, shiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
                 if (VolunteersInShift.Count > 1)//if there is no more place in the shift exit
-                    return;
-                //add him in the shift
-                ShiftsToVolunteerDAL.AddShift(ShiftCode, this.PhoneNumber, "");
+                    return false;
+                //can add him to the shift
+                return true;
             }
             else
             {
                 //get all volunteers in the shifts
-                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, ShiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
+                DataRowCollection VolunteersInShift = ShiftsToVolunteerDAL.GetTable(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, shiftCode, Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals)).Tables[0].Rows;
                 //if there is no more place or there is already a non independent volunteer in the shift exit
                 if (VolunteersInShift.Count > 2 || VolunteersInShift.Count < 1)
-                    return;
+                    return false;
                 foreach (DataRow VolunteerInShift in VolunteersInShift)
                 {
                     VolunteerBL volunteer = new VolunteerBL(VolunteerInShift["PhoneNumber"].ToString());
+                    //if there is a trainee, another trainee can not be added
                     if (!volunteer.Type.Independent)
-                        return;
+                        return false;
                 }
-                //add him to the shift
-                ShiftsToVolunteerDAL.AddShift(ShiftCode, this.PhoneNumber, "");
+                //can add him to the shift
+                return true;
             }
         }
 

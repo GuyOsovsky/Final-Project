@@ -39,7 +39,7 @@ namespace PoliceVolunteerUI
                 DataTable UserShifts = user.GetShifts(DateTime.Now, OperatorType.Greater);
                 for (int j = 0; j < UserShifts.Rows.Count; j++)
                 {
-                    if(UserShifts.Rows[j]["ShiftCode"].ToString() == FilteredTable.Rows[i]["ShiftCode"].ToString())
+                    if(UserShifts.Rows[j]["ShiftCode"].ToString() == FilteredTable.Rows[i]["ShiftCode"].ToString() || (!user.CanSignUpToShift(int.Parse(FilteredTable.Rows[i]["ShiftCode"].ToString()))))
                     {
                         FilteredTable.Rows[i].Delete();
                         //i--;

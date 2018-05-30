@@ -82,7 +82,7 @@
         </div>
         <div class="col-sm-4">
             <asp:GridView ID="carsInformation" runat="server" AutoGenerateColumns="False"
-            Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+            Style="z-index: 101; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
             GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
             <AlternatingRowStyle BackColor="#dbffe5" />
             <Columns>
