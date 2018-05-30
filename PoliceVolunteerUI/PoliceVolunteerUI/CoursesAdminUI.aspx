@@ -135,4 +135,40 @@
         <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
     </asp:GridView>
 
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <center>
+        <h1>רשיונות פגי תוקף</h1>
+        <p>כאן מוצגים הרשיונות של האנשים שעומדים או פגו תוקף השורות האדומות הן רשיונות שפגו והשורות הצהובות הן הרשיונות שעומדים לפוג</p>
+    </center>
+    <asp:GridView ID="validities" runat="server" AutoGenerateColumns="False"
+        onrowdatabound="Validities_RowDataBound"
+        Style="z-index: 101; left: 18px; position: relative; top: 9px" BorderColor="#000099" CellPadding="4"
+        GridLines="None" Width="100%" ForeColor="Black" BackColor="LightBlue" Font-Bold="true">
+        <AlternatingRowStyle BackColor="#dbffe5" />
+        <Columns>
+            <asp:TemplateField Visible="false">
+                <ItemTemplate>
+                    <asp:Label ID="lblValidityCode" runat="server" Text='<%# Eval("validityCode")  %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField Visible="false">
+                <ItemTemplate>
+                    <asp:Label ID="LblPhoneNumber" runat="server" Text='<%# Eval("PhoneNumber")  %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="FName" HeaderText="שם פרטי" ReadOnly="True" />
+            <asp:BoundField DataField="LName" HeaderText="שם משפחה" ReadOnly="True" />
+            <asp:BoundField DataField="EndDate" DataFormatString="{0:d}" HeaderText="תאריך פג תוקף" ReadOnly="True" />
+            <asp:BoundField DataField="ValidityName" HeaderText="רשיון" ReadOnly="True" />
+        </Columns>
+        <RowStyle BackColor="#f4fbff" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+        <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+    </asp:GridView>
 </asp:Content>

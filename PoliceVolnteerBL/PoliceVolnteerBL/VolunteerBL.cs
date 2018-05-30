@@ -221,6 +221,7 @@ namespace PoliceVolnteerBL
             volunteer.Tables[0].Rows[0][10] = this.StartDate;
             return volunteer;
         }
+
         /// <summary>
         /// does have birth day today
         /// </summary>
@@ -463,7 +464,7 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// returns all the validitys the volunteer has to renew
         /// </summary>
-        public DataTable GetExpiraedValidities() //לאפשר למנהל לשנות אופסט של ימים שיתריע לו מתי נגמר למתנדב הרשיונות
+        public DataTable GetExpiraedValidities() 
         {
             //get all user's validities
             DataTable AllValidities = this.GetValidities().Tables[0];

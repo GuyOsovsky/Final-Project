@@ -21,6 +21,38 @@ namespace PoliceVolunteerUI
 
             FillOtherCourses();
             FillOurCourses();
+            FillValiditys();
+        }
+
+        protected void FillValiditys()
+        {
+            VolunteersBL volunteers = new VolunteersBL(false);
+            DataTable table = (volunteers.VolunteerList[0]).GetValidities().Tables[0];
+            for (int i = 1; i < volunteers.VolunteerList.Count; i++)
+            {
+                table.Merge(volunteers.VolunteerList[i].GetValidities().Tables[0]);
+            }
+            //DataTable AllValidities = this.GetValidities().Tables[0];
+            ////create mask to filter validities by todays date
+            //FieldValue<VolunteerToValidityField> Mask = new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.EndDate, DateTime.Now.ToShortDateString(), Table.VolunteerToValidity, FieldType.Date, OperatorType.LowerAndEquals);
+            ////filter unnececery validities
+            //AllValidities.DefaultView.RowFilter = Mask.ToSql();
+            //DataTable FilteredValidities = (AllValidities.DefaultView).ToTable();
+            FieldValue<VolunteerToValidityField> Mask = new FieldValue<VolunteerToValidityField>(VolunteerToValidityField.EndDate, DateTime.Now.AddDays(30), PoliceVolnteerDAL.Table.VolunteerToValidity, FieldType.Date, OperatorType.LowerAndEquals);
+            table.DefaultView.RowFilter = Mask.ToSql();
+            DataTable filteredTable = (table.DefaultView).ToTable();
+            filteredTable.Columns["VolunteerToValidity.ValidityCode"].ColumnName = "validityCode";
+            filteredTable.Columns.Add("FName", typeof(string));
+            filteredTable.Columns.Add("LName", typeof(string));
+            foreach (DataRow row in filteredTable.Rows)
+            {
+                VolunteerBL volunteer = new VolunteerBL(row["PhoneNumber"].ToString());
+                row["FName"] = volunteer.FName;
+                row["LName"] = volunteer.LName;
+            }
+            DataView dataview = new DataView(filteredTable);
+            validities.DataSource = dataview;
+            validities.DataBind();
         }
 
         protected void FillOurCourses()
@@ -30,7 +62,7 @@ namespace PoliceVolunteerUI
             allCourses.Courses.Tables[0].Rows.Add();
             allCourses.Courses.Tables[0].Columns.Add("Validity", typeof(string));
 
-            for (int i = 0; i < allCourses.Courses.Tables[0].Rows.Count-1; i++)
+            for (int i = 0; i < allCourses.Courses.Tables[0].Rows.Count - 1; i++)
             {
                 allCourses.Courses.Tables[0].Rows[i]["Validity"] = new ValidityTypeBL(int.Parse(allCourses.Courses.Tables[0].Rows[i]["ValidityCode"].ToString())).ValidityName;
             }
@@ -49,14 +81,38 @@ namespace PoliceVolunteerUI
             DateTime courseDate = DateTime.ParseExact(((TextBox)row.Cells[2].FindControl("inputCourseDate")).Text, "yyyy-M-d", System.Globalization.CultureInfo.InvariantCulture);
             DateTime startTime = DateTime.ParseExact(((TextBox)row.Cells[3].FindControl("inputCourseStartTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
             DateTime finishTime = DateTime.ParseExact(((TextBox)row.Cells[4].FindControl("inputCourseFinishTime")).Text, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
-            
+
             VolunteerBL instructor = new VolunteerBL(Session["User"].ToString());
             string nameOfInstructor = instructor.FName + " " + instructor.LName;
-            
+
             string place = ((TextBox)row.Cells[5].FindControl("inputCoursePlace")).Text;
             string description = ((TextBox)row.Cells[6].FindControl("inputCourseDescription")).Text;
             ValidityTypeBL newValidity = new ValidityTypeBL(((DropDownList)row.Cells[7].FindControl("InputValidityType")).Text);
             CourseBL course = new CourseBL(courseName, courseDate, startTime, finishTime, nameOfInstructor, false, place, description, newValidity.ValidityCode);
+            VolunteersBL allVolunteers = new VolunteersBL(false);
+            foreach (VolunteerBL volunteer in allVolunteers.VolunteerList)
+            {
+                DataTable validities = volunteer.GetValidities().Tables[0];
+                bool isExists = false;
+                foreach (DataRow validity in validities.Rows)
+                {
+                    if (newValidity.ValidityCode == int.Parse(validity["ValidityCode"].ToString()))
+                    {
+                        isExists = true;
+                        DateTime validityExpire = DateTime.Parse(validity["EndDate"].ToString());
+                        DateTime current = DateTime.Now;
+                        if ((current.Subtract(validityExpire)).TotalDays > -30)
+                        {
+                            volunteer.CourseSignUp(course.CourseCode);
+                            break;
+                        }
+                    }
+                }
+                if (!isExists)
+                {
+                    volunteer.CourseSignUp(course.CourseCode);
+                }
+            }
         }
 
         protected void FillValidityTypesList(object sender, EventArgs e)
@@ -90,6 +146,31 @@ namespace PoliceVolunteerUI
                 {
                     course.DeleteCourse();
                     break;
+                }
+            }
+        }
+
+        protected void Validities_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                VolunteerBL volunteer = new VolunteerBL(((Label)e.Row.Cells[1].FindControl("LblPhoneNumber")).Text);
+                DataTable expiredValiditys = volunteer.GetValidities().Tables[0];
+                foreach (DataRow validity in expiredValiditys.Rows)
+                {
+                    if (((Label)e.Row.Cells[0].FindControl("lblValidityCode")).Text == validity["VolunteerToValidity.ValidityCode"].ToString())
+                    {
+                        DateTime validityExpire = DateTime.Parse(validity["EndDate"].ToString());
+                        DateTime current = DateTime.Now;
+                        if ((current.Subtract(validityExpire)).TotalDays > 0)
+                        {
+                            e.Row.BackColor = System.Drawing.Color.Red;
+                        }
+                        else
+                        {
+                            e.Row.BackColor = System.Drawing.Color.Yellow;
+                        }
+                    }
                 }
             }
         }
