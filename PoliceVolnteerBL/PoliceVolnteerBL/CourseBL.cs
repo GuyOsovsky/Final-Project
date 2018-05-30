@@ -91,5 +91,21 @@ namespace PoliceVolnteerBL
                     sum++;
             return sum;
         }
+
+        /// <summary>
+        /// deletes the course from the db
+        /// </summary>
+        public void DeleteCourse()
+        {
+            CourseDAL.DelCourse(this.CourseCode);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is CourseBL))
+                return false;
+            CourseBL compare = (CourseBL)obj;
+            return ((compare.CourseDate.Equals(this.CourseDate)) && (compare.FinishTime.Equals(this.FinishTime)) && (compare.StartTime.Equals(this.StartTime)) && (compare.Place == compare.Place) && (compare.Validity.ValidityCode == this.Validity.ValidityCode) && (compare.NameOfInstructor == this.NameOfInstructor) && (compare.CourseCode != this.CourseCode));
+        }
     }
 }

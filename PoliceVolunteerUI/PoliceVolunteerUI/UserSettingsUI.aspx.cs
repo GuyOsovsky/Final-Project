@@ -121,6 +121,8 @@ namespace PoliceVolunteerUI
                 value = ((DropDownList)sender).SelectedValue;
             }
             (new VolunteerBL(Session["User"].ToString())).UpdateVolunteer(field, value);
+            if (field == VolunteerInfoDALField.PhoneNumber)
+                Session["User"] = value;
         }
 
         protected void AddNewCar(object sender, EventArgs e)
