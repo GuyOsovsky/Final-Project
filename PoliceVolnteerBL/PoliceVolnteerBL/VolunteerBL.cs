@@ -534,7 +534,7 @@ namespace PoliceVolnteerBL
         /// <summary>
         /// creates a new report of shift. if it was a patrol shift with a car the volunteer has to fill in some more data
         /// </summary>
-        public void ShiftReport(ShiftBL shift, string comment, string carID = "", double distance = 0)
+        public void ShiftReport(ShiftBL shift, string comment = "", string carID = "", double distance = 0)
         {
             if (distance != 0)//if the volunteer has entered Car shift info so add the car shift to the database
             {
@@ -543,8 +543,11 @@ namespace PoliceVolnteerBL
                     return;
                 CarsReportsDAL.AddCarReport(shift.ShiftCode, carID, distance);
             }
-            //update comment
-            ShiftsToVolunteerDAL.UpdateComment(this.PhoneNumber, shift.ShiftCode, comment);
+            if (comment == "")//if the volunteer has entered comment so add comment to the database
+            {
+                //update comment
+                ShiftsToVolunteerDAL.UpdateComment(this.PhoneNumber, shift.ShiftCode, comment);
+            }
         }
 
         /// <summary>
@@ -625,7 +628,6 @@ namespace PoliceVolnteerBL
             DataTable FilteredTable = (ds.Tables[0].DefaultView).ToTable();
 
             return FilteredTable;
-
         }
 
         /// <summary>
@@ -665,7 +667,7 @@ namespace PoliceVolnteerBL
                 shiftReportFilter.Enqueue(new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.ShiftCode, shift["ShiftCode"], Table.ShiftsToVolunteer, FieldType.Number, OperatorType.Equals));
             }
             DataTable reports = ShiftsToVolunteerDAL.GetTable(shiftReportFilter, false).Tables[0];
-            FieldValue<ShiftsToVolunteerField> Mask = new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, Operator);
+            FieldValue<ShiftsToVolunteerField> Mask = new FieldValue<ShiftsToVolunteerField>(ShiftsToVolunteerField.PhoneNumber, this.PhoneNumber, Table.ShiftsToVolunteer, FieldType.String, OperatorType.Equals);
             reports.DefaultView.RowFilter = Mask.ToSql();
             reports = (reports.DefaultView).ToTable();
             return reports;
@@ -733,6 +735,11 @@ namespace PoliceVolnteerBL
             reports.DefaultView.RowFilter = Mask.ToSql();
             reports = (reports.DefaultView).ToTable();
             return reports;
+        }
+
+        public static DataRow GetVolunteerByCarID(string carID)
+        {
+            return CarToVolunteerDAL.GetTable(new FieldValue<CarVolunteerField>(CarVolunteerField.CarID, carID, Table.CarToVolunteer, FieldType.String)).Tables[0].Rows[0];
         }
 
     }

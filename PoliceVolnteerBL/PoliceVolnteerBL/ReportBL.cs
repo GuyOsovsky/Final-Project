@@ -57,7 +57,9 @@ namespace PoliceVolnteerBL
         /// </summary>
         public void UpdateDescription(string descriptionContent, DateTime updateDate)
         {
+            //change description string
             ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.Description, descriptionContent, Table.Reports, FieldType.String));
+            //change report date(to update date)
             ReportsDAL.UpdateFrom(this.PhoneNumber, this.ActivityCode, new FieldValue<ReportsField>(ReportsField.ReportDate, updateDate, Table.Reports, FieldType.Date));
         }
 

@@ -127,7 +127,8 @@ namespace PoliceVolnteerDAL
                 throw new Exception("ActivityCode or PhoneNumber cannot be changed");
             try
             {
-                DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM Reports WHERE PhoneNumber='{0}' AND ActivityCode='{1}'", phoneNumber, activityCode), "Reports");
+                //DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM Reports WHERE PhoneNumber='{0}' AND ActivityCode='{1}'", phoneNumber, activityCode), "Reports");
+                DataSet ds = OleDbHelper2.Fill(string.Format("SELECT * FROM Reports WHERE PhoneNumber='{0}' AND ActivityCode={1}", phoneNumber, activityCode), "Reports");
                 if (ds.Tables["Reports"].Rows.Count > 0)
                 {
                     DataRow dr = ds.Tables["Reports"].Rows[0];

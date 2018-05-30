@@ -18,6 +18,13 @@ namespace PoliceVolunteerUI
             {
                 Response.Redirect("HomePageUI.aspx");
             }
+
+            if (!IsPostBack)
+            {
+            }
+
+            FillBlankReports();
+
             //fill activity gridview
             FillActivitys();
             FillSignedActivitys();
@@ -68,6 +75,30 @@ namespace PoliceVolunteerUI
             VolunteerBL User = new VolunteerBL(Session["User"].ToString());
             User.ActivitySignOut(int.Parse(((Label)row.Cells[0].FindControl("lblActivityCode")).Text));
         }
-        
+
+        protected void FillBlankReports()
+        {
+            ReportsBL reports = new ReportsBL(Session["User"].ToString());
+            DataTable filteredReports = reports.Reports.Tables[0];
+            foreach(DataRow row in filteredReports.Rows)
+            {
+                if(!(row["Description"].ToString() == "" && (DateTime)row["ActivityDate"] < DateTime.Now))
+                {
+                    row.Delete();
+                }
+            }
+            blankReports.DataSource = filteredReports;
+            blankReports.DataBind();
+        }
+
+        protected void UpdateDescription(object sender, EventArgs e)
+        {
+            GridViewRow row = blankReports.Rows[int.Parse(((Button)sender).CommandArgument)];
+            int activityCode = int.Parse(((Label)row.Cells[0].FindControl("lblActivityCode")).Text);
+            string phoneNumber = ((Label)row.Cells[1].FindControl("lblUserPhoneNumber")).Text;
+            string description = ((TextBox)row.Cells[7].FindControl("ReportText")).Text;
+            ReportBL report = new ReportBL(phoneNumber, activityCode);
+            report.UpdateDescription(description, DateTime.Now);
+        }
     }
 }

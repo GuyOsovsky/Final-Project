@@ -11,29 +11,39 @@ namespace PoliceVolnteerBL
 {
     public class ShiftsTypesBL
     {
-        public List<ShiftTypesBL> ShiftTypeList { get; private set; }
-        
+        //public List<ShiftTypesBL> ShiftTypeList { get; private set; }
+
+        public DataSet shiftTypes { get; set; }
+
         /// <summary>
-        /// create ShiftTypeList and add all the ShiftTypesBL objects
+        /// creates a new object with all the types
         /// </summary>
         public ShiftsTypesBL()
         {
-            this.ShiftTypeList = new List<ShiftTypesBL>();
-            DataRowCollection shiftsTypesRows = ShiftsTypesDAL.GetTable().Tables[0].Rows;
-            for (int i = 0; i < shiftsTypesRows.Count; i++)
-            {
-                ShiftTypeList.Add(new ShiftTypesBL((int)shiftsTypesRows[i]["typeCode"]));
-            }
+            shiftTypes = ShiftsTypesDAL.GetTable();
         }
-        
-        /// <summary>
-        /// return all shift types
-        /// </summary>
-        public DataTable GetTypes()
-        {
-            DataTable Types = ShiftsTypesDAL.GetTable().Tables[0];
-            Types.Columns.Remove("typeCode");
-            return Types;
-        }
+
+        ///// <summary>
+        ///// create ShiftTypeList and add all the ShiftTypesBL objects
+        ///// </summary>
+        //public ShiftsTypesBL()
+        //{
+        //    this.ShiftTypeList = new List<ShiftTypesBL>();
+        //    DataRowCollection shiftsTypesRows = ShiftsTypesDAL.GetTable().Tables[0].Rows;
+        //    for (int i = 0; i < shiftsTypesRows.Count; i++)
+        //    {
+        //        ShiftTypeList.Add(new ShiftTypesBL((int)shiftsTypesRows[i]["typeCode"]));
+        //    }
+        //}
+
+        ///// <summary>
+        ///// return all shift types
+        ///// </summary>
+        //public DataTable GetTypes()
+        //{
+        //    DataTable Types = ShiftsTypesDAL.GetTable().Tables[0];
+        //    Types.Columns.Remove("typeCode");
+        //    return Types;
+        //}
     }
 }
